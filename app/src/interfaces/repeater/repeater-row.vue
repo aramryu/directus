@@ -11,12 +11,7 @@
 		/>
 		<transition-expand>
 			<div v-if="active">
-				<repeater-row-form
-					:disabled="disabled"
-					:fields="fields"
-					:value="value"
-					@input="$emit('input', $event)"
-				/>
+				<repeater-row-form :disabled="disabled" :fields="fields" :value="value" @input="$emit('input', $event)" />
 			</div>
 		</transition-expand>
 	</v-item>

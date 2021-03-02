@@ -40,13 +40,7 @@
 		</template>
 
 		<div class="presets-collection">
-			<v-info
-				center
-				type="warning"
-				v-if="!loading && presets.length === 0"
-				:title="$t('no_presets')"
-				icon="bookmark"
-			>
+			<v-info center type="warning" v-if="!loading && presets.length === 0" :title="$t('no_presets')" icon="bookmark">
 				{{ $t('no_presets_copy') }}
 
 				<template #append>

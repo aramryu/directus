@@ -18,26 +18,11 @@
 
 					<template #append v-if="!disabled">
 						<template v-if="currentUser">
-							<v-icon
-								name="open_in_new"
-								class="edit"
-								v-tooltip="$t('edit')"
-								@click.stop="editModalActive = true"
-							/>
-							<v-icon
-								name="close"
-								class="deselect"
-								@click.stop="$emit('input', null)"
-								v-tooltip="$t('deselect')"
-							/>
+							<v-icon name="open_in_new" class="edit" v-tooltip="$t('edit')" @click.stop="editModalActive = true" />
+							<v-icon name="close" class="deselect" @click.stop="$emit('input', null)" v-tooltip="$t('deselect')" />
 						</template>
 						<template v-else>
-							<v-icon
-								class="add"
-								name="add"
-								v-tooltip="$t('create_item')"
-								@click.stop="editModalActive = true"
-							/>
+							<v-icon class="add" name="add" v-tooltip="$t('create_item')" @click.stop="editModalActive = true" />
 							<v-icon class="expand" :class="{ active }" name="expand_more" />
 						</template>
 					</template>
@@ -54,12 +39,7 @@
 				</template>
 
 				<template v-else>
-					<v-list-item
-						v-for="item in users"
-						:key="item.id"
-						:active="value === item.id"
-						@click="setCurrent(item)"
-					>
+					<v-list-item v-for="item in users" :key="item.id" :active="value === item.id" @click="setCurrent(item)">
 						<v-list-item-content>
 							{{ userName(item) }}
 						</v-list-item-content>

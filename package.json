@@ -10,10 +10,6 @@
 		"postinstall": "npm run build",
 		"prettier": "lerna run prettier"
 	},
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/directus/directus.git"
-	},
 	"author": "Rijk van Zanten <rijkvanzanten@me.com>",
 	"license": "GPL-3.0-only",
 	"bugs": {
@@ -206,20 +202,11 @@
 		"create-directus-project": "file:packages/create-directus-project",
 		"directus": "file:api"
 	},
-	"husky": {
-		"hooks": {
-			"pre-commit": "npx lint-staged"
-		}
-	},
 	"lint-staged": {
 		"**/*.{js,ts,md}": [
 			"prettier --write"
 		],
 		"**/*.{css,scss}": [
-			"stylelint --fix"
-		],
-		"**/*.vue": [
-			"vue-cli-service lint",
 			"stylelint --fix"
 		]
 	}

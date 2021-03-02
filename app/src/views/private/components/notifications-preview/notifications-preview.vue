@@ -7,11 +7,7 @@
 						{{ $t('show_all_activity') }}
 					</router-link>
 					<transition-group tag="div" name="notification" class="transition">
-						<notification-item
-							v-for="notification in lastFour"
-							:key="notification.id"
-							v-bind="notification"
-						/>
+						<notification-item v-for="notification in lastFour" :key="notification.id" v-bind="notification" />
 					</transition-group>
 				</div>
 			</div>

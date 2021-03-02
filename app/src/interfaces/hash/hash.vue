@@ -44,9 +44,13 @@ export default defineComponent({
 			return isHashed.value ? i18n.t('value_hashed') : props.placeholder;
 		});
 
-		watch(() => props.value, () => {
-			isHashed.value = !!(props.value && props.value.length > 0);
-		}, { immediate: true });
+		watch(
+			() => props.value,
+			() => {
+				isHashed.value = !!(props.value && props.value.length > 0);
+			},
+			{ immediate: true }
+		);
 
 		return { _placeholder, isHashed, localValue, emitValue };
 

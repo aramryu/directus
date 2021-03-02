@@ -92,7 +92,7 @@ const systemDefaults: Record<string, Partial<Preset>> = {
 	},
 };
 
-let currentUpdate: Record<number, string> = {};
+const currentUpdate: Record<number, string> = {};
 
 export const usePresetsStore = createStore({
 	id: 'presetsStore',

@@ -1,11 +1,15 @@
 <template>
-	<div id="app" :style="brandStyle">
-		<transition name="fade">
-			<div class="hydrating" v-if="hydrating">
-				<v-progress-circular indeterminate />
-			</div>
-		</transition>
+  <v-app>
+    <v-app-bar
+      app
+      color="primary"
+      dark
+    >
 
+
+    </v-app-bar>
+
+    <v-main>
 		<v-info v-if="error" type="danger" :title="$t('unexpected_error')" icon="error" center>
 			{{ $t('unexpected_error_copy') }}
 
@@ -20,10 +24,13 @@
 		<portal-target name="menu-outlet" transition="transition-bounce" multiple />
 
 		<mounting-portal mount-to="#custom-css" target-tag="style">{{ customCSS }}</mounting-portal>
-	</div>
+		</v-main>
+
+  </v-app>
 </template>
 
 <script lang="ts">
+import Vue from 'vue';
 import { defineComponent, toRefs, watch, computed, provide } from '@vue/composition-api';
 import * as stores from '@/stores';
 import api, { addTokenToURL } from '@/api';

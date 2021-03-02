@@ -170,25 +170,25 @@ body {
 
 		&:hover,
 		&:focus-within {
-		    input {
-		        height: 4px;
-		        &::-webkit-slider-thumb {
-		            width: 12px;
-		            height: 12px;
-		            margin-top: -4px;
-		            box-shadow: 0 0 0 4px var(--v-slider-thumb-color);
-		        }
+			input {
+				height: 4px;
+				&::-webkit-slider-thumb {
+					width: 12px;
+					height: 12px;
+					margin-top: -4px;
+					box-shadow: 0 0 0 4px var(--v-slider-thumb-color);
+				}
 
-		        &::-moz-range-thumb {
-		            width: 12px;
-		            height: 12px;
-		            margin-top: -4px;
-		            box-shadow: 0 0 0 4px var(--v-slider-thumb-color);
-		        }
-		    }
-		    .thumb-label {
-		        opacity: 1;
-		    }
+				&::-moz-range-thumb {
+					width: 12px;
+					height: 12px;
+					margin-top: -4px;
+					box-shadow: 0 0 0 4px var(--v-slider-thumb-color);
+				}
+			}
+			.thumb-label {
+				opacity: 1;
+			}
 		}
 
 		.fill {
