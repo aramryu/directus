@@ -1,8 +1,8 @@
-import VCard from './v-card.vue';
-import VCardTitle from './v-card-title.vue';
-import VCardSubtitle from './v-card-subtitle.vue';
-import VCardText from './v-card-text.vue';
-import VCardActions from './v-card-actions.vue';
+import DCard from './v-card.vue';
+import DCardTitle from './v-card-title.vue';
+import DCardSubtitle from './v-card-subtitle.vue';
+import DCardText from './v-card-text.vue';
+import DCardActions from './v-card-actions.vue';
 
-export { VCard, VCardTitle, VCardSubtitle, VCardActions, VCardText };
-export default VCard;
+export { DCard, DCardTitle, DCardSubtitle, DCardActions, DCardText };
+export default DCard;

@@ -1,10 +1,10 @@
 <template>
 	<div class="file">
-		<v-menu attached :disabled="disabled || loading">
+		<d-menu attached :disabled="disabled || loading">
 			<template #activator="{ toggle }">
 				<div>
-					<v-skeleton-loader type="input" v-if="loading" />
-					<v-input
+					<d-skeleton-loader type="input" v-if="loading" />
+					<d-input
 						v-else
 						@click="toggle"
 						readonly
@@ -24,51 +24,51 @@
 								<span class="extension" v-else-if="fileExtension">
 									{{ fileExtension }}
 								</span>
-								<v-icon v-else name="folder_open" />
+								<d-icon v-else name="folder_open" />
 							</div>
 						</template>
 						<template #append>
 							<template v-if="file">
-								<v-icon name="open_in_new" class="edit" v-tooltip="$t('edit')" @click.stop="editDrawerActive = true" />
-								<v-icon class="deselect" name="close" @click.stop="$emit('input', null)" v-tooltip="$t('deselect')" />
+								<d-icon name="open_in_new" class="edit" v-tooltip="$t('edit')" @click.stop="editDrawerActive = true" />
+								<d-icon class="deselect" fa="times" @click.stop="$emit('input', null)" v-tooltip="$t('deselect')" />
 							</template>
-							<v-icon v-else name="attach_file" />
+							<d-icon v-else name="attach_file" />
 						</template>
-					</v-input>
+					</d-input>
 				</div>
 			</template>
 
-			<v-list>
+			<d-list>
 				<template v-if="file">
-					<v-list-item :download="file.filename_download" :href="assetURL">
-						<v-list-item-icon><v-icon name="get_app" /></v-list-item-icon>
-						<v-list-item-content>{{ $t('download_file') }}</v-list-item-content>
-					</v-list-item>
+					<d-list-item :download="file.filename_download" :href="assetURL">
+						<d-list-item-icon><d-icon name="get_app" /></d-list-item-icon>
+						<d-list-item-content>{{ $t('download_file') }}</d-list-item-content>
+					</d-list-item>
 
-					<v-divider />
+					<d-divider />
 				</template>
-				<v-list-item @click="activeDialog = 'upload'">
-					<v-list-item-icon><v-icon name="phonelink" /></v-list-item-icon>
-					<v-list-item-content>
+				<d-list-item @click="activeDialog = 'upload'">
+					<d-list-item-icon><d-icon name="phonelink" /></d-list-item-icon>
+					<d-list-item-content>
 						{{ $t(file ? 'replace_from_device' : 'upload_from_device') }}
-					</v-list-item-content>
-				</v-list-item>
+					</d-list-item-content>
+				</d-list-item>
 
-				<v-list-item @click="activeDialog = 'choose'">
-					<v-list-item-icon><v-icon name="folder_open" /></v-list-item-icon>
-					<v-list-item-content>
+				<d-list-item @click="activeDialog = 'choose'">
+					<d-list-item-icon><d-icon name="folder_open" /></d-list-item-icon>
+					<d-list-item-content>
 						{{ $t(file ? 'replace_from_library' : 'choose_from_library') }}
-					</v-list-item-content>
-				</v-list-item>
+					</d-list-item-content>
+				</d-list-item>
 
-				<v-list-item @click="activeDialog = 'url'">
-					<v-list-item-icon><v-icon name="link" /></v-list-item-icon>
-					<v-list-item-content>
+				<d-list-item @click="activeDialog = 'url'">
+					<d-list-item-icon><d-icon name="link" /></d-list-item-icon>
+					<d-list-item-content>
 						{{ $t(file ? 'replace_from_url' : 'import_from_url') }}
-					</v-list-item-content>
-				</v-list-item>
-			</v-list>
-		</v-menu>
+					</d-list-item-content>
+				</d-list-item>
+			</d-list>
+		</d-menu>
 
 		<drawer-item
 			v-if="!disabled && file"
@@ -79,17 +79,17 @@
 			@input="stageEdits"
 		/>
 
-		<v-dialog :active="activeDialog === 'upload'" @esc="activeDialog = null" @toggle="activeDialog = null">
-			<v-card>
-				<v-card-title>{{ $t('upload_from_device') }}</v-card-title>
-				<v-card-text>
-					<v-upload @input="onUpload" from-url />
-				</v-card-text>
-				<v-card-actions>
-					<v-button @click="activeDialog = null" secondary>{{ $t('cancel') }}</v-button>
-				</v-card-actions>
-			</v-card>
-		</v-dialog>
+		<d-dialog :active="activeDialog === 'upload'" @esc="activeDialog = null" @toggle="activeDialog = null">
+			<d-card>
+				<d-card-title>{{ $t('upload_from_device') }}</d-card-title>
+				<d-card-text>
+					<d-upload @input="onUpload" from-url />
+				</d-card-text>
+				<d-card-actions>
+					<d-button @click="activeDialog = null" secondary>{{ $t('cancel') }}</d-button>
+				</d-card-actions>
+			</d-card>
+		</d-dialog>
 
 		<drawer-collection
 			collection="directus_files"
@@ -98,27 +98,27 @@
 			@input="setSelection"
 		/>
 
-		<v-dialog
+		<d-dialog
 			:active="activeDialog === 'url'"
 			@toggle="activeDialog = null"
 			@esc="activeDialog = null"
 			:persistent="urlLoading"
 		>
-			<v-card>
-				<v-card-title>{{ $t('import_from_url') }}</v-card-title>
-				<v-card-text>
-					<v-input :placeholder="$t('url')" v-model="url" :nullable="false" :disabled="urlLoading" />
-				</v-card-text>
-				<v-card-actions>
-					<v-button :disabled="urlLoading" @click="activeDialog = null" secondary>
+			<d-card>
+				<d-card-title>{{ $t('import_from_url') }}</d-card-title>
+				<d-card-text>
+					<d-input :placeholder="$t('url')" v-model="url" :nullable="false" :disabled="urlLoading" />
+				</d-card-text>
+				<d-card-actions>
+					<d-button :disabled="urlLoading" @click="activeDialog = null" secondary>
 						{{ $t('cancel') }}
-					</v-button>
-					<v-button :loading="urlLoading" @click="importFromURL" :disabled="isValidURL === false">
+					</d-button>
+					<d-button :loading="urlLoading" @click="importFromURL" :disabled="isValidURL === false">
 						{{ $t('import') }}
-					</v-button>
-				</v-card-actions>
-			</v-card>
-		</v-dialog>
+					</d-button>
+				</d-card-actions>
+			</d-card>
+		</d-dialog>
 	</div>
 </template>
 

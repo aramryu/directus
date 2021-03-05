@@ -1,7 +1,8 @@
 <template>
 	<div class="latency-indicator" v-tooltip.bottom.end="latencyTooltip">
-		<v-progress-circular indeterminate v-if="!lastLatency" />
-		<v-icon v-else :name="icon" />
+		<d-progress-circular indeterminate v-if="!lastLatency" />
+		<!-- <d-icon v-else :name="icon" /> -->
+		<fa v-else :icon="icon" />
 	</div>
 </template>
 
@@ -57,13 +58,13 @@ export default defineComponent({
 		const icon = computed<string>(() => {
 			switch (connectionStrength.value) {
 				case 4:
-					return 'signal_wifi_4_bar';
+					return 'wifi';
 				case 3:
-					return 'signal_wifi_3_bar';
+					return 'wifi-2';
 				case 2:
-					return 'signal_wifi_2_bar';
+					return 'wifi-1';
 				case 1:
-					return 'signal_wifi_1_bar';
+					return 'wifi-slash';
 			}
 		});
 

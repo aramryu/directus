@@ -2,9 +2,9 @@
 	<private-view :title="$t('editing_preset')">
 		<template #headline>{{ $t('settings_presets') }}</template>
 		<template #title-outer:prepend>
-			<v-button class="header-icon" rounded icon exact :to="backLink">
-				<v-icon name="arrow_back" />
-			</v-button>
+			<d-button class="header-icon" rounded icon exact :to="backLink">
+				<d-icon name="arrow_back" />
+			</d-button>
 		</template>
 
 		<template #navigation>
@@ -12,9 +12,9 @@
 		</template>
 
 		<template #actions>
-			<v-dialog v-model="confirmDelete" @esc="confirmDelete = false">
+			<d-dialog v-model="confirmDelete" @esc="confirmDelete = false">
 				<template #activator="{ on }">
-					<v-button
+					<d-button
 						rounded
 						icon
 						class="action-delete"
@@ -22,25 +22,25 @@
 						@click="on"
 						v-tooltip.bottom="$t('delete')"
 					>
-						<v-icon name="delete" outline />
-					</v-button>
+						<d-icon name="delete" outline />
+					</d-button>
 				</template>
 
-				<v-card>
-					<v-card-title>{{ $t('delete_are_you_sure') }}</v-card-title>
+				<d-card>
+					<d-card-title>{{ $t('delete_are_you_sure') }}</d-card-title>
 
-					<v-card-actions>
-						<v-button @click="confirmDelete = false" secondary>
+					<d-card-actions>
+						<d-button @click="confirmDelete = false" secondary>
 							{{ $t('cancel') }}
-						</v-button>
-						<v-button @click="deleteAndQuit" class="action-delete" :loading="deleting">
+						</d-button>
+						<d-button @click="deleteAndQuit" class="action-delete" :loading="deleting">
 							{{ $t('delete') }}
-						</v-button>
-					</v-card-actions>
-				</v-card>
-			</v-dialog>
+						</d-button>
+					</d-card-actions>
+				</d-card>
+			</d-dialog>
 
-			<v-button
+			<d-button
 				icon
 				rounded
 				:disabled="hasEdits === false"
@@ -48,12 +48,12 @@
 				@click="save"
 				v-tooltip.bottom="$t('save')"
 			>
-				<v-icon name="check" />
-			</v-button>
+				<d-icon name="check" />
+			</d-button>
 		</template>
 
 		<div class="preset-item">
-			<v-form :fields="fields" :loading="loading" :initial-values="initialValues" :primary-key="id" v-model="edits" />
+			<d-form :fields="fields" :loading="loading" :initial-values="initialValues" :primary-key="id" v-model="edits" />
 
 			<div class="layout">
 				<component
@@ -68,21 +68,21 @@
 					readonly
 				>
 					<template #no-results>
-						<v-info :title="$t('no_results')" icon="search" center>
+						<d-info :title="$t('no_results')" icon="search" center>
 							{{ $t('no_results_copy') }}
-						</v-info>
+						</d-info>
 					</template>
 
 					<template #no-items>
-						<v-info :title="$tc('item_count', 0)" center>
+						<d-info :title="$tc('item_count', 0)" center>
 							{{ $t('no_items_copy') }}
-						</v-info>
+						</d-info>
 					</template>
 				</component>
 
-				<v-notice v-else>
+				<d-notice v-else>
 					{{ $t('no_layout_collection_selected_yet') }}
-				</v-notice>
+				</d-notice>
 			</div>
 		</div>
 
@@ -92,12 +92,12 @@
 			</sidebar-detail>
 
 			<sidebar-detail icon="search" :title="$t('search')" class="layout-sidebar">
-				<v-input v-model="searchQuery" :placeholder="$t('preset_search_placeholder')"></v-input>
+				<d-input v-model="searchQuery" :placeholder="$t('preset_search_placeholder')"></d-input>
 			</sidebar-detail>
 
 			<portal-target class="layout-sidebar" name="sidebar" />
 
-			<sidebar-detail class="layout-sidebar" icon="layers" :title="$t('layout_options')">
+			<sidebar-detail class="layout-sidebar" icon="layer-group" :title="$t('layout_options')">
 				<div class="layout-options">
 					<portal-target name="layout-options" class="portal-contents" />
 				</div>

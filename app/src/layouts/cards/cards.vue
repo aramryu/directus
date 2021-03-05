@@ -3,26 +3,26 @@
 		<portal to="layout-options">
 			<div class="field">
 				<div class="type-label">{{ $t('layouts.cards.image_source') }}</div>
-				<v-select v-model="imageSource" show-deselect item-value="field" item-text="name" :items="fileFields" />
+				<d-select v-model="imageSource" show-deselect item-value="field" item-text="name" :items="fileFields" />
 			</div>
 
 			<div class="field">
 				<div class="type-label">{{ $t('layouts.cards.title') }}</div>
-				<v-field-template :collection="collection" v-model="title" />
+				<d-field-template :collection="collection" v-model="title" />
 			</div>
 
 			<div class="field">
 				<div class="type-label">{{ $t('layouts.cards.subtitle') }}</div>
-				<v-field-template :collection="collection" v-model="subtitle" />
+				<d-field-template :collection="collection" v-model="subtitle" />
 			</div>
 
-			<v-detail class="field">
+			<d-detail class="field">
 				<template #title>{{ $t('layout_setup') }}</template>
 
 				<div class="nested-options">
 					<div class="field">
 						<div class="type-label">{{ $t('layouts.cards.image_fit') }}</div>
-						<v-select
+						<d-select
 							v-model="imageFit"
 							:disabled="imageSource === null"
 							:items="[
@@ -43,7 +43,7 @@
 						<interface-icon v-model="icon" />
 					</div>
 				</div>
-			</v-detail>
+			</d-detail>
 		</portal>
 
 		<portal to="sidebar">
@@ -57,45 +57,43 @@
 		</portal>
 
 		<template v-if="loading || itemCount > 0">
-			<cards-header
-				@select-all="selectAll"
-				:fields="fieldsInCollection"
-				:size.sync="size"
-				:selection.sync="_selection"
-				:sort.sync="sort"
-			/>
-
-			<div class="grid" :class="{ 'single-row': isSingleRow }">
-				<template v-if="loading">
-					<card v-for="n in 6" :key="`loader-${n}`" item-key="loading" loading />
-				</template>
-
-				<card
-					v-else
-					v-for="item in items"
-					:item-key="primaryKeyField.field"
-					:key="item[primaryKeyField.field]"
-					:crop="imageFit === 'crop'"
-					:icon="icon"
-					:file="imageSource ? item[imageSource] : null"
-					:item="item"
-					:select-mode="selectMode || (_selection && _selection.length > 0)"
-					:to="getLinkForItem(item)"
-					:readonly="readonly"
-					v-model="_selection"
-				>
-					<template #title v-if="title">
-						<render-template :collection="collection" :item="item" :template="title" />
+				<cards-header
+					@select-all="selectAll"
+					:fields="fieldsInCollection"
+					:size.sync="size"
+					:selection.sync="_selection"
+					:sort.sync="sort"
+				/>
+				<div class="grid" :class="{ 'single-row': isSingleRow }">
+					<template v-if="loading">
+						<card v-for="n in 6" :key="`loader-${n}`" item-key="loading" loading />
 					</template>
-					<template #subtitle v-if="subtitle">
-						<render-template :collection="collection" :item="item" :template="subtitle" />
-					</template>
-				</card>
-			</div>
 
+					<card
+						v-else
+						v-for="item in items"
+						:item-key="primaryKeyField.field"
+						:key="item[primaryKeyField.field]"
+						:crop="imageFit === 'crop'"
+						:icon="icon"
+						:file="imageSource ? item[imageSource] : null"
+						:item="item"
+						:select-mode="selectMode || (_selection && _selection.length > 0)"
+						:to="getLinkForItem(item)"
+						:readonly="readonly"
+						v-model="_selection"
+					>
+						<template #title v-if="title">
+							<render-template :collection="collection" :item="item" :template="title" />
+						</template>
+						<template #subtitle v-if="subtitle">
+							<render-template :collection="collection" :item="item" :template="subtitle" />
+						</template>
+					</card>
+				</div>
 			<div class="footer">
 				<div class="pagination">
-					<v-pagination
+					<d-pagination
 						v-if="totalPages > 1"
 						:length="totalPages"
 						:total-visible="7"
@@ -107,22 +105,22 @@
 
 				<div v-if="loading === false && items.length >= 25" class="per-page">
 					<span>{{ $t('per_page') }}</span>
-					<v-select @input="limit = +$event" :value="`${limit}`" :items="['25', '50', '100', '250']" inline />
+					<d-select @input="limit = +$event" :value="`${limit}`" :items="['25', '50', '100', '250']" inline />
 				</div>
 			</div>
 		</template>
 
-		<v-info v-else-if="error" type="danger" :title="$t('unexpected_error')" icon="error" center>
+		<d-info v-else-if="error" type="danger" :title="$t('unexpected_error')" icon="error" center>
 			{{ $t('unexpected_error_copy') }}
 
 			<template #append>
-				<v-error :error="error" />
+				<d-error :error="error" />
 
-				<v-button small @click="resetPresetAndRefresh" class="reset-preset">
+				<d-button small @click="resetPresetAndRefresh" class="reset-preset">
 					{{ $t('reset_page_preferences') }}
-				</v-button>
+				</d-button>
 			</template>
-		</v-info>
+		</d-info>
 
 		<slot v-else-if="itemCount === 0 && activeFilterCount > 0" name="no-results" />
 		<slot v-else-if="itemCount === 0" name="no-items" />

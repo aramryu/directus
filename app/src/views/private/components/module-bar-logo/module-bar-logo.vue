@@ -10,7 +10,7 @@
 	>
 		<template v-if="customLogoPath">
 			<transition name="fade">
-				<v-progress-linear indeterminate rounded v-if="showLoader" @animationiteration="stopSpinnerIfQueueIsEmpty" />
+				<d-progress-linear indeterminate rounded v-if="showLoader" @animationiteration="stopSpinnerIfQueueIsEmpty" />
 			</transition>
 			<img class="custom-logo" :src="customLogoPath" alt="Project Logo" />
 		</template>
@@ -71,7 +71,7 @@ export default defineComponent({
 <style lang="scss" scoped>
 .module-bar-logo {
 	--v-progress-linear-height: 2px;
-	--v-progress-linear-color: var(--white);
+	--v-progress-linear-color: '#ff6361';
 	--v-progress-linear-background-color: rgba(255, 255, 255, 0.5);
 
 	position: relative;
@@ -99,7 +99,7 @@ export default defineComponent({
 	}
 
 	.logo {
-		position: absolute;
+		// position: absolute;
 		top: 20px;
 		left: 12px;
 		width: 40px;

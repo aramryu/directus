@@ -1,6 +1,6 @@
 <template>
 	<div class="v-notice" :class="[type, { center }]">
-		<v-icon v-if="icon !== false" :name="iconName" left />
+		<d-icon v-if="icon !== false" :name="iconName" left />
 		<slot />
 	</div>
 </template>
@@ -30,15 +30,15 @@ export default defineComponent({
 			}
 
 			if (props.type == 'info') {
-				return 'info';
+				return 'info-square';
 			} else if (props.type == 'success') {
-				return 'check_circle';
+				return 'check-square';
 			} else if (props.type == 'warning') {
-				return 'warning';
+				return 'question-square';
 			} else if (props.type == 'danger') {
-				return 'error';
+				return 'exclamation-square';
 			} else {
-				return 'info';
+				return 'info-square';
 			}
 		});
 

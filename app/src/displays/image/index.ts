@@ -6,7 +6,7 @@ export default defineDisplay(({ i18n }) => ({
 	name: i18n.t('displays.image.image'),
 	description: i18n.t('displays.image.description'),
 	types: ['uuid'],
-	icon: 'insert_photo',
+	icon: 'image',
 	handler: DisplayImage,
 	options: [
 		{

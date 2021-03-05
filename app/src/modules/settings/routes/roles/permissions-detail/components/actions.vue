@@ -1,8 +1,8 @@
 <template>
 	<div class="actions">
-		<v-button @click="save" :loading="loading" icon rounded v-tooltip.bottom="$t('save')">
-			<v-icon name="check" />
-		</v-button>
+		<d-button @click="save" :loading="loading" icon rounded v-tooltip.bottom="$t('save')">
+			<d-icon fa="save" />
+		</d-button>
 	</div>
 </template>
 

@@ -1,5 +1,5 @@
 <template>
-	<v-menu
+	<d-menu
 		:disabled="disabled"
 		class="v-select"
 		:attached="inline === false"
@@ -9,9 +9,9 @@
 		<template #activator="{ toggle, active }">
 			<div v-if="inline" class="inline-display" :class="{ placeholder: !displayValue }" @click="toggle">
 				{{ displayValue || placeholder }}
-				<v-icon name="expand_more" :class="{ active }" />
+				<d-icon fa="chevron-down" />
 			</div>
-			<v-input
+			<d-input
 				v-else
 				:full-width="fullWidth"
 				readonly
@@ -22,78 +22,78 @@
 				:active="active"
 			>
 				<template #prepend><slot name="prepend" /></template>
-				<template #append><v-icon name="expand_more" :class="{ active }" /></template>
-			</v-input>
+				<template #append><d-icon fa="chevron-down" :class="{ active }" /></template>
+			</d-input>
 		</template>
 
-		<v-list class="list">
+		<d-list class="list">
 			<template v-if="showDeselect">
-				<v-list-item @click="$emit('input', null)" :disabled="value === null">
-					<v-list-item-icon v-if="multiple === true">
-						<v-icon name="close" />
-					</v-list-item-icon>
-					<v-list-item-content>
+				<d-list-item @click="$emit('input', null)" :disabled="value === null">
+					<d-list-item-icon v-if="multiple === true">
+						<d-icon fa="times" />
+					</d-list-item-icon>
+					<d-list-item-content>
 						{{ multiple ? $t('deselect_all') : $t('deselect') }}
-					</v-list-item-content>
-					<v-list-item-icon v-if="multiple === false">
-						<v-icon name="close" />
-					</v-list-item-icon>
-				</v-list-item>
-				<v-divider />
+					</d-list-item-content>
+					<d-list-item-icon v-if="multiple === false">
+						<d-icon fa="times" />
+					</d-list-item-icon>
+				</d-list-item>
+				<d-divider />
 			</template>
 
 			<template v-for="(item, index) in _items">
-				<v-divider :key="index" v-if="item.divider === true" />
+				<d-divider :key="index" v-if="item.divider === true" />
 
-				<v-list-item
+				<d-list-item
 					v-else
 					:key="item.text + item.value"
 					:active="multiple ? (value || []).includes(item.value) : value === item.value"
 					:disabled="item.disabled"
 					@click="multiple ? null : $emit('input', item.value)"
 				>
-					<v-list-item-icon v-if="multiple === false && allowOther === false && itemIcon !== null && item.icon">
-						<v-icon :name="item.icon" />
-					</v-list-item-icon>
-					<v-list-item-content>
+					<d-list-item-icon v-if="multiple === false && allowOther === false && itemIcon !== null && item.icon">
+						<d-icon :name="item.icon" />
+					</d-list-item-icon>
+					<d-list-item-content>
 						<span v-if="multiple === false" class="item-text">{{ item.text }}</span>
-						<v-checkbox
+						<d-checkbox
 							v-else
 							:inputValue="value || []"
 							:label="item.text"
 							:value="item.value"
 							@change="$emit('input', $event.length > 0 ? $event : null)"
 						/>
-					</v-list-item-content>
-				</v-list-item>
+					</d-list-item-content>
+				</d-list-item>
 			</template>
 
-			<v-list-item v-if="allowOther && multiple === false" :active="usesOtherValue" @click.stop>
-				<v-list-item-content>
+			<d-list-item v-if="allowOther && multiple === false" :active="usesOtherValue" @click.stop>
+				<d-list-item-content>
 					<input
 						class="other-input"
 						@focus="otherValue ? $emit('input', otherValue) : null"
 						v-model="otherValue"
 						:placeholder="$t('other')"
 					/>
-				</v-list-item-content>
-			</v-list-item>
+				</d-list-item-content>
+			</d-list-item>
 
 			<template v-if="allowOther && multiple === true">
-				<v-list-item
+				<d-list-item
 					v-for="otherValue in otherValues"
 					:key="otherValue.key"
 					:active="(value || []).includes(otherValue.value)"
 					@click.stop
 				>
-					<v-list-item-icon>
-						<v-checkbox
+					<d-list-item-icon>
+						<d-checkbox
 							:inputValue="value || []"
 							:value="otherValue.value"
 							@change="$emit('input', $event.length > 0 ? $event : null)"
 						/>
-					</v-list-item-icon>
-					<v-list-item-content>
+					</d-list-item-icon>
+					<d-list-item-content>
 						<input
 							class="other-input"
 							:value="otherValue.value"
@@ -102,19 +102,19 @@
 							@input="setOtherValue(otherValue.key, $event.target.value)"
 							@blur="otherValue.value.length === 0 && setOtherValue(otherValue.key, null)"
 						/>
-					</v-list-item-content>
-					<v-list-item-icon>
-						<v-icon name="close" @click="setOtherValue(otherValue.key, null)" />
-					</v-list-item-icon>
-				</v-list-item>
+					</d-list-item-content>
+					<d-list-item-icon>
+						<d-icon fa="times" @click="setOtherValue(otherValue.key, null)" />
+					</d-list-item-icon>
+				</d-list-item>
 
-				<v-list-item @click.stop="addOtherValue()">
-					<v-list-item-icon><v-icon name="add" /></v-list-item-icon>
-					<v-list-item-content>{{ $t('other') }}</v-list-item-content>
-				</v-list-item>
+				<d-list-item @click.stop="addOtherValue()">
+					<d-list-item-icon><d-icon fa="plus" /></d-list-item-icon>
+					<d-list-item-content>{{ $t('other') }}</d-list-item-content>
+				</d-list-item>
 			</template>
-		</v-list>
-	</v-menu>
+		</d-list>
+	</d-menu>
 </template>
 
 <script lang="ts">

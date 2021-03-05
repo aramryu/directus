@@ -5,7 +5,7 @@
 			subdued: batchMode && batchActive === false,
 		}"
 	>
-		<v-skeleton-loader v-if="loading && field.hideLoader !== true" />
+		<d-skeleton-loader v-if="loading && field.hideLoader !== true" />
 
 		<component
 			v-if="interfaceExists"
@@ -26,9 +26,9 @@
 			@input="$emit('input', $event)"
 		/>
 
-		<v-notice v-else type="warning">
+		<d-notice v-else type="warning">
 			{{ $t('interface_not_found', { interface: field.meta && field.meta.interface }) }}
-		</v-notice>
+		</d-notice>
 	</div>
 </template>
 

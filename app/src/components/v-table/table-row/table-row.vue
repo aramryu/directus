@@ -9,14 +9,14 @@
 		}"
 	>
 		<td v-if="showManualSort" class="manual cell">
-			<v-icon name="drag_handle" class="drag-handle" :class="{ 'sorted-manually': sortedManually }" />
+			<d-icon name="grip-lines" class="drag-handle" :class="{ 'sorted-manually': sortedManually }" />
 		</td>
 		<td v-if="showSelect" class="select cell" @click.stop>
-			<v-checkbox :inputValue="isSelected" @change="toggleSelect" />
+			<d-checkbox :inputValue="isSelected" @change="toggleSelect" />
 		</td>
 		<td class="cell" :class="getClassesForCell(header)" v-for="header in headers" :key="header.value">
 			<slot :name="`item.${header.value}`" :item="item">
-				<v-text-overflow v-if="get(item, header.value)" :text="get(item, header.value)" />
+				<d-text-overflow v-if="get(item, header.value)" :text="get(item, header.value)" />
 				<value-null v-else />
 			</slot>
 		</td>

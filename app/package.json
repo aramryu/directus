@@ -4,6 +4,15 @@
   "private": false,
   "description": "Directus is an Open-Source Headless CMS & API for Managing Custom Databases",
   "author": "Rijk van Zanten <rijk@rngr.org>",
+  "main": "dist/index.html",
+  "files": [
+    "dist",
+    "LICENSE",
+    "README.md"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
@@ -19,12 +28,6 @@
     "prettier": "prettier --write \"src/**/*.ts\"",
     "storybook": "start-storybook -p 6006"
   },
-  "main": "dist/index.html",
-  "files": [
-    "dist",
-    "LICENSE",
-    "README.md"
-  ],
   "dependencies": {
     "@directus/docs": "file:../docs",
     "@directus/format-title": "file:../packages/format-title",
@@ -46,6 +49,7 @@
   "devDependencies": {
     "@babel/plugin-proposal-optional-chaining": "^7.12.16",
     "@fortawesome/fontawesome-pro": "^5.15.2",
+    "@mdi/font": "^5.9.55",
     "@vue/cli-plugin-babel": "^4.5.8",
     "@vue/cli-plugin-router": "^4.5.8",
     "@vue/cli-plugin-typescript": "^4.5.8",
@@ -55,15 +59,11 @@
     "prettier": "^2.2.1",
     "sass": "^1.32.7",
     "sass-loader": "^8.0.0",
-    "vue-cli-plugin-vuetify": "~2.1.0",
+    "vue-cli-plugin-vuetify": "~2.2.0",
     "vue-cli-plugin-vuetify-preset-reply": "^1.0.4",
     "vue-cli-plugin-yaml": "^1.0.2",
-    "vue": "^2.6.12",
     "vue-template-compiler": "^2.6.12",
     "vuetify-loader": "^1.7.0"
   },
-  "gitHead": "4476da28dbbc2824e680137aa28b2b91b5afabec",
-  "publishConfig": {
-    "access": "public"
-  }
+  "gitHead": "4476da28dbbc2824e680137aa28b2b91b5afabec"
 }

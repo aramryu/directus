@@ -1,4 +1,4 @@
-import VForm from './v-form.vue';
+import DForm from './v-form.vue';
 
-export { VForm };
-export default VForm;
+export { DForm };
+export default DForm;

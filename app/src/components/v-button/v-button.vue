@@ -34,7 +34,7 @@
 			</span>
 			<div class="spinner">
 				<slot v-if="loading" name="loading">
-					<v-progress-circular :x-small="xSmall" :small="small" indeterminate />
+					<d-progress-circular :x-small="xSmall" :small="small" indeterminate />
 				</slot>
 			</div>
 		</component>

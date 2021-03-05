@@ -1,7 +1,7 @@
 <template>
-	<v-item-group class="v-tabs-items" :value="value" @input="update">
+	<d-item-group class="v-tabs-items" :value="value" @input="update">
 		<slot />
-	</v-item-group>
+	</d-item-group>
 </template>
 
 <script lang="ts">

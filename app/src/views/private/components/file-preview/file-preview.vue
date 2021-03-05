@@ -15,7 +15,7 @@
 				}"
 				:alt="title"
 			/>
-			<v-icon v-if="inModal === false" name="upload" />
+			<d-icon v-if="inModal === false" name="upload" />
 		</div>
 
 		<video v-else-if="type === 'video'" controls :src="src" />

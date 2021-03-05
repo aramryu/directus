@@ -1,5 +1,5 @@
 <template>
-	<v-input
+	<d-input
 		:value="value"
 		:disabled="disabled"
 		:placeholder="placeholder"
@@ -8,9 +8,9 @@
 		@input="$emit('input', $event)"
 		slug
 	>
-		<template v-if="iconLeft" #prepend><v-icon :name="iconLeft" /></template>
-		<template v-if="iconRight" #append><v-icon :name="iconRight" /></template>
-	</v-input>
+		<template v-if="iconLeft" #prepend><d-icon :name="iconLeft" /></template>
+		<template v-if="iconRight" #append><d-icon :name="iconRight" /></template>
+	</d-input>
 </template>
 
 <script lang="ts">

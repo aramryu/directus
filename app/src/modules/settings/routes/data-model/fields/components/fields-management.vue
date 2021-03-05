@@ -15,9 +15,9 @@
 			<field-select v-for="field in usableFields" :key="field.field" :field="field" />
 		</draggable>
 
-		<v-menu attached>
+		<d-menu attached>
 			<template #activator="{ toggle, active }">
-				<v-button
+				<d-button
 					@click="toggle"
 					class="add-field"
 					align="left"
@@ -27,25 +27,25 @@
 					large
 					full-width
 				>
-					<v-icon name="add" />
+					<d-icon name="plus-circle" />
 					{{ $t('create_field') }}
-				</v-button>
+				</d-button>
 			</template>
 
-			<v-list>
+			<d-list>
 				<template v-for="(option, index) in addOptions">
-					<v-divider v-if="option.divider === true" :key="index" />
-					<v-list-item v-else :key="option.type" :to="`/settings/data-model/${collection}/+?type=${option.type}`">
-						<v-list-item-icon>
-							<v-icon :name="option.icon" />
-						</v-list-item-icon>
-						<v-list-item-content>
+					<d-divider v-if="option.divider === true" :key="index" />
+					<d-list-item v-else :key="option.type" :to="`/settings/data-model/${collection}/+?type=${option.type}`">
+						<d-list-item-icon>
+							<d-icon :name="option.icon" />
+						</d-list-item-icon>
+						<d-list-item-content>
 							{{ option.text }}
-						</v-list-item-content>
-					</v-list-item>
+						</d-list-item-content>
+					</d-list-item>
 				</template>
-			</v-list>
-		</v-menu>
+			</d-list>
+		</d-menu>
 	</div>
 </template>
 

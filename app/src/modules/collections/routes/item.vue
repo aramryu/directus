@@ -11,7 +11,7 @@
 		</template>
 
 		<template #title v-else-if="isNew === false && collectionInfo.meta && collectionInfo.meta.display_template">
-			<v-skeleton-loader class="title-loader" type="text" v-if="loading" />
+			<d-skeleton-loader class="title-loader" type="text" v-if="loading" />
 
 			<h1 class="type-title" v-else>
 				<render-template
@@ -23,7 +23,7 @@
 		</template>
 
 		<template #title-outer:prepend>
-			<v-button
+			<d-button
 				v-if="collectionInfo.meta && collectionInfo.meta.singleton === true"
 				class="header-icon"
 				rounded
@@ -31,10 +31,10 @@
 				secondary
 				disabled
 			>
-				<v-icon :name="collectionInfo.icon" />
-			</v-button>
+				<d-icon :name="collectionInfo.icon" />
+			</d-button>
 
-			<v-button
+			<d-button
 				v-else
 				class="header-icon"
 				rounded
@@ -44,22 +44,22 @@
 				v-tooltip.bottom="$t('back')"
 				:to="'/collections/' + collection"
 			>
-				<v-icon name="arrow_back" />
-			</v-button>
+				<d-icon fa="chevron-left" />
+			</d-button>
 		</template>
 
 		<template #headline>
-			<v-breadcrumb
+			<d-breadcrumb
 				v-if="collectionInfo.meta && collectionInfo.meta.singleton === true"
 				:items="[{ name: $t('collections'), to: '/collections' }]"
 			/>
-			<v-breadcrumb v-else :items="breadcrumb" />
+			<d-breadcrumb v-else :items="breadcrumb" />
 		</template>
 
 		<template #actions>
-			<v-dialog v-if="!isNew" v-model="confirmDelete" :disabled="deleteAllowed === false" @esc="confirmDelete = false">
+			<d-dialog v-if="!isNew" v-model="confirmDelete" :disabled="deleteAllowed === false" @esc="confirmDelete = false">
 				<template #activator="{ on }">
-					<v-button
+					<d-button
 						rounded
 						icon
 						class="action-delete"
@@ -68,32 +68,32 @@
 						@click="on"
 						v-if="collectionInfo.meta && collectionInfo.meta.singleton === false"
 					>
-						<v-icon name="delete" outline />
-					</v-button>
+						<d-icon name="delete" outline />
+					</d-button>
 				</template>
 
-				<v-card>
-					<v-card-title>{{ $t('delete_are_you_sure') }}</v-card-title>
+				<d-card>
+					<d-card-title>{{ $t('delete_are_you_sure') }}</d-card-title>
 
-					<v-card-actions>
-						<v-button @click="confirmDelete = false" secondary>
+					<d-card-actions>
+						<d-button @click="confirmDelete = false" secondary>
 							{{ $t('cancel') }}
-						</v-button>
-						<v-button @click="deleteAndQuit" class="action-delete" :loading="deleting">
+						</d-button>
+						<d-button @click="deleteAndQuit" class="action-delete" :loading="deleting">
 							{{ $t('delete') }}
-						</v-button>
-					</v-card-actions>
-				</v-card>
-			</v-dialog>
+						</d-button>
+					</d-card-actions>
+				</d-card>
+			</d-dialog>
 
-			<v-dialog
+			<d-dialog
 				v-if="collectionInfo.meta && collectionInfo.meta.archive_field && !isNew"
 				v-model="confirmArchive"
 				@esc="confirmArchive = false"
 				:disabled="archiveAllowed === false"
 			>
 				<template #activator="{ on }">
-					<v-button
+					<d-button
 						rounded
 						icon
 						class="action-archive"
@@ -102,25 +102,25 @@
 						:disabled="item === null || archiveAllowed !== true"
 						v-if="collectionInfo.meta && collectionInfo.meta.singleton === false"
 					>
-						<v-icon :name="isArchived ? 'unarchive' : 'archive'" outline />
-					</v-button>
+						<d-icon :name="isArchived ? 'unarchive' : 'archive'" outline />
+					</d-button>
 				</template>
 
-				<v-card>
-					<v-card-title>{{ isArchived ? $t('unarchive_confirm') : $t('archive_confirm') }}</v-card-title>
+				<d-card>
+					<d-card-title>{{ isArchived ? $t('unarchive_confirm') : $t('archive_confirm') }}</d-card-title>
 
-					<v-card-actions>
-						<v-button @click="confirmArchive = false" secondary>
+					<d-card-actions>
+						<d-button @click="confirmArchive = false" secondary>
 							{{ $t('cancel') }}
-						</v-button>
-						<v-button @click="toggleArchive" class="action-archive" :loading="archiving">
+						</d-button>
+						<d-button @click="toggleArchive" class="action-archive" :loading="archiving">
 							{{ isArchived ? $t('unarchive') : $t('archive') }}
-						</v-button>
-					</v-card-actions>
-				</v-card>
-			</v-dialog>
+						</d-button>
+					</d-card-actions>
+				</d-card>
+			</d-dialog>
 
-			<v-button
+			<d-button
 				rounded
 				icon
 				:loading="saving"
@@ -128,7 +128,7 @@
 				v-tooltip.bottom="saveAllowed ? $t('save') : $t('not_allowed')"
 				@click="saveAndQuit"
 			>
-				<v-icon name="check" />
+				<d-icon name="check" />
 
 				<template #append-outer>
 					<save-options
@@ -138,14 +138,14 @@
 						@save-as-copy="saveAsCopyAndNavigate"
 					/>
 				</template>
-			</v-button>
+			</d-button>
 		</template>
 
 		<template #navigation>
 			<collections-navigation />
 		</template>
 
-		<v-form
+		<d-form
 			ref="form"
 			:disabled="isNew ? false : updateAllowed === false"
 			:loading="loading"
@@ -156,18 +156,18 @@
 			v-model="edits"
 		/>
 
-		<v-dialog v-model="confirmLeave" @esc="confirmLeave = false">
-			<v-card>
-				<v-card-title>{{ $t('unsaved_changes') }}</v-card-title>
-				<v-card-text>{{ $t('unsaved_changes_copy') }}</v-card-text>
-				<v-card-actions>
-					<v-button secondary @click="discardAndLeave">
+		<d-dialog v-model="confirmLeave" @esc="confirmLeave = false">
+			<d-card>
+				<d-card-title>{{ $t('unsaved_changes') }}</d-card-title>
+				<d-card-text>{{ $t('unsaved_changes_copy') }}</d-card-text>
+				<d-card-actions>
+					<d-button secondary @click="discardAndLeave">
 						{{ $t('discard_changes') }}
-					</v-button>
-					<v-button @click="confirmLeave = false">{{ $t('keep_editing') }}</v-button>
-				</v-card-actions>
-			</v-card>
-		</v-dialog>
+					</d-button>
+					<d-button @click="confirmLeave = false">{{ $t('keep_editing') }}</d-button>
+				</d-card-actions>
+			</d-card>
+		</d-dialog>
 
 		<template #sidebar>
 			<sidebar-detail icon="info_outline" :title="$t('information')" close>

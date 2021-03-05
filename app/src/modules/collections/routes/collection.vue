@@ -2,14 +2,14 @@
 	<collections-not-found v-if="!currentCollection || collection.startsWith('directus_')" />
 	<private-view v-else :title="bookmark ? bookmarkTitle : currentCollection.name">
 		<template #title-outer:prepend>
-			<v-button class="header-icon" rounded icon secondary disabled>
-				<v-icon :name="currentCollection.icon" />
-			</v-button>
+			<d-button class="header-icon" rounded icon secondary disabled>
+				<d-icon :name="currentCollection.icon" />
+			</d-button>
 		</template>
 
 		<template #headline>
-			<v-breadcrumb v-if="bookmark" :items="breadcrumb" />
-			<v-breadcrumb v-else :items="[{ name: $t('collections'), to: '/collections' }]" />
+			<d-breadcrumb v-if="bookmark" :items="breadcrumb" />
+			<d-breadcrumb v-else :items="[{ name: $t('collections'), to: '/collections' }]" />
 		</template>
 
 		<template #title-outer:append>
@@ -22,14 +22,14 @@
 					:saving="creatingBookmark"
 				>
 					<template #activator="{ on }">
-						<v-icon class="toggle" @click="on" name="bookmark_outline" v-tooltip.right="$t('create_bookmark')" />
+						<d-icon class="toggle" @click="on" fa="lightbulb" v-tooltip.right="$t('create_bookmark')" />
 					</template>
 				</bookmark-add>
 
-				<v-icon class="saved" name="bookmark" v-else-if="bookmarkSaved" />
+				<d-icon class="saved" name="bookmark" v-else-if="bookmarkSaved" />
 
 				<template v-else-if="bookmarkIsMine">
-					<v-icon class="save" @click="savePreset()" name="bookmark_save" v-tooltip.bottom="$t('update_bookmark')" />
+					<d-icon class="save" @click="savePreset()" fa="lightbulb-on" v-tooltip.bottom="$t('update_bookmark')" />
 				</template>
 
 				<bookmark-add
@@ -40,11 +40,11 @@
 					:saving="creatingBookmark"
 				>
 					<template #activator="{ on }">
-						<v-icon class="toggle" name="bookmark_outline" @click="on" />
+						<d-icon class="toggle" fa="lightbulb" @click="on" />
 					</template>
 				</bookmark-add>
 
-				<v-icon
+				<d-icon
 					v-if="bookmark && !bookmarkSaving && bookmarkSaved === false"
 					name="settings_backup_restore"
 					@click="clearLocalSave"
@@ -61,9 +61,9 @@
 		<template #actions>
 			<search-input v-model="searchQuery" />
 
-			<v-dialog v-model="confirmDelete" v-if="selection.length > 0" @esc="confirmDelete = false">
+			<d-dialog v-model="confirmDelete" v-if="selection.length > 0" @esc="confirmDelete = false">
 				<template #activator="{ on }">
-					<v-button
+					<d-button
 						:disabled="batchDeleteAllowed !== true"
 						rounded
 						icon
@@ -71,31 +71,31 @@
 						@click="on"
 						v-tooltip.bottom="batchDeleteAllowed ? $t('delete') : $t('not_allowed')"
 					>
-						<v-icon name="delete" outline />
-					</v-button>
+						<d-icon fa="trash" outline />
+					</d-button>
 				</template>
 
-				<v-card>
-					<v-card-title>{{ $tc('batch_delete_confirm', selection.length) }}</v-card-title>
+				<d-card>
+					<d-card-title>{{ $tc('batch_delete_confirm', selection.length) }}</d-card-title>
 
-					<v-card-actions>
-						<v-button @click="confirmDelete = false" secondary>
+					<d-card-actions>
+						<d-button @click="confirmDelete = false" secondary>
 							{{ $t('cancel') }}
-						</v-button>
-						<v-button @click="batchDelete" class="action-delete" :loading="deleting">
+						</d-button>
+						<d-button @click="batchDelete" class="action-delete" :loading="deleting">
 							{{ $t('delete') }}
-						</v-button>
-					</v-card-actions>
-				</v-card>
-			</v-dialog>
+						</d-button>
+					</d-card-actions>
+				</d-card>
+			</d-dialog>
 
-			<v-dialog
+			<d-dialog
 				v-model="confirmArchive"
 				@esc="confirmArchive = false"
 				v-if="selection.length > 0 && currentCollection.meta && currentCollection.meta.archive_field"
 			>
 				<template #activator="{ on }">
-					<v-button
+					<d-button
 						:disabled="batchArchiveAllowed !== true"
 						rounded
 						icon
@@ -103,25 +103,25 @@
 						@click="on"
 						v-tooltip.bottom="batchArchiveAllowed ? $t('archive') : $t('not_allowed')"
 					>
-						<v-icon name="archive" outline />
-					</v-button>
+						<d-icon name="archive" outline />
+					</d-button>
 				</template>
 
-				<v-card>
-					<v-card-title>{{ $tc('archive_confirm_count', selection.length) }}</v-card-title>
+				<d-card>
+					<d-card-title>{{ $tc('archive_confirm_count', selection.length) }}</d-card-title>
 
-					<v-card-actions>
-						<v-button @click="confirmArchive = false" secondary>
+					<d-card-actions>
+						<d-button @click="confirmArchive = false" secondary>
 							{{ $t('cancel') }}
-						</v-button>
-						<v-button @click="archive" class="action-archive" :loading="archiving">
+						</d-button>
+						<d-button @click="archive" class="action-archive" :loading="archiving">
 							{{ $t('archive') }}
-						</v-button>
-					</v-card-actions>
-				</v-card>
-			</v-dialog>
+						</d-button>
+					</d-card-actions>
+				</d-card>
+			</d-dialog>
 
-			<v-button
+			<d-button
 				rounded
 				icon
 				class="action-batch"
@@ -130,25 +130,25 @@
 				v-if="selection.length > 1"
 				v-tooltip.bottom="batchEditAllowed ? $t('edit') : $t('not_allowed')"
 			>
-				<v-icon name="edit" outline />
-			</v-button>
+				<d-icon fa="edit" outline />
+			</d-button>
 
-			<v-button
+			<d-button
 				rounded
 				icon
 				:to="addNewLink"
 				v-tooltip.bottom="createAllowed ? $t('create_item') : $t('not_allowed')"
 				:disabled="createAllowed === false"
 			>
-				<v-icon name="add" />
-			</v-button>
+				<d-icon fa="plus-circle" />
+			</d-button>
 		</template>
 
 		<template #navigation>
 			<collections-navigation exact />
 		</template>
 
-		<v-info
+		<d-info
 			type="warning"
 			v-if="bookmark && bookmarkExists === false"
 			:title="$t('bookmark_doesnt_exist')"
@@ -158,11 +158,11 @@
 			{{ $t('bookmark_doesnt_exist_copy') }}
 
 			<template #append>
-				<v-button :to="currentCollectionLink">
+				<d-button :to="currentCollectionLink">
 					{{ $t('bookmark_doesnt_exist_cta') }}
-				</v-button>
+				</d-button>
 			</template>
-		</v-info>
+		</d-info>
 
 		<component
 			v-else
@@ -178,23 +178,23 @@
 			:reset-preset="resetPreset"
 		>
 			<template #no-results>
-				<v-info :title="$t('no_results')" icon="search" center>
+				<d-info :title="$t('no_results')" icon="search" center>
 					{{ $t('no_results_copy') }}
 
 					<template #append>
-						<v-button @click="clearFilters">{{ $t('clear_filters') }}</v-button>
+						<d-button @click="clearFilters">{{ $t('clear_filters') }}</d-button>
 					</template>
-				</v-info>
+				</d-info>
 			</template>
 
 			<template #no-items>
-				<v-info :title="$tc('item_count', 0)" :icon="currentCollection.icon" center>
+				<d-info :title="$tc('item_count', 0)" :icon="currentCollection.icon" center>
 					{{ $t('no_items_copy') }}
 
 					<template #append v-if="createAllowed">
-						<v-button :to="`/collections/${collection}/+`">{{ $t('create_item') }}</v-button>
+						<d-button :to="`/collections/${collection}/+`">{{ $t('create_item') }}</d-button>
 					</template>
-				</v-info>
+				</d-info>
 			</template>
 		</component>
 
@@ -223,17 +223,17 @@
 			<export-sidebar-detail :layout-query="layoutQuery" :search-query="searchQuery" :collection="currentCollection" />
 		</template>
 
-		<v-dialog v-if="deleteError" active>
-			<v-card>
-				<v-card-title>{{ $t('something_went_wrong') }}</v-card-title>
-				<v-card-text>
-					<v-error :error="deleteError" />
-				</v-card-text>
-				<v-card-actions>
-					<v-button @click="deleteError = null">{{ $t('done') }}</v-button>
-				</v-card-actions>
-			</v-card>
-		</v-dialog>
+		<d-dialog v-if="deleteError" active>
+			<d-card>
+				<d-card-title>{{ $t('something_went_wrong') }}</d-card-title>
+				<d-card-text>
+					<d-error :error="deleteError" />
+				</d-card-text>
+				<d-card-actions>
+					<d-button @click="deleteError = null">{{ $t('done') }}</d-button>
+				</d-card-actions>
+			</d-card>
+		</d-dialog>
 	</private-view>
 </template>
 

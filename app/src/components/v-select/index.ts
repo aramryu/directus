@@ -1,4 +1,4 @@
-import VSelect from './v-select.vue';
+import DSelect from './v-select.vue';
 
-export { VSelect };
-export default VSelect;
+export { DSelect };
+export default DSelect;

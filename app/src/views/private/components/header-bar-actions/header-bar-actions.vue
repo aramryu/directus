@@ -1,11 +1,11 @@
 <template>
 	<div class="actions" :class="{ active }">
-		<v-button class="expand" icon rounded secondary outlined @click="active = !active">
-			<v-icon name="arrow_left" />
-		</v-button>
+			<d-button class="expand" icon rounded secondary outlined @click="active = !active">
+				<d-icon fa="chevron-left" />
+		</d-button>
 
 		<div class="action-buttons">
-			<v-button
+			<d-button
 				class="sidebar-toggle"
 				icon
 				rounded
@@ -14,8 +14,8 @@
 				@click="$emit('toggle:sidebar')"
 				v-if="showSidebarToggle"
 			>
-				<v-icon name="info" outline />
-			</v-button>
+				<d-icon fa="info" outline />
+			</d-button>
 
 			<slot />
 		</div>

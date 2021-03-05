@@ -1,10 +1,10 @@
 <template>
 	<div class="updates">
-		<v-notice type="info">
+		<d-notice type="info">
 			{{ $t('changes_made') }}
 			<br />
 			{{ $t('no_relational_data') }}
-		</v-notice>
+		</d-notice>
 
 		<div class="change" v-for="change in changes" :key="change.name">
 			<div class="type-label">{{ change.name }}</div>

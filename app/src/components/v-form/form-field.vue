@@ -4,7 +4,7 @@
 		:key="field.field"
 		:class="[(field.meta && field.meta.width) || 'full', { invalid: validationError }]"
 	>
-		<v-menu v-if="field.hideLabel !== true" placement="bottom-start" show-arrow :disabled="isDisabled">
+		<d-menu v-if="field.hideLabel !== true" placement="bottom-start" show-arrow :disabled="isDisabled">
 			<template #activator="{ toggle, active }">
 				<form-field-label
 					:field="field"
@@ -25,7 +25,7 @@
 				@unset="$emit('unset', $event)"
 				@edit-raw="showRaw = true"
 			/>
-		</v-menu>
+		</d-menu>
 		<div class="label-spacer" v-else-if="['full', 'fill'].includes(field.meta && field.meta.width) === false" />
 
 		<form-field-interface
@@ -39,17 +39,17 @@
 			@input="emitValue($event)"
 		/>
 
-		<v-dialog v-model="showRaw" @esc="showRaw = false">
-			<v-card>
-				<v-card-title>{{ $t('edit_raw_value') }}</v-card-title>
-				<v-card-text>
-					<v-textarea class="raw-value" v-model="rawValue" :placeholder="$t('enter_raw_value')" />
-				</v-card-text>
-				<v-card-actions>
-					<v-button @click="showRaw = false">{{ $t('done') }}</v-button>
-				</v-card-actions>
-			</v-card>
-		</v-dialog>
+		<d-dialog v-model="showRaw" @esc="showRaw = false">
+			<d-card>
+				<d-card-title>{{ $t('edit_raw_value') }}</d-card-title>
+				<d-card-text>
+					<d-textarea class="raw-value" v-model="rawValue" :placeholder="$t('enter_raw_value')" />
+				</d-card-text>
+				<d-card-actions>
+					<d-button @click="showRaw = false">{{ $t('done') }}</d-button>
+				</d-card-actions>
+			</d-card>
+		</d-dialog>
 
 		<small class="note" v-if="field.meta && field.meta.note" v-html="marked(field.meta.note)" />
 

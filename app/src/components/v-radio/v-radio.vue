@@ -7,7 +7,7 @@
 		:class="{ checked: isChecked, block }"
 		@click="emitValue"
 	>
-		<v-icon :name="icon" />
+		<d-icon :name="icon" />
 		<span class="label type-text">
 			<slot name="label">{{ label }}</slot>
 		</span>
@@ -41,11 +41,11 @@ export default defineComponent({
 		},
 		iconOn: {
 			type: String,
-			default: 'radio_button_checked',
+			default: 'dot-circle',
 		},
 		iconOff: {
 			type: String,
-			default: 'radio_button_unchecked',
+			default: 'circle',
 		},
 		block: {
 			type: Boolean,

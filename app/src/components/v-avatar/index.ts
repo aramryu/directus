@@ -1,4 +1,4 @@
-import VAvatar from './v-avatar.vue';
+import DAvatar from './v-avatar.vue';
 
-export { VAvatar };
-export default VAvatar;
+export { DAvatar };
+export default DAvatar;

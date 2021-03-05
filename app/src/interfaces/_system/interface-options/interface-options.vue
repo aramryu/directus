@@ -1,14 +1,14 @@
 <template>
-	<v-notice v-if="!selectedInterface">
+	<d-notice v-if="!selectedInterface">
 		{{ $t('select_interface') }}
-	</v-notice>
+	</d-notice>
 
-	<v-notice v-else-if="!selectedInterface.options">
+	<d-notice v-else-if="!selectedInterface.options">
 		{{ $t('no_options_available') }}
-	</v-notice>
+	</d-notice>
 
 	<div class="inset" v-else>
-		<v-form
+		<d-form
 			v-if="Array.isArray(selectedInterface.options)"
 			:fields="selectedInterface.options"
 			primary-key="+"

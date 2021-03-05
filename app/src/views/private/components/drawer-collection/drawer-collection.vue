@@ -1,11 +1,11 @@
 <template>
-	<v-drawer v-model="_active" :title="$t('select_item')" @cancel="cancel">
+	<d-drawer v-model="_active" :title="$t('select_item')" @cancel="cancel">
 		<template #actions>
 			<search-input v-model="searchQuery" />
 
-			<v-button @click="save" icon rounded v-tooltip.bottom="$t('save')">
-				<v-icon name="check" />
-			</v-button>
+			<d-button @click="save" icon rounded v-tooltip.bottom="$t('save')">
+				<d-icon fa="save" />
+			</d-button>
 		</template>
 
 		<component
@@ -21,14 +21,14 @@
 			class="layout"
 		>
 			<template #no-results>
-				<v-info :title="$tc('item_count', 0)" :icon="collectionInfo.icon" center />
+				<d-info :title="$tc('item_count', 0)" :icon="collectionInfo.icon" center />
 			</template>
 
 			<template #no-items>
-				<v-info :title="$tc('item_count', 0)" :icon="collectionInfo.icon" center />
+				<d-info :title="$tc('item_count', 0)" :icon="collectionInfo.icon" center />
 			</template>
 		</component>
-	</v-drawer>
+	</d-drawer>
 </template>
 
 <script lang="ts">

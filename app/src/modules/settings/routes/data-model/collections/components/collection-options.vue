@@ -1,33 +1,33 @@
 <template>
 	<div v-if="collection.collection.startsWith('directus_') === false">
-		<v-menu placement="left-start" show-arrow>
+		<d-menu placement="left-start" show-arrow>
 			<template #activator="{ toggle }">
-				<v-icon name="more_vert" @click="toggle" class="ctx-toggle" />
+				<d-icon name="more_vert" @click="toggle" class="ctx-toggle" />
 			</template>
-			<v-list>
-				<v-list-item @click="deleteActive = true" class="danger">
-					<v-list-item-icon>
-						<v-icon name="delete" outline />
-					</v-list-item-icon>
-					<v-list-item-content>
+			<d-list>
+				<d-list-item @click="deleteActive = true" class="danger">
+					<d-list-item-icon>
+						<d-icon name="delete" outline />
+					</d-list-item-icon>
+					<d-list-item-content>
 						{{ $t('delete_collection') }}
-					</v-list-item-content>
-				</v-list-item>
-			</v-list>
-		</v-menu>
-		<v-dialog v-model="deleteActive" @esc="deleteActive = null">
-			<v-card>
-				<v-card-title>{{ $t('delete_collection_are_you_sure') }}</v-card-title>
-				<v-card-actions>
-					<v-button :disabled="deleting" secondary @click="deleteActive = null">
+					</d-list-item-content>
+				</d-list-item>
+			</d-list>
+		</d-menu>
+		<d-dialog v-model="deleteActive" @esc="deleteActive = null">
+			<d-card>
+				<d-card-title>{{ $t('delete_collection_are_you_sure') }}</d-card-title>
+				<d-card-actions>
+					<d-button :disabled="deleting" secondary @click="deleteActive = null">
 						{{ $t('cancel') }}
-					</v-button>
-					<v-button :loading="deleting" class="delete" @click="deleteCollection">
+					</d-button>
+					<d-button :loading="deleting" class="delete" @click="deleteCollection">
 						{{ $t('delete_collection') }}
-					</v-button>
-				</v-card-actions>
-			</v-card>
-		</v-dialog>
+					</d-button>
+				</d-card-actions>
+			</d-card>
+		</d-dialog>
 	</div>
 </template>
 

@@ -2,12 +2,12 @@
 	<div class="grid">
 		<div class="grid-element half">
 			<p class="type-label">{{ $t('template') }}</p>
-			<v-input class="input" v-model="template" :placeholder="`{{ field }}`" />
+			<d-input class="input" v-model="template" :placeholder="`{{ field }}`" />
 		</div>
 
 		<div class="grid-element half">
 			<p class="type-label">{{ $t('interfaces.repeater.add_label') }}</p>
-			<v-input class="input" v-model="addLabel" :placeholder="$t('add_a_new_item')" />
+			<d-input class="input" v-model="addLabel" :placeholder="$t('add_a_new_item')" />
 		</div>
 
 		<div class="grid-element full">

@@ -2,15 +2,15 @@
 	<private-view :title="$t('settings_project')">
 		<template #headline>{{ $t('settings') }}</template>
 		<template #title-outer:prepend>
-			<v-button class="header-icon" rounded disabled icon secondary>
-				<v-icon name="public" />
-			</v-button>
+			<d-button class="header-icon" rounded disabled icon secondary>
+				<d-icon name="public" />
+			</d-button>
 		</template>
 
 		<template #actions>
-			<v-button icon rounded :disabled="noEdits" :loading="saving" @click="save" v-tooltip.bottom="$t('save')">
-				<v-icon name="check" />
-			</v-button>
+			<d-button icon rounded :disabled="noEdits" :loading="saving" @click="save" v-tooltip.bottom="$t('save')">
+				<d-icon name="check" />
+			</d-button>
 		</template>
 
 		<template #navigation>
@@ -18,7 +18,7 @@
 		</template>
 
 		<div class="settings">
-			<v-form :initial-values="initialValues" v-model="edits" :fields="fields" :primary-key="1" />
+			<d-form :initial-values="initialValues" v-model="edits" :fields="fields" :primary-key="1" />
 		</div>
 
 		<template #sidebar>

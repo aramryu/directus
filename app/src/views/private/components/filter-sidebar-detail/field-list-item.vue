@@ -1,8 +1,8 @@
 <template>
-	<v-list-item v-if="field.children === undefined" @click="$emit('add', `${parent ? parent + '.' : ''}${field.field}`)">
-		<v-list-item-content>{{ field.name }}</v-list-item-content>
-	</v-list-item>
-	<v-list-group v-else>
+	<d-list-item v-if="field.children === undefined" @click="$emit('add', `${parent ? parent + '.' : ''}${field.field}`)">
+		<d-list-item-content>{{ field.name }}</d-list-item-content>
+	</d-list-item>
+	<d-list-group v-else>
 		<template #activator>{{ field.name }}</template>
 		<field-list-item
 			v-for="childField in field.children"
@@ -11,7 +11,7 @@
 			:field="childField"
 			@add="$emit('add', $event)"
 		/>
-	</v-list-group>
+	</d-list-group>
 </template>
 
 <script lang="ts">

@@ -1,10 +1,10 @@
 <template>
 	<div class="v-pagination">
-		<v-button class="previous" :disabled="disabled || value === 1" secondary icon small @click="toPrev">
-			<v-icon name="chevron_left" />
-		</v-button>
+		<d-button class="previous" :disabled="disabled || value === 1" secondary icon small @click="toPrev">
+			<d-icon fa="chevron-left" />
+		</d-button>
 
-		<v-button
+		<d-button
 			v-if="showFirstLast && value > Math.ceil(totalVisible / 2) + 1 && length > totalVisible"
 			class="page"
 			@click="toPage(1)"
@@ -13,13 +13,13 @@
 			:disabled="disabled"
 		>
 			1
-		</v-button>
+		</d-button>
 
 		<span v-if="showFirstLast && value > Math.ceil(totalVisible / 2) + 1 && length > totalVisible + 1" class="gap">
 			...
 		</span>
 
-		<v-button
+		<d-button
 			v-for="page in visiblePages"
 			:key="page"
 			:class="{ active: value === page }"
@@ -30,13 +30,13 @@
 			:disabled="disabled"
 		>
 			{{ page }}
-		</v-button>
+		</d-button>
 
 		<span v-if="showFirstLast && value < length - Math.ceil(totalVisible / 2) && length > totalVisible + 1" class="gap">
 			...
 		</span>
 
-		<v-button
+		<d-button
 			v-if="showFirstLast && value <= length - Math.ceil(totalVisible / 2) && length > totalVisible"
 			:class="{ active: value === length }"
 			class="page"
@@ -46,11 +46,11 @@
 			:disabled="disabled"
 		>
 			{{ length }}
-		</v-button>
+		</d-button>
 
-		<v-button class="next" :disabled="disabled || value === length" secondary icon small @click="toNext">
-			<v-icon name="chevron_right" />
-		</v-button>
+		<d-button class="next" :disabled="disabled || value === length" secondary icon small @click="toNext">
+			<d-icon fa="chevron-right" />
+		</d-button>
 	</div>
 </template>
 

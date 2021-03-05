@@ -1,23 +1,23 @@
 <template>
 	<div class="notification-dialogs">
-		<v-dialog :active="true" v-for="notification in notifications" :key="notification.id" persist>
-			<v-card :class="[notification.type]">
-				<v-card-title>{{ notification.title }}</v-card-title>
-				<v-card-text v-if="notification.text">
+		<d-dialog :active="true" v-for="notification in notifications" :key="notification.id" persist>
+			<d-card :class="[notification.type]">
+				<d-card-title>{{ notification.title }}</d-card-title>
+				<d-card-text v-if="notification.text">
 					{{ notification.text }}
 
-					<v-error v-if="notification.error" :error="notification.error" />
-				</v-card-text>
-				<v-card-actions>
-					<v-button secondary v-if="notification.type === 'error' && admin && notification.code === 'UNKNOWN'">
+					<d-error v-if="notification.error" :error="notification.error" />
+				</d-card-text>
+				<d-card-actions>
+					<d-button secondary v-if="notification.type === 'error' && admin && notification.code === 'UNKNOWN'">
 						<a target="_blank" :href="getGitHubIssueLink(notification.id, notification)">
 							{{ $t('report_error') }}
 						</a>
-					</v-button>
-					<v-button @click="done(notification.id)">{{ $t('dismiss') }}</v-button>
-				</v-card-actions>
-			</v-card>
-		</v-dialog>
+					</d-button>
+					<d-button @click="done(notification.id)">{{ $t('dismiss') }}</d-button>
+				</d-card-actions>
+			</d-card>
+		</d-dialog>
 	</div>
 </template>
 

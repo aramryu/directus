@@ -1,4 +1,4 @@
-import VDrawer from './v-drawer.vue';
+import DDrawer from './v-drawer.vue';
 
-export { VDrawer };
-export default VDrawer;
+export { DDrawer };
+export default DDrawer;

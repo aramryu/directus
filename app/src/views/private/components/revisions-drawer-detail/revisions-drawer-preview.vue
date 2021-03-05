@@ -1,12 +1,12 @@
 <template>
 	<div>
-		<v-notice type="info">
+		<d-notice type="info">
 			{{ $t('revision_post_update') }}
 			<br />
 			{{ $t('no_relational_data') }}
-		</v-notice>
+		</d-notice>
 
-		<v-form disabled :collection="revision.collection" :primary-key="revision.item" :initial-values="revision.data" />
+		<d-form disabled :collection="revision.collection" :primary-key="revision.item" :initial-values="revision.data" />
 	</div>
 </template>
 

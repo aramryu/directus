@@ -1,4 +1,4 @@
-import VInput from './v-input.vue';
+import DInput from './v-input.vue';
 
-export { VInput };
-export default VInput;
+export { DInput };
+export default DInput;

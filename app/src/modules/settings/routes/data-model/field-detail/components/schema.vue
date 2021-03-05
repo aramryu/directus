@@ -1,16 +1,16 @@
 <template>
 	<div>
-		<v-notice type="info">
+		<d-notice type="info">
 			{{ $t('schema_setup_title') }}
-		</v-notice>
+		</d-notice>
 
 		<div class="form">
 			<div class="field">
 				<div class="label type-label">
 					{{ $t('key') }}
-					<v-icon class="required" sup name="star" />
+					<d-icon class="required" sup name="star" />
 				</div>
-				<v-input
+				<d-input
 					:disabled="isExisting"
 					autofocus
 					class="monospace"
@@ -24,10 +24,10 @@
 			<div class="field half">
 				<div class="label type-label">
 					{{ $t('type') }}
-					<v-icon class="required" sup name="star" />
+					<d-icon class="required" sup name="star" />
 				</div>
-				<v-input v-if="!fieldData.schema" :value="$t('alias')" disabled />
-				<v-select
+				<d-input v-if="!fieldData.schema" :value="$t('alias')" disabled />
+				<d-select
 					v-else
 					:disabled="typeDisabled || isExisting"
 					:value="fieldData.type"
@@ -40,7 +40,7 @@
 			<template v-if="['decimal', 'float'].includes(fieldData.type) === false">
 				<div class="field half" v-if="fieldData.schema">
 					<div class="label type-label">{{ $t('length') }}</div>
-					<v-input
+					<d-input
 						type="number"
 						:placeholder="fieldData.type !== 'string' ? $t('not_available_for_type') : '255'"
 						:disabled="isExisting || fieldData.type !== 'string'"
@@ -53,8 +53,8 @@
 				<div class="field half" v-if="fieldData.schema">
 					<div class="label type-label">{{ $t('precision_scale') }}</div>
 					<div class="precision-scale">
-						<v-input type="number" :placeholder="10" v-model="fieldData.schema.numeric_precision" />
-						<v-input type="number" :placeholder="5" v-model="fieldData.schema.numeric_scale" />
+						<d-input type="number" :placeholder="10" v-model="fieldData.schema.numeric_precision" />
+						<d-input type="number" :placeholder="5" v-model="fieldData.schema.numeric_scale" />
 					</div>
 				</div>
 			</template>
@@ -62,12 +62,12 @@
 			<template v-if="['uuid', 'date', 'time', 'datetime', 'timestamp'].includes(fieldData.type) && type !== 'file'">
 				<div class="field half-left">
 					<div class="label type-label">{{ $t('on_create') }}</div>
-					<v-select :items="onCreateOptions" v-model="onCreateValue" />
+					<d-select :items="onCreateOptions" v-model="onCreateValue" />
 				</div>
 
 				<div class="field half-right">
 					<div class="label type-label">{{ $t('on_update') }}</div>
-					<v-select :items="onUpdateOptions" v-model="onUpdateValue" />
+					<d-select :items="onUpdateOptions" v-model="onUpdateValue" />
 				</div>
 			</template>
 
@@ -75,7 +75,7 @@
 
 			<div class="field half-left" v-if="fieldData.schema">
 				<div class="label type-label">{{ $t('unique') }}</div>
-				<v-checkbox
+				<d-checkbox
 					:label="$t('value_unique')"
 					:input-value="fieldData.schema.is_unique === false"
 					@change="fieldData.schema.is_unique = !$event"
@@ -85,32 +85,32 @@
 
 			<div class="field full" v-if="fieldData.schema && fieldData.schema.is_primary_key !== true">
 				<div class="label type-label">{{ $t('default_value') }}</div>
-				<v-input
+				<d-input
 					v-if="['string', 'uuid'].includes(fieldData.type)"
 					class="monospace"
 					v-model="defaultValue"
 					placeholder="NULL"
 				/>
-				<v-textarea
+				<d-textarea
 					v-else-if="['text', 'json'].includes(fieldData.type)"
 					class="monospace"
 					v-model="defaultValue"
 					placeholder="NULL"
 				/>
-				<v-input
+				<d-input
 					v-else-if="['integer', 'bigInteger', 'float', 'decimal'].includes(fieldData.type)"
 					type="number"
 					class="monospace"
 					v-model="defaultValue"
 					placeholder="NULL"
 				/>
-				<v-input
+				<d-input
 					v-else-if="['timestamp', 'datetime', 'date', 'time'].includes(fieldData.type)"
 					class="monospace"
 					v-model="defaultValue"
 					placeholder="NULL"
 				/>
-				<v-select
+				<d-select
 					v-else-if="fieldData.type === 'boolean'"
 					class="monospace"
 					v-model="defaultValue"
@@ -129,12 +129,12 @@
 						},
 					]"
 				/>
-				<v-input v-else class="monospace" v-model="defaultValue" disabled placeholder="NULL" />
+				<d-input v-else class="monospace" v-model="defaultValue" disabled placeholder="NULL" />
 			</div>
 
 			<div class="field half-left" v-if="fieldData.schema">
 				<div class="label type-label">{{ $t('required') }}</div>
-				<v-checkbox
+				<d-checkbox
 					:input-value="fieldData.schema.is_nullable === false"
 					@change="fieldData.schema.is_nullable = !$event"
 					:label="$t('requires_value')"

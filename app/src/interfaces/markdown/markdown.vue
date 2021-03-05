@@ -1,94 +1,94 @@
 <template>
 	<div class="interface-markdown" :class="view[0]" ref="markdownInterface">
 		<div class="toolbar">
-			<v-menu show-arrow placement="bottom-start">
+			<d-menu show-arrow placement="bottom-start">
 				<template #activator="{ toggle }">
-					<v-button small icon @click="toggle" v-tooltip="$t('wysiwyg_options.heading')">
-						<v-icon name="title" />
-					</v-button>
+					<d-button small icon @click="toggle" v-tooltip="$t('wysiwyg_options.heading')">
+						<d-icon name="title" />
+					</d-button>
 				</template>
-				<v-list>
-					<v-list-item v-for="n in 6" :key="n" @click="edit('heading', { level: n })">
-						<v-list-item-content><v-text-overflow :text="$t(`wysiwyg_options.h${n}`)" /></v-list-item-content>
-						<v-list-item-hint>{{ translateShortcut(['meta', 'alt']) }} {{ n }}</v-list-item-hint>
-					</v-list-item>
-				</v-list>
-			</v-menu>
+				<d-list>
+					<d-list-item v-for="n in 6" :key="n" @click="edit('heading', { level: n })">
+						<d-list-item-content><d-text-overflow :text="$t(`wysiwyg_options.h${n}`)" /></d-list-item-content>
+						<d-list-item-hint>{{ translateShortcut(['meta', 'alt']) }} {{ n }}</d-list-item-hint>
+					</d-list-item>
+				</d-list>
+			</d-menu>
 
-			<v-button
+			<d-button
 				small
 				icon
 				@click="edit('bold')"
 				v-tooltip="$t('wysiwyg_options.bold') + ' - ' + translateShortcut(['meta', 'b'])"
 			>
-				<v-icon name="format_bold" />
-			</v-button>
-			<v-button
+				<d-icon name="format_bold" />
+			</d-button>
+			<d-button
 				small
 				icon
 				@click="edit('italic')"
 				v-tooltip="$t('wysiwyg_options.italic') + ' - ' + translateShortcut(['meta', 'i'])"
 			>
-				<v-icon name="format_italic" />
-			</v-button>
-			<v-button
+				<d-icon name="format_italic" />
+			</d-button>
+			<d-button
 				small
 				icon
 				@click="edit('strikethrough')"
 				v-tooltip="$t('wysiwyg_options.strikethrough') + ' - ' + translateShortcut(['meta', 'alt', 'd'])"
 			>
-				<v-icon name="format_strikethrough" />
-			</v-button>
-			<v-button small icon @click="edit('listBulleted')" v-tooltip="$t('wysiwyg_options.bullist')">
-				<v-icon name="format_list_bulleted" />
-			</v-button>
-			<v-button small icon @click="edit('listNumbered')" v-tooltip="$t('wysiwyg_options.numlist')">
-				<v-icon name="format_list_numbered" />
-			</v-button>
-			<v-button
+				<d-icon name="format_strikethrough" />
+			</d-button>
+			<d-button small icon @click="edit('listBulleted')" v-tooltip="$t('wysiwyg_options.bullist')">
+				<d-icon name="format_list_bulleted" />
+			</d-button>
+			<d-button small icon @click="edit('listNumbered')" v-tooltip="$t('wysiwyg_options.numlist')">
+				<d-icon name="format_list_numbered" />
+			</d-button>
+			<d-button
 				small
 				icon
 				@click="edit('blockquote')"
 				v-tooltip="$t('wysiwyg_options.blockquote') + ' - ' + translateShortcut(['meta', 'alt', 'q'])"
 			>
-				<v-icon name="format_quote" />
-			</v-button>
-			<v-button
+				<d-icon name="format_quote" />
+			</d-button>
+			<d-button
 				small
 				icon
 				@click="edit('code')"
 				v-tooltip="$t('wysiwyg_options.codeblock') + ' - ' + translateShortcut(['meta', 'alt', 'c'])"
 			>
-				<v-icon name="code" />
-			</v-button>
-			<v-button
+				<d-icon name="code" />
+			</d-button>
+			<d-button
 				small
 				icon
 				@click="edit('link')"
 				v-tooltip="$t('wysiwyg_options.link') + ' - ' + translateShortcut(['meta', 'k'])"
 			>
-				<v-icon name="insert_link" />
-			</v-button>
+				<d-icon name="insert_link" />
+			</d-button>
 
-			<v-menu show-arrow :close-on-content-click="false">
+			<d-menu show-arrow :close-on-content-click="false">
 				<template #activator="{ toggle }">
-					<v-button small icon @click="toggle" v-tooltip="$t('wysiwyg_options.table')">
-						<v-icon name="table_chart" />
-					</v-button>
+					<d-button small icon @click="toggle" v-tooltip="$t('wysiwyg_options.table')">
+						<d-icon name="table_chart" />
+					</d-button>
 				</template>
 
 				<template #default="{ deactivate }">
 					<div class="table-options">
 						<div class="field half">
 							<p class="type-label">{{ $t('rows') }}</p>
-							<v-input :min="1" type="number" v-model="table.rows" />
+							<d-input :min="1" type="number" v-model="table.rows" />
 						</div>
 						<div class="field half">
 							<p class="type-label">{{ $t('columns') }}</p>
-							<v-input :min="1" type="number" v-model="table.columns" />
+							<d-input :min="1" type="number" v-model="table.columns" />
 						</div>
 						<div class="field full">
-							<v-button
+							<d-button
 								full-width
 								@click="
 									() => {
@@ -98,17 +98,17 @@
 								"
 							>
 								Create
-							</v-button>
+							</d-button>
 						</div>
 					</div>
 				</template>
-			</v-menu>
+			</d-menu>
 
-			<v-button @click="imageDialogOpen = true" small icon v-tooltip="$t('wysiwyg_options.image')">
-				<v-icon name="insert_photo" />
-			</v-button>
+			<d-button @click="imageDialogOpen = true" small icon v-tooltip="$t('wysiwyg_options.image')">
+				<d-icon name="insert_photo" />
+			</d-button>
 
-			<v-button
+			<d-button
 				v-for="custom in customSyntax"
 				small
 				icon
@@ -116,32 +116,32 @@
 				@click="edit('custom', custom)"
 				v-tooltip="custom.name"
 			>
-				<v-icon :name="custom.icon" />
-			</v-button>
+				<d-icon :name="custom.icon" />
+			</d-button>
 
 			<div class="spacer"></div>
 
-			<v-button-group class="view" mandatory v-model="view" rounded>
-				<v-button x-small value="editor">Editor</v-button>
-				<v-button x-small value="preview">Preview</v-button>
-			</v-button-group>
+			<d-button-group class="view" mandatory v-model="view" rounded>
+				<d-button x-small value="editor">Editor</d-button>
+				<d-button x-small value="preview">Preview</d-button>
+			</d-button-group>
 		</div>
 
 		<textarea ref="codemirrorEl" :value="value || ''" />
 
 		<div v-if="view[0] === 'preview'" class="preview-box" v-html="html"></div>
 
-		<v-dialog :active="imageDialogOpen" @esc="imageDialogOpen = null" @toggle="imageDialogOpen = null">
-			<v-card>
-				<v-card-title>{{ $t('upload_from_device') }}</v-card-title>
-				<v-card-text>
-					<v-upload @input="onImageUpload" from-url from-library />
-				</v-card-text>
-				<v-card-actions>
-					<v-button @click="imageDialogOpen = null" secondary>{{ $t('cancel') }}</v-button>
-				</v-card-actions>
-			</v-card>
-		</v-dialog>
+		<d-dialog :active="imageDialogOpen" @esc="imageDialogOpen = null" @toggle="imageDialogOpen = null">
+			<d-card>
+				<d-card-title>{{ $t('upload_from_device') }}</d-card-title>
+				<d-card-text>
+					<d-upload @input="onImageUpload" from-url from-library />
+				</d-card-text>
+				<d-card-actions>
+					<d-button @click="imageDialogOpen = null" secondary>{{ $t('cancel') }}</d-button>
+				</d-card-actions>
+			</d-card>
+		</d-dialog>
 	</div>
 </template>
 

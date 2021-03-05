@@ -1,12 +1,12 @@
 <template>
-	<v-list-item
+	<d-list-item
 		v-if="field.children === undefined"
 		:disabled="field.disabled"
 		@click="$emit('add', `${parent ? parent + '.' : ''}${field.field}`)"
 	>
-		<v-list-item-content>{{ field.name || formatTitle(field.field) }}</v-list-item-content>
-	</v-list-item>
-	<v-list-group v-else>
+		<d-list-item-content>{{ field.name || formatTitle(field.field) }}</d-list-item-content>
+	</d-list-item>
+	<d-list-group v-else>
 		<template #activator>{{ field.name || formatTitle(field.field) }}</template>
 		<field-list-item
 			v-for="childField in field.children"
@@ -16,7 +16,7 @@
 			:depth="depth - 1"
 			@add="$emit('add', $event)"
 		/>
-	</v-list-group>
+	</d-list-group>
 </template>
 
 <script lang="ts">

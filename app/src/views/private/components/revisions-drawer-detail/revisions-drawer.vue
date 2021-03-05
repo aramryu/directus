@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<v-drawer
+		<d-drawer
 			v-model="_active"
 			:title="$t('item_revision')"
 			@cancel="_active = false"
@@ -11,11 +11,11 @@
 			</template>
 
 			<template #sidebar>
-				<v-tabs vertical v-model="currentTab">
-					<v-tab v-for="tab in tabs" :key="tab.value" :value="tab.value">
+				<d-tabs vertical v-model="currentTab">
+					<d-tab v-for="tab in tabs" :key="tab.value" :value="tab.value">
 						{{ tab.text }}
-					</v-tab>
-				</v-tabs>
+					</d-tab>
+				</d-tabs>
 			</template>
 
 			<div class="content">
@@ -28,29 +28,29 @@
 			</div>
 
 			<template #actions>
-				<v-button @click="confirmRevert = true" class="revert" icon rounded v-tooltip.bottom="$t('revert')">
-					<v-icon name="restore" />
-				</v-button>
-				<v-button @click="_active = false" icon rounded v-tooltip.bottom="$t('done')">
-					<v-icon name="check" />
-				</v-button>
+				<d-button @click="confirmRevert = true" class="revert" icon rounded v-tooltip.bottom="$t('revert')">
+					<d-icon name="restore" />
+				</d-button>
+				<d-button @click="_active = false" icon rounded v-tooltip.bottom="$t('done')">
+					<d-icon name="check" />
+				</d-button>
 			</template>
-		</v-drawer>
+		</d-drawer>
 
-		<v-dialog v-model="confirmRevert" :persistent="reverting" @esc="confirmRevert = false">
-			<v-card>
-				<v-card-title>{{ $t('confirm_revert') }}</v-card-title>
-				<v-card-text>{{ $t('confirm_revert_body') }}</v-card-text>
-				<v-card-actions>
-					<v-button secondary @click="confirmRevert = false" :disabled="reverting">
+		<d-dialog v-model="confirmRevert" :persistent="reverting" @esc="confirmRevert = false">
+			<d-card>
+				<d-card-title>{{ $t('confirm_revert') }}</d-card-title>
+				<d-card-text>{{ $t('confirm_revert_body') }}</d-card-text>
+				<d-card-actions>
+					<d-button secondary @click="confirmRevert = false" :disabled="reverting">
 						{{ $t('cancel') }}
-					</v-button>
-					<v-button class="revert" @click="revert" :loading="reverting">
+					</d-button>
+					<d-button class="revert" @click="revert" :loading="reverting">
 						{{ $t('revert') }}
-					</v-button>
-				</v-card-actions>
-			</v-card>
-		</v-dialog>
+					</d-button>
+				</d-card-actions>
+			</d-card>
+		</d-dialog>
 	</div>
 </template>
 

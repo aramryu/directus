@@ -1,7 +1,7 @@
 <template>
-	<v-notice v-if="!choices" type="warning">
+	<d-notice v-if="!choices" type="warning">
 		{{ $t('choices_option_configured_incorrectly') }}
-	</v-notice>
+	</d-notice>
 	<div
 		v-else
 		class="radio-buttons"
@@ -10,7 +10,7 @@
 			'--v-radio-color': color,
 		}"
 	>
-		<v-radio
+		<d-radio
 			block
 			v-for="item in choices"
 			:key="item.value"
@@ -31,7 +31,7 @@
 				disabled,
 			}"
 		>
-			<v-icon :disabled="disabled" :name="customIcon" @click="$emit('input', otherValue)" />
+			<d-icon :disabled="disabled" :name="customIcon" @click="$emit('input', otherValue)" />
 			<input v-model="otherValue" :placeholder="$t('other')" :disabled="disabled" @focus="$emit('input', otherValue)" />
 		</div>
 	</div>
@@ -70,11 +70,11 @@ export default defineComponent({
 		},
 		iconOn: {
 			type: String,
-			default: 'radio_button_checked',
+			default: 'dot-circle',
 		},
 		iconOff: {
 			type: String,
-			default: 'radio_button_unchecked',
+			default: 'circle',
 		},
 		color: {
 			type: String,
@@ -106,7 +106,7 @@ export default defineComponent({
 		const { otherValue, usesOtherValue } = useCustomSelection(value, choices, emit);
 
 		const customIcon = computed(() => {
-			if (!otherValue.value) return 'add';
+			if (!otherValue.value) return 'plus-circle';
 			if (otherValue.value && usesOtherValue.value === true) return props.iconOn;
 			return props.iconOff;
 		});

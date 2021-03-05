@@ -1,13 +1,13 @@
 <template>
-	<v-menu show-arrow placement="top" trigger="hover" :delay="300" v-model="active">
+	<d-menu show-arrow placement="top" trigger="hover" :delay="300" v-model="active">
 		<template #activator><slot /></template>
 
 		<div class="loading" v-if="loading">
-			<v-skeleton-loader class="avatar" />
+			<d-skeleton-loader class="avatar" />
 			<div>
-				<v-skeleton-loader type="text" />
-				<v-skeleton-loader type="text" />
-				<v-skeleton-loader type="text" />
+				<d-skeleton-loader type="text" />
+				<d-skeleton-loader type="text" />
+				<d-skeleton-loader type="text" />
 			</div>
 		</div>
 
@@ -16,17 +16,17 @@
 		</div>
 
 		<div class="user-box" v-else-if="data">
-			<v-avatar x-large class="avatar">
+			<d-avatar x-large class="avatar">
 				<img v-if="avatarSrc" :src="avatarSrc" :alt="data.first_name" />
-				<v-icon name="person" outline v-else />
-			</v-avatar>
+				<d-icon name="person" outline v-else />
+			</d-avatar>
 			<div class="data">
 				<div class="name type-title">{{ userName(data) }}</div>
 				<div class="status-role" :class="data.status">{{ $t(data.status) }} {{ data.role.name }}</div>
 				<div class="email">{{ data.email }}</div>
 			</div>
 		</div>
-	</v-menu>
+	</d-menu>
 </template>
 
 <script lang="ts">

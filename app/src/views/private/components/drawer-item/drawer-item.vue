@@ -1,14 +1,14 @@
 <template>
-	<v-drawer v-model="_active" :title="title" persistent @cancel="cancel">
+	<d-drawer v-model="_active" :title="title" persistent @cancel="cancel">
 		<template #actions>
-			<v-button @click="save" icon rounded v-tooltip.bottom="$t('save')">
-				<v-icon name="check" />
-			</v-button>
+			<d-button @click="save" icon rounded v-tooltip.bottom="$t('save')">
+				<d-icon fa="save" />
+			</d-button>
 		</template>
 
 		<div class="drawer-item-content">
 			<template v-if="junctionField">
-				<v-form
+				<d-form
 					:loading="loading"
 					:initial-values="item && item[junctionField]"
 					:primary-key="relatedPrimaryKey"
@@ -17,12 +17,12 @@
 					@input="setJunctionEdits"
 				/>
 
-				<v-divider v-if="showDivider" />
+				<d-divider v-if="showDivider" />
 			</template>
 
-			<v-form :loading="loading" :initial-values="item" :primary-key="primaryKey" :fields="fields" v-model="_edits" />
+			<d-form :loading="loading" :initial-values="item" :primary-key="primaryKey" :fields="fields" v-model="_edits" />
 		</div>
-	</v-drawer>
+	</d-drawer>
 </template>
 
 <script lang="ts">

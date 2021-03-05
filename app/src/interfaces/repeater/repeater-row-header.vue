@@ -1,9 +1,9 @@
 <template>
 	<div :class="{ subdued: !displayValue }" class="header type-text" @click="toggle">
-		<v-icon v-if="disabled === false" name="drag_handle" class="drag-handle" />
+		<d-icon v-if="disabled === false" fa="grip-lines" class="drag-handle" />
 		{{ displayValue ? displayValue : placeholder }}
 		<span class="spacer" />
-		<v-icon v-if="disabled === false" name="close" class="delete" @click.stop.prevent="$emit('delete')" />
+		<d-icon v-if="disabled === false" fa="times" class="delete" @click.stop.prevent="$emit('delete')" />
 	</div>
 </template>
 

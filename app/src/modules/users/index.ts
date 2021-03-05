@@ -6,7 +6,7 @@ import Item from './routes/item.vue';
 export default defineModule(({ i18n }) => ({
 	id: 'users',
 	name: 'user_directory',
-	icon: 'people_alt',
+	icon: 'users',
 	routes: [
 		{
 			name: 'users-collection',

@@ -1,8 +1,8 @@
 <template>
-	<v-notice v-if="selectedType === undefined">
+	<d-notice v-if="selectedType === undefined">
 		{{ $t('select_field_type') }}
-	</v-notice>
-	<v-select
+	</d-notice>
+	<d-select
 		v-else
 		:items="items"
 		@input="$listeners.input"

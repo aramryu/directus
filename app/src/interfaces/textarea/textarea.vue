@@ -1,5 +1,5 @@
 <template>
-	<v-textarea
+	<d-textarea
 		v-bind="{ placeholder, trim }"
 		:value="value"
 		:disabled="disabled"

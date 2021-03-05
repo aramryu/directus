@@ -2,42 +2,43 @@
 	<private-view :title="collectionInfo && collectionInfo.name">
 		<template #headline>{{ $t('settings_data_model') }}</template>
 		<template #title-outer:prepend>
-			<v-button class="header-icon" rounded icon exact to="/settings/data-model">
-				<v-icon name="arrow_back" />
-			</v-button>
+			<d-button class="header-icon" rounded icon exact to="/settings/data-model">
+				<d-icon name="chevron-left" />
+			</d-button>
 		</template>
 
 		<template #actions>
-			<v-dialog v-model="confirmDelete" @esc="confirmDelete = false">
+			<d-dialog v-model="confirmDelete" @esc="confirmDelete = false">
 				<template #activator="{ on }">
-					<v-button
+					<d-button
 						rounded
 						icon
+						color="error"
 						class="action-delete"
 						:disabled="item === null"
 						@click="on"
 						v-tooltip.bottom="$t('delete_collection')"
 						v-if="item && item.collection.startsWith('directus_') === false"
 					>
-						<v-icon name="delete" outline />
-					</v-button>
+						<d-icon name="delete" outline />
+					</d-button>
 				</template>
 
-				<v-card>
-					<v-card-title>{{ $t('delete_are_you_sure') }}</v-card-title>
+				<d-card>
+					<d-card-title>{{ $t('delete_are_you_sure') }}</d-card-title>
 
-					<v-card-actions>
-						<v-button @click="confirmDelete = false" secondary>
+					<d-card-actions>
+						<d-button @click="confirmDelete = false" secondary>
 							{{ $t('cancel') }}
-						</v-button>
-						<v-button @click="deleteAndQuit" class="action-delete" :loading="deleting">
+						</d-button>
+						<d-button @click="deleteAndQuit" class="action-delete" :loading="deleting">
 							{{ $t('delete') }}
-						</v-button>
-					</v-card-actions>
-				</v-card>
-			</v-dialog>
+						</d-button>
+					</d-card-actions>
+				</d-card>
+			</d-dialog>
 
-			<v-button
+			<d-button
 				rounded
 				icon
 				:loading="saving"
@@ -45,8 +46,8 @@
 				@click="saveAndQuit"
 				v-tooltip.bottom="$t('save')"
 			>
-				<v-icon name="check" />
-			</v-button>
+				<d-icon name="save" />
+			</d-button>
 		</template>
 
 		<template #navigation>
@@ -64,7 +65,7 @@
 
 			<router-view name="field" :collection="collection" :field="field" :type="type" />
 
-			<v-form
+			<d-form
 				collection="directus_collections"
 				:loading="loading"
 				:initial-values="item && item.meta"

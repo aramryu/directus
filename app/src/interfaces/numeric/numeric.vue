@@ -1,5 +1,5 @@
 <template>
-	<v-input
+	<d-input
 		type="number"
 		:class="font"
 		:value="value"
@@ -11,12 +11,12 @@
 		@input="$listeners.input"
 	>
 		<template v-if="iconLeft" #prepend>
-			<v-icon :name="iconLeft" />
+			<d-icon :name="iconLeft" />
 		</template>
 		<template v-if="iconRight" #append>
-			<v-icon :name="iconRight" />
+			<d-icon :name="iconRight" />
 		</template>
-	</v-input>
+	</d-input>
 </template>
 
 <script lang="ts">

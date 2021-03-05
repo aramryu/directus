@@ -6,7 +6,7 @@ export default defineModule(({ i18n }) => ({
 	id: 'activity',
 	hidden: true,
 	name: 'activity',
-	icon: 'notifications',
+	icon: 'bell-exclamation',
 	routes: [
 		{
 			name: 'activity-collection',

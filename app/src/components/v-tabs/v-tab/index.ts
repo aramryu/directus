@@ -1,4 +1,4 @@
-import VTab from './v-tab.vue';
+import DTab from './v-tab.vue';
 
-export { VTab };
-export default VTab;
+export { DTab };
+export default DTab;

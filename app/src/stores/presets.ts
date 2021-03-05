@@ -27,7 +27,7 @@ const systemDefaults: Record<string, Partial<Preset>> = {
 		},
 		layout_options: {
 			cards: {
-				icon: 'insert_drive_file',
+				icon: 'cabinet-filing',
 				title: '{{ title }}',
 				subtitle: '{{ type }} • {{ filesize }}',
 				size: 4,
@@ -45,7 +45,7 @@ const systemDefaults: Record<string, Partial<Preset>> = {
 		},
 		layout_options: {
 			cards: {
-				icon: 'account_circle',
+				icon: 'user-circle',
 				title: '{{ first_name }} {{ last_name }}',
 				subtitle: '{{ email }}',
 				size: 4,

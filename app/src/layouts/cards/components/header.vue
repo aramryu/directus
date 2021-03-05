@@ -2,37 +2,37 @@
 	<div class="cards-header">
 		<div class="start">
 			<div class="selected" v-if="_selection.length > 0" @click="_selection = []">
-				<v-icon name="cancel" outline />
+				<d-icon name="cancel" outline />
 				<span class="label">{{ $tc('n_items_selected', _selection.length) }}</span>
 			</div>
 			<button class="select-all" v-else @click="$emit('select-all')">
-				<v-icon name="check_circle" outline />
+				<d-icon name="circle" outline />
 				<span class="label">{{ $t('select_all') }}</span>
 			</button>
 		</div>
 		<div class="end">
-			<v-icon class="size-selector" :name="`grid_${7 - size}`" v-tooltip.top="$t('card_size')" @click="toggleSize" />
+			<d-icon class="size-selector" :name="`grid_${7 - size}`" v-tooltip.top="$t('card_size')" @click="toggleSize" />
 
-			<v-menu show-arrow placement="bottom">
+			<d-menu show-arrow placement="bottom">
 				<template #activator="{ toggle }">
 					<div class="sort-selector" v-tooltip.top="$t('sort_field')" @click="toggle">
 						{{ sortField && sortField.name }}
 					</div>
 				</template>
 
-				<v-list>
-					<v-list-item
+				<d-list>
+					<d-list-item
 						v-for="field in fieldsWithoutFake"
 						:key="field.field"
 						:disabled="field.disabled"
 						:active="field.field === sortKey"
 						@click="_sort = field.field"
 					>
-						<v-list-item-content>{{ field.name }}</v-list-item-content>
-					</v-list-item>
-				</v-list>
-			</v-menu>
-			<v-icon
+						<d-list-item-content>{{ field.name }}</d-list-item-content>
+					</d-list-item>
+				</d-list>
+			</d-menu>
+			<d-icon
 				class="sort-direction"
 				:class="{ descending }"
 				name="sort"

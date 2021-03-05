@@ -1,5 +1,6 @@
 <template>
 	<div class="project-info">
+		<module-bar-logo />
 		<latency-indicator />
 		<span class="name">{{ name }}</span>
 	</div>
@@ -8,11 +9,12 @@
 <script lang="ts">
 import { defineComponent, computed } from '@vue/composition-api';
 import LatencyIndicator from '../latency-indicator';
+import ModuleBarLogo from '@/views/private/components/module-bar-logo/';
 import { useServerStore, useLatencyStore } from '@/stores/';
 import { sortBy } from 'lodash';
 
 export default defineComponent({
-	components: { LatencyIndicator },
+	components: { LatencyIndicator, ModuleBarLogo },
 	setup() {
 		const latencyStore = useLatencyStore();
 		const serverStore = useServerStore();
@@ -34,7 +36,7 @@ export default defineComponent({
 	padding: 0 20px;
 	color: var(--foreground-normal-alt);
 	text-align: left;
-	background-color: var(--background-normal-alt);
+	background-color: var(--sidebar);
 
 	.name {
 		flex-grow: 1;

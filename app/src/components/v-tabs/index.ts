@@ -1,7 +1,7 @@
-import VTabs from './v-tabs.vue';
-import VTab from './v-tab/';
-import VTabsItems from './v-tabs-items/';
-import VTabItem from './v-tab-item/';
+import DTabs from './v-tabs.vue';
+import DTab from './v-tab/';
+import DTabsItems from './v-tabs-items/';
+import DTabItem from './v-tab-item/';
 
-export { VTabs, VTab, VTabsItems, VTabItem };
-export default VTabs;
+export { DTabs, DTab, DTabsItems, DTabItem };
+export default DTabs;

@@ -1,8 +1,7 @@
 <template>
 	<div class="module-bar">
-		<module-bar-logo />
 		<div class="modules">
-			<v-button
+			<d-button
 				v-for="module in _modules"
 				v-tooltip.right="$t(module.name)"
 				:key="module.id"
@@ -19,8 +18,8 @@
 						: null
 				"
 			>
-				<v-icon :name="module.icon" outline />
-			</v-button>
+				<fa :icon="module.icon" size="2x" />
+			</d-button>
 		</div>
 		<module-bar-avatar />
 	</div>
@@ -30,14 +29,12 @@
 import { defineComponent, Ref, computed } from '@vue/composition-api';
 
 import { getModules } from '@/modules/';
-import ModuleBarLogo from '../module-bar-logo/';
 import ModuleBarAvatar from '../module-bar-avatar/';
 import { useUserStore } from '@/stores/';
 import { orderBy } from 'lodash';
 
 export default defineComponent({
 	components: {
-		ModuleBarLogo,
 		ModuleBarAvatar,
 	},
 	setup() {

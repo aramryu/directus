@@ -1,11 +1,11 @@
 <template>
-	<v-notice class="full" type="warning" v-if="collection === null">
+	<d-notice class="full" type="warning" v-if="collection === null">
 		{{ $t('interfaces.translations.no_collection') }}
-	</v-notice>
+	</d-notice>
 	<div v-else class="form-grid">
 		<div class="field full">
 			<p class="type-label">{{ $t('interfaces.translations.display_template') }}</p>
-			<v-field-template :collection="relatedCollection" v-model="template" :depth="2" />
+			<d-field-template :collection="relatedCollection" v-model="template" :depth="2" />
 		</div>
 	</div>
 </template>

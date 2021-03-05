@@ -2,14 +2,14 @@
 	<private-view :title="loading ? $t('loading') : $t('editing_role', { role: item && item.name })">
 		<template #headline>{{ $t('settings_permissions') }}</template>
 		<template #title-outer:prepend>
-			<v-button class="header-icon" rounded icon exact :to="`/settings/roles/`">
-				<v-icon name="arrow_back" />
-			</v-button>
+			<d-button class="header-icon" rounded icon exact :to="`/settings/roles/`">
+				<d-icon fa="chevron-left" />
+			</d-button>
 		</template>
 		<template #actions>
-			<v-dialog v-model="confirmDelete" v-if="[1, 2].includes(+primaryKey) === false" @esc="confirmDelete = false">
+			<d-dialog v-model="confirmDelete" v-if="[1, 2].includes(+primaryKey) === false" @esc="confirmDelete = false">
 				<template #activator="{ on }">
-					<v-button
+					<d-button
 						rounded
 						icon
 						class="action-delete"
@@ -17,35 +17,35 @@
 						@click="on"
 						v-tooltip.bottom="$t('delete')"
 					>
-						<v-icon name="delete" outline />
-					</v-button>
+						<d-icon fa="trash" outline />
+					</d-button>
 				</template>
 
-				<v-card>
-					<v-card-title>{{ $t('delete_are_you_sure') }}</v-card-title>
+				<d-card>
+					<d-card-title>{{ $t('delete_are_you_sure') }}</d-card-title>
 
-					<v-card-actions>
-						<v-button @click="confirmDelete = false" secondary>
+					<d-card-actions>
+						<d-button @click="confirmDelete = false" secondary>
 							{{ $t('cancel') }}
-						</v-button>
-						<v-button @click="deleteAndQuit" class="action-delete" :loading="deleting">
+						</d-button>
+						<d-button @click="deleteAndQuit" class="action-delete" :loading="deleting">
 							{{ $t('delete') }}
-						</v-button>
-					</v-card-actions>
-				</v-card>
-			</v-dialog>
+						</d-button>
+					</d-card-actions>
+				</d-card>
+			</d-dialog>
 
-			<v-button
+			<d-button
 				rounded
 				icon
 				@click="userInviteModalActive = true"
 				v-tooltip.bottom="$t('invite_users')"
 				class="invite-user"
 			>
-				<v-icon name="person_add" />
-			</v-button>
+				<d-icon fa="user-plus" />
+			</d-button>
 
-			<v-button
+			<d-button
 				rounded
 				icon
 				:loading="saving"
@@ -53,8 +53,8 @@
 				@click="saveAndQuit"
 				v-tooltip.bottom="$t('save')"
 			>
-				<v-icon name="check" />
-			</v-button>
+				<d-icon fa="save" />
+			</d-button>
 		</template>
 
 		<template #navigation>
@@ -64,13 +64,13 @@
 		<users-invite v-model="userInviteModalActive" :role="primaryKey" />
 
 		<div class="roles">
-			<v-notice v-if="adminEnabled" type="info">
+			<d-notice v-if="adminEnabled" type="info">
 				{{ $t('admins_have_all_permissions') }}
-			</v-notice>
+			</d-notice>
 
 			<permissions-overview v-else :role="primaryKey" :permission="permissionKey" :app-access="appAccess" />
 
-			<v-form
+			<d-form
 				collection="directus_roles"
 				:primary-key="primaryKey"
 				:loading="loading"

@@ -6,7 +6,7 @@ export default defineDisplay(({ i18n }) => ({
 	name: i18n.t('displays.boolean.boolean'),
 	description: i18n.t('displays.boolean.description'),
 	types: ['boolean'],
-	icon: 'check_box',
+	icon: 'lightbulb',
 	handler: DisplayBoolean,
 	options: [
 		{

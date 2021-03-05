@@ -1,7 +1,7 @@
 <template>
 	<div class="filter-input">
 		<template v-if="['between', 'nbetween'].includes(operator)">
-			<v-input
+			<d-input
 				:type="type"
 				:value="csvValue[0]"
 				@input="setCSV(0, $event)"
@@ -10,10 +10,10 @@
 				autofocus
 			>
 				<template #append>
-					<v-icon name="vertical_align_top" />
+					<d-icon name="vertical_align_top" />
 				</template>
-			</v-input>
-			<v-input
+			</d-input>
+			<d-input
 				:type="type"
 				:value="csvValue[1]"
 				@input="setCSV(1, $event)"
@@ -21,12 +21,12 @@
 				:placeholder="$t('upper_limit')"
 			>
 				<template #append>
-					<v-icon name="vertical_align_bottom" />
+					<d-icon name="vertical_align_bottom" />
 				</template>
-			</v-input>
+			</d-input>
 		</template>
 		<template v-else-if="['in', 'nin'].includes(operator)">
-			<v-input
+			<d-input
 				v-for="(val, index) in csvValue"
 				:key="index"
 				:value="val"
@@ -37,17 +37,17 @@
 				autofocus
 			>
 				<template #append>
-					<v-icon v-if="csvValue.length > 1" name="close" @click="removeCSV(val)" />
+					<d-icon v-if="csvValue.length > 1" fa="times" @click="removeCSV(val)" />
 				</template>
-			</v-input>
-			<v-button outlined full-width dashed @click="addCSV" :disabled="disabled">
-				<v-icon name="add" />
+			</d-input>
+			<d-button outlined full-width dashed @click="addCSV" :disabled="disabled">
+				<d-icon fa="plus-circle" />
 				{{ $t('add_new') }}
-			</v-button>
+			</d-button>
 		</template>
 		<template v-else-if="['empty', 'nempty'].includes(operator) === false">
-			<v-checkbox block :label="$t('active')" v-if="type === 'checkbox'" v-model="_value" :disabled="disabled" />
-			<v-input
+			<d-checkbox block :label="$t('active')" v-if="type === 'checkbox'" v-model="_value" :disabled="disabled" />
+			<d-input
 				:disabled="disabled"
 				v-else
 				autofocus

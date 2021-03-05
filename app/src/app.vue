@@ -1,32 +1,19 @@
 <template>
-  <v-app>
-    <v-app-bar
-      app
-      color="primary"
-      dark
-    >
-
-
-    </v-app-bar>
-
-    <v-main>
-		<v-info v-if="error" type="danger" :title="$t('unexpected_error')" icon="error" center>
+	<v-app id="app">
+		<d-info v-if="error" type="danger" :title="$t('unexpected_error')" icon="error" center>
 			{{ $t('unexpected_error_copy') }}
 
 			<template #append>
-				<v-error :error="error" />
+				<d-error :error="error" />
 			</template>
-		</v-info>
+		</d-info>
 
 		<router-view v-else-if="!hydrating" />
 
-		<portal-target name="dialog-outlet" transition="transition-dialog" multiple />
-		<portal-target name="menu-outlet" transition="transition-bounce" multiple />
-
+		<portal-target name="dialog-outlet" multiple />
+		<portal-target name="menu-outlet" multiple />
 		<mounting-portal mount-to="#custom-css" target-tag="style">{{ customCSS }}</mounting-portal>
-		</v-main>
-
-  </v-app>
+	</v-app>
 </template>
 
 <script lang="ts">

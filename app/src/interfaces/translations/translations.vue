@@ -1,6 +1,6 @@
 <template>
 	<div v-if="languagesLoading">
-		<v-skeleton-loader v-for="n in 5" :key="n" />
+		<d-skeleton-loader v-for="n in 5" :key="n" />
 	</div>
 
 	<div class="translations" v-else>
@@ -10,10 +10,10 @@
 			@click="startEditing(languageItem[languagesPrimaryKeyField])"
 			class="language-row"
 		>
-			<v-icon class="translate" name="translate" />
+			<d-icon class="translate" name="translate" />
 			<render-template :template="languagesTemplate" :collection="languagesCollection" :item="languageItem" />
 			<div class="spacer" />
-			<v-icon class="launch" name="launch" />
+			<d-icon class="launch" name="launch" />
 		</button>
 
 		<drawer-item

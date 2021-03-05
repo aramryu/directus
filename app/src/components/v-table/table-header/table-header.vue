@@ -8,11 +8,11 @@
 				@click="toggleManualSort"
 				scope="col"
 			>
-				<v-icon v-tooltip="$t('toggle_manual_sorting')" name="sort" small />
+				<d-icon v-tooltip="$t('toggle_manual_sorting')" name="sort" small />
 			</th>
 
 			<th v-if="showSelect" class="select cell" scope="col">
-				<v-checkbox :inputValue="allItemsSelected" :indeterminate="someItemsSelected" @change="toggleSelectAll" />
+				<d-checkbox :inputValue="allItemsSelected" :indeterminate="someItemsSelected" @change="toggleSelectAll" />
 			</th>
 
 			<th v-for="header in headers" :key="header.value" :class="getClassesForHeader(header)" class="cell" scope="col">
@@ -22,7 +22,7 @@
 							{{ header.text }}
 						</slot>
 					</span>
-					<v-icon
+					<d-icon
 						v-if="header.sortable"
 						name="sort"
 						class="sort-icon"

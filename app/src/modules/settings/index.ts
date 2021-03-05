@@ -22,7 +22,7 @@ import { useCollectionsStore, useFieldsStore } from '@/stores';
 export default defineModule(({ i18n }) => ({
 	id: 'settings',
 	name: 'settings',
-	icon: 'settings',
+	icon: 'cogs',
 	color: 'var(--warning)',
 	routes: [
 		{

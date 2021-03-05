@@ -1,9 +1,9 @@
 <template>
 	<div class="v-detail" :class="{ disabled }">
-		<v-divider @click.native="_active = !_active">
-			<v-icon v-if="!disabled" :name="_active ? 'unfold_less' : 'unfold_more'" small />
+		<d-divider @click.native="_active = !_active">
+			<d-icon v-if="!disabled" :name="_active ? 'chevron-square-up' : 'chevron-square-down'" small />
 			<slot name="title">{{ label }}</slot>
-		</v-divider>
+		</d-divider>
 		<transition-expand>
 			<div v-if="_active">
 				<slot />

@@ -1,4 +1,4 @@
-import VDialog from './v-dialog.vue';
+import DDialog from './v-dialog.vue';
 
-export { VDialog };
-export default VDialog;
+export { DDialog };
+export default DDialog;

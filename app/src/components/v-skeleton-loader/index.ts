@@ -1,4 +1,4 @@
-import VSkeletonLoader from './v-skeleton-loader.vue';
+import DSkeletonLoader from './v-skeleton-loader.vue';
 
-export { VSkeletonLoader };
-export default VSkeletonLoader;
+export { DSkeletonLoader };
+export default DSkeletonLoader;

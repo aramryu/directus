@@ -1,15 +1,15 @@
 <template>
 	<div>
-		<v-notice type="info">{{ $t('configure_m2o') }}</v-notice>
+		<d-notice type="info">{{ $t('configure_m2o') }}</d-notice>
 
 		<div class="grid">
 			<div class="field">
 				<div class="type-label">{{ $t('this_collection') }}</div>
-				<v-input disabled :value="relations[0].many_collection" />
+				<d-input disabled :value="relations[0].many_collection" />
 			</div>
 			<div class="field">
 				<div class="type-label">{{ $t('related_collection') }}</div>
-				<v-input
+				<d-input
 					:class="{ matches: relatedCollectionExists }"
 					db-safe
 					key="related-collection"
@@ -19,74 +19,74 @@
 					:placeholder="$t('collection') + '...'"
 				>
 					<template #append>
-						<v-menu show-arrow placement="bottom-end">
+						<d-menu show-arrow placement="bottom-end">
 							<template #activator="{ toggle }">
-								<v-icon name="list_alt" @click="toggle" v-tooltip="$t('select_existing')" :disabled="isExisting" />
+								<d-icon name="list_alt" @click="toggle" v-tooltip="$t('select_existing')" :disabled="isExisting" />
 							</template>
 
-							<v-list class="monospace">
-								<v-list-item
+							<d-list class="monospace">
+								<d-list-item
 									v-for="collection in availableCollections"
 									:key="collection.collection"
 									:active="relations[0].one_collection === collection.collection"
 									@click="relations[0].one_collection = collection.collection"
 								>
-									<v-list-item-content>
+									<d-list-item-content>
 										{{ collection.collection }}
-									</v-list-item-content>
-								</v-list-item>
+									</d-list-item-content>
+								</d-list-item>
 
-								<v-divider />
+								<d-divider />
 
-								<v-list-group>
+								<d-list-group>
 									<template #activator>{{ $t('system') }}</template>
-									<v-list-item
+									<d-list-item
 										v-for="collection in systemCollections"
 										:key="collection.collection"
 										:active="relations[0].one_collection === collection.collection"
 										@click="relations[0].one_collection = collection.collection"
 									>
-										<v-list-item-content>
+										<d-list-item-content>
 											{{ collection.collection }}
-										</v-list-item-content>
-									</v-list-item>
-								</v-list-group>
-							</v-list>
-						</v-menu>
+										</d-list-item-content>
+									</d-list-item>
+								</d-list-group>
+							</d-list>
+						</d-menu>
 					</template>
-				</v-input>
+				</d-input>
 			</div>
-			<v-input disabled :value="relations[0].many_field" />
-			<v-input
+			<d-input disabled :value="relations[0].many_field" />
+			<d-input
 				db-safe
 				:disabled="relatedCollectionExists"
 				v-model="relations[0].one_primary"
 				:nullable="false"
 				:placeholder="$t('primary_key') + '...'"
 			/>
-			<v-icon class="arrow" name="arrow_back" />
+			<d-icon class="arrow" name="arrow_back" />
 		</div>
 
-		<v-divider large :inline-title="false" v-if="!isExisting">{{ $t('corresponding_field') }}</v-divider>
+		<d-divider large :inline-title="false" v-if="!isExisting">{{ $t('corresponding_field') }}</d-divider>
 
 		<div class="grid" v-if="!isExisting">
 			<div class="field">
 				<div class="type-label">{{ $t('create_field') }}</div>
-				<v-checkbox block :label="correspondingLabel" v-model="hasCorresponding" />
+				<d-checkbox block :label="correspondingLabel" v-model="hasCorresponding" />
 			</div>
 			<div class="field">
 				<div class="type-label">{{ $t('field_name') }}</div>
-				<v-input
+				<d-input
 					:disabled="hasCorresponding === false"
 					v-model="correspondingField"
 					:placeholder="$t('field_name') + '...'"
 					db-safe
 				/>
 			</div>
-			<v-icon name="arrow_forward" class="arrow" />
+			<d-icon name="arrow_forward" class="arrow" />
 		</div>
 
-		<v-notice class="generated-data" v-if="generationInfo.length > 0" type="warning">
+		<d-notice class="generated-data" v-if="generationInfo.length > 0" type="warning">
 			<span>
 				{{ $t('new_data_alert') }}
 
@@ -97,7 +97,7 @@
 					</li>
 				</ul>
 			</span>
-		</v-notice>
+		</d-notice>
 	</div>
 </template>
 

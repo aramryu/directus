@@ -1,4 +1,4 @@
-import VDivider from './v-divider.vue';
+import DDivider from './v-divider.vue';
 
-export { VDivider };
-export default VDivider;
+export { DDivider };
+export default DDivider;

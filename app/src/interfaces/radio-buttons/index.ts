@@ -54,7 +54,7 @@ export default defineInterface(({ i18n }) => ({
 				interface: 'icon',
 			},
 			schema: {
-				default_value: 'radio_button_checked',
+				default_value: 'check-circle',
 			},
 		},
 		{
@@ -66,7 +66,7 @@ export default defineInterface(({ i18n }) => ({
 				interface: 'icon',
 			},
 			schema: {
-				default_value: 'radio_button_unchecked',
+				default_value: 'circle',
 			},
 		},
 		{

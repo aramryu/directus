@@ -1,7 +1,7 @@
 <template>
-	<v-list class="v-tabs vertical alt-colors" v-if="vertical" large>
+	<d-list class="v-tabs vertical alt-colors" v-if="vertical" large>
 		<slot />
-	</v-list>
+	</d-list>
 	<div v-else class="v-tabs horizontal">
 		<slot />
 	</div>

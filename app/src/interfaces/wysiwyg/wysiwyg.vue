@@ -8,17 +8,17 @@
 			@onFocusIn="setFocus(true)"
 			@onFocusOut="setFocus(false)"
 		/>
-		<v-dialog :active="_imageDialogOpen" @toggle="unsetImageUploadHandler" @esc="unsetImageUploadHandler">
-			<v-card>
-				<v-card-title>{{ $t('upload_from_device') }}</v-card-title>
-				<v-card-text>
-					<v-upload @input="onImageUpload" :multiple="false" from-library from-url />
-				</v-card-text>
-				<v-card-actions>
-					<v-button @click="unsetImageUploadHandler" secondary>{{ $t('cancel') }}</v-button>
-				</v-card-actions>
-			</v-card>
-		</v-dialog>
+		<d-dialog :active="_imageDialogOpen" @toggle="unsetImageUploadHandler" @esc="unsetImageUploadHandler">
+			<d-card>
+				<d-card-title>{{ $t('upload_from_device') }}</d-card-title>
+				<d-card-text>
+					<d-upload @input="onImageUpload" :multiple="false" from-library from-url />
+				</d-card-text>
+				<d-card-actions>
+					<d-button @click="unsetImageUploadHandler" secondary>{{ $t('cancel') }}</d-button>
+				</d-card-actions>
+			</d-card>
+		</d-dialog>
 	</div>
 </template>
 

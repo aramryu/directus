@@ -1,5 +1,5 @@
 <template>
-	<v-item-group class="repeater">
+	<d-item-group class="repeater">
 		<draggable :value="value" handle=".drag-handle" @input="onSort" :set-data="hideDragImage">
 			<repeater-row
 				v-for="(row, index) in value"
@@ -15,10 +15,10 @@
 			/>
 		</draggable>
 		<button @click="addNew" class="add-new" v-if="showAddNew">
-			<v-icon name="add" />
+			<d-icon fa="plus-circle" />
 			{{ addLabel }}
 		</button>
-	</v-item-group>
+	</d-item-group>
 </template>
 
 <script lang="ts">

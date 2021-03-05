@@ -1,4 +1,4 @@
-import VChip from './v-chip.vue';
+import DChip from './v-chip.vue';
 
-export { VChip };
-export default VChip;
+export { DChip };
+export default DChip;

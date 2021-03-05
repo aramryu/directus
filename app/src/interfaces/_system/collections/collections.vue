@@ -1,7 +1,7 @@
 <template>
-	<v-notice v-if="items.length === 0">
+	<d-notice v-if="items.length === 0">
 		{{ $t('no_collections') }}
-	</v-notice>
+	</d-notice>
 	<interface-checkboxes v-else :choices="items" @input="$listeners.input" :value="value" :disabled="disabled" />
 </template>
 

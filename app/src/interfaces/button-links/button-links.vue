@@ -1,6 +1,6 @@
 <template>
 	<div class="button-links">
-		<v-button
+		<d-button
 			v-for="(link, index) in linksParsed"
 			:key="index"
 			class="action"
@@ -10,9 +10,9 @@
 			:icon="!link.label"
 			:href="link.url"
 		>
-			<v-icon left v-if="link.icon" :name="link.icon" />
+			<d-icon left v-if="link.icon" :name="link.icon" />
 			<span v-if="link.label">{{ link.label }}</span>
-		</v-button>
+		</d-button>
 	</div>
 </template>
 

@@ -1,6 +1,6 @@
 <template>
 	<div class="actions">
-		<v-button
+		<d-button
 			v-if="!isExisting && currentTabIndex < tabs.length - 1"
 			@click="nextTab"
 			:disabled="nextDisabled"
@@ -8,12 +8,12 @@
 			rounded
 			v-tooltip.bottom="$t('next')"
 		>
-			<v-icon name="arrow_forward" />
-		</v-button>
+			<d-icon name="arrow_forward" />
+		</d-button>
 
-		<v-button v-else @click="$emit('save')" :loading="saving" icon rounded v-tooltip.bottom="$t('save')">
-			<v-icon name="check" />
-		</v-button>
+		<d-button v-else @click="$emit('save')" :loading="saving" icon rounded v-tooltip.bottom="$t('save')">
+			<d-icon name="check" />
+		</d-button>
 	</div>
 </template>
 

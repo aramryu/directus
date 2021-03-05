@@ -1,10 +1,10 @@
-import VList from './v-list.vue';
-import VListItem from './v-list-item.vue';
-import VListItemContent from './v-list-item-content.vue';
-import VListItemIcon from './v-list-item-icon.vue';
-import VListItemHint from './v-list-item-hint.vue';
-import VListGroup from './v-list-group.vue';
+import DList from './v-list.vue';
+import DListItem from './v-list-item.vue';
+import DListItemContent from './v-list-item-content.vue';
+import DListItemIcon from './v-list-item-icon.vue';
+import DListItemHint from './v-list-item-hint.vue';
+import DListGroup from './v-list-group.vue';
 
-export { VList, VListItem, VListItemContent, VListItemIcon, VListItemHint, VListGroup };
+export { DList, DListItem, DListItemContent, DListItemIcon, DListItemHint, DListGroup };
 
-export default VList;
+export default DList;

@@ -6,7 +6,7 @@
 		<reset-form :token="resetToken" v-else />
 
 		<template #notice>
-			<v-icon name="lock_outlined" left />
+			<d-icon name="lock_outlined" left />
 			{{ $t('not_authenticated') }}
 		</template>
 	</public-view>

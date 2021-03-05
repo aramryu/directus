@@ -3,7 +3,7 @@
 		<span class="chip-content">
 			<slot />
 			<span v-if="close" class="close-outline" :class="{ disabled }" @click.stop="onCloseClick">
-				<v-icon class="close" :name="closeIcon" x-small />
+				<d-icon class="close" :name="closeIcon" x-small />
 			</span>
 		</span>
 	</span>
@@ -25,7 +25,7 @@ export default defineComponent({
 		},
 		closeIcon: {
 			type: String,
-			default: 'close',
+			default: 'times-circle',
 		},
 		outlined: {
 			type: Boolean,

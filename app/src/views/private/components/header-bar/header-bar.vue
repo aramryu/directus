@@ -1,39 +1,42 @@
 <template>
-	<header class="header-bar" ref="headerEl" :class="{ collapsed: collapsed }">
-		<v-button secondary class="nav-toggle" icon rounded @click="$emit('primary')" v-if="$listeners.primary">
-			<v-icon :name="primaryActionIcon" />
-		</v-button>
+	<v-app-bar app dense fixed clipped-right>
+		<header class="header-bar" ref="headerEl" :class="{ collapsed: collapsed }">
+			<d-button secondary class="nav-toggle" icon rounded @click="$emit('primary')" v-if="$listeners.primary">
+				<d-icon :fa="primaryActionIcon" />
+			</d-button>
 
-		<div class="title-outer-prepend" v-if="$scopedSlots['title-outer:prepend']">
-			<slot name="title-outer:prepend" />
-		</div>
-
-		<div class="title-container" :class="{ full: !$scopedSlots['title-outer:append'] }">
-			<div class="headline">
-				<slot name="headline" />
+			<div class="title-outer-prepend" v-if="$scopedSlots['title-outer:prepend']">
+				<slot name="title-outer:prepend" />
 			</div>
 
-			<div class="title">
-				<slot name="title">
-					<slot name="title:prepend" />
-					<h1 class="type-title">{{ title }}</h1>
-					<slot name="title:append" />
-				</slot>
+			<div class="title-container" :class="{ full: !$scopedSlots['title-outer:append'] }">
+				<div class="headline">
+					<slot name="headline" />
+				</div>
+
+				<div class="title">
+					<slot name="title">
+						<slot name="title:prepend" />
+						<h1 class="type-title">{{ title }}</h1>
+						<slot name="title:append" />
+					</slot>
+				</div>
+
+				<slot name="title-outer:append" />
 			</div>
 
-			<slot name="title-outer:append" />
-		</div>
+			<!-- <div class="spacer" /> -->
+			<v-spacer></v-spacer>
 
-		<div class="spacer" />
+			<slot name="actions:prepend" />
 
-		<slot name="actions:prepend" />
+			<header-bar-actions :show-sidebar-toggle="showSidebarToggle" @toggle:sidebar="$emit('toggle:sidebar')">
+				<slot name="actions" />
+			</header-bar-actions>
 
-		<header-bar-actions :show-sidebar-toggle="showSidebarToggle" @toggle:sidebar="$emit('toggle:sidebar')">
-			<slot name="actions" />
-		</header-bar-actions>
-
-		<slot name="actions:append" />
-	</header>
+			<slot name="actions:append" />
+		</header>
+	</v-app-bar>
 </template>
 
 <script lang="ts">
@@ -53,7 +56,7 @@ export default defineComponent({
 		},
 		primaryActionIcon: {
 			type: String,
-			default: 'menu',
+			default: 'bars',
 		},
 	},
 	setup() {
@@ -93,10 +96,8 @@ export default defineComponent({
 	align-items: center;
 	justify-content: flex-start;
 	width: 100%;
-	height: 65px;
 	margin: 0;
-	padding: 0 12px;
-	background-color: var(--background-page);
+	padding: 0 5px;
 	box-shadow: 0;
 	transition: box-shadow var(--medium) var(--transition);
 

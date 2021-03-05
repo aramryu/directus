@@ -1,9 +1,9 @@
 <template>
-	<v-notice type="warning" v-if="!junction || !relation">
+	<d-notice type="warning" v-if="!junction || !relation">
 		{{ $t('relationship_not_setup') }}
-	</v-notice>
+	</d-notice>
 	<div v-else class="files">
-		<v-table
+		<d-table
 			inline
 			:items="sortedItems || items"
 			:loading="loading"
@@ -26,16 +26,16 @@
 			</template>
 
 			<template #item-append="{ item }" v-show="!disabled">
-				<v-icon name="save_alt" v-tooltip="$t('download')" class="download" @click.stop="downloadItem(item)" />
-				<v-icon name="close" v-tooltip="$t('deselect')" class="deselect" @click.stop="deleteItem(item)" />
+				<d-icon fa="save" v-tooltip="$t('download')" class="download" @click.stop="downloadItem(item)" />
+				<d-icon fa="times" v-tooltip="$t('deselect')" class="deselect" @click.stop="deleteItem(item)" />
 			</template>
-		</v-table>
+		</d-table>
 
 		<div class="actions" v-if="!disabled">
-			<v-button class="new" @click="showUpload = true">{{ $t('upload_file') }}</v-button>
-			<v-button class="existing" @click="selectModalActive = true">
+			<d-button class="new" @click="showUpload = true">{{ $t('upload_file') }}</d-button>
+			<d-button class="existing" @click="selectModalActive = true">
 				{{ $t('add_existing') }}
-			</v-button>
+			</d-button>
 		</div>
 
 		<drawer-item
@@ -60,15 +60,15 @@
 			multiple
 		/>
 
-		<v-dialog v-model="showUpload">
-			<v-card>
-				<v-card-title>{{ $t('upload_file') }}</v-card-title>
-				<v-card-text><v-upload @input="onUpload" multiple from-url /></v-card-text>
-				<v-card-actions>
-					<v-button @click="showUpload = false">{{ $t('done') }}</v-button>
-				</v-card-actions>
-			</v-card>
-		</v-dialog>
+		<d-dialog v-model="showUpload">
+			<d-card>
+				<d-card-title>{{ $t('upload_file') }}</d-card-title>
+				<d-card-text><d-upload @input="onUpload" multiple from-url /></d-card-text>
+				<d-card-actions>
+					<d-button @click="showUpload = false">{{ $t('done') }}</d-button>
+				</d-card-actions>
+			</d-card>
+		</d-dialog>
 	</div>
 </template>
 

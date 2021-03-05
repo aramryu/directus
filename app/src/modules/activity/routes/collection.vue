@@ -1,9 +1,9 @@
 <template>
 	<private-view :title="$t('activity_feed')">
 		<template #title-outer:prepend>
-			<v-button class="header-icon" rounded disabled icon secondary>
-				<v-icon name="access_time" />
-			</v-button>
+			<d-button class="header-icon" rounded disabled icon secondary>
+				<d-icon name="access_time" />
+			</d-button>
 		</template>
 
 		<template #actions:prepend>

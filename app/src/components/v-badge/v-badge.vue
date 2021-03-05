@@ -1,7 +1,7 @@
 <template>
 	<div class="v-badge" :class="{ dot, bordered }">
 		<span v-if="!disabled" class="badge" :class="{ dot, bordered, left, bottom }">
-			<v-icon v-if="icon" :name="icon" :color="color" x-small />
+			<d-icon v-if="icon" :name="icon" :color="color" x-small />
 			<span v-else>{{ value }}</span>
 		</span>
 

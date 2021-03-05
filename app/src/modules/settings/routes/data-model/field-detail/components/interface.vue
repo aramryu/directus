@@ -1,21 +1,21 @@
 <template>
 	<div>
-		<v-notice type="info">{{ $t('interface_setup_title') }}</v-notice>
+		<d-notice type="info">{{ $t('interface_setup_title') }}</d-notice>
 
-		<v-fancy-select class="select" :items="selectItems" v-model="fieldData.meta.interface" />
+		<d-fancy-select class="select" :items="selectItems" v-model="fieldData.meta.interface" />
 
-		<v-notice class="not-found" type="danger" v-if="fieldData.meta.interface && !selectedInterface">
+		<d-notice class="not-found" type="danger" v-if="fieldData.meta.interface && !selectedInterface">
 			{{ $t('interface_not_found', { interface: fieldData.meta.interface }) }}
 			<div class="spacer" />
 			<button @click="fieldData.meta.interface = null">{{ $t('reset_interface') }}</button>
-		</v-notice>
+		</d-notice>
 
 		<template v-if="fieldData.meta.interface && selectedInterface">
-			<v-notice v-if="!selectedInterface.options || selectedInterface.options.length === 0">
+			<d-notice v-if="!selectedInterface.options || selectedInterface.options.length === 0">
 				{{ $t('no_options_available') }}
-			</v-notice>
+			</d-notice>
 
-			<v-form
+			<d-form
 				v-else-if="Array.isArray(selectedInterface.options)"
 				:fields="selectedInterface.options"
 				primary-key="+"

@@ -81,7 +81,7 @@
 			</div>
 
 			<template v-if="file.metadata && file.metadata.exif && file.metadata.exif.exif && file.metadata.exif.image">
-				<v-divider />
+				<d-divider />
 
 				<div v-if="file.metadata.exif.image.Make && file.metadata.exif.image.Model">
 					<dt>{{ $t('camera') }}</dt>
@@ -110,7 +110,7 @@
 			</template>
 		</dl>
 
-		<v-divider />
+		<d-divider />
 
 		<div class="page-description" v-html="marked($t('page_help_files_item'))" />
 	</sidebar-detail>

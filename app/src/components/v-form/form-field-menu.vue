@@ -1,30 +1,30 @@
 <template>
-	<v-list>
-		<v-list-item v-if="defaultValue === null || !isRequired" :disabled="value === null" @click="$emit('input', null)">
-			<v-list-item-icon><v-icon name="delete_outline" /></v-list-item-icon>
-			<v-list-item-content>{{ $t('clear_value') }}</v-list-item-content>
-		</v-list-item>
-		<v-list-item v-if="defaultValue !== null" :disabled="value === defaultValue" @click="$emit('input', defaultValue)">
-			<v-list-item-icon>
-				<v-icon name="settings_backup_restore" />
-			</v-list-item-icon>
-			<v-list-item-content>{{ $t('reset_to_default') }}</v-list-item-content>
-		</v-list-item>
-		<v-list-item
+	<d-list>
+		<d-list-item v-if="defaultValue === null || !isRequired" :disabled="value === null" @click="$emit('input', null)">
+			<d-list-item-icon><d-icon fa="times" /></d-list-item-icon>
+			<d-list-item-content>{{ $t('clear_value') }}</d-list-item-content>
+		</d-list-item>
+		<d-list-item v-if="defaultValue !== null" :disabled="value === defaultValue" @click="$emit('input', defaultValue)">
+			<d-list-item-icon>
+				<d-icon fa="restore" />
+			</d-list-item-icon>
+			<d-list-item-content>{{ $t('reset_to_default') }}</d-list-item-content>
+		</d-list-item>
+		<d-list-item
 			v-if="initialValue"
 			:disabled="initialValue === undefined || value === initialValue"
 			@click="$emit('unset', field)"
 		>
-			<v-list-item-icon>
-				<v-icon name="undo" />
-			</v-list-item-icon>
-			<v-list-item-content>{{ $t('undo_changes') }}</v-list-item-content>
-		</v-list-item>
-		<v-list-item @click="$emit('edit-raw')">
-			<v-list-item-icon><v-icon name="code" /></v-list-item-icon>
-			<v-list-item-content>{{ $t('raw_value') }}</v-list-item-content>
-		</v-list-item>
-	</v-list>
+			<d-list-item-icon>
+				<d-icon fa="history" />
+			</d-list-item-icon>
+			<d-list-item-content>{{ $t('undo_changes') }}</d-list-item-content>
+		</d-list-item>
+		<d-list-item @click="$emit('edit-raw')">
+			<d-list-item-icon><d-icon fa="code" /></d-list-item-icon>
+			<d-list-item-content>{{ $t('raw_value') }}</d-list-item-content>
+		</d-list-item>
+	</d-list>
 </template>
 
 <script lang="ts">

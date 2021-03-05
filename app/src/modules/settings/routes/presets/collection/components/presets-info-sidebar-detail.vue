@@ -11,7 +11,7 @@
 			</div>
 		</dl>
 
-		<v-divider />
+		<d-divider />
 
 		<div class="page-description" v-html="marked($t('page_help_settings_presets_collection'))" />
 	</sidebar-detail>

@@ -1,14 +1,14 @@
 <template>
-	<v-divider v-if="section.divider" />
-	<v-list-group :scope="scope" v-else-if="section.children" :dense="dense" :multiple="false" :value="section.to">
+	<d-divider v-if="section.divider" />
+	<d-list-group :scope="scope" v-else-if="section.children" :dense="dense" :multiple="false" :value="section.to">
 		<template #activator>
-			<v-list-item-icon v-if="section.icon !== undefined"><v-icon :name="section.icon" /></v-list-item-icon>
-			<v-list-item-content>
-				<v-text-overflow :text="section.name" />
-			</v-list-item-content>
+			<d-list-item-icon v-if="section.icon !== undefined"><d-icon :name="section.icon" /></d-list-item-icon>
+			<d-list-item-content>
+				<d-text-overflow :text="section.name" />
+			</d-list-item-content>
 		</template>
 
-		<v-item-group :scope="section.to">
+		<d-item-group :scope="section.to">
 			<navigation-list-item
 				v-for="(child, index) in section.children"
 				:key="index"
@@ -16,15 +16,15 @@
 				dense
 				:scope="section.to"
 			/>
-		</v-item-group>
-	</v-list-group>
+		</d-item-group>
+	</d-list-group>
 
-	<v-list-item v-else :to="`/docs${section.to}`" :dense="dense" :value="section.to">
-		<v-list-item-icon v-if="section.icon !== undefined"><v-icon :name="section.icon" /></v-list-item-icon>
-		<v-list-item-content>
-			<v-text-overflow :text="section.name" />
-		</v-list-item-content>
-	</v-list-item>
+	<d-list-item v-else :to="`/docs${section.to}`" :dense="dense" :value="section.to">
+		<d-list-item-icon v-if="section.icon !== undefined"><d-icon :name="section.icon" /></d-list-item-icon>
+		<d-list-item-content>
+			<d-text-overflow :text="section.name" />
+		</d-list-item-content>
+	</d-list-item>
 </template>
 
 <script lang="ts">

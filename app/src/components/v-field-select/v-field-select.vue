@@ -1,10 +1,10 @@
 <template>
-	<v-notice v-if="!availableFields || availableFields.length === 0">
+	<d-notice v-if="!availableFields || availableFields.length === 0">
 		{{ $t('no_fields_in_collection', { collection: (collectionInfo && collectionInfo.name) || collection }) }}
-	</v-notice>
+	</d-notice>
 
 	<draggable v-else v-model="selectedFields" draggable=".draggable" :set-data="hideDragImage" class="v-field-select">
-		<v-chip
+		<d-chip
 			v-for="(field, index) in selectedFields"
 			:key="index"
 			class="field draggable"
@@ -12,18 +12,18 @@
 			@click="removeField(field.field)"
 		>
 			{{ field.name }}
-		</v-chip>
+		</d-chip>
 
 		<template #footer>
-			<v-menu show-arrow v-model="menuActive" class="add" placement="bottom">
+			<d-menu show-arrow v-model="menuActive" class="add" placement="bottom">
 				<template #activator="{ toggle }">
-					<v-button @click="toggle" small>
+					<d-button @click="toggle" small>
 						{{ $t('add_field') }}
-						<v-icon small name="add" />
-					</v-button>
+						<d-icon small fa="plus-circle" />
+					</d-button>
 				</template>
 
-				<v-list>
+				<d-list>
 					<field-list-item
 						v-for="field in availableFields"
 						:key="field.key"
@@ -31,8 +31,8 @@
 						:depth="depth"
 						@add="addField"
 					/>
-				</v-list>
-			</v-menu>
+				</d-list>
+			</d-menu>
 		</template>
 	</draggable>
 </template>

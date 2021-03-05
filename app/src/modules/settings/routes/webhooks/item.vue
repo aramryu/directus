@@ -3,35 +3,35 @@
 		<template #headline>{{ $t('settings_webhooks') }}</template>
 
 		<template #title-outer:prepend>
-			<v-button class="header-icon" rounded icon exact :to="`/settings/webhooks/`">
-				<v-icon name="arrow_back" />
-			</v-button>
+			<d-button class="header-icon" rounded icon exact :to="`/settings/webhooks/`">
+				<d-icon fa="code" />
+			</d-button>
 		</template>
 
 		<template #actions>
-			<v-dialog v-model="confirmDelete" @esc="confirmDelete = false">
+			<d-dialog v-model="confirmDelete" @esc="confirmDelete = false">
 				<template #activator="{ on }">
-					<v-button rounded icon class="action-delete" :disabled="item === null" @click="on">
-						<v-icon name="delete" outline />
-					</v-button>
+					<d-button rounded icon class="action-delete" :disabled="item === null" @click="on">
+						<d-icon fa="trash" outline />
+					</d-button>
 				</template>
 
-				<v-card>
-					<v-card-title>{{ $t('delete_are_you_sure') }}</v-card-title>
+				<d-card>
+					<d-card-title>{{ $t('delete_are_you_sure') }}</d-card-title>
 
-					<v-card-actions>
-						<v-button @click="confirmDelete = false" secondary>
+					<d-card-actions>
+						<d-button @click="confirmDelete = false" secondary>
 							{{ $t('cancel') }}
-						</v-button>
-						<v-button @click="deleteAndQuit" class="action-delete" :loading="deleting">
+						</d-button>
+						<d-button @click="deleteAndQuit" class="action-delete" :loading="deleting">
 							{{ $t('delete') }}
-						</v-button>
-					</v-card-actions>
-				</v-card>
-			</v-dialog>
+						</d-button>
+					</d-card-actions>
+				</d-card>
+			</d-dialog>
 
-			<v-button rounded icon :loading="saving" :disabled="hasEdits === false" @click="saveAndQuit">
-				<v-icon name="check" />
+			<d-button rounded icon :loading="saving" :disabled="hasEdits === false" @click="saveAndQuit">
+				<d-icon fa="save" />
 
 				<template #append-outer>
 					<save-options
@@ -41,14 +41,14 @@
 						@save-as-copy="saveAsCopyAndNavigate"
 					/>
 				</template>
-			</v-button>
+			</d-button>
 		</template>
 
 		<template #navigation>
 			<settings-navigation />
 		</template>
 
-		<v-form
+		<d-form
 			:loading="loading"
 			:initial-values="item"
 			collection="directus_webhooks"

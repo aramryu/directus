@@ -7,11 +7,11 @@
 		<login-form v-else :sso-error="ssoErrorCode" />
 
 		<template v-if="authenticated" #notice>
-			<v-icon name="lock_open" left />
+			<d-icon name="lock_open" left />
 			{{ $t('authenticated') }}
 		</template>
 		<template v-else #notice>
-			<v-icon name="lock_outlined" left />
+			<d-icon name="lock_outlined" left />
 			{{
 				logoutReason && $te(`logoutReason.${logoutReason}`)
 					? $t(`logoutReason.${logoutReason}`)

@@ -1,5 +1,5 @@
 <template>
-	<v-input
+	<d-input
 		:placeholder="_placeholder"
 		:disabled="disabled"
 		:type="masked ? 'password' : 'text'"
@@ -8,9 +8,9 @@
 		:class="{ hashed: isHashed && !localValue }"
 	>
 		<template #append>
-			<v-icon class="lock" :name="isHashed && !localValue ? 'lock' : 'lock_open'" />
+			<d-icon class="lock" :name="isHashed && !localValue ? 'lock' : 'lock_open'" />
 		</template>
-	</v-input>
+	</d-input>
 </template>
 
 <script lang="ts">

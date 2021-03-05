@@ -1,19 +1,19 @@
 <template>
 	<div>
-		<v-notice type="info">
+		<d-notice type="info">
 			{{
 				$t('permissions_for_role', {
 					action: $t(permission.action).toLowerCase(),
 					role: role ? role.name : $t('public'),
 				})
 			}}
-		</v-notice>
+		</d-notice>
 
 		<interface-code v-model="permissions" language="json" type="json" />
 
 		<div v-if="appMinimal" class="app-minimal">
-			<v-divider />
-			<v-notice type="warning">{{ $t('the_following_are_minimum_permissions') }}</v-notice>
+			<d-divider />
+			<d-notice type="warning">{{ $t('the_following_are_minimum_permissions') }}</d-notice>
 			<pre class="app-minimal-preview">{{ appMinimal }}</pre>
 		</div>
 	</div>

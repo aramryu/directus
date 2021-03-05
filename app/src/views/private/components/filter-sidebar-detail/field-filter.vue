@@ -5,27 +5,27 @@
 				<span v-if="filter.field.includes('.')" class="relational-indicator">•</span>
 				{{ name }}
 			</div>
-			<v-menu show-arrow :disabled="disabled">
+			<d-menu show-arrow :disabled="disabled">
 				<template #activator="{ toggle }">
 					<div class="operator" @click="toggle" v-tooltip.top="$t('change_advanced_filter_operator')">
 						<span>{{ $t(`operators.${activeOperator}`) }}</span>
-						<v-icon name="expand_more" />
+						<d-icon fa="chevron-down"></d-icon>
 					</div>
 				</template>
 
-				<v-list>
-					<v-list-item
+				<d-list>
+					<d-list-item
 						:active="operator === activeOperator"
 						v-for="operator in parsedField.operators"
 						:key="operator"
 						@click="activeOperator = operator"
 					>
-						<v-list-item-content>{{ $t(`operators.${operator}`) }}</v-list-item-content>
-					</v-list-item>
-				</v-list>
-			</v-menu>
+						<d-list-item-content>{{ $t(`operators.${operator}`) }}</d-list-item-content>
+					</d-list-item>
+				</d-list>
+			</d-menu>
 			<div class="spacer" />
-			<v-icon class="remove" name="close" @click="$emit('remove')" v-tooltip.left="$t('delete_advanced_filter')" />
+			<d-icon class="remove" fa="times" @click="$emit('remove')" v-tooltip.left="$t('delete_advanced_filter')" />
 		</div>
 		<div class="field">
 			<filter-input v-model="value" :type="parsedField.type" :operator="activeOperator" :disabled="disabled" />

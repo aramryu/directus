@@ -1,21 +1,21 @@
 <template>
 	<div>
-		<v-notice type="info">{{ $t('display_setup_title') }}</v-notice>
+		<d-notice type="info">{{ $t('display_setup_title') }}</d-notice>
 
-		<v-fancy-select class="select" :items="selectItems" v-model="fieldData.meta.display" />
+		<d-fancy-select class="select" :items="selectItems" v-model="fieldData.meta.display" />
 
-		<v-notice class="not-found" type="danger" v-if="fieldData.meta.display && !selectedDisplay">
+		<d-notice class="not-found" type="danger" v-if="fieldData.meta.display && !selectedDisplay">
 			{{ $t('display_not_found', { display: fieldData.meta.display }) }}
 			<div class="spacer" />
 			<button @click="fieldData.meta.display = null">{{ $t('reset_display') }}</button>
-		</v-notice>
+		</d-notice>
 
 		<template v-if="fieldData.meta.display && selectedDisplay">
-			<v-notice v-if="!selectedDisplay.options || selectedDisplay.options.length === 0">
+			<d-notice v-if="!selectedDisplay.options || selectedDisplay.options.length === 0">
 				{{ $t('no_options_available') }}
-			</v-notice>
+			</d-notice>
 
-			<v-form
+			<d-form
 				v-else-if="Array.isArray(selectedDisplay.options)"
 				:fields="selectedDisplay.options"
 				primary-key="+"

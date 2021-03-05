@@ -5,7 +5,7 @@ export default defineDisplay(({ i18n }) => ({
 	id: 'datetime',
 	name: i18n.t('displays.datetime.datetime'),
 	description: i18n.t('displays.datetime.description'),
-	icon: 'query_builder',
+	icon: 'database',
 	handler: DisplayDateTime,
 	options: [
 		{

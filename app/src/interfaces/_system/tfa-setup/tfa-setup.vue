@@ -1,63 +1,63 @@
 <template>
 	<div>
-		<v-checkbox block :input-value="!!tfaEnabled" @click.native="toggle">
+		<d-checkbox block :input-value="!!tfaEnabled" @click.native="toggle">
 			{{ $t('enabled') }}
 			<div class="spacer" />
 			<template #append>
-				<v-icon name="launch" class="checkbox-icon" :class="{ enabled: tfaEnabled }" />
+				<d-icon name="launch" class="checkbox-icon" :class="{ enabled: tfaEnabled }" />
 			</template>
-		</v-checkbox>
+		</d-checkbox>
 
-		<v-dialog persistent v-model="enableActive" @esc="enableActive = false">
-			<v-card>
+		<d-dialog persistent v-model="enableActive" @esc="enableActive = false">
+			<d-card>
 				<template v-if="tfaEnabled === false" v-show="loading === false">
-					<v-card-title>
+					<d-card-title>
 						{{ $t('enter_password_to_enable_tfa') }}
-					</v-card-title>
-					<v-card-text>
-						<v-input v-model="password" :nullable="false" type="password" :placeholder="$t('password')" />
+					</d-card-title>
+					<d-card-text>
+						<d-input v-model="password" :nullable="false" type="password" :placeholder="$t('password')" />
 
-						<v-error v-if="error" :error="error" />
-					</v-card-text>
-					<v-card-actions>
-						<v-button @click="enableActive = false" secondary>{{ $t('cancel') }}</v-button>
-						<v-button @click="enableTFA" :loading="loading">{{ $t('next') }}</v-button>
-					</v-card-actions>
+						<d-error v-if="error" :error="error" />
+					</d-card-text>
+					<d-card-actions>
+						<d-button @click="enableActive = false" secondary>{{ $t('cancel') }}</d-button>
+						<d-button @click="enableTFA" :loading="loading">{{ $t('next') }}</d-button>
+					</d-card-actions>
 				</template>
 
-				<v-progress-circular class="loader" indeterminate v-else-if="loading === true" />
+				<d-progress-circular class="loader" indeterminate v-else-if="loading === true" />
 
 				<div v-show="tfaEnabled === true && loading === false">
-					<v-card-title>
+					<d-card-title>
 						{{ $t('tfa_scan_code') }}
-					</v-card-title>
-					<v-card-text>
+					</d-card-title>
+					<d-card-text>
 						<canvas class="qr" :id="canvasID" />
 						<output class="secret">{{ secret }}</output>
-					</v-card-text>
-					<v-card-actions>
-						<v-button @click="enableActive = false">{{ $t('done') }}</v-button>
-					</v-card-actions>
+					</d-card-text>
+					<d-card-actions>
+						<d-button @click="enableActive = false">{{ $t('done') }}</d-button>
+					</d-card-actions>
 				</div>
-			</v-card>
-		</v-dialog>
+			</d-card>
+		</d-dialog>
 
-		<v-dialog v-model="disableActive">
-			<v-card>
-				<v-card-title>
+		<d-dialog v-model="disableActive">
+			<d-card>
+				<d-card-title>
 					{{ $t('enter_otp_to_disable_tfa') }}
-				</v-card-title>
-				<v-card-text>
-					<v-input type="text" :placeholder="$t('otp')" v-model="otp" :nullable="false" />
-					<v-error v-if="error" :error="error" />
-				</v-card-text>
-				<v-card-actions>
-					<v-button class="disable" :loading="loading" @click="disableTFA" :disabled="otp.length !== 6">
+				</d-card-title>
+				<d-card-text>
+					<d-input type="text" :placeholder="$t('otp')" v-model="otp" :nullable="false" />
+					<d-error v-if="error" :error="error" />
+				</d-card-text>
+				<d-card-actions>
+					<d-button class="disable" :loading="loading" @click="disableTFA" :disabled="otp.length !== 6">
 						{{ $t('disable_tfa') }}
-					</v-button>
-				</v-card-actions>
-			</v-card>
-		</v-dialog>
+					</d-button>
+				</d-card-actions>
+			</d-card>
+		</d-dialog>
 	</div>
 </template>
 

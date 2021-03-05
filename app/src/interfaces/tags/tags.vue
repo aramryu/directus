@@ -1,17 +1,17 @@
 <template>
 	<div class="interface-tags">
-		<v-input
+		<d-input
 			:placeholder="placeholder || $t('interfaces.tags.add_tags')"
 			@keydown="onInput"
 			:disabled="disabled"
 			v-if="allowCustom"
 		>
-			<template #prepend><v-icon v-if="iconLeft" :name="iconLeft" /></template>
-			<template #append><v-icon :name="iconRight" /></template>
-		</v-input>
+			<template #prepend><d-icon v-if="iconLeft" :name="iconLeft" /></template>
+			<template #append><d-icon :name="iconRight" /></template>
+		</d-input>
 		<div class="tags" v-if="presetVals.length > 0 || customVals.length > 0">
 			<span v-if="presetVals.length > 0" class="presets tag-container">
-				<v-chip
+				<d-chip
 					v-for="preset in presetVals"
 					:class="['tag', { inactive: !selectedVals.includes(preset) }]"
 					:key="preset"
@@ -21,11 +21,11 @@
 					@click="toggleTag(preset)"
 				>
 					{{ preset }}
-				</v-chip>
+				</d-chip>
 			</span>
 			<span v-if="customVals.length > 0 && allowCustom" class="custom tag-container">
-				<v-icon class="custom-tags-delimeter" v-if="presetVals.length > 0" name="chevron_right" />
-				<v-chip
+				<d-icon class="custom-tags-delimeter" v-if="presetVals.length > 0" name="chevron_right" />
+				<d-chip
 					v-for="val in customVals"
 					:key="val"
 					:disabled="disabled"
@@ -35,7 +35,7 @@
 					@click="removeTag(val)"
 				>
 					{{ val }}
-				</v-chip>
+				</d-chip>
 			</span>
 		</div>
 	</div>

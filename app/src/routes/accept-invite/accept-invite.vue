@@ -3,9 +3,9 @@
 		<h1 class="type-title">{{ $t('create_account') }}</h1>
 
 		<form @submit.prevent="onSubmit">
-			<v-input :value="email" disabled />
+			<d-input :value="email" disabled />
 
-			<v-input
+			<d-input
 				:placeholder="$t('password')"
 				autofocus
 				autocomplete="password"
@@ -14,18 +14,18 @@
 				:disabled="done"
 			/>
 
-			<v-notice type="success" v-if="done">{{ $t('account_created_successfully') }}</v-notice>
+			<d-notice type="success" v-if="done">{{ $t('account_created_successfully') }}</d-notice>
 
-			<v-notice type="danger" v-if="error">
+			<d-notice type="danger" v-if="error">
 				{{ errorFormatted }}
-			</v-notice>
+			</d-notice>
 
-			<v-button v-if="!done" type="submit" :loading="creating" large>{{ $t('create') }}</v-button>
-			<v-button v-else large :to="signInLink">{{ $t('sign_in') }}</v-button>
+			<d-button v-if="!done" type="submit" :loading="creating" large>{{ $t('create') }}</d-button>
+			<d-button v-else large :to="signInLink">{{ $t('sign_in') }}</d-button>
 		</form>
 
 		<template #notice>
-			<v-icon name="lock_outlined" left />
+			<d-icon name="lock_outlined" left />
 			{{ $t('not_authenticated') }}
 		</template>
 	</public-view>

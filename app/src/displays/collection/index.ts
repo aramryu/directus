@@ -6,7 +6,7 @@ export default defineDisplay(({ i18n }) => ({
 	name: i18n.t('displays.collection.collection'),
 	description: i18n.t('displays.collection.description'),
 	types: ['string'],
-	icon: 'label',
+	icon: 'tags',
 	handler: DisplayCollection,
 	options: [
 		{

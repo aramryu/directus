@@ -1,5 +1,5 @@
 <template>
-	<v-drawer
+	<d-drawer
 		:title="$t('creating_new_collection')"
 		:active="true"
 		class="new-collection"
@@ -8,25 +8,25 @@
 		:sidebar-label="$t(currentTab)"
 	>
 		<template #sidebar>
-			<v-tabs vertical v-model="currentTab">
-				<v-tab value="collection_setup">{{ $t('collection_setup') }}</v-tab>
-				<v-tab value="optional_system_fields" :disabled="!collectionName">
+			<d-tabs vertical v-model="currentTab">
+				<d-tab value="collection_setup">{{ $t('collection_setup') }}</d-tab>
+				<d-tab value="optional_system_fields" :disabled="!collectionName">
 					{{ $t('optional_system_fields') }}
-				</v-tab>
-			</v-tabs>
+				</d-tab>
+			</d-tabs>
 		</template>
 
-		<v-tabs-items class="content" v-model="currentTab">
-			<v-tab-item value="collection_setup">
-				<v-notice type="info">{{ $t('creating_collection_info') }}</v-notice>
+		<d-tabs-items class="content" v-model="currentTab">
+			<d-tab-item value="collection_setup">
+				<d-notice type="info">{{ $t('creating_collection_info') }}</d-notice>
 
 				<div class="grid">
 					<div class="field half">
 						<div class="type-label">
 							{{ $t('name') }}
-							<v-icon class="required" v-tooltip="$t('required')" name="star" sup />
+							<d-icon class="required" v-tooltip="$t('required')" name="star" sup />
 						</div>
-						<v-input
+						<d-input
 							autofocus
 							class="monospace"
 							v-model="collectionName"
@@ -36,12 +36,12 @@
 					</div>
 					<div class="field half">
 						<div class="type-label">{{ $t('singleton') }}</div>
-						<v-checkbox block :label="$t('singleton_label')" v-model="singleton" />
+						<d-checkbox block :label="$t('singleton_label')" v-model="singleton" />
 					</div>
-					<v-divider class="full" />
+					<d-divider class="full" />
 					<div class="field half">
 						<div class="type-label">{{ $t('primary_key_field') }}</div>
-						<v-input
+						<d-input
 							class="monospace"
 							v-model="primaryKeyFieldName"
 							db-safe
@@ -50,7 +50,7 @@
 					</div>
 					<div class="field half">
 						<div class="type-label">{{ $t('type') }}</div>
-						<v-select
+						<d-select
 							:items="[
 								{
 									text: $t('auto_increment_integer'),
@@ -69,9 +69,9 @@
 						/>
 					</div>
 				</div>
-			</v-tab-item>
-			<v-tab-item value="optional_system_fields">
-				<v-notice type="info">{{ $t('creating_collection_system') }}</v-notice>
+			</d-tab-item>
+			<d-tab-item value="optional_system_fields">
+				<d-notice type="info">{{ $t('creating_collection_system') }}</d-notice>
 
 				<div class="grid system">
 					<div
@@ -81,27 +81,27 @@
 						:class="index % 2 === 0 ? 'half' : 'half-right'"
 					>
 						<div class="type-label">{{ $t(info.label) }}</div>
-						<v-input
+						<d-input
 							v-model="info.name"
 							class="monospace"
 							:class="{ active: info.enabled }"
 							@click.native="info.enabled = true"
 						>
 							<template #prepend>
-								<v-checkbox v-model="info.enabled" />
+								<d-checkbox v-model="info.enabled" />
 							</template>
 
 							<template #append>
-								<v-icon :name="info.icon" />
+								<d-icon :name="info.icon" />
 							</template>
-						</v-input>
+						</d-input>
 					</div>
 				</div>
-			</v-tab-item>
-		</v-tabs-items>
+			</d-tab-item>
+		</d-tabs-items>
 
 		<template #actions>
-			<v-button
+			<d-button
 				:disabled="!collectionName || collectionName.length === 0"
 				v-if="currentTab[0] === 'collection_setup'"
 				@click="currentTab = ['optional_system_fields']"
@@ -109,9 +109,9 @@
 				icon
 				rounded
 			>
-				<v-icon name="arrow_forward" />
-			</v-button>
-			<v-button
+				<d-icon name="arrow_forward" />
+			</d-button>
+			<d-button
 				v-if="currentTab[0] === 'optional_system_fields'"
 				@click="save"
 				:loading="saving"
@@ -119,10 +119,10 @@
 				icon
 				rounded
 			>
-				<v-icon name="check" />
-			</v-button>
+				<d-icon name="check" />
+			</d-button>
 		</template>
-	</v-drawer>
+	</d-drawer>
 </template>
 
 <script lang="ts">

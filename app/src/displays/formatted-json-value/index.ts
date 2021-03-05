@@ -6,7 +6,7 @@ export default defineDisplay(({ i18n }) => ({
 	name: i18n.t('displays.formatted-json-value.formatted-json-value'),
 	description: i18n.t('displays.formatted-json-value.description'),
 	types: ['json'],
-	icon: 'settings_ethernet',
+	icon: 'network-wired',
 	handler: DisplayJsonValue,
 	options: [
 		{

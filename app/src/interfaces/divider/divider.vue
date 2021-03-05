@@ -1,5 +1,5 @@
 <template>
-	<v-divider
+	<d-divider
 		:class="{ margin: icon || title, 'extra-margin': marginTop }"
 		:style="{
 			'--v-divider-color': color,
@@ -8,9 +8,9 @@
 		large
 		:inline-title="inlineTitle"
 	>
-		<template v-if="icon" #icon><v-icon :name="icon" /></template>
+		<template v-if="icon" #icon><d-icon :name="icon" /></template>
 		<template v-if="title" #default>{{ title }}</template>
-	</v-divider>
+	</d-divider>
 </template>
 
 <script lang="ts">

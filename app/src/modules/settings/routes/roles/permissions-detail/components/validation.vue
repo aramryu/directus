@@ -1,13 +1,13 @@
 <template>
 	<div>
-		<v-notice type="info">
+		<d-notice type="info">
 			{{
 				$t('validation_for_role', {
 					action: $t(permission.action).toLowerCase(),
 					role: role ? role.name : $t('public'),
 				})
 			}}
-		</v-notice>
+		</d-notice>
 
 		<interface-code v-model="validation" language="json" type="json" />
 	</div>

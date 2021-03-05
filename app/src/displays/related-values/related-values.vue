@@ -1,6 +1,6 @@
 <template>
 	<value-null v-if="!relatedCollection" />
-	<v-menu
+	<d-menu
 		v-else-if="['o2m', 'm2m', 'm2a', 'translations'].includes(type.toLowerCase())"
 		show-arrow
 		:disabled="value.length === 0"
@@ -11,17 +11,17 @@
 			</span>
 		</template>
 
-		<v-list>
-			<v-list-item v-for="item in value" :key="item[primaryKeyField]" :to="getLinkForItem(item)">
-				<v-list-item-content>
+		<d-list>
+			<d-list-item v-for="item in value" :key="item[primaryKeyField]" :to="getLinkForItem(item)">
+				<d-list-item-content>
 					<render-template :template="_template" :item="item" :collection="relatedCollection" />
-				</v-list-item-content>
-				<v-list-item-icon>
-					<v-icon name="launch" small />
-				</v-list-item-icon>
-			</v-list-item>
-		</v-list>
-	</v-menu>
+				</d-list-item-content>
+				<d-list-item-icon>
+					<d-icon name="launch" small />
+				</d-list-item-icon>
+			</d-list-item>
+		</d-list>
+	</d-menu>
 	<render-template v-else :template="_template" :item="value" :collection="relatedCollection" />
 </template>
 

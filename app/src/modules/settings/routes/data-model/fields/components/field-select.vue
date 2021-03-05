@@ -1,8 +1,8 @@
 <template>
 	<div :class="(field.meta && field.meta.width) || 'full'">
-		<v-input disabled v-if="disabled" class="field">
+		<d-input disabled v-if="disabled" class="field">
 			<template #prepend>
-				<v-icon name="lock" v-tooltip="$t('system_fields_locked')" />
+				<d-icon name="lock" v-tooltip="$t('system_fields_locked')" />
 			</template>
 
 			<template #input>
@@ -10,60 +10,60 @@
 					<span class="name">{{ field.field }}</span>
 				</div>
 			</template>
-		</v-input>
+		</d-input>
 
 		<div v-else-if="localType === 'translations'" class="group">
 			<div class="header">
-				<v-icon class="drag-handle" name="drag_indicator" />
+				<d-icon class="drag-handle" name="drag_indicator" />
 				<span class="name" v-tooltip="field.name">{{ field.field }}</span>
 				<div class="spacer" />
-				<v-icon small name="group_work" v-tooltip="$t('fields_group')" />
-				<v-menu show-arrow placement="bottom-end">
+				<d-icon small name="group_work" v-tooltip="$t('fields_group')" />
+				<d-menu show-arrow placement="bottom-end">
 					<template #activator="{ toggle }">
 						<span class="group-options" @click="toggle">
-							<v-icon name="more_vert" />
+							<d-icon name="more_vert" />
 						</span>
 					</template>
 
-					<v-list>
-						<v-list-item :to="`/settings/data-model/${field.collection}/${field.field}`">
-							<v-list-item-icon><v-icon name="edit" outline /></v-list-item-icon>
-							<v-list-item-content>
+					<d-list>
+						<d-list-item :to="`/settings/data-model/${field.collection}/${field.field}`">
+							<d-list-item-icon><d-icon name="edit" outline /></d-list-item-icon>
+							<d-list-item-content>
 								{{ $t('edit_field') }}
-							</v-list-item-content>
-						</v-list-item>
+							</d-list-item-content>
+						</d-list-item>
 
-						<v-divider />
+						<d-divider />
 
-						<v-list-item @click="deleteActive = true" class="danger">
-							<v-list-item-icon><v-icon name="delete" outline /></v-list-item-icon>
-							<v-list-item-content>
+						<d-list-item @click="deleteActive = true" class="danger">
+							<d-list-item-icon><d-icon name="delete" outline /></d-list-item-icon>
+							<d-list-item-content>
 								{{ $t('delete_field') }}
-							</v-list-item-content>
-						</v-list-item>
-					</v-list>
-				</v-menu>
+							</d-list-item-content>
+						</d-list-item>
+					</d-list>
+				</d-menu>
 			</div>
 
 			<router-link :to="`/settings/data-model/${translationsCollection}`">
-				<v-notice type="info" icon="translate">
+				<d-notice type="info" icon="translate">
 					<div>{{ $tc('click_to_manage_translated_fields', translationsFieldsCount) }}</div>
 					<div class="spacer" />
-					<v-icon name="launch" />
-				</v-notice>
+					<d-icon name="launch" />
+				</d-notice>
 			</router-link>
 		</div>
 
-		<v-input v-else class="field" :class="{ hidden }" readonly @click="openFieldDetail">
+		<d-input v-else class="field" :class="{ hidden }" readonly @click="openFieldDetail">
 			<template #prepend>
-				<v-icon class="drag-handle" name="drag_indicator" @click.stop />
+				<d-icon class="drag-handle" name="drag_indicator" @click.stop />
 			</template>
 
 			<template #input>
 				<div class="label">
 					<span class="name" v-tooltip="field.name">
 						{{ field.field }}
-						<v-icon name="star" class="required" sup v-if="field.schema && field.schema.is_nullable === false" />
+						<d-icon name="star" class="required" sup v-if="field.schema && field.schema.is_nullable === false" />
 					</span>
 					<span v-if="field.meta" class="interface">{{ interfaceName }}</span>
 					<span v-else class="interface">{{ $t('db_only_click_to_configure') }}</span>
@@ -72,122 +72,111 @@
 
 			<template #append>
 				<div class="icons">
-					<v-icon
-						v-if="field.schema && field.schema.is_primary_key"
-						name="vpn_key"
-						small
-						v-tooltip="$t('primary_key')"
-					/>
-					<v-icon
-						v-if="!field.meta"
-						name="report_problem"
-						class="unmanaged"
-						small
-						v-tooltip="$t('db_only_click_to_configure')"
-					/>
-					<v-icon v-if="hidden" name="visibility_off" class="hidden-icon" v-tooltip="$t('hidden_field')" small />
-					<v-menu show-arrow placement="bottom-end">
+					<d-icon v-if="field.schema && field.schema.is_primary_key" fa="key" small v-tooltip="$t('primary_key')" />
+					<d-icon v-if="!field.meta" fa="cogs" class="unmanaged" small v-tooltip="$t('db_only_click_to_configure')" />
+					<d-icon v-if="hidden" fa="eye-slash" class="hidden-icon" v-tooltip="$t('hidden_field')" small />
+					<d-menu show-arrow placement="bottom-end">
 						<template #activator="{ toggle }">
-							<v-icon @click.stop="toggle" name="more_vert" />
+							<d-icon @click.stop="toggle" fa="chevron-down" />
 						</template>
 
-						<v-list>
-							<v-list-item :to="`/settings/data-model/${field.collection}/${field.field}`">
-								<v-list-item-icon><v-icon name="edit" outline /></v-list-item-icon>
-								<v-list-item-content>
+						<d-list>
+							<d-list-item :to="`/settings/data-model/${field.collection}/${field.field}`">
+								<d-list-item-icon><d-icon fa="edit" outline /></d-list-item-icon>
+								<d-list-item-content>
 									{{ $t('edit_field') }}
-								</v-list-item-content>
-							</v-list-item>
+								</d-list-item-content>
+							</d-list-item>
 
-							<v-list-item v-if="duplicable" @click="duplicateActive = true">
-								<v-list-item-icon>
-									<v-icon name="content_copy" />
-								</v-list-item-icon>
-								<v-list-item-content>{{ $t('duplicate_field') }}</v-list-item-content>
-							</v-list-item>
+							<d-list-item v-if="duplicable" @click="duplicateActive = true">
+								<d-list-item-icon>
+									<d-icon fa="copy" />
+								</d-list-item-icon>
+								<d-list-item-content>{{ $t('duplicate_field') }}</d-list-item-content>
+							</d-list-item>
 
-							<v-list-item @click="toggleVisibility">
+							<d-list-item @click="toggleVisibility">
 								<template v-if="hidden === false">
-									<v-list-item-icon><v-icon name="visibility_off" /></v-list-item-icon>
-									<v-list-item-content>{{ $t('hide_field_on_detail') }}</v-list-item-content>
+									<d-list-item-icon><d-icon fa="eye-slash" /></d-list-item-icon>
+									<d-list-item-content>{{ $t('hide_field_on_detail') }}</d-list-item-content>
 								</template>
 								<template v-else>
-									<v-list-item-icon><v-icon name="visibility" /></v-list-item-icon>
-									<v-list-item-content>{{ $t('show_field_on_detail') }}</v-list-item-content>
+									<d-list-item-icon><d-icon fa="eye" /></d-list-item-icon>
+									<d-list-item-content>{{ $t('show_field_on_detail') }}</d-list-item-content>
 								</template>
-							</v-list-item>
+							</d-list-item>
 
-							<v-divider />
+							<d-divider />
 
-							<v-list-item @click="setWidth('half')" :disabled="field.meta && field.meta.width === 'half'">
-								<v-list-item-icon><v-icon name="border_vertical" /></v-list-item-icon>
-								<v-list-item-content>{{ $t('half_width') }}</v-list-item-content>
-							</v-list-item>
+							<d-list-item @click="setWidth('half')" :disabled="field.meta && field.meta.width === 'half'">
+								<d-list-item-icon><d-icon fa="star-half-alt" /></d-list-item-icon>
+								<d-list-item-content>{{ $t('half_width') }}</d-list-item-content>
+							</d-list-item>
 
-							<v-list-item @click="setWidth('full')" :disabled="field.meta && field.meta.width === 'full'">
-								<v-list-item-icon><v-icon name="border_right" /></v-list-item-icon>
-								<v-list-item-content>{{ $t('full_width') }}</v-list-item-content>
-							</v-list-item>
+							<d-list-item @click="setWidth('full')" :disabled="field.meta && field.meta.width === 'full'">
+								<d-list-item-icon><d-icon fa="star" /></d-list-item-icon>
+								<d-list-item-content>{{ $t('full_width') }}</d-list-item-content>
+							</d-list-item>
 
-							<v-list-item @click="setWidth('fill')" :disabled="field.meta && field.meta.width === 'fill'">
-								<v-list-item-icon><v-icon name="aspect_ratio" /></v-list-item-icon>
-								<v-list-item-content>{{ $t('fill_width') }}</v-list-item-content>
-							</v-list-item>
+							<d-list-item @click="setWidth('fill')" :disabled="field.meta && field.meta.width === 'fill'">
+								<d-list-item-icon><d-icon fa="arrows-alt-h" /></d-list-item-icon>
+								<d-list-item-content>{{ $t('fill_width') }}</d-list-item-content>
+							</d-list-item>
 
-							<v-divider />
+							<d-divider />
 
-							<v-list-item
+							<d-list-item
 								@click="deleteActive = true"
 								class="danger"
 								:disabled="(field.schema && field.schema.is_primary_key === true) || false"
 							>
-								<v-list-item-icon><v-icon name="delete" outline /></v-list-item-icon>
-								<v-list-item-content>
+								<d-list-item-icon><d-icon fa="trash" outline /></d-list-item-icon>
+								<d-list-item-content>
 									{{ $t('delete_field') }}
-								</v-list-item-content>
-							</v-list-item>
-						</v-list>
-					</v-menu>
+								</d-list-item-content>
+							</d-list-item>
+						</d-list>
+					</d-menu>
 				</div>
 			</template>
-		</v-input>
+		</d-input>
 
-		<v-dialog v-model="duplicateActive" @esc="duplicateActive = false">
-			<v-card class="duplicate">
-				<v-card-title>{{ $t('duplicate_where_to') }}</v-card-title>
-				<v-card-text>
+		<d-dialog v-model="duplicateActive" @esc="duplicateActive = false">
+			<d-card class="duplicate">
+				<d-card-title>{{ $t('duplicate_where_to') }}</d-card-title>
+				<d-card-text>
 					<div class="form-grid">
 						<div class="field">
 							<span class="type-label">{{ $tc('collection', 0) }}</span>
-							<v-select class="monospace" :items="collections" v-model="duplicateTo" />
+							<d-select class="monospace" :items="collections" v-model="duplicateTo" />
 						</div>
 
 						<div class="field">
 							<span class="type-label">{{ $tc('field', 0) }}</span>
-							<v-input class="monospace" v-model="duplicateName" db-safe autofocus />
+							<d-input class="monospace" v-model="duplicateName" db-safe autofocus />
 						</div>
 					</div>
-				</v-card-text>
-				<v-card-actions>
-					<v-button secondary @click="duplicateActive = false">
+				</d-card-text>
+				<d-card-actions>
+					<d-button secondary @click="duplicateActive = false">
 						{{ $t('cancel') }}
-					</v-button>
-					<v-button @click="saveDuplicate" :disabled="duplicateName === null" :loading="duplicating">
+					</d-button>
+					<d-button @click="saveDuplicate" :disabled="duplicateName === null" :loading="duplicating">
 						{{ $t('duplicate') }}
-					</v-button>
-				</v-card-actions>
-			</v-card>
-		</v-dialog>
+					</d-button>
+				</d-card-actions>
+			</d-card>
+		</d-dialog>
 
-		<v-dialog v-model="deleteActive" @esc="deleteActive = false">
-			<v-card>
-				<v-card-title>{{ $t('delete_field_are_you_sure', { field: field.field }) }}</v-card-title>
-				<v-card-actions>
-					<v-button @click="deleteActive = false" secondary>{{ $t('cancel') }}</v-button>
-					<v-button :loading="deleting" @click="deleteField" class="delete">{{ $t('delete') }}</v-button>
-				</v-card-actions>
-			</v-card>
-		</v-dialog>
+		<d-dialog v-model="deleteActive" @esc="deleteActive = false">
+			<d-card>
+				<d-card-title>{{ $t('delete_field_are_you_sure', { field: field.field }) }}</d-card-title>
+				<d-card-actions>
+					<d-button @click="deleteActive = false" secondary>{{ $t('cancel') }}</d-button>
+					<d-button :loading="deleting" @click="deleteField" class="delete">{{ $t('delete') }}</d-button>
+				</d-card-actions>
+			</d-card>
+		</d-dialog>
 	</div>
 </template>
 

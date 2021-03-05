@@ -1,6 +1,6 @@
 <template>
 	<div class="label type-label" :class="{ disabled: disabled }">
-		<v-checkbox
+		<d-checkbox
 			v-if="batchMode"
 			:input-value="batchActive"
 			:value="field.field"
@@ -8,8 +8,8 @@
 		/>
 		<span @click="toggle">
 			{{ field.name }}
-			<v-icon class="required" sup name="star" v-if="field.schema && field.schema.is_nullable === false" />
-			<v-icon v-if="!disabled" class="ctx-arrow" :class="{ active }" name="arrow_drop_down" />
+			<d-icon class="required" sup fa="star" v-if="field.schema && field.schema.is_nullable === false" />
+			<d-icon v-if="!disabled" class="ctx-arrow" :class="{ active }" fa="chevron-down" />
 		</span>
 	</div>
 </template>
