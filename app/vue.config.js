@@ -13,7 +13,8 @@ module.exports = {
 		public: '127.0.0.1:8080',
 		proxy: {
 			'/': {
-				target: process.env.API_URL ? process.env.API_URL : 'http://jamesmbradford.com:8055/',
+				// target: process.env.API_URL ? process.env.API_URL : 'http://jamesmbradford.com:8055/',
+				target: process.env.API_URL ? process.env.API_URL : 'http://localhost:8055/',
 				changeOrigin: true,
 				bypass: (req) => (req.url.startsWith('/admin') ? req.url : null),
 			},
@@ -50,5 +51,8 @@ module.exports = {
 
     transpileDependencies: [
       'vuetify'
-    ]
+    ],
+	watchOptions: {
+		ignored: /node_modules/
+	  }
 };
