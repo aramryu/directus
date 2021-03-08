@@ -51,8 +51,5 @@ module.exports = {
 
     transpileDependencies: [
       'vuetify'
-    ],
-	watchOptions: {
-		ignored: /node_modules/
-	  }
+    ]
 };
