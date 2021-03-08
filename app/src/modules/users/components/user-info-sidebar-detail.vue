@@ -1,5 +1,5 @@
 <template>
-	<sidebar-detail icon="info_outline" :title="$t('information')" close>
+	<sidebar-detail icon="info-circle" :title="$t('information')" close>
 		<dl v-if="isNew === false && user">
 			<div v-if="user.id">
 				<dt>{{ $t('key') }}</dt>

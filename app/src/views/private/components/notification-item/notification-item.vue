@@ -11,7 +11,7 @@
 			<p v-if="text" class="text selectable">{{ text }}</p>
 		</div>
 
-		<d-icon v-if="showClose" name="close" @click="close" class="close" />
+		<d-icon v-if="showClose" fa="times" @click="close" class="close" />
 	</div>
 </template>
 

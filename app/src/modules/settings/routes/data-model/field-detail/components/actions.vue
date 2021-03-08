@@ -12,7 +12,7 @@
 		</d-button>
 
 		<d-button v-else @click="$emit('save')" :loading="saving" icon rounded v-tooltip.bottom="$t('save')">
-			<d-icon name="check" />
+			<d-icon fa="save" />
 		</d-button>
 	</div>
 </template>

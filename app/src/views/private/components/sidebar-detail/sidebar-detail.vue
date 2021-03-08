@@ -3,7 +3,7 @@
 		<button class="toggle" @click="toggle" :class="{ open: active }">
 			<div class="icon">
 				<d-badge bordered :value="badge" :disabled="!badge">
-					<d-icon :name="icon" outline />
+					<fa :icon="icon" pull="left" />
 				</d-badge>
 			</div>
 			<div class="title">

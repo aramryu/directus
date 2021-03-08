@@ -1,5 +1,5 @@
 <template>
-	<sidebar-detail :badge="filters.length > 0 ? filters.length : null" icon="filter_list" :title="$t('advanced_filter')">
+	<sidebar-detail :badge="filters.length > 0 ? filters.length : null" icon="filter" :title="$t('advanced_filter')">
 		<field-filter
 			v-for="filter in filters"
 			:key="filter.key"

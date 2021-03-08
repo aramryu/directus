@@ -1,7 +1,9 @@
 <template>
 	<d-list large>
 		<d-list-item v-for="item in navItems" :to="item.to" :key="item.to">
-			<d-list-item-icon><d-icon :name="item.icon" /></d-list-item-icon>
+			<d-list-item-icon>
+				<d-icon :name="item.icon ? item.icon : undefined" :fa="item.fa ? item.fa : undefined" />
+			</d-list-item-icon>
 			<d-list-item-content>
 				<d-text-overflow :text="item.name" />
 			</d-list-item-content>
@@ -37,28 +39,28 @@ export default defineComponent({
 
 		const navItems = [
 			{
-				icon: 'cogs',
+				fa: 'cogs',
 				name: i18n.t('settings_project'),
 				to: `/settings/project`,
 			},
 			{
-				icon: 'list',
+				fa: 'list',
 				name: i18n.t('settings_data_model'),
 				to: `/settings/data-model`,
 			},
 			{
-				icon: 'users',
+				fa: 'users',
 				name: i18n.t('settings_permissions'),
 				to: `/settings/roles`,
 				outline: true,
 			},
 			{
-				icon: 'bookmark',
+				fa: 'bookmark',
 				name: i18n.t('settings_presets'),
 				to: `/settings/presets`,
 			},
 			{
-				icon: 'anchor',
+				fa: 'anchor',
 				name: i18n.t('settings_webhooks'),
 				to: `/settings/webhooks`,
 			},
@@ -77,18 +79,18 @@ Node: ${parsedInfo.value?.node.version}
 			`;
 
 			return [
-				{
-					icon: 'bug_report',
-					name: i18n.t('report_bug'),
-					href: `https://github.com/directus/directus/issues/new?body=${encodeURIComponent(debugInfo)}`,
-					outline: true,
-				},
-				{
-					icon: 'new_releases',
-					name: i18n.t('request_feature'),
-					href: 'https://github.com/directus/directus/discussions/new',
-					outline: true,
-				},
+				// {
+				// 	icon: 'bug_report',
+				// 	name: i18n.t('report_bug'),
+				// 	href: `https://github.com/directus/directus/issues/new?body=${encodeURIComponent(debugInfo)}`,
+				// 	outline: true,
+				// },
+				// {
+				// 	icon: 'new_releases',
+				// 	name: i18n.t('request_feature'),
+				// 	href: 'https://github.com/directus/directus/discussions/new',
+				// 	outline: true,
+				// },
 			];
 		});
 

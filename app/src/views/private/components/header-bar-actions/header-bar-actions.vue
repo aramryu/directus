@@ -1,24 +1,41 @@
 <template>
 	<div class="actions" :class="{ active }">
-			<d-button class="expand" icon rounded secondary outlined @click="active = !active">
-				<d-icon fa="chevron-left" />
-		</d-button>
-
+		<!-- <d-button class="expand" icon rounded secondary outlined @click="active = !active">
+			<d-icon fa="chevron-left" />
+		</d-button> -->
+	<!-- <v-toolbar-actions> -->
 		<div class="action-buttons">
-			<d-button
-				class="sidebar-toggle"
+		<slot />
+		<v-menu offset-y>
+			<template v-slot:activator="{ on }">
+				<d-button
+					icon
+					rounded
+					secondary
+					outlined
+					v-on="on">
+					<d-icon fa="chevron-left" />
+				</d-button>
+			</template>
+			<!-- <v-btn
 				icon
-				rounded
-				secondary
-				outlined
-				@click="$emit('toggle:sidebar')"
-				v-if="showSidebarToggle"
-			>
-				<d-icon fa="info" outline />
-			</d-button>
-
-			<slot />
-		</div>
+				@click="active = !active">
+				<d-icon fa="chevron-left" />
+			</v-btn> -->
+				<d-button
+					class="sidebar-toggle"
+					icon
+					rounded
+					secondary
+					outlined
+					@click="$emit('toggle:sidebar')"
+					v-if="showSidebarToggle"
+				>
+					<d-icon fa="info" outline />
+				</d-button>
+		</v-menu>
+	</div>
+	<!-- </v-toolbar-actions> -->
 	</div>
 </template>
 

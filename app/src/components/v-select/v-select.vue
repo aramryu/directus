@@ -8,8 +8,9 @@
 	>
 		<template #activator="{ toggle, active }">
 			<div v-if="inline" class="inline-display" :class="{ placeholder: !displayValue }" @click="toggle">
+				<fa icon="chevron-down" pull="left" />
 				{{ displayValue || placeholder }}
-				<d-icon fa="chevron-down" />
+
 			</div>
 			<d-input
 				v-else
@@ -22,7 +23,7 @@
 				:active="active"
 			>
 				<template #prepend><slot name="prepend" /></template>
-				<template #append><d-icon fa="chevron-down" :class="{ active }" /></template>
+				<template #append><fa icon="chevron-down" :class="{ active }" /></template>
 			</d-input>
 		</template>
 

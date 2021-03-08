@@ -18,6 +18,7 @@
 
 			<d-card-actions>
 				<d-button @click="cancel" secondary>
+					<fa icon="times" pull="left" />
 					{{ $t('cancel') }}
 				</d-button>
 				<d-button
@@ -25,6 +26,7 @@
 					@click="$emit('save', bookmarkName)"
 					:loading="saving"
 				>
+					<fa fa="save" pull="left" />
 					{{ $t('save') }}
 				</d-button>
 			</d-card-actions>

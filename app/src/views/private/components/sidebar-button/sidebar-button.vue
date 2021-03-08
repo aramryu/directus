@@ -8,7 +8,7 @@
 		<div class="icon">
 			<d-icon :name="icon" outline />
 		</div>
-		<div class="title" v-if="sidebarOpen">
+		<div class="title" >
 			<slot />
 		</div>
 	</component>

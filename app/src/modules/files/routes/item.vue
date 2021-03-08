@@ -95,7 +95,7 @@
 				@click="saveAndQuit"
 				v-tooltip.bottom="saveAllowed ? $t('save') : $t('not_allowed')"
 			>
-				<d-icon name="check" />
+				<d-icon fa="save" />
 
 				<template #append-outer>
 					<save-options

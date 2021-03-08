@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import Vuetify from 'vuetify/lib/framework';
-// import "@fortawesome/fontawesome-pro/css/all.css";
+import "@fortawesome/fontawesome-pro/css/all.css";
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon, FontAwesomeLayers, FontAwesomeLayersText } from '@fortawesome/vue-fontawesome';
 import {
@@ -35,6 +35,7 @@ import {
 	faChevronRight,
 	faChevronSquareDown,
 	faChevronSquareUp,
+	faChevronSquareRight,
 	faChevronUp,
 	faCheckCircle,
 	faClock,
@@ -58,6 +59,7 @@ import {
 	faExclamation,
 	faExclamationCircle,
 	faExclamationTriangle,
+	faExternalLinkSquare,
 	faFile,
 	faFileEdit,
 	faFileExclamation,
@@ -82,6 +84,8 @@ import {
 	faIdCard,
 	faImage,
 	faIndustry,
+	faInfoSquare,
+	faInfoCircle,
 	faInventory,
 	faLanguage,
 	faInfo,
@@ -156,6 +160,8 @@ import {
 	faAnchor,
 	faEye,
 	faEyeSlash,
+	faEnvelopeSquare,
+
 } from '@fortawesome/pro-solid-svg-icons';
 
 import {
@@ -181,13 +187,14 @@ import {
 	faKickstarter,
 } from '@fortawesome/free-brands-svg-icons';
 
-import preset from 'vue-cli-plugin-vuetify-preset-reply/preset';
+// import preset from 'vue-cli-plugin-vuetify-preset-reply/preset';
 
 Vue.component('fa', FontAwesomeIcon);
 Vue.component('fa-layer', FontAwesomeLayers);
 Vue.component('fa-text', FontAwesomeLayersText);
 library.add(
 	faAnalytics,
+	faAnchor,
 	faAngleDoubleDown,
 	faAngleDoubleUp,
 	faAngleDown,
@@ -204,8 +211,6 @@ library.add(
 	faBookmark,
 	faBriefcase,
 	faBug,
-	faStar,
-	faStarHalfAlt,
 	faCabinetFiling,
 	faCalendar,
 	faCalendarAlt,
@@ -222,15 +227,16 @@ library.add(
 	faChevronRight,
 	faChevronSquareDown,
 	faChevronSquareUp,
+	faChevronSquareRight,
 	faChevronUp,
 	faCircle,
 	faClock,
 	faClone,
 	faCloudUpload,
-	faCogs,
 	faCode,
-	faCodeMerge,
 	faCodeBranch,
+	faCodeMerge,
+	faCogs,
 	faColumns,
 	faCopy,
 	faDatabase,
@@ -238,6 +244,7 @@ library.add(
 	faDollarSign,
 	faDownload,
 	faEdit,
+	faEnvelopeSquare,
 	faEraser,
 	faEuroSign,
 	faExchange,
@@ -245,6 +252,7 @@ library.add(
 	faExclamation,
 	faExclamationCircle,
 	faExclamationTriangle,
+	faExternalLinkSquare,
 	faEye,
 	faEyeSlash,
 	faFile,
@@ -272,15 +280,17 @@ library.add(
 	faImage,
 	faIndustry,
 	faInfo,
+	faInfoCircle,
+	faInfoSquare,
 	faInventory,
 	faKey,
 	faLanguage,
 	faLayerGroup,
 	faLayerGroup,
 	faLightbulb,
-	faLightbulbOn,
 	faLightbulbDollar,
 	faLightbulbExclamation,
+	faLightbulbOn,
 	faLink,
 	faList,
 	faListUl,
@@ -315,22 +325,24 @@ library.add(
 	faSortAlphaUpAlt,
 	faSortNumericDown,
 	faSquare,
+	faStar,
+	faStarHalfAlt,
 	faStop,
 	faTable,
 	faTags,
 	faTasks,
+	faThLarge,
 	faTimes,
 	faTimesCircle,
 	faTimesSquare,
-	faThLarge,
 	faTrash,
 	faTrashAlt,
 	faUsdCircle,
 	faUsdSquare,
-	faUserPlus,
 	faUserCircle,
 	faUserClock,
 	faUserHardHat,
+	faUserPlus,
 	faUsers,
 	faUserShield,
 	faWifi,
@@ -339,7 +351,6 @@ library.add(
 	faWifiSlash,
 	faWindowRestore,
 	faYenSign,
-	faAnchor
 );
 
 library.add(
@@ -368,7 +379,7 @@ library.add(
 Vue.use(Vuetify);
 
 export default new Vuetify({
-	preset,
+	// preset,
 	icons: {
 		iconfont: 'fa',
 	},
@@ -381,11 +392,11 @@ export default new Vuetify({
 				accent: '#a2d5f2',
 			},
 			light: {
-				primary: '#003f5c',
-				secondary: '#58508D',
-				tertiary: '#f9aa33',
-				accent: '#ff6361',
-				sidebar: '#795d75',
+				primary: '#0F4C5C',
+				secondary: '#5F0F40',
+				tertiary: '#a2d5f2',
+				accent: '#9A031E',
+				sidebar: '#FB8B24 ',
 			},
 		},
 	},

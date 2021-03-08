@@ -128,7 +128,7 @@
 				v-tooltip.bottom="saveAllowed ? $t('save') : $t('not_allowed')"
 				@click="saveAndQuit"
 			>
-				<d-icon name="check" />
+				<d-icon fa="save" />
 
 				<template #append-outer>
 					<save-options
@@ -170,7 +170,7 @@
 		</d-dialog>
 
 		<template #sidebar>
-			<sidebar-detail icon="info_outline" :title="$t('information')" close>
+			<sidebar-detail icon="info-circle" :title="$t('information')" close>
 				<div class="page-description" v-html="marked($t('page_help_collections_item'))" />
 			</sidebar-detail>
 			<revisions-drawer-detail

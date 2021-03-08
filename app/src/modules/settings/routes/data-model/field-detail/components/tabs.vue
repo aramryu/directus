@@ -1,5 +1,6 @@
 <template>
-	<d-tabs vertical v-model="_currentTab">
+	<!-- <d-tabs vertical v-model="_currentTab"> -->
+	<d-tabs v-model="_currentTab">
 		<d-tab v-for="tab in tabs" :key="tab.value" :value="tab.value" :disabled="tab.disabled">
 			{{ tab.text }}
 		</d-tab>

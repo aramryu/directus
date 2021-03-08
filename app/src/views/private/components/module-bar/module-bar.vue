@@ -1,6 +1,7 @@
 <template>
 	<div class="module-bar">
-		<div class="modules">
+		<!-- <div class="modules"> -->
+		<v-row no-padding>
 			<d-button
 				v-for="module in _modules"
 				v-tooltip.right="$t(module.name)"
@@ -18,15 +19,37 @@
 						: null
 				"
 			>
-				<fa :icon="module.icon" size="2x" />
+				<fa :icon="module.icon" size="large" />
 			</d-button>
-		</div>
-		<module-bar-avatar />
+			<d-hover v-slot="{ hover }">
+				<d-dialog v-model="signOutActive" @esc="signOutActive = false">
+					<template #activator="{ on }">
+						<d-button @click="on" tile icon x-large :class="{ show: hover }" v-tooltip.right="$t('sign_out')">
+							<fa icon="sign-out" size="large" />
+						</d-button>
+					</template>
+
+					<d-card>
+						<d-card-title>{{ $t('sign_out_confirm') }}</d-card-title>
+						<d-card-actions>
+							<d-button secondary @click="signOutActive = !signOutActive">
+								{{ $t('cancel') }}
+							</d-button>
+							<d-button :to="signOutLink">{{ $t('sign_out') }}</d-button>
+						</d-card-actions>
+					</d-card>
+				</d-dialog>
+			</d-hover>
+		<!-- </div> -->
+		<!-- <template v-slot:extension> -->
+			<!-- <module-bar-avatar /> -->
+		<!-- </template> -->
+		</v-row>
 	</div>
 </template>
 
 <script lang="ts">
-import { defineComponent, Ref, computed } from '@vue/composition-api';
+import { defineComponent, Ref, ref, computed } from '@vue/composition-api';
 
 import { getModules } from '@/modules/';
 import ModuleBarAvatar from '../module-bar-avatar/';
@@ -40,9 +63,15 @@ export default defineComponent({
 	setup() {
 		const userStore = useUserStore();
 		const modules = getModules();
+		const signOutActive = ref(false);
+
+		const signOutLink = computed<string>(() => {
+			return `/logout`;
+		});
 
 		const _modules = computed(() => {
 			const customModuleListing = userStore.state.currentUser?.role.module_list;
+
 
 			const registeredModules = orderBy(
 				modules.value
@@ -83,7 +112,7 @@ export default defineComponent({
 			}
 			return registeredModules;
 		});
-		return { _modules };
+		return { _modules,  signOutActive, signOutLink };
 	},
 });
 </script>
@@ -100,16 +129,17 @@ body {
 <style lang="scss" scoped>
 .module-bar {
 	display: flex;
-	flex-direction: column;
-	width: 64px;
 	height: 100%;
+	padding-bottom: 10px;
+	padding-left: 5px;
+	padding-right: 5px;
 	background-color: var(--module-background);
 
-	.modules {
-		flex-grow: 1;
-		overflow-x: hidden;
-		overflow-y: auto;
-	}
+	// .modules {
+	// 	flex-grow: 1;
+	// 	overflow-x: hidden;
+	// 	overflow-y: auto;
+	// }
 
 	.v-button {
 		--v-button-color: var(--module-icon);

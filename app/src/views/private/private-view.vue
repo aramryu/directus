@@ -74,27 +74,28 @@
 
 <script lang="ts">
 import { defineComponent, ref, provide, toRefs, computed, onUpdated, nextTick } from '@vue/composition-api';
-import ModuleBar from './components/module-bar/';
+// import ModuleBar from './components/module-bar/';
 import SidebarDetailGroup from './components/sidebar-detail-group/';
 import HeaderBar from './components/header-bar';
-import ProjectInfo from './components/project-info';
 import SidebarButton from './components/sidebar-button/';
 import NotificationsGroup from './components/notifications-group/';
 import NotificationsPreview from './components/notifications-preview/';
 import NotificationDialogs from './components/notification-dialogs/';
 import { useUserStore, useAppStore } from '@/stores';
 import router from '@/router';
+import ModuleBar from '@/views/private/components/module-bar/';
+import ProjectInfo from '@/views/private/components/project-info';
 
 export default defineComponent({
 	components: {
-		ModuleBar,
 		SidebarDetailGroup,
 		HeaderBar,
-		ProjectInfo,
 		SidebarButton,
 		NotificationsGroup,
 		NotificationsPreview,
 		NotificationDialogs,
+		ModuleBar,
+		ProjectInfo
 	},
 	props: {
 		title: {
@@ -140,13 +141,13 @@ export default defineComponent({
 		});
 
 		return {
-			navOpen,
 			contentEl,
 			theme,
 			sidebarOpen,
 			openSidebar,
 			notificationsPreviewActive,
 			appAccess,
+			navOpen
 		};
 
 		function openSidebar(event: PointerEvent) {

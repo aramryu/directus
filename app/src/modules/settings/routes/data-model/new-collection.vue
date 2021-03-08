@@ -8,7 +8,8 @@
 		:sidebar-label="$t(currentTab)"
 	>
 		<template #sidebar>
-			<d-tabs vertical v-model="currentTab">
+			<!-- <d-tabs vertical v-model="currentTab"> -->
+			<d-tabs v-model="currentTab">
 				<d-tab value="collection_setup">{{ $t('collection_setup') }}</d-tab>
 				<d-tab value="optional_system_fields" :disabled="!collectionName">
 					{{ $t('optional_system_fields') }}
@@ -119,7 +120,7 @@
 				icon
 				rounded
 			>
-				<d-icon name="check" />
+				<d-icon fa="save" />
 			</d-button>
 		</template>
 	</d-drawer>

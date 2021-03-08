@@ -1,34 +1,36 @@
 <template>
-	<d-hover class="module-bar-avatar" v-slot="{ hover }">
-		<d-dialog v-model="signOutActive" @esc="signOutActive = false">
-			<template #activator="{ on }">
-				<d-button @click="on" tile icon x-large :class="{ show: hover }" v-tooltip.right="$t('sign_out')">
-					<d-icon name="sign-out" />
-				</d-button>
-			</template>
-
-			<d-card>
-				<d-card-title>{{ $t('sign_out_confirm') }}</d-card-title>
-				<d-card-actions>
-					<d-button secondary @click="signOutActive = !signOutActive">
-						{{ $t('cancel') }}
-					</d-button>
-					<d-button :to="signOutLink">{{ $t('sign_out') }}</d-button>
-				</d-card-actions>
-			</d-card>
-		</d-dialog>
-
+	<v-flex>
 		<router-link :to="userProfileLink">
-			<d-avatar tile large v-tooltip.right="userFullName" :class="{ 'no-avatar': !avatarURL }">
+			<d-avatar tile large v-tooltip.right="userFullName">
 				<img v-if="avatarURL" :src="avatarURL" :alt="userFullName" class="avatar-image" />
-				<d-icon v-else name="user-circle" outline />
+				<d-icon v-else fa="user-circle" outline />
 			</d-avatar>
 		</router-link>
-	</d-hover>
+
+		<d-hover v-slot="{ hover }">
+			<d-dialog v-model="signOutActive" @esc="signOutActive = false">
+				<template #activator="{ on }">
+					<d-button @click="on" tile icon x-large :class="{ show: hover }" v-tooltip.right="$t('sign_out')">
+						<fa icon="sign-out" size="2x" />
+					</d-button>
+				</template>
+
+				<d-card>
+					<d-card-title>{{ $t('sign_out_confirm') }}</d-card-title>
+					<d-card-actions>
+						<d-button secondary @click="signOutActive = !signOutActive">
+							{{ $t('cancel') }}
+						</d-button>
+						<d-button :to="signOutLink">{{ $t('sign_out') }}</d-button>
+					</d-card-actions>
+				</d-card>
+			</d-dialog>
+		</d-hover>
+	</v-flex>
 </template>
 
 <script lang="ts">
-import { defineComponent, computed, ref } from '@vue/composition-api';
+import { defineComponent, computed } from '@vue/composition-api';
 import { useUserStore } from '@/stores/';
 import { getRootPath } from '@/utils/get-root-path';
 import { addTokenToURL } from '@/api';
@@ -37,7 +39,7 @@ export default defineComponent({
 	setup() {
 		const userStore = useUserStore();
 
-		const signOutActive = ref(false);
+		// const signOutActive = ref(false);
 
 		const avatarURL = computed<string | null>(() => {
 			if (userStore.state.currentUser === null) return null;
@@ -53,13 +55,13 @@ export default defineComponent({
 			return `/users/${id}`;
 		});
 
-		const signOutLink = computed<string>(() => {
-			return `/logout`;
-		});
+		// const signOutLink = computed<string>(() => {
+		// 	return `/logout`;
+		// });
 
 		const userFullName = userStore.fullName;
 
-		return { userFullName, avatarURL, userProfileLink, signOutActive, signOutLink };
+		return { userFullName, avatarURL, userProfileLink };
 	},
 });
 </script>
@@ -82,7 +84,7 @@ export default defineComponent({
 
 		&.no-avatar {
 			&::after {
-				position: absolute;
+				// position: absolute;
 				top: -1px;
 				right: 8px;
 				left: 8px;
@@ -113,9 +115,9 @@ export default defineComponent({
 		--v-button-background-color: var(--module-background);
 		--v-button-background-color-hover: var(--module-background);
 
-		position: absolute;
-		top: 0;
-		left: 0;
+		// position: absolute;
+		// top: 0;
+		// left: 0;
 		transition: transform var(--fast) var(--transition);
 
 		&.show {

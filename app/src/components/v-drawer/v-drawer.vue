@@ -4,23 +4,14 @@
 			<slot name="activator" v-bind="{ on }" />
 		</template>
 
-		<article class="v-drawer">
-			<d-button
-				v-if="showCancel"
-				class="cancel"
-				@click="$emit('cancel')"
-				icon
-				secondary
-				v-tooltip.bottom="$t('cancel')"
-			>
-				<d-icon fa="times-circle" />
-			</d-button>
-
+		<!-- <article class="v-drawer"> -->
+		<v-card width="80%">
 			<div class="content">
 				<d-overlay v-if="$slots.sidebar" absolute @click="sidebarActive = false" />
 				<nav v-if="$slots.sidebar" class="sidebar">
 					<slot name="sidebar" />
 				</nav>
+				<v-card-text>
 				<main ref="mainEl" class="main">
 					<header-bar :title="title" @primary="$emit('cancel')" primary-action-icon="close">
 						<template #headline>
@@ -49,8 +40,24 @@
 
 					<slot />
 				</main>
-			</div>
-		</article>
+
+							</v-card-text>
+				</div>
+		<!-- </article> -->
+			<v-card-actions>
+				<d-button
+					v-if="showCancel"
+					class="cancel"
+					@click="$emit('cancel')"
+					secondary
+					v-tooltip.bottom="$t('cancel')"
+				>
+					<d-icon fa="times-circle" pull="left" />
+					{{ $t('cancel') }}
+				</d-button>
+			</v-card-actions>
+
+		</v-card>
 	</d-dialog>
 </template>
 

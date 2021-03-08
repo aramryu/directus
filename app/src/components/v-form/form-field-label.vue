@@ -7,7 +7,7 @@
 			@change="$emit('toggle-batch', field)"
 		/>
 		<span @click="toggle">
-			{{ field.name }}
+			{{ getTitle(field.name) }}
 			<d-icon class="required" sup fa="star" v-if="field.schema && field.schema.is_nullable === false" />
 			<d-icon v-if="!disabled" class="ctx-arrow" :class="{ active }" fa="chevron-down" />
 		</span>
@@ -17,6 +17,7 @@
 <script lang="ts">
 import { defineComponent, PropType } from '@vue/composition-api';
 import { Field } from '@/types/';
+import { formatFieldName } from '@/utils/format-field-name';
 
 export default defineComponent({
 	props: {
@@ -43,8 +44,13 @@ export default defineComponent({
 		active: {
 			type: Boolean,
 			default: false,
-		},
+		}
 	},
+	setup() {
+		function getTitle(thisvalue: string) {
+			return formatFieldName(thisvalue);
+		}
+	}
 });
 </script>
 

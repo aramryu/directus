@@ -9,7 +9,7 @@
 
 		<template #actions>
 			<d-button icon rounded :disabled="noEdits" :loading="saving" @click="save" v-tooltip.bottom="$t('save')">
-				<d-icon name="check" />
+				<d-icon fa="save" />
 			</d-button>
 		</template>
 

@@ -2,8 +2,8 @@
 	<div :class="{ subdued: !displayValue }" class="header type-text" @click="toggle">
 		<d-icon v-if="disabled === false" fa="grip-lines" class="drag-handle" />
 		{{ displayValue ? displayValue : placeholder }}
-		<span class="spacer" />
-		<d-icon v-if="disabled === false" fa="times" class="delete" @click.stop.prevent="$emit('delete')" />
+		<!-- <span class="spacer" /> -->
+		<d-icon v-if="disabled === false" fa="times-circle" class="delete" @click.stop.prevent="$emit('delete')" />
 	</div>
 </template>
 
@@ -86,7 +86,10 @@ export default defineComponent({
 		--v-icon-color: var(--foreground-normal);
 	}
 }
-
+.delete {
+	margin-left: 5px;
+	color: var(--secondary);
+}
 .delete:hover {
 	--v-icon-color: var(--danger);
 }

@@ -127,7 +127,7 @@
 		/>
 
 		<template #sidebar>
-			<sidebar-detail icon="info_outline" :title="$t('information')" close>
+			<sidebar-detail icon="info-circle" :title="$t('information')" close>
 				<div class="page-description" v-html="marked($t('page_help_users_collection'))" />
 			</sidebar-detail>
 			<layout-sidebar-detail @input="layout = $event" :value="layout" />

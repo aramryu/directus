@@ -12,7 +12,7 @@
 			<slot name="activator" :active="groupActive" />
 
 			<d-list-item-icon class="activator-icon" :class="{ active: groupActive }" v-if="$slots.default">
-				<d-icon name="chevron-right" @click.stop.prevent="toggle" :disabled="disabled" />
+				<d-icon fa="chevron-square-right" @click.stop.prevent="toggle" :disabled="disabled" />
 			</d-list-item-icon>
 		</d-list-item>
 
@@ -89,8 +89,8 @@ export default defineComponent({
 	&:last-child {
 		margin-bottom: 0;
 	}
-
 	.activator-icon {
+		padding-left: 5px;
 		color: var(--foreground-subdued);
 		transform: rotate(0deg);
 		transition: transform var(--medium) var(--transition);

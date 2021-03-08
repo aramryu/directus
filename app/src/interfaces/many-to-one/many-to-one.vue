@@ -28,13 +28,13 @@
 
 					<template #append v-if="!disabled">
 						<template v-if="currentItem">
-							<d-icon name="open_in_new" class="edit" v-tooltip="$t('edit')" @click.stop="editModalActive = true" />
-							<d-icon name="close" class="deselect" @click.stop="$emit('input', null)" v-tooltip="$t('deselect')" />
+							<d-icon fa="external-link-square" class="edit" v-tooltip="$t('edit')" @click.stop="editModalActive = true" />
+							<d-icon fa="times" class="deselect" @click.stop="$emit('input', null)" v-tooltip="$t('deselect')" />
 						</template>
 						<template v-else>
 							<d-icon
 								class="add"
-								name="expand_more"
+								fa="plus-circle"
 								v-tooltip="$t('create_item')"
 								@click.stop="editModalActive = true"
 							/>

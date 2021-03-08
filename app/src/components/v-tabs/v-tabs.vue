@@ -2,9 +2,11 @@
 	<d-list class="v-tabs vertical alt-colors" v-if="vertical" large>
 		<slot />
 	</d-list>
-	<div v-else class="v-tabs horizontal">
+	<!-- <div v-else class="v-tabs horizontal"> -->
+	<v-toolbar v-else class="v-tabs horizontal" flat>
 		<slot />
-	</div>
+	</v-toolbar>
+	<!-- </div> -->
 </template>
 
 <script lang="ts">
@@ -66,7 +68,7 @@ body {
 		flex-shrink: 0;
 		align-items: center;
 		justify-content: center;
-		height: 38px;
+		// height: 38px;
 		padding: 8px 20px;
 		cursor: pointer;
 	}

@@ -1,8 +1,12 @@
 <template>
-	<div class="v-notice" :class="[type, { center }]">
+	<!-- <div class="v-notice" :class="[type, { center }]">
 		<d-icon v-if="icon !== false" :name="iconName" left />
 		<slot />
-	</div>
+	</div> -->
+	<v-alert :type="type" mx-auto class="elevated-1" dark>
+		<d-icon v-if="icon !== false" :name="icon" />
+		<slot />
+	</v-alert>
 </template>
 
 <script lang="ts">

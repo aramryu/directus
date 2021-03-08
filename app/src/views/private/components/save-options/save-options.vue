@@ -6,7 +6,7 @@
 
 		<d-list>
 			<d-list-item :disabled="disabled" @click="$emit('save-and-stay')">
-				<d-list-item-icon><d-icon name="check" /></d-list-item-icon>
+				<d-list-item-icon><d-icon fa="save" /></d-list-item-icon>
 				<d-list-item-content>{{ $t('save_and_stay') }}</d-list-item-content>
 				<d-list-item-hint>{{ translateShortcut(['meta', 's']) }}</d-list-item-hint>
 			</d-list-item>

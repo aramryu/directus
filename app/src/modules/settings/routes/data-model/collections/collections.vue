@@ -85,7 +85,7 @@
 		<router-view name="add" />
 
 		<template #sidebar>
-			<sidebar-detail icon="info_outline" :title="$t('information')" close>
+			<sidebar-detail icon="info-circle" :title="$t('information')" close>
 				<div class="page-description" v-html="marked($t('page_help_settings_datamodel_collections'))" />
 			</sidebar-detail>
 			<collections-filter v-model="activeTypes" />

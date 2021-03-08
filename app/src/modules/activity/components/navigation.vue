@@ -28,7 +28,7 @@
 			:active="activeFilter && activeFilter.field === 'action' && activeFilter.value === 'create'"
 		>
 			<d-list-item-icon>
-				<d-icon fa="plus-circle" />
+				<d-icon fa="plus-square" />
 			</d-list-item-icon>
 			<d-list-item-content>
 				<d-text-overflow :text="$t('create')" />
@@ -40,7 +40,7 @@
 			:active="activeFilter && activeFilter.field === 'action' && activeFilter.value === 'update'"
 		>
 			<d-list-item-icon>
-				<d-icon name="check" />
+				<d-icon fa="pen-square" />
 			</d-list-item-icon>
 			<d-list-item-content>
 				<d-text-overflow :text="$t('update')" />
@@ -52,7 +52,7 @@
 			:active="activeFilter && activeFilter.field === 'action' && activeFilter.value === 'delete'"
 		>
 			<d-list-item-icon>
-				<d-icon name="clear" />
+				<d-icon fa="minus-square" />
 			</d-list-item-icon>
 			<d-list-item-content>
 				<d-text-overflow :text="$t('delete')" />
@@ -64,7 +64,7 @@
 			:active="activeFilter && activeFilter.field === 'action' && activeFilter.value === 'comment'"
 		>
 			<d-list-item-icon>
-				<d-icon name="comments" />
+				<d-icon fa="envelope-square" />
 			</d-list-item-icon>
 			<d-list-item-content>
 				<d-text-overflow :text="$t('comment')" />
@@ -76,7 +76,7 @@
 			:active="activeFilter && activeFilter.field === 'action' && activeFilter.value === 'authenticate'"
 		>
 			<d-list-item-icon>
-				<d-icon name="login" />
+				<d-icon fa="check-square" />
 			</d-list-item-icon>
 			<d-list-item-content>
 				<d-text-overflow :text="$t('login')" />

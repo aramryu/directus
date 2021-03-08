@@ -1,4 +1,5 @@
 <template>
+	<v-card class="mx-auto">
 	<div class="v-info" :class="[type, { center }]">
 		<div class="icon">
 			<d-icon large :name="icon" outline />
@@ -7,6 +8,7 @@
 		<p class="content"><slot /></p>
 		<slot name="append" />
 	</div>
+	</v-card>
 </template>
 
 <script lang="ts">
@@ -40,6 +42,7 @@ export default defineComponent({
 	flex-direction: column;
 	align-items: center;
 	text-align: center;
+	// margin-top: 200px;
 }
 
 .icon {

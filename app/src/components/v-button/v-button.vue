@@ -157,7 +157,7 @@ body {
 	--v-button-background-color-hover: var(--primary-125);
 	--v-button-background-color-activated: var(--primary);
 	--v-button-background-color-disabled: var(--background-normal);
-	--v-button-font-size: 16px;
+	--v-button-font-size: 18px;
 	--v-button-font-weight: 600;
 	--v-button-line-height: 22px;
 	--v-button-min-width: 140px;
@@ -190,7 +190,7 @@ body {
 		width: var(--v-button-width);
 		min-width: var(--v-button-min-width);
 		height: var(--v-button-height);
-		padding: 0 19px;
+		padding: 0 17px;
 		color: var(--v-button-color);
 		font-weight: var(--v-button-font-weight);
 		font-size: var(--v-button-font-size);

@@ -130,7 +130,7 @@ export default defineComponent({
 
 <style>
 body {
-	--v-pagination-active-color: var(--primary);
+	--v-pagination-active-color: var(--secondary);
 }
 </style>
 
@@ -153,7 +153,7 @@ body {
 
 	.v-button {
 		--v-button-background-color-hover: var(--background-normal);
-		--v-button-background-color: var(--background-subdued);
+		// --v-button-background-color: var(--background-subdued);
 		--v-button-color: var(--foreground-normal);
 
 		margin: 0 2px;
