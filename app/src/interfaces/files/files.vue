@@ -61,13 +61,13 @@
 		/>
 
 		<d-dialog v-model="showUpload">
-			<d-card>
+			<v-card>
 				<d-card-title>{{ $t('upload_file') }}</d-card-title>
 				<d-card-text><d-upload @input="onUpload" multiple from-url /></d-card-text>
 				<d-card-actions>
 					<d-button @click="showUpload = false">{{ $t('done') }}</d-button>
 				</d-card-actions>
-			</d-card>
+			</v-card>
 		</d-dialog>
 	</div>
 </template>

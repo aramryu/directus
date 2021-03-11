@@ -1,7 +1,10 @@
 <template>
-	<d-item-group class="repeater">
-		<draggable :value="value" handle=".drag-handle" @input="onSort" :set-data="hideDragImage">
-			<repeater-row
+	<!-- <d-item-group class="repeater"> -->
+	<d-item-group>
+		<v-row no-gutters>
+			<v-col cols="12">
+				<draggable :value="value" handle=".drag-handle" @input="onSort" :set-data="hideDragImage">
+					<repeater-row
 				v-for="(row, index) in value"
 				:key="index"
 				:value="row"
@@ -13,12 +16,15 @@
 				:headerPlaceholder="headerPlaceholder"
 				:initialActive="addedIndex === index"
 			/>
-		</draggable>
+				</draggable>
+			</v-col>
+		</v-row>
 		<button @click="addNew" class="add-new" v-if="showAddNew">
 			<d-icon fa="plus-circle" />
 			{{ addLabel }}
 		</button>
 	</d-item-group>
+
 </template>
 
 <script lang="ts">

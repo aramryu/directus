@@ -1,4 +1,5 @@
 <template>
+	<v-col class="flex-shrink-4">
 	<div
 		class="search-input"
 		:class="{ active, 'has-content': !!value }"
@@ -6,10 +7,11 @@
 		@click="active = true"
 		v-tooltip.bottom="active ? null : $t('search')"
 	>
-		<d-icon name="search" />
+		<d-icon fa="search" />
 		<input ref="input" :value="value" @input="emitValue" @paste="emitValue" :placeholder="$t('search_items')" />
 		<d-icon v-if="value" class="empty" fa="times" @click.stop="emptyAndClose" />
 	</div>
+	</v-col>
 </template>
 
 <script lang="ts">
@@ -57,7 +59,7 @@ export default defineComponent({
 .search-input {
 	display: flex;
 	align-items: center;
-	width: 44px;
+	width: 132px;
 	height: 44px;
 	overflow: hidden;
 	border: 2px solid var(--border-normal);
@@ -85,7 +87,7 @@ export default defineComponent({
 	}
 
 	&.active {
-		width: 300px;
+		width: 250px;
 
 		.empty {
 			display: block;
@@ -97,7 +99,7 @@ export default defineComponent({
 
 		&:focus,
 		&:focus-within {
-			width: 300px;
+			width: 250px;
 		}
 
 		.empty {

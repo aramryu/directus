@@ -44,6 +44,7 @@ export default defineComponent({
 				value = formatTitle(value);
 			}
 
+
 			return value;
 		});
 

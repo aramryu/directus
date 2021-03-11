@@ -10,7 +10,7 @@
 				:placeholder="$t('enter_a_value')"
 			>
 				<template #append>
-					<d-icon :name="value ? 'times-circle' : 'today'" :class="{ active }" @click.stop="unsetValue" />
+					<d-icon :fa="value ? 'times-square' : 'today'" :class="{ active }" @click.stop="unsetValue" />
 				</template>
 			</d-input>
 		</template>

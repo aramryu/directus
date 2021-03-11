@@ -5,7 +5,7 @@
 		@esc="cancelField"
 		v-if="localType === 'translations' && translationsManual === false && field === '+'"
 	>
-		<d-card class="auto-translations">
+		<v-card class="auto-translations">
 			<d-card-title>{{ $t('create_translations') }}</d-card-title>
 			<d-card-text>
 				<d-input v-model="fieldData.field" :placeholder="$t('field_name') + '...'" />
@@ -18,14 +18,15 @@
 					</div>
 				</d-notice>
 			</d-card-text>
-			<d-card-actions>
+			<v-card-actions>
+				<v-spacer></v-spacer>
 				<d-button secondary @click="cancelField">{{ $t('cancel') }}</d-button>
-				<div class="spacer" />
+				<!-- <div class="spacer" /> -->
 				<d-button :disabled="!fieldData.field" :loading="saving" @click="saveField">
 					{{ $t('auto_generate') }}
 				</d-button>
-			</d-card-actions>
-		</d-card>
+			</v-card-actions>
+		</v-card>
 	</d-dialog>
 
 	<d-drawer

@@ -13,7 +13,7 @@
 			</d-button>
 		</template>
 
-		<d-card>
+		<v-card>
 			<d-card-title>{{ $t('create_folder') }}</d-card-title>
 			<d-card-text>
 				<d-input autofocus @keyup.enter="addFolder" :placeholder="$t('folder_name')" v-model="newFolderName" />
@@ -24,7 +24,7 @@
 					{{ $t('save') }}
 				</d-button>
 			</d-card-actions>
-		</d-card>
+		</v-card>
 	</d-dialog>
 </template>
 

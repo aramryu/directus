@@ -3,7 +3,7 @@
 		<template #headline>{{ $t('settings_permissions') }}</template>
 		<template #title-outer:prepend>
 			<d-button class="header-icon" rounded icon exact :to="`/settings/roles/`">
-				<d-icon fa="chevron-left" />
+				<d-icon fa="chevron-double-left" />
 			</d-button>
 		</template>
 		<template #actions>
@@ -21,7 +21,7 @@
 					</d-button>
 				</template>
 
-				<d-card>
+				<v-card>
 					<d-card-title>{{ $t('delete_are_you_sure') }}</d-card-title>
 
 					<d-card-actions>
@@ -32,7 +32,7 @@
 							{{ $t('delete') }}
 						</d-button>
 					</d-card-actions>
-				</d-card>
+				</v-card>
 			</d-dialog>
 
 			<d-button

@@ -73,7 +73,9 @@
 				</table-row>
 			</draggable>
 		</table>
-		<slot name="footer" />
+		<v-row no-gutters>
+			<slot name="footer" />
+		</v-row>
 	</div>
 </template>
 

@@ -26,7 +26,7 @@
 					</d-button>
 				</template>
 
-				<d-card>
+				<v-card>
 					<d-card-title>{{ $t('delete_are_you_sure') }}</d-card-title>
 
 					<d-card-actions>
@@ -37,7 +37,7 @@
 							{{ $t('delete') }}
 						</d-button>
 					</d-card-actions>
-				</d-card>
+				</v-card>
 			</d-dialog>
 
 			<d-button

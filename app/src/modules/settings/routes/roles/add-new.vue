@@ -1,6 +1,6 @@
 <template>
 	<d-dialog active persistent @esc="$router.push('/settings/roles')">
-		<d-card>
+		<v-card>
 			<d-card-title>
 				{{ $t('create_role') }}
 			</d-card-title>
@@ -25,7 +25,7 @@
 				<d-button to="/settings/roles" secondary>{{ $t('cancel') }}</d-button>
 				<d-button @click="save" :disabled="roleName === null" :loading="saving">{{ $t('save') }}</d-button>
 			</d-card-actions>
-		</d-card>
+		</v-card>
 	</d-dialog>
 </template>
 

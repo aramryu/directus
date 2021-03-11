@@ -1,14 +1,14 @@
 <template>
 	<d-dialog :active="true" @toggle="close" @esc="close">
-		<d-card>
-			<d-card-title>{{ $t('add_file') }}</d-card-title>
-			<d-card-text>
+		<v-card>
+			<v-card-title>{{ $t('add_file') }}</v-card-title>
+			<v-card-text>
 				<d-upload :preset="preset" multiple @input="close" from-url />
-			</d-card-text>
-			<d-card-actions>
+			</v-card-text>
+			<v-card-actions>
 				<d-button secondary @click="close">{{ $t('done') }}</d-button>
-			</d-card-actions>
-		</d-card>
+			</v-card-actions>
+		</v-card>
 	</d-dialog>
 </template>
 

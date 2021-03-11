@@ -26,7 +26,7 @@
 					</d-button>
 				</template>
 
-				<d-card>
+				<v-card>
 					<d-card-title>{{ $t('delete_are_you_sure') }}</d-card-title>
 
 					<d-card-actions>
@@ -37,7 +37,7 @@
 							{{ $t('delete') }}
 						</d-button>
 					</d-card-actions>
-				</d-card>
+				</v-card>
 			</d-dialog>
 
 			<d-dialog v-model="moveToDialogActive" v-if="isNew === false" @esc="moveToDialogActive = false">
@@ -54,7 +54,7 @@
 					</d-button>
 				</template>
 
-				<d-card>
+				<v-card>
 					<d-card-title>{{ $t('move_to_folder') }}</d-card-title>
 
 					<d-card-text>
@@ -69,7 +69,7 @@
 							{{ $t('move') }}
 						</d-button>
 					</d-card-actions>
-				</d-card>
+				</v-card>
 			</d-dialog>
 
 			<d-button rounded icon @click="downloadFile" class="download" v-tooltip.bottom="$t('download')">
@@ -142,7 +142,7 @@
 		</div>
 
 		<d-dialog v-model="confirmLeave" @esc="discardAndLeave">
-			<d-card>
+			<v-card>
 				<d-card-title>{{ $t('unsaved_changes') }}</d-card-title>
 				<d-card-text>{{ $t('unsaved_changes_copy') }}</d-card-text>
 				<d-card-actions>
@@ -151,7 +151,7 @@
 					</d-button>
 					<d-button @click="confirmLeave = false">{{ $t('keep_editing') }}</d-button>
 				</d-card-actions>
-			</d-card>
+			</v-card>
 		</d-dialog>
 
 		<template #sidebar>

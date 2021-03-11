@@ -9,7 +9,7 @@
 				</template>
 
 				<template #append>
-					<d-icon fa="plus-square" outline @click="toggle" :disabled="disabled" />
+					<d-icon fa="plus" outline @click="toggle" :disabled="disabled" />
 				</template>
 			</d-input>
 		</template>

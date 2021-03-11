@@ -4,7 +4,7 @@
 			<slot name="activator" v-bind="slotBinding" />
 		</template>
 
-		<d-card>
+		<v-card>
 			<d-card-title>{{ $t('edit_bookmark') }}</d-card-title>
 
 			<d-card-text>
@@ -28,7 +28,7 @@
 					{{ $t('save') }}
 				</d-button>
 			</d-card-actions>
-		</d-card>
+		</v-card>
 	</d-dialog>
 </template>
 

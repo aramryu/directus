@@ -1,7 +1,7 @@
 <template>
 	<sidebar-detail
 		:title="$t('revisions')"
-		icon="change_history"
+		icon="history"
 		:badge="!loading && revisions ? abbreviateNumber(revisionsCount) : null"
 	>
 		<d-progress-linear indeterminate v-if="loading" />

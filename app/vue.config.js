@@ -14,7 +14,7 @@ module.exports = {
 		proxy: {
 			'/': {
 				// target: process.env.API_URL ? process.env.API_URL : 'http://jamesmbradford.com:8055/',
-				target: process.env.API_URL ? process.env.API_URL : 'http://localhost:8055/',
+				target: process.env.API_URL ? process.env.API_URL : 'http://games.stickyrice.work:8055/',
 				changeOrigin: true,
 				bypass: (req) => (req.url.startsWith('/admin') ? req.url : null),
 			},

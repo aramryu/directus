@@ -3,7 +3,7 @@
 		<template #headline>{{ $t('settings_data_model') }}</template>
 		<template #title-outer:prepend>
 			<d-button class="header-icon" rounded icon exact to="/settings/data-model">
-				<d-icon name="chevron-left" />
+				<d-icon fa="chevron-left" />
 			</d-button>
 		</template>
 
@@ -24,7 +24,7 @@
 					</d-button>
 				</template>
 
-				<d-card>
+				<v-card>
 					<d-card-title>{{ $t('delete_are_you_sure') }}</d-card-title>
 
 					<d-card-actions>
@@ -35,7 +35,7 @@
 							{{ $t('delete') }}
 						</d-button>
 					</d-card-actions>
-				</d-card>
+				</v-card>
 			</d-dialog>
 
 			<d-button

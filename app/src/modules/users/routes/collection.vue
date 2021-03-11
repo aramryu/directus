@@ -6,7 +6,7 @@
 
 		<template #title-outer:prepend>
 			<d-button class="header-icon" rounded disabled icon secondary>
-				<d-icon fa="inventory" outline />
+				<d-icon fa="users" outline />
 			</d-button>
 		</template>
 
@@ -31,7 +31,7 @@
 					</d-button>
 				</template>
 
-				<d-card>
+				<v-card>
 					<d-card-title>{{ $tc('batch_delete_confirm', selection.length) }}</d-card-title>
 
 					<d-card-actions>
@@ -42,7 +42,7 @@
 							{{ $t('delete') }}
 						</d-button>
 					</d-card-actions>
-				</d-card>
+				</v-card>
 			</d-dialog>
 
 			<d-button
@@ -75,7 +75,7 @@
 				v-tooltip.bottom="createAllowed ? $t('create_item') : $t('not_allowed')"
 				:disabled="createAllowed === false"
 			>
-				<d-icon fa="plus" />
+				<d-icon fa="plus-circle" />
 			</d-button>
 		</template>
 

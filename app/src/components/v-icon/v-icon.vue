@@ -1,6 +1,6 @@
 <template>
 	<fa
-		v-if="fa"
+		v-if="fa != null"
 		:icon="fa"
 		@click="emitClick"
 		pull="left">
@@ -16,7 +16,7 @@
 		:tabindex="hasClick ? 0 : null"
 	>
 		<component v-if="customIconName" :is="customIconName" />
-		<i v-else :class="{ filled }">{{ name }}</i>
+		<i v-else-if="name != null" :class="{ filled }">{{ name }}</i>
 	</span>
 </template>
 

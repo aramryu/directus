@@ -9,7 +9,7 @@
 			@onFocusOut="setFocus(false)"
 		/>
 		<d-dialog :active="_imageDialogOpen" @toggle="unsetImageUploadHandler" @esc="unsetImageUploadHandler">
-			<d-card>
+			<v-card>
 				<d-card-title>{{ $t('upload_from_device') }}</d-card-title>
 				<d-card-text>
 					<d-upload @input="onImageUpload" :multiple="false" from-library from-url />
@@ -17,7 +17,7 @@
 				<d-card-actions>
 					<d-button @click="unsetImageUploadHandler" secondary>{{ $t('cancel') }}</d-button>
 				</d-card-actions>
-			</d-card>
+			</v-card>
 		</d-dialog>
 	</div>
 </template>

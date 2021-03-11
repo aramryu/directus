@@ -1,5 +1,8 @@
 import Vue from 'vue';
 import Vuetify from 'vuetify/lib/framework';
+import {
+	Ripple
+} from "vuetify/lib/directives";
 import "@fortawesome/fontawesome-pro/css/all.css";
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon, FontAwesomeLayers, FontAwesomeLayersText } from '@fortawesome/vue-fontawesome';
@@ -30,6 +33,7 @@ import {
 	faCheck,
 	faCheckSquare,
 	faChevronCircleDown,
+	faChevronDoubleLeft,
 	faChevronDown,
 	faChevronLeft,
 	faChevronRight,
@@ -45,6 +49,7 @@ import {
 	faCodeBranch,
 	faCodeMerge,
 	faCogs,
+	faComments,
 	faCopy,
 	faColumns,
 	faDatabase,
@@ -222,6 +227,7 @@ library.add(
 	faCheckCircle,
 	faCheckSquare,
 	faChevronCircleDown,
+	faChevronDoubleLeft,
 	faChevronDown,
 	faChevronLeft,
 	faChevronRight,
@@ -238,6 +244,7 @@ library.add(
 	faCodeMerge,
 	faCogs,
 	faColumns,
+	faComments,
 	faCopy,
 	faDatabase,
 	faDesktopAlt,
@@ -376,7 +383,10 @@ library.add(
 	faKickstarter
 );
 
-Vue.use(Vuetify);
+Vue.use(Vuetify, {directives: {
+	Ripple
+}
+});
 
 export default new Vuetify({
 	// preset,

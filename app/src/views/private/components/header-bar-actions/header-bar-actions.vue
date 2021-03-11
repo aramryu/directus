@@ -5,35 +5,31 @@
 		</d-button> -->
 	<!-- <v-toolbar-actions> -->
 		<div class="action-buttons">
-		<slot />
-		<v-menu offset-y>
-			<template v-slot:activator="{ on }">
-				<d-button
-					icon
-					rounded
-					secondary
-					outlined
-					v-on="on">
-					<d-icon fa="chevron-left" />
-				</d-button>
-			</template>
-			<!-- <v-btn
-				icon
-				@click="active = !active">
-				<d-icon fa="chevron-left" />
-			</v-btn> -->
-				<d-button
-					class="sidebar-toggle"
-					icon
-					rounded
-					secondary
-					outlined
-					@click="$emit('toggle:sidebar')"
-					v-if="showSidebarToggle"
-				>
-					<d-icon fa="info" outline />
-				</d-button>
-		</v-menu>
+		<v-col class="flex-shrink-4">
+			<slot />
+			<!-- <v-menu offset-y>
+				<template v-slot:activator="{ on }">
+					<d-button
+						icon
+						rounded
+						outlined
+						v-on="on">
+						<d-icon fa="chevron-left" />
+					</d-button>
+				</template>
+					<d-button
+						class="sidebar-toggle"
+						icon
+						rounded
+						secondary
+						outlined
+						@click="$emit('toggle:sidebar')"
+						v-if="showSidebarToggle"
+					>
+						<d-icon fa="info" outline />
+					</d-button>
+			</v-menu> -->
+		</v-col>
 	</div>
 	<!-- </v-toolbar-actions> -->
 	</div>
@@ -72,7 +68,7 @@ export default defineComponent({
 		--v-icon-color: var(--foreground-normal);
 
 		flex-shrink: 0;
-		margin-right: 8px;
+		margin-right: 0px;
 
 		@include breakpoint(medium) {
 			display: none;

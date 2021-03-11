@@ -1,6 +1,6 @@
 <template>
 	<d-dialog :active="active" @toggle="$emit('toggle', $event)" @esc="$emit('toggle', false)">
-		<d-card>
+		<v-card>
 			<d-card-title>{{ $t('invite_users') }}</d-card-title>
 
 			<d-card-text>
@@ -22,7 +22,7 @@
 					{{ $t('invite') }}
 				</d-button>
 			</d-card-actions>
-		</d-card>
+		</v-card>
 	</d-dialog>
 </template>
 

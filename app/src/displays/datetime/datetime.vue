@@ -22,7 +22,7 @@ export default defineComponent({
 		},
 		format: {
 			type: String,
-			default: 'long',
+			default: 'short',
 		},
 		relative: {
 			type: Boolean,
@@ -70,6 +70,8 @@ export default defineComponent({
 						format = `${i18n.t('date-fns_date_short')} ${i18n.t('date-fns_time_short')}`;
 						if (props.type === 'date') format = String(i18n.t('date-fns_date_short'));
 						if (props.type === 'time') format = String(i18n.t('date-fns_time_short'));
+					} else if (props.format === 'short-date') {
+						format = String(i18n.t('date-fns_date_short'));
 					} else {
 						format = props.format;
 					}

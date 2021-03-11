@@ -16,7 +16,7 @@
 					</d-button>
 				</template>
 
-				<d-card>
+				<v-card>
 					<d-card-title>{{ $tc('batch_delete_confirm', selection.length) }}</d-card-title>
 
 					<d-card-actions>
@@ -27,11 +27,11 @@
 							{{ $t('delete') }}
 						</d-button>
 					</d-card-actions>
-				</d-card>
+				</v-card>
 			</d-dialog>
 
 			<d-button rounded icon :to="addNewLink" v-tooltip.bottom="$t('create_preset')">
-				<d-icon name="plus-circle" />
+				<d-icon fa="plus-circle" />
 			</d-button>
 		</template>
 

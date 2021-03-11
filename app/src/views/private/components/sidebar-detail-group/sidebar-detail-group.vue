@@ -1,6 +1,6 @@
 <template>
 	<d-item-group class="sidebar-detail-group" v-model="openDetail" scope="sidebar-detail" :mandatory="mandatory">
-		<slot />
+	<slot />
 	</d-item-group>
 </template>
 

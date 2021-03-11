@@ -9,7 +9,7 @@
 		<span @click="toggle">
 			{{ getTitle(field.name) }}
 			<d-icon class="required" sup fa="star" v-if="field.schema && field.schema.is_nullable === false" />
-			<d-icon v-if="!disabled" class="ctx-arrow" :class="{ active }" fa="chevron-down" />
+			<d-icon v-if="!disabled" :class="{ active }" fa="chevron-square-down" />
 		</span>
 	</div>
 </template>
@@ -46,8 +46,8 @@ export default defineComponent({
 			default: false,
 		}
 	},
-	setup() {
-		function getTitle(thisvalue: string) {
+	methods: {
+		getTitle(thisvalue: string) {
 			return formatFieldName(thisvalue);
 		}
 	}

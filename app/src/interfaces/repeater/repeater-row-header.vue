@@ -1,10 +1,13 @@
 <template>
-	<div :class="{ subdued: !displayValue }" class="header type-text" @click="toggle">
-		<d-icon v-if="disabled === false" fa="grip-lines" class="drag-handle" />
-		{{ displayValue ? displayValue : placeholder }}
-		<!-- <span class="spacer" /> -->
-		<d-icon v-if="disabled === false" fa="times-circle" class="delete" @click.stop.prevent="$emit('delete')" />
-	</div>
+	<v-col class="flex-shrink-4">
+		<div :class="{ subdued: !displayValue }" class="header type-text" @click="toggle">
+			<d-icon v-if="disabled === false" fa="grip-lines" class="drag-handle" />
+			{{ displayValue ? displayValue : placeholder }}
+			<!-- <span class="spacer" /> -->
+			<v-spacer></v-spacer>
+			<d-icon v-if="disabled === false" fa="times-circle" class="delete" @click.stop.prevent="$emit('delete')" />
+		</div>
+	</v-col>
 </template>
 
 <script lang="ts">

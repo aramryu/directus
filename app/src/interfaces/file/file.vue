@@ -80,7 +80,7 @@
 		/>
 
 		<d-dialog :active="activeDialog === 'upload'" @esc="activeDialog = null" @toggle="activeDialog = null">
-			<d-card>
+			<v-card>
 				<d-card-title>{{ $t('upload_from_device') }}</d-card-title>
 				<d-card-text>
 					<d-upload @input="onUpload" from-url />
@@ -88,7 +88,7 @@
 				<d-card-actions>
 					<d-button @click="activeDialog = null" secondary>{{ $t('cancel') }}</d-button>
 				</d-card-actions>
-			</d-card>
+			</v-card>
 		</d-dialog>
 
 		<drawer-collection
@@ -104,7 +104,7 @@
 			@esc="activeDialog = null"
 			:persistent="urlLoading"
 		>
-			<d-card>
+			<v-card>
 				<d-card-title>{{ $t('import_from_url') }}</d-card-title>
 				<d-card-text>
 					<d-input :placeholder="$t('url')" v-model="url" :nullable="false" :disabled="urlLoading" />
@@ -117,7 +117,7 @@
 						{{ $t('import') }}
 					</d-button>
 				</d-card-actions>
-			</d-card>
+			</v-card>
 		</d-dialog>
 	</div>
 </template>

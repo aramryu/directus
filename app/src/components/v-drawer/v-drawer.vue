@@ -5,7 +5,7 @@
 		</template>
 
 		<!-- <article class="v-drawer"> -->
-		<v-card width="80%">
+		<v-card>
 			<div class="content">
 				<d-overlay v-if="$slots.sidebar" absolute @click="sidebarActive = false" />
 				<nav v-if="$slots.sidebar" class="sidebar">
@@ -13,7 +13,7 @@
 				</nav>
 				<v-card-text>
 				<main ref="mainEl" class="main">
-					<header-bar :title="title" @primary="$emit('cancel')" primary-action-icon="close">
+					<header-bar :title="title" @primary="$emit('cancel')" primary-action-icon="times-circle">
 						<template #headline>
 							<slot name="subtitle">
 								<p v-if="subtitle" class="subtitle">{{ subtitle }}</p>

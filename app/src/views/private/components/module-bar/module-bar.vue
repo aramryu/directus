@@ -29,7 +29,7 @@
 						</d-button>
 					</template>
 
-					<d-card>
+					<v-card>
 						<d-card-title>{{ $t('sign_out_confirm') }}</d-card-title>
 						<d-card-actions>
 							<d-button secondary @click="signOutActive = !signOutActive">
@@ -37,7 +37,7 @@
 							</d-button>
 							<d-button :to="signOutLink">{{ $t('sign_out') }}</d-button>
 						</d-card-actions>
-					</d-card>
+					</v-card>
 				</d-dialog>
 			</d-hover>
 		<!-- </div> -->

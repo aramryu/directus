@@ -44,7 +44,7 @@
 				v-tooltip.bottom="$t('back')"
 				:to="'/collections/' + collection"
 			>
-				<d-icon fa="chevron-left" />
+				<d-icon fa="chevron-double-left" />
 			</d-button>
 		</template>
 
@@ -72,7 +72,7 @@
 					</d-button>
 				</template>
 
-				<d-card>
+				<v-card>
 					<d-card-title>{{ $t('delete_are_you_sure') }}</d-card-title>
 
 					<d-card-actions>
@@ -83,7 +83,7 @@
 							{{ $t('delete') }}
 						</d-button>
 					</d-card-actions>
-				</d-card>
+				</v-card>
 			</d-dialog>
 
 			<d-dialog
@@ -106,7 +106,7 @@
 					</d-button>
 				</template>
 
-				<d-card>
+				<v-card>
 					<d-card-title>{{ isArchived ? $t('unarchive_confirm') : $t('archive_confirm') }}</d-card-title>
 
 					<d-card-actions>
@@ -117,7 +117,7 @@
 							{{ isArchived ? $t('unarchive') : $t('archive') }}
 						</d-button>
 					</d-card-actions>
-				</d-card>
+				</v-card>
 			</d-dialog>
 
 			<d-button
@@ -157,7 +157,7 @@
 		/>
 
 		<d-dialog v-model="confirmLeave" @esc="confirmLeave = false">
-			<d-card>
+			<v-card>
 				<d-card-title>{{ $t('unsaved_changes') }}</d-card-title>
 				<d-card-text>{{ $t('unsaved_changes_copy') }}</d-card-text>
 				<d-card-actions>
@@ -166,7 +166,7 @@
 					</d-button>
 					<d-button @click="confirmLeave = false">{{ $t('keep_editing') }}</d-button>
 				</d-card-actions>
-			</d-card>
+			</v-card>
 		</d-dialog>
 
 		<template #sidebar>

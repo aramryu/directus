@@ -42,7 +42,7 @@
 		</div>
 
 		<d-dialog v-model="confirmDelete" @esc="confirmDelete = false">
-			<d-card>
+			<v-card>
 				<d-card-title>{{ $t('delete_comment') }}</d-card-title>
 				<d-card-text>{{ $t('delete_are_you_sure') }}</d-card-text>
 
@@ -54,7 +54,7 @@
 						{{ $t('delete') }}
 					</d-button>
 				</d-card-actions>
-			</d-card>
+			</v-card>
 		</d-dialog>
 	</div>
 </template>

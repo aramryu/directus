@@ -4,7 +4,7 @@
 
 		<template #title-outer:prepend>
 			<d-button class="header-icon" rounded disabled icon secondary>
-				<d-icon fa="chevron-left" />
+				<d-icon fa="chevron-double-left" />
 			</d-button>
 		</template>
 
@@ -22,7 +22,7 @@
 					</d-button>
 				</template>
 
-				<d-card>
+				<v-card>
 					<d-card-title>{{ $tc('batch_delete_confirm', selection.length) }}</d-card-title>
 
 					<d-card-actions>
@@ -33,7 +33,7 @@
 							{{ $t('delete') }}
 						</d-button>
 					</d-card-actions>
-				</d-card>
+				</v-card>
 			</d-dialog>
 
 			<d-button

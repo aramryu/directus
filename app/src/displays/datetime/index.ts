@@ -19,6 +19,7 @@ export default defineDisplay(({ i18n }) => ({
 					choices: [
 						{ text: i18n.t('displays.datetime.long'), value: 'long' },
 						{ text: i18n.t('displays.datetime.short'), value: 'short' },
+						{ text: 'Short (date only)', value: 'short-date' }
 					],
 					allowOther: true,
 				},

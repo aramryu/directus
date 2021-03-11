@@ -38,7 +38,7 @@
 		</d-drawer>
 
 		<d-dialog v-model="confirmRevert" :persistent="reverting" @esc="confirmRevert = false">
-			<d-card>
+			<v-card>
 				<d-card-title>{{ $t('confirm_revert') }}</d-card-title>
 				<d-card-text>{{ $t('confirm_revert_body') }}</d-card-text>
 				<d-card-actions>
@@ -49,7 +49,7 @@
 						{{ $t('revert') }}
 					</d-button>
 				</d-card-actions>
-			</d-card>
+			</v-card>
 		</d-dialog>
 	</div>
 </template>

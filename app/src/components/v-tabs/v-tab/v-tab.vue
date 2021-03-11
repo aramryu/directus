@@ -53,8 +53,10 @@ body {
 	transition: color var(--fast) var(--transition);
 	color: var(--v-tab-color);
 	font-weight: 500;
-	font-size: 14px;
-	background-color: var(--v-tab-background-color);
+	font-size: 16px;
+	min-width: 150px;
+	// background-color: var(--v-tab-background-color);
+	background-color: transparent;
 
 	&:hover,
 	&.active {

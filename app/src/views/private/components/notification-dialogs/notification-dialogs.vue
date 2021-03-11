@@ -1,7 +1,7 @@
 <template>
 	<div class="notification-dialogs">
 		<d-dialog :active="true" v-for="notification in notifications" :key="notification.id" persist>
-			<d-card :class="[notification.type]">
+			<v-card :class="[notification.type]">
 				<d-card-title>{{ notification.title }}</d-card-title>
 				<d-card-text v-if="notification.text">
 					{{ notification.text }}
@@ -16,7 +16,7 @@
 					</d-button>
 					<d-button @click="done(notification.id)">{{ $t('dismiss') }}</d-button>
 				</d-card-actions>
-			</d-card>
+			</v-card>
 		</d-dialog>
 	</div>
 </template>

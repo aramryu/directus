@@ -38,6 +38,7 @@ body {
 
 <style lang="scss" scoped>
 .v-divider {
+	padding-top: 10px;
 	flex-basis: 0px;
 	flex-grow: 1;
 	flex-shrink: 1;

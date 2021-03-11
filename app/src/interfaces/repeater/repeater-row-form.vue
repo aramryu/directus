@@ -1,8 +1,10 @@
 <template>
-	<div class="form">
-		<d-divider />
-		<d-form :disabled="disabled" :fields="fields" :edits="value" primary-key="+" @input="$emit('input', $event)" />
-	</div>
+	<v-col cols="auto">
+		<!-- <div class="form"> -->
+			<!-- <d-divider /> -->
+			<d-form :disabled="disabled" :fields="fields" :edits="value" primary-key="+" @input="$emit('input', $event)" />
+		<!-- </div> -->
+	</v-col>
 </template>
 
 <script lang="ts">

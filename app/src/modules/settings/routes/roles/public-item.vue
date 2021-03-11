@@ -3,7 +3,7 @@
 		<template #headline>{{ $t('settings_permissions') }}</template>
 		<template #title-outer:prepend>
 			<d-button class="header-icon" rounded icon exact :to="`/settings/roles/`">
-				<d-icon fa="chevron-left" />
+				<d-icon fa="chevron-double-left" />
 			</d-button>
 		</template>
 

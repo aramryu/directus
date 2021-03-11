@@ -40,7 +40,7 @@
 		/>
 
 		<d-dialog v-model="showRaw" @esc="showRaw = false">
-			<d-card>
+			<v-card>
 				<d-card-title>{{ $t('edit_raw_value') }}</d-card-title>
 				<d-card-text>
 					<d-textarea class="raw-value" v-model="rawValue" :placeholder="$t('enter_raw_value')" />
@@ -48,7 +48,7 @@
 				<d-card-actions>
 					<d-button @click="showRaw = false">{{ $t('done') }}</d-button>
 				</d-card-actions>
-			</d-card>
+			</v-card>
 		</d-dialog>
 
 		<small class="note" v-if="field.meta && field.meta.note" v-html="marked(field.meta.note)" />

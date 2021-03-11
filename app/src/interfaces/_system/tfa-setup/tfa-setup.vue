@@ -9,7 +9,7 @@
 		</d-checkbox>
 
 		<d-dialog persistent v-model="enableActive" @esc="enableActive = false">
-			<d-card>
+			<v-card>
 				<template v-if="tfaEnabled === false" v-show="loading === false">
 					<d-card-title>
 						{{ $t('enter_password_to_enable_tfa') }}
@@ -39,11 +39,11 @@
 						<d-button @click="enableActive = false">{{ $t('done') }}</d-button>
 					</d-card-actions>
 				</div>
-			</d-card>
+			</v-card>
 		</d-dialog>
 
 		<d-dialog v-model="disableActive">
-			<d-card>
+			<v-card>
 				<d-card-title>
 					{{ $t('enter_otp_to_disable_tfa') }}
 				</d-card-title>
@@ -56,7 +56,7 @@
 						{{ $t('disable_tfa') }}
 					</d-button>
 				</d-card-actions>
-			</d-card>
+			</v-card>
 		</d-dialog>
 	</div>
 </template>

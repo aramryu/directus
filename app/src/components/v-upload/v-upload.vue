@@ -1,88 +1,134 @@
 <template>
-	<div
-		data-dropzone
-		class="v-upload"
-		:class="{ dragging, uploading }"
-		@dragenter.prevent="onDragEnter"
-		@dragover.prevent
-		@dragleave.prevent="onDragLeave"
-		@drop.stop.prevent="onDrop"
-	>
-		<template v-if="dragging">
-			<p class="type-label">{{ $t('drop_to_upload') }}</p>
-			<p class="type-text">{{ $t('upload_pending') }}</p>
-		</template>
+  <div
+    data-dropzone
+    class="v-upload"
+    :class="{ dragging, uploading }"
+    @dragenter.prevent="onDragEnter"
+    @dragover.prevent
+    @dragleave.prevent="onDragLeave"
+    @drop.stop.prevent="onDrop"
+  >
+    <template v-if="dragging">
+      <p class="type-label">{{ $t('drop_to_upload') }}</p>
+      <p class="type-text">{{ $t('upload_pending') }}</p>
+    </template>
 
-		<template v-else-if="uploading">
-			<p class="type-label">{{ progress }}%</p>
-			<p class="type-text">
-				{{
+    <template v-else-if="uploading">
+      <p class="type-label">{{ progress }}%</p>
+      <p class="type-text">
+        {{
 					multiple && numberOfFiles > 1
 						? $t('upload_files_indeterminate', { done: done, total: numberOfFiles })
 						: $t('upload_file_indeterminate')
 				}}
-			</p>
-			<d-progress-linear :value="progress" rounded />
-		</template>
+      </p>
+      <d-progress-linear
+        :value="progress"
+        rounded
+      />
+    </template>
 
-		<template v-else>
-			<p class="type-label">{{ $t('drag_file_here') }}</p>
-			<p class="type-text">{{ $t('click_to_browse') }}</p>
-			<input class="browse" type="file" @input="onBrowseSelect" :multiple="multiple" />
+    <template v-else>
+      <p class="type-label">{{ $t('drag_file_here') }}</p>
+      <p class="type-text">{{ $t('click_to_browse') }}</p>
+      <input
+        class="browse"
+        type="file"
+        @input="onBrowseSelect"
+        :multiple="multiple"
+      />
 
-			<template v-if="fromUrl !== false || fromLibrary !== false">
-				<d-menu showArrow placement="bottom-end">
-					<template #activator="{ toggle }">
-						<d-icon @click="toggle" class="options" name="more_vert" />
-					</template>
-					<d-list>
-						<d-list-item @click="activeDialog = 'choose'" v-if="fromLibrary">
-							<d-list-item-icon><d-icon name="file-check" /></d-list-item-icon>
-							<d-list-item-content>
-								{{ $t('choose_from_library') }}
-							</d-list-item-content>
-						</d-list-item>
+      <template v-if="fromUrl !== false || fromLibrary !== false">
+        <d-menu
+          showArrow
+          placement="bottom-end"
+        >
+          <template #activator="{ toggle }">
+            <d-icon
+              @click="toggle"
+              class="options"
+              name="more_vert"
+            />
+          </template>
+          <d-list>
+            <d-list-item
+              @click="activeDialog = 'choose'"
+              v-if="fromLibrary"
+            >
+              <d-list-item-icon>
+                <d-icon fa="folder-tree" />
+              </d-list-item-icon>
+              <d-list-item-content>
+                {{ $t('choose_from_library') }}
+              </d-list-item-content>
+            </d-list-item>
 
-						<d-list-item @click="activeDialog = 'url'" v-if="fromUrl">
-							<d-list-item-icon><d-icon name="cloud-upload" /></d-list-item-icon>
-							<d-list-item-content>
-								{{ $t('import_from_url') }}
-							</d-list-item-content>
-						</d-list-item>
-					</d-list>
-				</d-menu>
+            <d-list-item
+              @click="activeDialog = 'url'"
+              v-if="fromUrl"
+            >
+              <d-list-item-icon>
+                <d-icon fa="cloud-upload" />
+              </d-list-item-icon>
+              <d-list-item-content>
+                {{ $t('import_from_url') }}
+              </d-list-item-content>
+            </d-list-item>
+          </d-list>
+        </d-menu>
 
-				<drawer-collection
-					collection="directus_files"
-					:active="activeDialog === 'choose'"
-					@update:active="activeDialog = null"
-					@input="setSelection"
-				/>
+        <drawer-collection
+          collection="directus_files"
+          :active="activeDialog === 'choose'"
+          @update:active="activeDialog = null"
+          @input="setSelection"
+        />
 
-				<d-dialog
-					:active="activeDialog === 'url'"
-					@esc="activeDialog = null"
-					@toggle="activeDialog = null"
-					:persistent="urlLoading"
-				>
-					<d-card>
-						<d-card-title>{{ $t('import_from_url') }}</d-card-title>
-						<d-card-text>
-							<d-input :placeholder="$t('url')" v-model="url" :nullable="false" :disabled="urlLoading" />
-						</d-card-text>
-						<d-card-actions>
-							<d-button :disabled="urlLoading" @click="activeDialog = null" secondary>
-								{{ $t('cancel') }}
-							</d-button>
-							<d-button :loading="urlLoading" @click="importFromURL" :disabled="isValidURL === false">
-								{{ $t('import') }}
-							</d-button>
-						</d-card-actions>
-					</d-card>
-				</d-dialog>
-			</template>
-		</template>
-	</div>
+        <d-dialog
+          :active="activeDialog === 'url'"
+          @esc="activeDialog = null"
+          @toggle="activeDialog = null"
+          :persistent="urlLoading"
+        >
+          <v-card>
+            <v-card-title>{{ $t('import_from_url') }}</v-card-title>
+            <v-card-text>
+              <d-input
+                :placeholder="$t('url')"
+                v-model="url"
+                :nullable="false"
+                :disabled="urlLoading"
+              />
+            </v-card-text>
+            <v-card-actions>
+              <d-button
+                :disabled="urlLoading"
+                @click="activeDialog = null"
+                secondary
+              >
+                <fa
+                  icon="times"
+                  pull="left"
+                />
+                {{ $t('cancel') }}
+              </d-button>
+              <d-button
+                :loading="urlLoading"
+                @click="importFromURL"
+                :disabled="isValidURL === false"
+              >
+                <fa
+                  icon="cloud-download"
+                  pull="left"
+                />
+                {{ $t('import') }}
+              </d-button>
+            </v-card-actions>
+          </v-card>
+        </d-dialog>
+      </template>
+    </template>
+  </div>
 </template>
 
 <script lang="ts">

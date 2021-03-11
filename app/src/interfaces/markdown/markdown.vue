@@ -132,7 +132,7 @@
 		<div v-if="view[0] === 'preview'" class="preview-box" v-html="html"></div>
 
 		<d-dialog :active="imageDialogOpen" @esc="imageDialogOpen = null" @toggle="imageDialogOpen = null">
-			<d-card>
+			<v-card>
 				<d-card-title>{{ $t('upload_from_device') }}</d-card-title>
 				<d-card-text>
 					<d-upload @input="onImageUpload" from-url from-library />
@@ -140,7 +140,7 @@
 				<d-card-actions>
 					<d-button @click="imageDialogOpen = null" secondary>{{ $t('cancel') }}</d-button>
 				</d-card-actions>
-			</d-card>
+			</v-card>
 		</d-dialog>
 	</div>
 </template>

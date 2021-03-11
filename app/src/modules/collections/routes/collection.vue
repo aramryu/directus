@@ -13,7 +13,17 @@
 		</template>
 
 		<template #title-outer:append>
-			<div class="bookmark-controls">
+			<portal-target name="actions:prepend" />
+		</template>
+
+		<template #actions:prepend>
+
+		<search-input v-model="searchQuery" />
+		</template>
+
+		<template #actions>
+
+		<div class="bookmark-controls">
 				<bookmark-add
 					v-if="!bookmark"
 					class="add"
@@ -22,11 +32,17 @@
 					:saving="creatingBookmark"
 				>
 					<template #activator="{ on }">
-						<d-icon class="toggle" @click="on" fa="lightbulb" v-tooltip.right="$t('create_bookmark')" />
+						<d-button rounded icon @click="on" v-tooltip.right="$t('create_bookmark')" outlined>
+							<d-icon fa="lightbulb" />
+						</d-button>
+						<!-- <d-icon rounded icon class="toggle" @click="on" fa="lightbulb" v-tooltip.right="$t('create_bookmark')" /> -->
 					</template>
 				</bookmark-add>
 
-				<d-icon class="saved" name="bookmark" v-else-if="bookmarkSaved" />
+				<d-button v-else-if="bookmarkSaved"  rounded icon outlined disabled>
+					<d-icon fa="bookmark" />
+				</d-button>
+				<!-- <d-icon class="saved" name="bookmark" v-else-if="bookmarkSaved" /> -->
 
 				<template v-else-if="bookmarkIsMine">
 					<d-icon class="save" @click="savePreset()" fa="lightbulb-on" v-tooltip.bottom="$t('update_bookmark')" />
@@ -52,15 +68,6 @@
 					v-tooltip.bottom="$t('reset_bookmark')"
 				/>
 			</div>
-		</template>
-
-		<template #actions:prepend>
-			<portal-target name="actions:prepend" />
-		</template>
-
-		<template #actions>
-			<search-input v-model="searchQuery" />
-
 			<d-dialog v-model="confirmDelete" v-if="selection.length > 0" @esc="confirmDelete = false">
 				<template #activator="{ on }">
 					<d-button
@@ -75,7 +82,7 @@
 					</d-button>
 				</template>
 
-				<d-card>
+				<v-card>
 					<d-card-title>{{ $tc('batch_delete_confirm', selection.length) }}</d-card-title>
 
 					<d-card-actions>
@@ -86,7 +93,7 @@
 							{{ $t('delete') }}
 						</d-button>
 					</d-card-actions>
-				</d-card>
+				</v-card>
 			</d-dialog>
 
 			<d-dialog
@@ -107,7 +114,7 @@
 					</d-button>
 				</template>
 
-				<d-card>
+				<v-card>
 					<d-card-title>{{ $tc('archive_confirm_count', selection.length) }}</d-card-title>
 
 					<d-card-actions>
@@ -118,7 +125,7 @@
 							{{ $t('archive') }}
 						</d-button>
 					</d-card-actions>
-				</d-card>
+				</v-card>
 			</d-dialog>
 
 			<d-button
@@ -224,7 +231,7 @@
 		</template>
 
 		<d-dialog v-if="deleteError" active>
-			<d-card>
+			<v-card>
 				<d-card-title>{{ $t('something_went_wrong') }}</d-card-title>
 				<d-card-text>
 					<d-error :error="deleteError" />
@@ -232,7 +239,7 @@
 				<d-card-actions>
 					<d-button @click="deleteError = null">{{ $t('done') }}</d-button>
 				</d-card-actions>
-			</d-card>
+			</v-card>
 		</d-dialog>
 	</private-view>
 </template>
@@ -609,7 +616,7 @@ export default defineComponent({
 	.save,
 	.saved,
 	.clear {
-		display: inline-block;
+		// display: inline-block;
 		margin-left: 8px;
 	}
 

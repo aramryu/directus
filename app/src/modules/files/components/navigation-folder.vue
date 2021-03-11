@@ -71,7 +71,7 @@
 		</d-menu>
 
 		<d-dialog v-model="renameActive" persistent @esc="renameActive = false">
-			<d-card>
+			<v-card>
 				<d-card-title>{{ $t('rename_folder') }}</d-card-title>
 				<d-card-text>
 					<d-input v-model="renameValue" autofocus @keyup.enter="renameSave" />
@@ -82,11 +82,11 @@
 						{{ $t('save') }}
 					</d-button>
 				</d-card-actions>
-			</d-card>
+			</v-card>
 		</d-dialog>
 
 		<d-dialog v-model="moveActive" persistent @esc="moveActive = false">
-			<d-card>
+			<v-card>
 				<d-card-title>{{ $t('move_to_folder') }}</d-card-title>
 				<d-card-text>
 					<folder-picker v-model="moveValue" :disabled-folders="[folder.id]" />
@@ -95,11 +95,11 @@
 					<d-button secondary @click="moveActive = false">{{ $t('cancel') }}</d-button>
 					<d-button @click="moveSave" :loading="moveSaving">{{ $t('save') }}</d-button>
 				</d-card-actions>
-			</d-card>
+			</v-card>
 		</d-dialog>
 
 		<d-dialog v-model="deleteActive" persistent @esc="deleteActive = false">
-			<d-card>
+			<v-card>
 				<d-card-title>{{ $t('delete_folder') }}</d-card-title>
 				<d-card-text>
 					<d-notice>
@@ -110,7 +110,7 @@
 					<d-button secondary @click="deleteActive = false">{{ $t('cancel') }}</d-button>
 					<d-button @click="deleteSave" :loading="deleteSaving">{{ $t('delete') }}</d-button>
 				</d-card-actions>
-			</d-card>
+			</v-card>
 		</d-dialog>
 	</div>
 </template>

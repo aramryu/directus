@@ -23,7 +23,7 @@
 
 			<div v-if="file.charset">
 				<dt>{{ $t('charset') }}</dt>
-				<dd>{{ charset }}</dd>
+				<dd>{{ file.charset }}</dd>
 			</div>
 
 			<div v-if="file.embed">

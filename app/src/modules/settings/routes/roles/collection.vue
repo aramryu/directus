@@ -9,8 +9,8 @@
 		</template>
 
 		<template #actions>
-			<d-button rounded icon :to="addNewLink" v-tooltip.bottom="$t('create_role')">
-				<d-icon name="plus-circle" />
+			<d-button rounded icon to="addNewLink" v-tooltip.bottom="$t('create_role')">
+				<d-icon fa="plus-circle" />
 			</d-button>
 		</template>
 
@@ -25,32 +25,63 @@
 		</template>
 
 		<div class="roles">
-			<d-table
+			<v-data-table
+				:items="roles"
+				:headers="tableHeaders"
+				item-key="id"
+				:loading="loading"
+				>
+			<!-- <d-table
 				:items="roles"
 				:headers="tableHeaders"
 				fixed-header
 				item-key="id"
 				:loading="loading"
 				@click:row="navigateToRole"
-			>
-				<template #item.icon="{ item }">
+			> -->
+				<template v-slot:body="{ items }">
+					<tbody>
+						<tr
+           		 		v-for="item in items"
+            			:key="item.id"
+						@click="navigateToRole(item)"
+          				>
+						  <td>
+							<d-icon class="icon" :name="item.icon" :class="{ public: item.public }" />
+						  </td>
+						  <td>
+								<span class="name" :class="{ public: item.public }">
+								{{ item.name }}
+								</span>
+						  </td>
+						  <td>
+							<value-null v-if="item.public" />
+						  </td>
+						  <td>
+							  	<span class="description">{{ item.description }}</span>
+						  </td>
+						</tr>
+					</tbody>
+				</template>
+				<!-- <template #item="{ item }">
 					<d-icon class="icon" :name="item.icon" :class="{ public: item.public }" />
-				</template>
+				</template> -->
 
-				<template #item.name="{ item }">
-					<span class="name" :class="{ public: item.public }">
+				<!-- <template #item="{ item }"> -->
+					<!-- <span class="name" :class="{ public: item.public }">
 						{{ item.name }}
-					</span>
-				</template>
-
-				<template #item.count="{ item }">
+					</span> -->
+				<!-- </template> -->
+<!--
+				<template #item="{ item }">
 					<value-null v-if="item.public" />
-				</template>
+				</template> -->
 
-				<template #item.description="{ item }">
+				<!-- <template #item="{ item }">
 					<span class="description">{{ item.description }}</span>
-				</template>
-			</d-table>
+				</template> -->
+			<!-- </d-table> -->
+			</v-data-table>
 		</div>
 		<router-view name="plus-circle" />
 	</private-view>

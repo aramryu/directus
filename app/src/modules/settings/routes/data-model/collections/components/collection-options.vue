@@ -16,7 +16,7 @@
 			</d-list>
 		</d-menu>
 		<d-dialog v-model="deleteActive" @esc="deleteActive = null">
-			<d-card>
+			<v-card>
 				<d-card-title>{{ $t('delete_collection_are_you_sure') }}</d-card-title>
 				<d-card-actions>
 					<d-button :disabled="deleting" secondary @click="deleteActive = null">
@@ -26,7 +26,7 @@
 						{{ $t('delete_collection') }}
 					</d-button>
 				</d-card-actions>
-			</d-card>
+			</v-card>
 		</d-dialog>
 	</div>
 </template>

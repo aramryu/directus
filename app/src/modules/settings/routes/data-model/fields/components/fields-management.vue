@@ -27,7 +27,7 @@
 					large
 					full-width
 				>
-					<d-icon name="plus-circle" />
+					<d-icon fa="plus-circle" />
 					{{ $t('create_field') }}
 				</d-button>
 			</template>

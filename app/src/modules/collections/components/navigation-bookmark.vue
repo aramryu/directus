@@ -30,7 +30,7 @@
 		</d-menu>
 
 		<d-dialog v-model="renameActive" persistent @esc="renameActive = false">
-			<d-card>
+			<v-card>
 				<d-card-title>{{ $t('rename_bookmark') }}</d-card-title>
 				<d-card-text>
 					<d-input v-model="renameValue" autofocus @keyup.enter="renameSave" />
@@ -41,11 +41,11 @@
 						{{ $t('save') }}
 					</d-button>
 				</d-card-actions>
-			</d-card>
+			</v-card>
 		</d-dialog>
 
 		<d-dialog v-model="deleteActive" persistent @esc="deleteActive = false">
-			<d-card>
+			<v-card>
 				<d-card-title>{{ $t('delete_bookmark_copy', { bookmark: bookmark.bookmark }) }}</d-card-title>
 				<d-card-actions>
 					<d-button secondary @click="deleteActive = false">{{ $t('cancel') }}</d-button>
@@ -53,7 +53,7 @@
 						{{ $t('delete') }}
 					</d-button>
 				</d-card-actions>
-			</d-card>
+			</v-card>
 		</d-dialog>
 	</d-list-item>
 </template>

@@ -61,57 +61,7 @@
 			</transition>
 		</portal>
 
-		<v-data-table
-			v-model="_selection"
-			v-if="loading || itemCount > 0"
-			:sort="tableSort"
-			:items="items"
-			:headers="tableHeaders"
-			:loading="loading"
-			:item-key="primaryKeyField.field"
-			show-select
-			hide-default-footer
-			:items-per-page="limit"
-			@update:sort="onSortChange"
-			@manual-sort="changeManualSort"
-			@click:row="onRowClick"
-		>
-
-			<template v-for="header in tableHeaders" v-slot:[`item.${header.value}`]="{ item }">
-				<render-display
-					:key="header.value"
-					:value="item[header.value]"
-					:display="header.field.display"
-					:options="header.field.displayOptions"
-					:interface="header.field.interface"
-					:interface-options="header.field.interfaceOptions"
-					:type="header.field.type"
-					:collection="collection"
-					:field="header.field.field"
-				/>
-			</template>
-
-			<template v-slot:footer>
-				<div class="footer">
-					<div class="pagination">
-						<d-pagination
-							v-if="totalPages > 1"
-							:length="totalPages"
-							:total-visible="7"
-							show-first-last
-							:value="page"
-							@input="toPage"
-						/>
-					</div>
-
-					<div v-if="loading === false && items.length >= 25" class="per-page">
-						<span>{{ $t('per_page') }}</span>
-						<d-select @input="limit = +$event" :value="`${limit}`" :items="['25', '50', '100', '250']" inline />
-					</div>
-				</div>
-			</template>
-		</v-data-table>
-		<!-- <d-table
+		<d-table
 			v-model="_selection"
 			v-if="loading || itemCount > 0"
 			class="table"
@@ -133,8 +83,8 @@
 			@click:row="onRowClick"
 			@update:sort="onSortChange"
 			@manual-sort="changeManualSort"
-		> -->
-			<!-- <template v-for="header in tableHeaders" v-slot:[`item.${header.value}`]="{ item }">
+		>
+			<template v-for="header in tableHeaders" v-slot:[`item.${header.value}`]="{ item }">
 				<render-display
 					:key="header.value"
 					:value="item[header.value]"
@@ -146,9 +96,9 @@
 					:collection="collection"
 					:field="header.field.field"
 				/>
-			</template> -->
+			</template>
 
-			<!-- <template #footer>
+			<template #footer>
 				<div class="footer">
 					<div class="pagination">
 						<d-pagination
@@ -167,7 +117,7 @@
 					</div>
 				</div>
 			</template>
-		</d-table> -->
+		</d-table>
 
 		<d-info v-else-if="error" type="danger" :title="$t('unexpected_error')" icon="error" center>
 			{{ $t('unexpected_error_copy') }}
@@ -365,9 +315,8 @@ export default defineComponent({
 			activeFilterCount,
 			refresh,
 			resetPresetAndRefresh,
-			availableFields
+			availableFields,
 		};
-
 
 		async function resetPresetAndRefresh() {
 			await props?.resetPreset?.();
@@ -560,8 +509,8 @@ export default defineComponent({
 				onSortChange,
 				activeFields,
 				getFieldDisplay,
-				toggleCheckbox
 			};
+
 			function onRowClick(item: Item) {
 				if (props.readonly === true) return;
 
@@ -585,14 +534,7 @@ export default defineComponent({
 
 				sort.value = sortString;
 			}
-			function toggleCheckbox(item: Item) {
-				if (_selection.value?.includes(item[primaryKeyField.value.field]))
-				{
-					_selection.value.splice(item[primaryKeyField.value.field].index, 1);
-				} else {
-					_selection.value.push(item[primaryKeyField.value.field]);
-				}
-			};
+
 			function getFieldDisplay(fieldKey: string) {
 				const field = fieldsInCollection.value.find((field) => field.field === fieldKey);
 
@@ -640,7 +582,7 @@ export default defineComponent({
 	align-items: center;
 	justify-content: space-between;
 	width: 100%;
-	padding: 16px var(--content-padding);
+	padding: 32px var(--content-padding);
 
 	.pagination {
 		display: inline-block;

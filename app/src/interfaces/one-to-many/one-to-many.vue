@@ -3,6 +3,21 @@
 		{{ $t('relationship_not_setup') }}
 	</d-notice>
 	<div class="one-to-many" v-else>
+		<v-toolbar v-if="!disabled" dense color="primary">
+			<!-- <d-button class="new" @click="currentlyEditing = '+'">{{ $t('create_new') }}</d-button> -->
+			<!-- <d-button class="existing" @click="selectModalActive = true"> -->
+				<!-- {{ $t('add_existing') }} -->
+			<!-- </d-button> -->
+			<v-btn color="primary" @click="currentlyEditing = '+'">
+				<fa icon="plus-circle" pull="left" />
+				{{ $t('create_new') }}
+			</v-btn>
+			<v-btn color="primary" @click="selectModalActive = true">
+				<fa icon="window-restore" pull="left" />
+				{{ $t('add_existing') }}
+			</v-btn>
+		</v-toolbar>
+
 		<d-table
 			:loading="loading"
 			:items="sortedItems || items"
@@ -35,12 +50,9 @@
 			</template>
 		</d-table>
 
-		<div class="actions" v-if="!disabled">
-			<d-button class="new" @click="currentlyEditing = '+'">{{ $t('create_new') }}</d-button>
-			<d-button class="existing" @click="selectModalActive = true">
-				{{ $t('add_existing') }}
-			</d-button>
-		</div>
+		<!-- <div class="actions" v-if="!disabled"> -->
+
+		<!-- </div> -->
 
 		<drawer-item
 			v-if="!disabled"

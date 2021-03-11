@@ -1,6 +1,9 @@
 <template>
-	<img v-if="src" :src="src" role="presentation" :alt="value && value.title" :class="{ circle }" />
-	<value-null v-else />
+	<v-flex>
+		<v-img v-if="src" :src="src" :alt="value && value.title" contain width="200px" />
+		<!-- <img v-if="src" :src="src" role="presentation" :alt="value && value.title" :class="{ circle }" contain /> -->
+		<value-null v-else />
+	</v-flex>
 </template>
 
 <script lang="ts">
@@ -30,8 +33,8 @@ export default defineComponent({
 	setup(props) {
 		const src = computed(() => {
 			if (props.value === null) return null;
-			const url = getRootPath() + `assets/${props.value.id}?key=system-small-cover`;
-
+			// const url = getRootPath() + `assets/${props.value.id}?key=system-small-cover`;
+			const url = getRootPath() + `assets/${props.value.id}?key=system-medium-contain`;
 			return addTokenToURL(url);
 		});
 

@@ -47,7 +47,7 @@
 		<router-view name="permissionsDetail" :role-key="role" :permission-key="permission" @refresh="refreshPermission" />
 
 		<d-dialog @toggle="resetActive = false" :active="!!resetActive" @esc="resetActive = false">
-			<d-card>
+			<v-card>
 				<d-card-title>
 					{{ $t('reset_system_permissions_copy') }}
 				</d-card-title>
@@ -57,7 +57,7 @@
 						{{ $t('reset') }}
 					</d-button>
 				</d-card-actions>
-			</d-card>
+			</v-card>
 		</d-dialog>
 	</div>
 </template>

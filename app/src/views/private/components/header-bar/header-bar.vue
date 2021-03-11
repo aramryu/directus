@@ -1,46 +1,47 @@
 <template>
 	<v-app-bar app fixed clipped-right>
 		<header class="header-bar" ref="headerEl" :class="{ collapsed: collapsed }">
-				<v-btn
-					icon
-					@click="$emit('primary')">
-					<d-icon :fa="primaryActionIcon" />
-				</v-btn>
-				<div v-if="$scopedSlots['title-outer:prepend']">
-					<slot name="title-outer:prepend" />
-				</div>
+			<v-btn
+				icon
+				@click="$emit('primary')">
+				<d-icon :fa="primaryActionIcon" />
+			</v-btn>
+			<div v-if="$scopedSlots['title-outer:prepend']">
+				<slot name="title-outer:prepend" />
+			</div>
 
-				<v-col class="flex-grow-3" :class="{ full: !$scopedSlots['title-outer:append'] }">
-						<!-- <div class="headline"> -->
-							<slot name="headline" />
-						<!-- </div> -->
+			<v-col class="flex-grow-5" :class="{ full: !$scopedSlots['title-outer:append'] }">
+					<!-- <div class="headline"> -->
+						<slot name="headline" />
+					<!-- </div> -->
 
-						<!-- <div class="title"> -->
-					<slot name="title">
-						<slot name="title:prepend" />
-							<!-- <h1>{{ title }}</h1> -->
-						<slot name="title:append" />
-					</slot>
-						<!-- </div> -->
+					<!-- <div class="title"> -->
+				<slot name="title">
+					<slot name="title:prepend" />
+						<!-- <h1>{{ title }}</h1> -->
+					<slot name="title:append" />
+				</slot>
+					<!-- </div> -->
 
-				</v-col>
+			</v-col>
 
-				<v-col class="flex-shrink-2">
-						<slot name="title-outer:append" />
-				</v-col>
+			<v-col class="flex-shrink-4">
+				<slot name="title-outer:append" />
+			</v-col>
 
-					<!-- <div class="spacer" /> -->
-				<v-spacer></v-spacer>
+				<!-- <div class="spacer" /> -->
+			<v-spacer></v-spacer>
 
-				<slot name="actions:prepend" />
+			<slot name="actions:prepend" />
 
-				<v-col class="flex-grow-3">
-					<header-bar-actions :show-sidebar-toggle="showSidebarToggle" @toggle:sidebar="$emit('toggle:sidebar')">
-						<slot name="actions" />
-					</header-bar-actions>
+			<v-col class="flex-grow-3">
 
-				<slot name="actions:append" />
-				</v-col>
+				<header-bar-actions :show-sidebar-toggle="showSidebarToggle" @toggle:sidebar="$emit('toggle:sidebar')">
+					<slot name="actions" />
+				</header-bar-actions>
+			</v-col>
+
+			<slot name="actions:append" />
 		</header>
 	</v-app-bar>
 </template>
@@ -131,18 +132,18 @@ export default defineComponent({
 		// margin-left: 16px;
 		overflow: hidden;
 
-		@include breakpoint(small) {
-			max-width: 70%;
-		}
+		// @include breakpoint(small) {
+		// 	max-width: 70%;
+		// }
 
 		&.full {
 			// margin-right: 12px;
 			padding-right: 0;
 
-			@include breakpoint(small) {
-				margin-right: 20px;
-				padding-right: 20px;
-			}
+			// @include breakpoint(small) {
+			// 	margin-right: 20px;
+			// 	padding-right: 20px;
+			// }
 		}
 
 		.headline {
@@ -170,7 +171,7 @@ export default defineComponent({
 				width: 100%;
 				overflow: hidden;
 				white-space: nowrap;
-				text-overflow: ellipsis;
+				// text-overflow: ellipsis;
 			}
 		}
 	}
@@ -200,7 +201,7 @@ export default defineComponent({
 	}
 
 	@include breakpoint(small) {
-		margin: 24px 0;
+		// margin: 24px 0;
 		// padding: 0 32px;
 	}
 }

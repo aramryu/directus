@@ -1,6 +1,6 @@
 <template>
 	<d-dialog :active="active" @toggle="$emit('toggle', false)" @esc="$emit('toggle', false)">
-		<d-card v-if="file">
+		<v-card v-if="file">
 			<d-card-title>{{ $t('replace_file') }}</d-card-title>
 			<d-card-text>
 				<d-upload :preset="preset" :file-id="file.id" @input="uploaded" from-url />
@@ -8,7 +8,7 @@
 			<d-card-actions>
 				<d-button secondary @click="$emit('toggle', false)">{{ $t('done') }}</d-button>
 			</d-card-actions>
-		</d-card>
+		</v-card>
 	</d-dialog>
 </template>
 

@@ -77,7 +77,7 @@
 					<d-icon v-if="hidden" fa="eye-slash" class="hidden-icon" v-tooltip="$t('hidden_field')" small />
 					<d-menu show-arrow placement="bottom-end">
 						<template #activator="{ toggle }">
-							<d-icon @click.stop="toggle" fa="chevron-down" />
+							<d-icon @click.stop="toggle" fa="chevron-square-down" />
 						</template>
 
 						<d-list>
@@ -142,7 +142,7 @@
 		</d-input>
 
 		<d-dialog v-model="duplicateActive" @esc="duplicateActive = false">
-			<d-card class="duplicate">
+			<v-card class="duplicate">
 				<d-card-title>{{ $t('duplicate_where_to') }}</d-card-title>
 				<d-card-text>
 					<div class="form-grid">
@@ -165,17 +165,17 @@
 						{{ $t('duplicate') }}
 					</d-button>
 				</d-card-actions>
-			</d-card>
+			</v-card>
 		</d-dialog>
 
 		<d-dialog v-model="deleteActive" @esc="deleteActive = false">
-			<d-card>
+			<v-card>
 				<d-card-title>{{ $t('delete_field_are_you_sure', { field: field.field }) }}</d-card-title>
 				<d-card-actions>
 					<d-button @click="deleteActive = false" secondary>{{ $t('cancel') }}</d-button>
 					<d-button :loading="deleting" @click="deleteField" class="delete">{{ $t('delete') }}</d-button>
 				</d-card-actions>
-			</d-card>
+			</v-card>
 		</d-dialog>
 	</div>
 </template>

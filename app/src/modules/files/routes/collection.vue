@@ -14,8 +14,9 @@
 			<portal-target name="actions:prepend" />
 		</template>
 
+
 		<template #actions>
-			<search-input v-model="searchQuery" />
+		<search-input v-model="searchQuery" />
 
 			<add-folder :parent="queryFilters && queryFilters.folder" :disabled="createFolderAllowed !== true" />
 
@@ -26,7 +27,7 @@
 					</d-button>
 				</template>
 
-				<d-card>
+				<v-card>
 					<d-card-title>{{ $t('move_to_folder') }}</d-card-title>
 
 					<d-card-text>
@@ -41,7 +42,7 @@
 							{{ $t('move') }}
 						</d-button>
 					</d-card-actions>
-				</d-card>
+				</v-card>
 			</d-dialog>
 
 			<d-dialog v-model="confirmDelete" v-if="selection.length > 0" @esc="confirmDelete = false">
@@ -58,7 +59,7 @@
 					</d-button>
 				</template>
 
-				<d-card>
+				<v-card>
 					<d-card-title>{{ $tc('batch_delete_confirm', selection.length) }}</d-card-title>
 
 					<d-card-actions>
@@ -69,7 +70,7 @@
 							{{ $t('delete') }}
 						</d-button>
 					</d-card-actions>
-				</d-card>
+				</v-card>
 			</d-dialog>
 
 			<d-button

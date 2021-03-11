@@ -37,8 +37,14 @@
 					<template v-for="(_, scopedSlotName) in $scopedSlots" v-slot:[scopedSlotName]="slotData">
 						<slot :name="scopedSlotName" v-bind="slotData" />
 					</template>
+
+					<template v-slot:actions:append>
+						<v-btn icon @click.stop="sidebarOpen = !sidebarOpen">
+							<fa icon="bars" />
+						</v-btn>
+					</template>
 				</header-bar>
-				<v-navigation-drawer clipped app right>
+				<v-navigation-drawer clipped app right v-model="sidebarOpen">
 					<template v-slot:append>
 						<notifications-preview v-model="notificationsPreviewActive" :sidebar-open="sidebarOpen" />
 					</template>
@@ -64,8 +70,8 @@
 			@click="openSidebar"
 		> -->
 
-		<d-overlay class="nav-overlay" :active="navOpen" @click="navOpen = false" />
-		<d-overlay class="sidebar-overlay" :active="sidebarOpen" @click="sidebarOpen = false" />
+		<!-- <d-overlay class="nav-overlay" :active="navOpen" @click="navOpen = false" /> -->
+		<!-- <d-overlay class="sidebar-overlay" :active="sidebarOpen" @click="sidebarOpen = false" /> -->
 
 		<notifications-group v-if="notificationsPreviewActive === false" :dense="sidebarOpen === false" />
 		<notification-dialogs />

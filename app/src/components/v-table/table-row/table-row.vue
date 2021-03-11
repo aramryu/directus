@@ -9,7 +9,7 @@
 		}"
 	>
 		<td v-if="showManualSort" class="manual cell">
-			<d-icon name="grip-lines" class="drag-handle" :class="{ 'sorted-manually': sortedManually }" />
+			<d-icon fa="grip-lines" class="drag-handle" :class="{ 'sorted-manually': sortedManually }" />
 		</td>
 		<td v-if="showSelect" class="select cell" @click.stop>
 			<d-checkbox :inputValue="isSelected" @change="toggleSelect" />

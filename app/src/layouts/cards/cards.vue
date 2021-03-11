@@ -508,7 +508,8 @@ export default defineComponent({
 	position: relative;
 	display: none;
 	margin: 0 8px;
-	color: var(--foreground-subdued);
+	// color: var(--foreground-subdued);
+	color: var(--primary);
 	white-space: nowrap;
 
 	@include breakpoint(small) {

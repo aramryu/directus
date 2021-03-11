@@ -60,9 +60,9 @@ export default defineComponent({
 	border: 2px solid var(--border-subdued);
 	border-radius: var(--border-radius);
 
-	& + .row {
-		margin-top: 8px;
-	}
+	// & + .row {
+	// 	margin-top: 8px;
+	// }
 
 	.repeater {
 		.row {
