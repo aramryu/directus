@@ -11,7 +11,7 @@
 				<nav v-if="$slots.sidebar" class="sidebar">
 					<slot name="sidebar" />
 				</nav>
-				<v-card-text>
+				<v-card-text style="max-height: 80%;">
 				<main ref="mainEl" class="main">
 					<header-bar :title="title" @primary="$emit('cancel')" primary-action-icon="times-circle">
 						<template #headline>

@@ -1,5 +1,20 @@
 <template>
 	<value-null v-if="!relatedCollection" />
+	<span v-else-if="field.includes('_languages')">
+		<v-chip label dark small v-for="n in removeDuplicate(value)" :key="`flag` + n.id">
+			<v-flag
+				v-if="n && n.languages_id != null"
+				:flag="
+					n.languages_id.ln_flag != null ? n.languages_id.ln_flag : undefined
+				"
+				:name="n.languages_id.ln_name"
+				size="normal"
+			/>
+			</v-chip>
+	</span>
+	<span v-else-if="field.includes('_platforms')">
+		<v-platform :array="value"></v-platform>
+	</span>
 	<d-menu
 		v-else-if="['o2m', 'm2m', 'm2a', 'translations'].includes(type.toLowerCase())"
 		show-arrow
@@ -11,16 +26,16 @@
 			</span>
 		</template>
 
-		<d-list>
-			<d-list-item v-for="item in value" :key="item[primaryKeyField]" :to="getLinkForItem(item)">
-				<d-list-item-content>
+		<v-list dense>
+			<v-list-item v-for="item in value" :key="item[primaryKeyField]" :to="getLinkForItem(item)">
+				<v-list-item-content>
 					<render-template :template="_template" :item="item" :collection="relatedCollection" />
-				</d-list-item-content>
-				<d-list-item-icon>
+				</v-list-item-content>
+				<v-list-item-action>
 					<d-icon name="launch" small />
-				</d-list-item-icon>
-			</d-list-item>
-		</d-list>
+				</v-list-item-action>
+			</v-list-item>
+		</v-list>
 	</d-menu>
 	<render-template v-else :template="_template" :item="value" :collection="relatedCollection" />
 </template>
@@ -79,6 +94,21 @@ export default defineComponent({
 			return `/collections/${relatedCollection.value}/${primaryKey}`;
 		}
 	},
+	methods: {
+		removeDuplicate(its: Array<Object>) {
+			const tarray : Array<Object> = [];
+			const farray : Array<String> = [];
+			its.forEach(s => {
+				let secondValue: string = (<any>s)['languages_id']['ln_flag'];
+				if (!farray.includes(secondValue))
+				{
+					farray.push(secondValue);
+					tarray.push(s);
+				}
+			});
+			return tarray;
+		}
+	}
 });
 </script>
 

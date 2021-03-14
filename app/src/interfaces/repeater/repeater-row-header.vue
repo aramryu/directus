@@ -1,13 +1,11 @@
 <template>
-	<v-col class="flex-shrink-4">
-		<div :class="{ subdued: !displayValue }" class="header type-text" @click="toggle">
-			<d-icon v-if="disabled === false" fa="grip-lines" class="drag-handle" />
-			{{ displayValue ? displayValue : placeholder }}
-			<!-- <span class="spacer" /> -->
-			<v-spacer></v-spacer>
-			<d-icon v-if="disabled === false" fa="times-circle" class="delete" @click.stop.prevent="$emit('delete')" />
-		</div>
-	</v-col>
+	<div :class="{ subdued: !displayValue }" class="header type-text" @click="toggle">
+		<d-icon v-if="disabled === false" fa="grip-lines" class="drag-handle" />
+		{{ displayValue ? displayValue : placeholder }}
+		<!-- <span class="spacer" /> -->
+		<v-spacer></v-spacer>
+		<d-icon v-if="disabled === false" fa="trash" class="delete" @click.stop.prevent="$emit('delete')" />
+	</div>
 </template>
 
 <script lang="ts">
@@ -90,8 +88,7 @@ export default defineComponent({
 	}
 }
 .delete {
-	margin-left: 5px;
-	color: var(--secondary);
+	color: var(--accent);
 }
 .delete:hover {
 	--v-icon-color: var(--danger);

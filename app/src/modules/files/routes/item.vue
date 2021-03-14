@@ -3,7 +3,7 @@
 	<private-view v-else :title="loading || !item ? $t('loading') : item.title">
 		<template #title-outer:prepend>
 			<d-button class="header-icon" rounded icon secondary exact :to="to">
-				<d-icon name="arrow_back" />
+				<d-icon fa="chevron-double-left" />
 			</d-button>
 		</template>
 
@@ -73,7 +73,7 @@
 			</d-dialog>
 
 			<d-button rounded icon @click="downloadFile" class="download" v-tooltip.bottom="$t('download')">
-				<d-icon name="save" />
+				<d-icon fa="cloud-download" />
 			</d-button>
 
 			<d-button

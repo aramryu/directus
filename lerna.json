@@ -1,6 +1,7 @@
 {
   "packages": [
     "api",
+		"app",
     "packages/*"
   ],
   "version": "9.0.0-rc.44",

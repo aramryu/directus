@@ -4,7 +4,7 @@
 
 		<d-fancy-select class="select" :items="selectItems" v-model="fieldData.meta.interface" />
 
-		<d-notice class="not-found" type="danger" v-if="fieldData.meta.interface && !selectedInterface">
+		<d-notice class="not-found" type="error" v-if="fieldData.meta.interface && !selectedInterface">
 			{{ $t('interface_not_found', { interface: fieldData.meta.interface }) }}
 			<div class="spacer" />
 			<button @click="fieldData.meta.interface = null">{{ $t('reset_interface') }}</button>

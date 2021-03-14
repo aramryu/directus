@@ -373,6 +373,7 @@ export default defineComponent({
 
 			emit('manual-sort', { item, to });
 		}
+
 	},
 });
 </script>

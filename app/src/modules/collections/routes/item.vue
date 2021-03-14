@@ -144,18 +144,18 @@
 		<template #navigation>
 			<collections-navigation />
 		</template>
-
-		<d-form
-			ref="form"
-			:disabled="isNew ? false : updateAllowed === false"
-			:loading="loading"
-			:initial-values="item"
-			:fields="fields"
-			:primary-key="primaryKey || '+'"
-			:validation-errors="validationErrors"
-			v-model="edits"
-		/>
-
+		<v-container fluid>
+			<d-form
+				ref="form"
+				:disabled="isNew ? false : updateAllowed === false"
+				:loading="loading"
+				:initial-values="item"
+				:fields="fields"
+				:primary-key="primaryKey || '+'"
+				:validation-errors="validationErrors"
+				v-model="edits"
+			/>
+		</v-container>
 		<d-dialog v-model="confirmLeave" @esc="confirmLeave = false">
 			<v-card>
 				<d-card-title>{{ $t('unsaved_changes') }}</d-card-title>

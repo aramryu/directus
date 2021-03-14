@@ -169,7 +169,7 @@
 			</template>
 		</d-table> -->
 
-		<d-info v-else-if="error" type="danger" :title="$t('unexpected_error')" icon="error" center>
+		<d-info v-else-if="error" type="error" :title="$t('unexpected_error')" icon="error" center>
 			{{ $t('unexpected_error_copy') }}
 
 			<template #append>

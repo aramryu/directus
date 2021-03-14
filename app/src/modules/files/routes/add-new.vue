@@ -2,7 +2,7 @@
 	<d-dialog :active="true" @toggle="close" @esc="close">
 		<v-card>
 			<v-card-title>{{ $t('add_file') }}</v-card-title>
-			<v-card-text>
+			<v-card-text style="max-height: 80%;">>
 				<d-upload :preset="preset" multiple @input="close" from-url />
 			</v-card-text>
 			<v-card-actions>

@@ -1,5 +1,8 @@
 <template>
 	<value-null v-if="value === null || value === undefined" />
+
+	<v-flag v-else-if="field.includes('_flag')" :flag="value" size="normal"></v-flag>
+
 	<d-text-overflow v-else-if="displayInfo === null" class="display" :text="value" />
 	<d-text-overflow
 		v-else-if="typeof displayInfo.handler === 'function'"

@@ -19,7 +19,7 @@
 				<div class="content" @click="changeSort(header)">
 					<span v-show="header.width > 90 || header.width === null">
 						<slot :name="`header.${header.value}`" :header="header">
-							{{ header.text }}
+							{{ formatField(header.text) }}
 						</slot>
 					</span>
 					<d-icon
@@ -49,6 +49,7 @@ import { defineComponent, ref, PropType } from '@vue/composition-api';
 import useEventListener from '@/composables/use-event-listener';
 import { Header, Sort } from '../types';
 import { throttle, clone } from 'lodash';
+import { formatFieldName } from '@/utils/format-field-name';
 
 export default defineComponent({
 	props: {
@@ -229,6 +230,12 @@ export default defineComponent({
 			}
 		}
 	},
+	methods: {
+		formatField(title: string) {
+			return formatFieldName(title);
+		}
+	}
+
 });
 </script>
 

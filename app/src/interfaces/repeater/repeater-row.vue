@@ -1,5 +1,8 @@
 <template>
 	<d-item class="row" v-slot:default="{ active, toggle }" :active="initialActive" :watch="false">
+<v-expansion-panels>
+		<v-expansion-panel>
+			<v-expansion-panel-header>
 		<repeater-row-header
 			:template="template"
 			:value="value"
@@ -9,11 +12,16 @@
 			:disabled="disabled"
 			:placeholder="headerPlaceholder"
 		/>
+		</v-expansion-panel-header>
+		<v-expansion-panel-content>
 		<transition-expand>
-			<div v-if="active">
+			<!-- <div v-if="active"> -->
 				<repeater-row-form :disabled="disabled" :fields="fields" :value="value" @input="$emit('input', $event)" />
-			</div>
+			<!-- </div> -->
 		</transition-expand>
+		</v-expansion-panel-content>
+		</v-expansion-panel>
+	</v-expansion-panels>
 	</d-item>
 </template>
 

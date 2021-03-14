@@ -1,5 +1,5 @@
 <template>
-	<d-dialog :active="active" @toggle="$listeners.toggle" persistent @esc="cancel" width="60%">
+	<d-dialog :active="active" @toggle="$listeners.toggle" persistent @esc="cancel" >
 		<template #activator="slotBinding">
 			<slot name="activator" v-bind="slotBinding" />
 		</template>
@@ -8,7 +8,7 @@
 		<v-card>
 			<v-card-title>{{ $t('create_bookmark') }}</v-card-title>
 
-			<v-card-text>
+			<v-card-text style="max-height: 80%;">
 				<d-input
 					@keyup.enter="$emit('save', bookmarkName)"
 					autofocus
@@ -19,18 +19,19 @@
 
 			<v-card-actions>
 				<v-spacer></v-spacer>
-				<d-button @click="cancel" secondary>
+				<v-btn @click="cancel" color="secondary">
 					<fa icon="times" pull="left" />
 					{{ $t('cancel') }}
-				</d-button>
-				<d-button
+				</v-btn>
+				<v-btn
 				:disabled="bookmarkName === null || bookmarkName.length === 0"
 					@click="$emit('save', bookmarkName)"
 					:loading="saving"
+					color="secondary"
 				>
-					<fa fa="save" pull="left" />
+					<fa icon="save" pull="left" />
 					{{ $t('save') }}
-				</d-button>
+				</v-btn>
 			</v-card-actions>
 		<!-- </v-card> -->
 		</v-card>

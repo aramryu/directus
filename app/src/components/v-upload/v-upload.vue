@@ -92,7 +92,7 @@
         >
           <v-card>
             <v-card-title>{{ $t('import_from_url') }}</v-card-title>
-            <v-card-text>
+            <v-card-text style="max-height: 80%;">
               <d-input
                 :placeholder="$t('url')"
                 v-model="url"

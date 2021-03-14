@@ -41,6 +41,11 @@ import DTextarea from './v-textarea';
 import DTextOverflow from './v-text-overflow.vue';
 import DUpload from './v-upload';
 
+import VFlag from './v-flag';
+Vue.component('v-flag', VFlag);
+import VPlatform from './v-platform';
+Vue.component('v-platform', VPlatform);
+
 Vue.component('d-avatar', DAvatar);
 Vue.component('d-badge', DBadge);
 Vue.component('d-breadcrumb', DBreadcrumb);

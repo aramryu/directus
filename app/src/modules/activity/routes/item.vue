@@ -3,7 +3,7 @@
 		<d-progress-circular indeterminate v-if="loading" />
 
 		<div class="content" v-else-if="error">
-			<d-notice type="danger">
+			<d-notice type="error">
 				{{ error }}
 			</d-notice>
 		</div>

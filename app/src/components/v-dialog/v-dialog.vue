@@ -3,13 +3,9 @@
 		<slot name="activator" v-bind="{ on: () => (_active = true) }" />
 
 		<portal to="dialog-outlet">
-			<div v-if="_active"  :class="[className, placement]" :key="id">
-				<!-- <d-overlay active absolute @click="emitToggle" /> -->
-				<v-dialog v-model="active" scrollable max-height="80%" max-width="80%">
-					<!-- <v-card flat outlined> -->
+			<div v-if="_active" class="container" :class="[className, placement]" :key="id">
+				<d-overlay active absolute @click="emitToggle" />
 					<slot />
-					<!-- </v-card> -->
-				</v-dialog>
 			</div>
 		</portal>
 	</div>
@@ -100,8 +96,8 @@ export default defineComponent({
 	left: 0;
 	z-index: 500;
 	display: flex;
-	// width: 100%;
-	// height: 100%;
+	width: 100%;
+	height: 100%;
 
 	::v-deep > * {
 		z-index: 2;

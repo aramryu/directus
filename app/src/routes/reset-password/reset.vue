@@ -10,7 +10,7 @@
 			:disabled="done"
 		/>
 		<d-notice type="success" v-if="done">{{ $t('password_reset_successful') }}</d-notice>
-		<d-notice type="danger" v-if="error">
+		<d-notice type="error" v-if="error">
 			{{ errorFormatted }}
 		</d-notice>
 		<d-button v-if="!done" type="submit" :loading="resetting" large>{{ $t('reset') }}</d-button>

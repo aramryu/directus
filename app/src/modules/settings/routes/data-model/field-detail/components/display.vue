@@ -4,7 +4,7 @@
 
 		<d-fancy-select class="select" :items="selectItems" v-model="fieldData.meta.display" />
 
-		<d-notice class="not-found" type="danger" v-if="fieldData.meta.display && !selectedDisplay">
+		<d-notice class="not-found" type="error" v-if="fieldData.meta.display && !selectedDisplay">
 			{{ $t('display_not_found', { display: fieldData.meta.display }) }}
 			<div class="spacer" />
 			<button @click="fieldData.meta.display = null">{{ $t('reset_display') }}</button>

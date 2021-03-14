@@ -28,6 +28,8 @@ import { registerInterfaces } from './interfaces/register';
 import { loadModules } from './modules/register';
 import { registerLayouts } from './layouts/register';
 import { registerDisplays } from './displays/register';
+import { countryFlag } from 'vue-country-flag';
+Vue.component('country-flag', countryFlag);
 
 import App from './app.vue';
 import vuetify from './plugins/vuetify';

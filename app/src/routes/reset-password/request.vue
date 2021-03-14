@@ -2,7 +2,7 @@
 	<form @submit.prevent="onSubmit">
 		<d-input autofocus autocomplete="username" type="email" v-model="email" :placeholder="$t('email')" />
 		<d-notice type="success" v-if="done">{{ $t('password_reset_sent') }}</d-notice>
-		<d-notice type="danger" v-if="error">
+		<d-notice type="error" v-if="error">
 			{{ errorFormatted }}
 		</d-notice>
 		<div class="buttons">

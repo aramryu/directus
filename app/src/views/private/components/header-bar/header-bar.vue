@@ -1,5 +1,5 @@
 <template>
-	<v-app-bar app fixed clipped-right>
+	<v-app-bar app dense fixed clipped-right>
 		<header class="header-bar" ref="headerEl" :class="{ collapsed: collapsed }">
 			<v-btn
 				icon

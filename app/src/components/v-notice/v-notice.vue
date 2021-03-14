@@ -15,8 +15,9 @@ import { defineComponent, computed, PropType } from '@vue/composition-api';
 export default defineComponent({
 	props: {
 		type: {
-			type: String as PropType<'normal' | 'info' | 'success' | 'warning' | 'danger'>,
-			default: 'normal',
+			// type: String as PropType<'normal' | 'info' | 'success' | 'warning' | 'danger'>,
+			type: String as PropType< 'info' | 'success' | 'warning' | 'error'>,
+			default: 'info',
 		},
 		icon: {
 			type: [String, Boolean],

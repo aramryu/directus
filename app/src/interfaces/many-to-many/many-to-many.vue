@@ -3,6 +3,16 @@
 		{{ $t('relationship_not_setup') }}
 	</d-notice>
 	<div class="many-to-many" v-else>
+		<v-toolbar v-if="!disabled" dense color="primary">
+			<v-btn color="primary" @click="editModalActive = true">
+				<fa icon="plus" pull="left"/>
+				{{ $t('create_new') }}
+			</v-btn>
+			<v-btn color="primary" @click="selectModalActive = true">
+				<fa icon="folder-tree" pull="left" />
+				{{ $t('add_existing') }}
+			</v-btn>
+		</v-toolbar>
 		<d-table
 			:loading="loading"
 			:items="sortedItems || items"
@@ -31,16 +41,20 @@
 			</template>
 
 			<template #item-append="{ item }" v-show="!disabled">
-				<d-icon fa="times" v-tooltip="$t('deselect')" class="deselect" @click.stop="deleteItem(item)" />
+				<d-icon fa="times-circle" v-tooltip="$t('deselect')" class="deselect" @click.stop="deleteItem(item)" />
 			</template>
 		</d-table>
 
-		<div class="actions" v-if="!disabled">
-			<d-button class="new" @click="editModalActive = true">{{ $t('create_new') }}</d-button>
+		<!-- <div class="actions" v-if="!disabled">
+			<d-button class="new" @click="editModalActive = true">
+				<fa icon="plus" pull="left"/>
+				{{ $t('create_new') }}
+			</d-button>
 			<d-button class="existing" @click="selectModalActive = true">
+				<fa icon="folder-tree" pull="left" />
 				{{ $t('add_existing') }}
 			</d-button>
-		</div>
+		</div> -->
 
 		<drawer-item
 			v-if="!disabled"

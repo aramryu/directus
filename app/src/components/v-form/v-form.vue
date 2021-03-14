@@ -1,6 +1,6 @@
 <template>
 	<div class="v-form" ref="el" :class="gridClass">
-		<d-notice type="danger" v-if="unknownValidationErrors.length > 0" class="full">
+		<d-notice type="error" v-if="unknownValidationErrors.length > 0" class="full">
 			<div>
 				<p>{{ $t('unknown_validation_errors') }}</p>
 				<ul>
