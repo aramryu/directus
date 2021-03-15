@@ -216,7 +216,7 @@ export default defineComponent({
 			background-color: var(--background-normal);
 
 			&-content {
-				height: calc(100% - 64px);
+				height: calc(100% - 44px);
 				overflow-x: hidden;
 				overflow-y: auto;
 			}

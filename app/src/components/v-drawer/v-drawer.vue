@@ -5,7 +5,7 @@
 		</template>
 
 		<!-- <article class="v-drawer"> -->
-		<v-card>
+		<v-card flat>
 			<div class="content">
 				<d-overlay v-if="$slots.sidebar" absolute @click="sidebarActive = false" />
 				<nav v-if="$slots.sidebar" class="sidebar">

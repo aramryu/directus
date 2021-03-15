@@ -44,7 +44,7 @@ module.exports = {
 				plugins: [require('autoprefixer')()],
 			},
 			sass: {
-				prependData: '@import "~@/styles/main.scss"',
+				additionalData: '@import "~@/styles/main.scss"',
 			}
 		},
 	},

@@ -15,3 +15,6 @@ dist
 .history
 /.idea/
 app/public/img/docs/*
+app/node_modules
+api/node_modules
+packages/create-directus-project/node_modules

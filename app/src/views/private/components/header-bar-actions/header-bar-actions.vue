@@ -60,9 +60,9 @@ export default defineComponent({
 	display: flex;
 	background-color: transparent;
 
-	.gradient-wrapper {
-		display: contents;
-	}
+	// .gradient-wrapper {
+	// 	display: contents;
+	// }
 
 	.expand {
 		--v-icon-color: var(--foreground-normal);

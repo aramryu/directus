@@ -1,8 +1,5 @@
 import Vue from 'vue';
 import Vuetify from 'vuetify/lib/framework';
-import {
-	Ripple
-} from "vuetify/lib/directives";
 import "@fortawesome/fontawesome-pro/css/all.css";
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon, FontAwesomeLayers, FontAwesomeLayersText } from '@fortawesome/vue-fontawesome';
@@ -192,8 +189,6 @@ import {
 	faAmazon,
 	faKickstarter,
 } from '@fortawesome/free-brands-svg-icons';
-
-// import preset from 'vue-cli-plugin-vuetify-preset-reply/preset';
 
 Vue.component('fa', FontAwesomeIcon);
 Vue.component('fa-layer', FontAwesomeLayers);
@@ -385,13 +380,9 @@ library.add(
 	faKickstarter
 );
 
-Vue.use(Vuetify, {directives: {
-	Ripple
-}
-});
+Vue.use(Vuetify);
 
 export default new Vuetify({
-	// preset,
 	icons: {
 		iconfont: 'fa',
 	},

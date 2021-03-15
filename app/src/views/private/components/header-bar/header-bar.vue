@@ -104,9 +104,9 @@ export default defineComponent({
 	justify-content: flex-start;
 	width: 100%;
 	margin: 0;
-	// padding: 0 5px;
-	box-shadow: 0;
-	transition: box-shadow var(--medium) var(--transition);
+	padding: 0 0px;
+	// box-shadow: 0;
+	// transition: box-shadow var(--medium) var(--transition);
 
 	.nav-toggle {
 		@include breakpoint(medium) {
