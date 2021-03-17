@@ -1,4 +1,4 @@
-import { Knex } from 'knex';
+import Knex from 'knex';
 import { SchemaInspector } from './types/schema';
 
 interface SchemaInspectorConstructor {

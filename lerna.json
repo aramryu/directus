@@ -1,8 +1,6 @@
 {
   "packages": [
-    "api",
-		"app",
-    "packages/*"
+    "api"
   ],
   "version": "9.0.0-rc.51",
   "command": {

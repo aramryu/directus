@@ -43,9 +43,6 @@ module.exports = {
 			postcss: {
 				plugins: [require('autoprefixer')()],
 			},
-			sass: {
-				additionalData: '@import "~@/styles/main.scss"',
-			}
 		},
 	},
 
