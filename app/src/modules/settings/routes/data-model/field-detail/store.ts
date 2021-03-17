@@ -43,6 +43,7 @@ function initLocalStore(collection: string, field: string, type: typeof localTyp
 				default_value: undefined,
 				max_length: undefined,
 				is_nullable: true,
+				is_unique: false,
 				numeric_precision: null,
 				numeric_scale: null,
 			},
@@ -629,10 +630,7 @@ function initLocalStore(collection: string, field: string, type: typeof localTyp
 				state.relations[0].one_field = state.fieldData.field;
 
 				if (collectionExists(state.fieldData.field) && type !== 'translations') {
-					state.relations[0].many_collection = getAutomaticJunctionCollectionName(
-						state.relations[0].one_collection,
-						state.relations[1].one_collection
-					);
+					state.relations[0].many_collection = getAutomaticJunctionCollectionName();
 					state.relations[0].many_field = `${state.relations[0].one_collection}_${state.relations[0].one_primary}`;
 					state.relations[1].one_collection = state.fieldData.field;
 
@@ -665,14 +663,8 @@ function initLocalStore(collection: string, field: string, type: typeof localTyp
 							[() => state.relations[1].one_collection, () => state.relations[1].one_primary],
 							([newRelatedCollection, newRelatedPrimary]: string[]) => {
 								if (newRelatedCollection) {
-									state.relations[0].many_collection = getAutomaticJunctionCollectionName(
-										state.relations[0].one_collection,
-										state.relations[1].one_collection
-									);
-									state.relations[1].many_collection = getAutomaticJunctionCollectionName(
-										state.relations[0].one_collection,
-										state.relations[1].one_collection
-									);
+									state.relations[0].many_collection = getAutomaticJunctionCollectionName();
+									state.relations[1].many_collection = getAutomaticJunctionCollectionName();
 									state.relations[0].many_field = `${state.relations[0].one_collection}_${state.relations[0].one_primary}`;
 								}
 
@@ -720,8 +712,8 @@ function initLocalStore(collection: string, field: string, type: typeof localTyp
 			state.relations[0].one_field = 'translations';
 		}
 
-		function getAutomaticJunctionCollectionName(left: string, right: string) {
-			let index = 2;
+		function getAutomaticJunctionCollectionName() {
+			let index: number = 0;
 			let name = getName(index);
 
 			while (collectionExists(name)) {

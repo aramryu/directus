@@ -47,14 +47,17 @@ All the `DB_POOL_` prefixed options are passed [to `tarn.js`](https://github.com
 
 ## Security
 
-| Variable                         | Description                                                                                      | Default Value |
-| -------------------------------- | ------------------------------------------------------------------------------------------------ | ------------- |
-| `KEY`                            | Unique identifier for the project.                                                               | --            |
-| `SECRET`                         | Secret string for the project.                                                                   | --            |
-| `ACCESS_TOKEN_TTL`               | The duration that the access token is valid.                                                     | 15m           |
-| `REFRESH_TOKEN_TTL`              | The duration that the refresh token is valid, and also how long users stay logged-in to the App. | 7d            |
-| `REFRESH_TOKEN_COOKIE_SECURE`    | Whether or not to use a secure cookie for the refresh token in cookie mode.                      | `false`       |
-| `REFRESH_TOKEN_COOKIE_SAME_SITE` | Value for `sameSite` in the refresh token cookie when in cookie mode.                            | `lax`         |
+| Variable                         | Description                                                                                                                     | Default Value |
+| -------------------------------- | ------------------------------------------------------------------------------------------------------------------------------- | ------------- |
+| `KEY`                            | Unique identifier for the project.                                                                                              | --            |
+| `SECRET`                         | Secret string for the project.                                                                                                  | --            |
+| `ACCESS_TOKEN_TTL`               | The duration that the access token is valid.                                                                                    | 15m           |
+| `REFRESH_TOKEN_TTL`              | The duration that the refresh token is valid, and also how long users stay logged-in to the App.                                | 7d            |
+| `REFRESH_TOKEN_COOKIE_DOMAIN`    | Which domain to use for the refresh cookie. Useful for development mode.                                                        | --            |
+| `REFRESH_TOKEN_COOKIE_SECURE`    | Whether or not to use a secure cookie for the refresh token in cookie mode.                                                     | `false`       |
+| `REFRESH_TOKEN_COOKIE_SAME_SITE` | Value for `sameSite` in the refresh token cookie when in cookie mode.                                                           | `lax`         |
+| `PASSWORD_RESET_URL_ALLOW_LIST`  | List of URLs that can be used [as `reset_url` in /password/request](/reference/api/rest/authentication/#request-password-reset) | --            |
+| `USER_INVITE_URL_ALLOW_LIST`     | List of URLs that can be used [as `invite_url` in /users/invite](/reference/api/rest/users/#invite-a-new-user)                  | --            |
 
 ::: tip Cookie Strictness
 
@@ -167,6 +170,7 @@ For each of the storage locations listed, you must provide the following configu
 | Variable                    | Description                                               | Default Value |
 | --------------------------- | --------------------------------------------------------- | ------------- |
 | `STORAGE_<LOCATION>_DRIVER` | Which driver to use, either `local`, `s3`, `gcs`, `azure` |               |
+| `STORAGE_<LOCATION>_ROOT`   | Where to store the files on disk                          | `''`          |
 
 Based on your configured driver, you must also provide the following configurations:
 
@@ -178,21 +182,22 @@ Based on your configured driver, you must also provide the following configurati
 
 ### S3 (`s3`)
 
-| Variable                      | Description | Default Value |
-| ----------------------------- | ----------- | ------------- |
-| `STORAGE_<LOCATION>_KEY`      | User key    | --            |
-| `STORAGE_<LOCATION>_SECRET`   | User secret | --            |
-| `STORAGE_<LOCATION>_ENDPOINT` | S3 Endpoint | --            |
-| `STORAGE_<LOCATION>_BUCKET`   | S3 Bucket   | --            |
-| `STORAGE_<LOCATION>_REGION`   | S3 Region   | --            |
+| Variable                      | Description | Default Value      |
+| ----------------------------- | ----------- | ------------------ |
+| `STORAGE_<LOCATION>_KEY`      | User key    | --                 |
+| `STORAGE_<LOCATION>_SECRET`   | User secret | --                 |
+| `STORAGE_<LOCATION>_BUCKET`   | S3 Bucket   | --                 |
+| `STORAGE_<LOCATION>_REGION`   | S3 Region   | --                 |
+| `STORAGE_<LOCATION>_ENDPOINT` | S3 Endpoint | "s3.amazonaws.com" |
 
 ### Azure (`azure`)
 
-| Variable                            | Description                | Default Value |
-| ----------------------------------- | -------------------------- | ------------- |
-| `STORAGE_<LOCATION>_CONTAINER_NAME` | Azure Storage container    | --            |
-| `STORAGE_<LOCATION>_ACCOUNT_NAME`   | Azure Storage account name | --            |
-| `STORAGE_<LOCATION>_ACCOUNT_KEY`    | Azure Storage key          | --            |
+| Variable                            | Description                | Default Value                         |
+| ----------------------------------- | -------------------------- | ------------------------------------- |
+| `STORAGE_<LOCATION>_CONTAINER_NAME` | Azure Storage container    | --                                    |
+| `STORAGE_<LOCATION>_ACCOUNT_NAME`   | Azure Storage account name | --                                    |
+| `STORAGE_<LOCATION>_ACCOUNT_KEY`    | Azure Storage key          | --                                    |
+| `STORAGE_<LOCATION>_ENDPOINT`       | Azure URL                  | "{ACCOUNT_KEY}.blob.core.windows.net" |
 
 ### Google Cloud Storage (`gcs`)
 

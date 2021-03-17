@@ -1,6 +1,5 @@
 <template>
 	<div>
-		<d-notice type="info">{{ $t('interface_setup_title') }}</d-notice>
 
 		<d-fancy-select class="select" :items="selectItems" v-model="fieldData.meta.interface" />
 

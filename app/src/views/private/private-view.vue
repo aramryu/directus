@@ -216,7 +216,10 @@ export default defineComponent({
 			background-color: var(--background-normal);
 
 			&-content {
-				height: calc(100% - 44px);
+				--v-list-item-background-color-hover: var(--background-normal-alt);
+				--v-list-item-background-color-active: var(--background-normal-alt);
+
+				height: calc(100% - 64px);
 				overflow-x: hidden;
 				overflow-y: auto;
 			}

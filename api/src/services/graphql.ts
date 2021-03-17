@@ -1,4 +1,4 @@
-import Knex from 'knex';
+import { Knex } from 'knex';
 import database from '../database';
 import { AbstractServiceOptions, Accountability, Collection, Field, Relation, Query, SchemaOverview } from '../types';
 import {
@@ -27,7 +27,7 @@ import logger from '../logger';
 import { getGraphQLType } from '../utils/get-graphql-type';
 import { RelationsService } from './relations';
 import { ItemsService } from './items';
-import { cloneDeep } from 'lodash';
+import { cloneDeep, set, merge, get, mapKeys } from 'lodash';
 import { sanitizeQuery } from '../utils/sanitize-query';
 
 import { ActivityService } from './activity';
@@ -94,7 +94,7 @@ export class GraphQLService {
 		}
 
 		const fieldsInSystem = await this.fieldsService.readAll();
-		const relationsInSystem = (await this.relationsService.readByQuery({})) as Relation[];
+		const relationsInSystem = (await this.relationsService.readByQuery({ limit: -1 })) as Relation[];
 
 		const schema = this.getGraphQLSchema(collectionsInSystem, fieldsInSystem, relationsInSystem);
 
@@ -468,7 +468,15 @@ export class GraphQLService {
 						if (!query.deep) query.deep = {};
 
 						const args: Record<string, any> = this.parseArgs(selection.arguments, variableValues);
-						query.deep[current] = sanitizeQuery(args, this.accountability);
+
+						set(
+							query.deep,
+							current,
+							merge(
+								get(query.deep, current),
+								mapKeys(sanitizeQuery(args, this.accountability), (value, key) => `_${key}`)
+							)
+						);
 					}
 				}
 			}

@@ -25,9 +25,9 @@
 				/>
 			</template>
 
-			<template #item-append="{ item }" v-show="!disabled">
-				<d-icon fa="save" v-tooltip="$t('download')" class="download" @click.stop="downloadItem(item)" />
-				<d-icon fa="times" v-tooltip="$t('deselect')" class="deselect" @click.stop="deleteItem(item)" />
+			<template #item-append="{ item }" v-if="!disabled">
+				<d-icon name="save_alt" v-tooltip="$t('download')" class="download" @click.stop="downloadItem(item)" />
+				<d-icon name="close" v-tooltip="$t('deselect')" class="deselect" @click.stop="deleteItem(item)" />
 			</template>
 		</d-table>
 

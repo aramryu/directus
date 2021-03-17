@@ -1,12 +1,20 @@
-import { QueryBuilder } from 'knex';
+import { Knex } from 'knex';
 import { Query, Filter, Relation, SchemaOverview } from '../types';
-import { clone, isPlainObject } from 'lodash';
+import { clone, isPlainObject, get, set } from 'lodash';
 import { systemRelationRows } from '../database/system-data/relations';
-import { nanoid } from 'nanoid';
+import { customAlphabet } from 'nanoid';
 import getLocalType from './get-local-type';
 import validate from 'uuid-validate';
 
-export default function applyQuery(collection: string, dbQuery: QueryBuilder, query: Query, schema: SchemaOverview) {
+const generateAlias = customAlphabet('abcdefghijklmnopqrstuvwxyz', 5);
+
+export default function applyQuery(
+	collection: string,
+	dbQuery: Knex.QueryBuilder,
+	query: Query,
+	schema: SchemaOverview,
+	subQuery: boolean = false
+) {
 	if (query.sort) {
 		dbQuery.orderBy(
 			query.sort.map((sort) => ({
@@ -33,7 +41,7 @@ export default function applyQuery(collection: string, dbQuery: QueryBuilder, qu
 	}
 
 	if (query.filter) {
-		applyFilter(schema, dbQuery, query.filter, collection);
+		applyFilter(schema, dbQuery, query.filter, collection, subQuery);
 	}
 
 	if (query.search) {
@@ -41,7 +49,13 @@ export default function applyQuery(collection: string, dbQuery: QueryBuilder, qu
 	}
 }
 
-export function applyFilter(schema: SchemaOverview, rootQuery: QueryBuilder, rootFilter: Filter, collection: string) {
+export function applyFilter(
+	schema: SchemaOverview,
+	rootQuery: Knex.QueryBuilder,
+	rootFilter: Filter,
+	collection: string,
+	subQuery: boolean = false
+) {
 	const relations: Relation[] = [...schema.relations, ...systemRelationRows];
 
 	const aliasMap: Record<string, string> = {};
@@ -49,7 +63,7 @@ export function applyFilter(schema: SchemaOverview, rootQuery: QueryBuilder, roo
 	addJoins(rootQuery, rootFilter, collection);
 	addWhereClauses(rootQuery, rootFilter, collection);
 
-	function addJoins(dbQuery: QueryBuilder, filter: Filter, collection: string) {
+	function addJoins(dbQuery: Knex.QueryBuilder, filter: Filter, collection: string) {
 		for (const [key, value] of Object.entries(filter)) {
 			if (key === '_or' || key === '_and') {
 				// If the _or array contains an empty object (full permissions), we should short-circuit and ignore all other
@@ -88,8 +102,9 @@ export function applyFilter(schema: SchemaOverview, rootQuery: QueryBuilder, roo
 
 				const isM2O = relation.many_collection === parentCollection && relation.many_field === pathParts[0];
 
-				const alias = nanoid(8);
-				aliasMap[pathParts.join('+')] = alias;
+				const alias = generateAlias();
+
+				set(aliasMap, parentAlias ? [parentAlias, ...pathParts] : pathParts, alias);
 
 				if (isM2O) {
 					dbQuery.leftJoin(
@@ -97,7 +112,9 @@ export function applyFilter(schema: SchemaOverview, rootQuery: QueryBuilder, roo
 						`${parentAlias || parentCollection}.${relation.many_field}`,
 						`${alias}.${relation.one_primary}`
 					);
-				} else {
+				}
+
+				if (subQuery === true && isM2O === false) {
 					dbQuery.leftJoin(
 						{ [alias]: relation.many_collection },
 						`${parentAlias || parentCollection}.${relation.one_primary}`,
@@ -105,18 +122,25 @@ export function applyFilter(schema: SchemaOverview, rootQuery: QueryBuilder, roo
 					);
 				}
 
-				pathParts.shift();
+				if (isM2O || subQuery === true) {
+					pathParts.shift();
 
-				const parent = isM2O ? relation.one_collection! : relation.many_collection;
+					const parent = isM2O ? relation.one_collection! : relation.many_collection;
 
-				if (pathParts.length) {
-					followRelation(pathParts, parent, alias);
+					if (pathParts.length) {
+						followRelation(pathParts, parent, alias);
+					}
 				}
 			}
 		}
 	}
 
-	function addWhereClauses(dbQuery: QueryBuilder, filter: Filter, collection: string, logical: 'and' | 'or' = 'and') {
+	function addWhereClauses(
+		dbQuery: Knex.QueryBuilder,
+		filter: Filter,
+		collection: string,
+		logical: 'and' | 'or' = 'and'
+	) {
 		for (const [key, value] of Object.entries(filter)) {
 			if (key === '_or' || key === '_and') {
 				// If the _or array contains an empty object (full permissions), we should short-circuit and ignore all other
@@ -137,11 +161,34 @@ export function applyFilter(schema: SchemaOverview, rootQuery: QueryBuilder, roo
 			const filterPath = getFilterPath(key, value);
 			const { operator: filterOperator, value: filterValue } = getOperation(key, value);
 
-			if (filterPath.length > 1) {
-				const columnName = getWhereColumn(filterPath, collection);
-				applyFilterToQuery(columnName, filterOperator, filterValue, logical);
+			const o2mRelation = relations.find((relation) => {
+				return relation.one_collection === collection && relation.one_field === filterPath[0];
+			});
+
+			if (!!o2mRelation && subQuery === false) {
+				const pkField = `${collection}.${o2mRelation.one_primary}`;
+
+				dbQuery[logical].whereIn(pkField, (subQueryKnex) => {
+					subQueryKnex.select([o2mRelation.many_field]).from(o2mRelation.many_collection);
+
+					applyQuery(
+						o2mRelation.many_collection,
+						subQueryKnex,
+						{
+							filter: value,
+						},
+						schema,
+						true
+					);
+				});
 			} else {
-				applyFilterToQuery(`${collection}.${filterPath[0]}`, filterOperator, filterValue, logical);
+				if (filterPath.length > 1) {
+					const columnName = getWhereColumn(filterPath, collection);
+					if (!columnName) continue;
+					applyFilterToQuery(columnName, filterOperator, filterValue, logical);
+				} else {
+					applyFilterToQuery(`${collection}.${filterPath[0]}`, filterOperator, filterValue, logical);
+				}
 			}
 		}
 
@@ -232,13 +279,13 @@ export function applyFilter(schema: SchemaOverview, rootQuery: QueryBuilder, roo
 		function getWhereColumn(path: string[], collection: string) {
 			path = clone(path);
 
-			let columnName = '';
+			return followRelation(path);
 
-			followRelation(path);
-
-			return columnName;
-
-			function followRelation(pathParts: string[], parentCollection: string = collection) {
+			function followRelation(
+				pathParts: string[],
+				parentCollection: string = collection,
+				parentAlias?: string
+			): string | void {
 				const relation = relations.find((relation) => {
 					return (
 						(relation.many_collection === parentCollection && relation.many_field === pathParts[0]) ||
@@ -249,18 +296,18 @@ export function applyFilter(schema: SchemaOverview, rootQuery: QueryBuilder, roo
 				if (!relation) return;
 
 				const isM2O = relation.many_collection === parentCollection && relation.many_field === pathParts[0];
-				const alias = aliasMap[pathParts.join('+')];
+				const alias = get(aliasMap, parentAlias ? [parentAlias, ...pathParts] : pathParts);
 
-				pathParts.shift();
+				const remainingParts = pathParts.slice(1);
 
 				const parent = isM2O ? relation.one_collection! : relation.many_collection;
 
-				if (pathParts.length === 1) {
-					columnName = `${alias || parent}.${pathParts[0]}`;
+				if (remainingParts.length === 1) {
+					return `${alias || parent}.${remainingParts[0]}`;
 				}
 
-				if (pathParts.length) {
-					followRelation(pathParts, parent);
+				if (remainingParts.length) {
+					return followRelation(remainingParts, parent, alias);
 				}
 			}
 		}
@@ -269,7 +316,7 @@ export function applyFilter(schema: SchemaOverview, rootQuery: QueryBuilder, roo
 
 export async function applySearch(
 	schema: SchemaOverview,
-	dbQuery: QueryBuilder,
+	dbQuery: Knex.QueryBuilder,
 	searchQuery: string,
 	collection: string
 ) {

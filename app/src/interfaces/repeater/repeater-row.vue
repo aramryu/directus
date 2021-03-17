@@ -64,8 +64,10 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 .row {
-	background-color: var(--background-subdued);
-	border: 2px solid var(--border-subdued);
+	--background-page: var(--background-subdued);
+
+	background-color: var(--card-face-color);
+	box-shadow: var(--card-shadow);
 	border-radius: var(--border-radius);
 
 	// & + .row {

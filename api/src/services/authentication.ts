@@ -5,7 +5,7 @@ import { nanoid } from 'nanoid';
 import ms from 'ms';
 import { InvalidCredentialsException, InvalidPayloadException, InvalidOTPException } from '../exceptions';
 import { Session, Accountability, AbstractServiceOptions, Action, SchemaOverview } from '../types';
-import Knex from 'knex';
+import { Knex } from 'knex';
 import { ActivityService } from '../services/activity';
 import env from '../env';
 import { authenticator } from 'otplib';
@@ -127,6 +127,8 @@ export class AuthenticationService {
 			ip,
 			user_agent: userAgent,
 		});
+
+		await database('directus_sessions').delete().where('expires', '<', new Date());
 
 		if (this.accountability) {
 			await this.activityService.create({

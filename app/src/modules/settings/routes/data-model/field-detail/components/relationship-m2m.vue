@@ -1,6 +1,5 @@
 <template>
 	<div>
-		<d-notice type="info">{{ $t('configure_m2m') }}</d-notice>
 
 		<div class="grid">
 			<div class="field">
@@ -346,7 +345,7 @@ export default defineComponent({
 		const junctionFields = computed(() => {
 			if (!junctionCollection.value) return [];
 
-			return fieldsStore.getFieldsForCollection(junctionCollection.value).map((field: Field) => ({
+			return fieldsStore.getFieldsForCollectionAlphabetical(junctionCollection.value).map((field: Field) => ({
 				text: field.field,
 				value: field.field,
 				disabled:

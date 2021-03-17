@@ -1,68 +1,53 @@
 {
-  "name": "@directus/app",
-  "version": "9.0.0-rc.44",
-  "private": false,
-  "description": "Directus is an Open-Source Headless CMS & API for Managing Custom Databases",
-  "author": "Rijk van Zanten <rijk@rngr.org>",
-  "main": "dist/index.html",
-  "files": [
-    "dist",
-    "LICENSE",
-    "README.md"
-  ],
-  "publishConfig": {
-    "access": "public"
-  },
-  "scripts": {
-    "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint",
-    "build-storybook": "build-storybook",
-    "copy-docs-images": "rimraf public/img/docs && copyfiles -u 3 \"../docs/assets/**/*\" \"public/img/docs\" --verbose",
-    "dev": "vue-cli-service serve",
-    "fix": "prettier --write \"src/**/*.{js,vue,ts}\"",
-    "fix:styles": "stylelint --fix \"**/*.{vue,scss}\"",
-    "lint:styles": "stylelint \"**/*.{vue,scss}\"",
-    "prepublishOnly": "npm run build",
-    "prettier": "prettier --write \"src/**/*.ts\"",
-    "storybook": "start-storybook -p 6006"
-  },
-  "dependencies": {
-    "@directus/docs": "file:../docs",
-    "@directus/format-title": "file:../packages/format-title",
-    "@fortawesome/fontawesome-svg-core": "^1.2.34",
-    "@fortawesome/free-brands-svg-icons": "^5.15.2",
-    "@fortawesome/pro-solid-svg-icons": "^5.15.2",
-    "@fortawesome/vue-fontawesome": "^2.0.2",
-    "animate.css": "^3.7.2",
-    "apexcharts": "^3.25.0",
-    "axios": "^0.21.1",
-    "date-fns": "^2.17.0",
-    "vue-apexcharts": "^1.6.0",
-    "vue-axios": "^2.1.5",
-    "vue-country-flag": "^1.3.1",
-    "vue-froala-wysiwyg": "^3.2.6",
-    "vue-loader": "^15.9.6",
-    "vuetify": "^2.4.0"
-  },
-  "devDependencies": {
-    "@babel/plugin-proposal-optional-chaining": "^7.12.16",
-    "@fortawesome/fontawesome-pro": "^5.15.2",
-    "@mdi/font": "^5.9.55",
-    "@vue/cli-plugin-babel": "^4.5.8",
-    "@vue/cli-plugin-router": "^4.5.8",
-    "@vue/cli-plugin-typescript": "^4.5.8",
-    "@vue/cli-plugin-vuex": "^4.5.8",
-    "@vue/cli-service": "^4.5.8",
-    "@vue/test-utils": "^1.1.1",
-    "deepmerge": "^4.2.2",
-    "prettier": "^2.2.1",
-    "resolve-url-loader": "^3.1.2",
-    "sass": "^1.32.8",
-    "sass-loader": "^9.0.3",
-    "vue-cli-plugin-vuetify": "~2.2.0",
-    "vue-cli-plugin-yaml": "^1.0.2",
-    "vue-template-compiler": "^2.6.12",
-    "vuetify-loader": "^1.7.0"
-  },
-  "gitHead": "4476da28dbbc2824e680137aa28b2b91b5afabec"
+	"name": "@directus/app",
+	"version": "9.0.0-rc.50",
+	"private": false,
+	"description": "Directus is an Open-Source Headless CMS & API for Managing Custom Databases",
+	"author": "Rijk van Zanten <rijk@rngr.org>",
+	"main": "dist/index.html",
+	"files": [
+		"dist",
+		"LICENSE",
+		"README.md"
+	],
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/directus/directus.git"
+	},
+	"publishConfig": {
+		"access": "public"
+	},
+	"scripts": {
+		"copy-docs-images": "rimraf public/img/docs && copyfiles -u 3 \"../docs/assets/**/*\" \"public/img/docs\" --verbose",
+		"predev": "npm run copy-docs-images",
+		"prebuild": "npm run copy-docs-images",
+		"dev": "vue-cli-service serve",
+		"build": "vue-cli-service build",
+		"lint": "vue-cli-service lint",
+		"lint:styles": "stylelint \"**/*.{vue,scss}\"",
+		"fix": "prettier --write \"src/**/*.{js,vue,ts}\"",
+		"fix:styles": "stylelint --fix \"**/*.{vue,scss}\"",
+		"storybook": "start-storybook -p 6006",
+		"build-storybook": "build-storybook",
+		"prepublishOnly": "npm run build",
+		"prettier": "prettier --write \"src/**/*.ts\""
+	},
+	"gitHead": "71bf628955b5da15ce3070dc09478bc558f243a4",
+	"dependencies": {
+		"@directus/docs": "^9.0.0-rc.50",
+		"@directus/format-title": "^9.0.0-rc.50"
+	},
+	"devDependencies": {
+		"@vue/cli-plugin-babel": "^4.5.8",
+		"@vue/cli-plugin-eslint": "^4.5.8",
+		"@vue/cli-plugin-router": "^4.5.8",
+		"@vue/cli-plugin-typescript": "^4.5.8",
+		"@vue/cli-plugin-vuex": "^4.5.8",
+		"@vue/cli-service": "^4.5.8",
+		"@vue/eslint-config-prettier": "^6.0.0",
+		"@vue/eslint-config-typescript": "^7.0.0",
+		"@vue/test-utils": "^1.1.1",
+		"prettier": "^2.2.1",
+		"vue-cli-plugin-yaml": "^1.0.2"
+	}
 }

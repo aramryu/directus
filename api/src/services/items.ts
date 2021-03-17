@@ -12,7 +12,7 @@ import {
 	AbstractServiceOptions,
 	SchemaOverview,
 } from '../types';
-import Knex from 'knex';
+import { Knex } from 'knex';
 import cache from '../cache';
 import emitter, { emitAsyncSafe } from '../emitter';
 import { toArray } from '../utils/to-array';
@@ -23,6 +23,7 @@ import { AuthorizationService } from './authorization';
 
 import { pick, clone, cloneDeep, merge } from 'lodash';
 import getDefaultValue from '../utils/get-default-value';
+import { translateDatabaseError } from '../exceptions/database/translate';
 import { InvalidPayloadException, ForbiddenException } from '../exceptions';
 
 export class ItemsService<Item extends AnyItem = AnyItem> implements AbstractService {
@@ -96,7 +97,11 @@ export class ItemsService<Item extends AnyItem = AnyItem> implements AbstractSer
 				// string / uuid primary
 				let primaryKey = payloadWithoutAlias[primaryKeyField];
 
-				await trx.insert(payloadWithoutAlias).into(this.collection);
+				try {
+					await trx.insert(payloadWithoutAlias).into(this.collection);
+				} catch (err) {
+					throw await translateDatabaseError(err);
+				}
 
 				// Auto-incremented id
 				if (!primaryKey) {
@@ -200,6 +205,7 @@ export class ItemsService<Item extends AnyItem = AnyItem> implements AbstractSer
 			knex: this.knex,
 			stripNonRequested: opts?.stripNonRequested !== undefined ? opts.stripNonRequested : true,
 		});
+
 		return records as Partial<Item> | Partial<Item>[] | null;
 	}
 
@@ -211,6 +217,7 @@ export class ItemsService<Item extends AnyItem = AnyItem> implements AbstractSer
 		action: PermissionsAction = 'read'
 	): Promise<null | Partial<Item> | Partial<Item>[]> {
 		query = clone(query);
+
 		const primaryKeyField = this.schema.tables[this.collection].primary;
 		const keys = toArray(key);
 
@@ -308,7 +315,11 @@ export class ItemsService<Item extends AnyItem = AnyItem> implements AbstractSer
 				payloadWithoutAliases = await payloadService.processValues('update', payloadWithoutAliases);
 
 				if (Object.keys(payloadWithoutAliases).length > 0) {
-					await trx(this.collection).update(payloadWithoutAliases).whereIn(primaryKeyField, keys);
+					try {
+						await trx(this.collection).update(payloadWithoutAliases).whereIn(primaryKeyField, keys);
+					} catch (err) {
+						throw await translateDatabaseError(err);
+					}
 				}
 
 				for (const key of keys) {
@@ -341,6 +352,7 @@ export class ItemsService<Item extends AnyItem = AnyItem> implements AbstractSer
 						knex: trx,
 						schema: this.schema,
 					});
+
 					const snapshots = await itemsService.readByKey(keys);
 
 					const revisionRecords = activityPrimaryKeys.map((key, index) => ({
@@ -463,7 +475,7 @@ export class ItemsService<Item extends AnyItem = AnyItem> implements AbstractSer
 				schema: this.schema,
 			});
 
-			await authorizationService.checkAccess('delete', this.collection, key);
+			await authorizationService.checkAccess('delete', this.collection, keys);
 		}
 
 		await emitter.emitAsync(`${this.eventScope}.delete.before`, {
