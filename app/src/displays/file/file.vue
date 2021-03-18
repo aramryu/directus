@@ -10,7 +10,7 @@
 			{{ fileExtension }}
 		</span>
 
-		<v-icon v-else name="folder_open" />
+		<d-icon v-else name="folder_open" />
 	</div>
 </template>
 

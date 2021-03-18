@@ -1,29 +1,29 @@
 <template>
-	<v-dialog :active="active" @toggle="$emit('toggle', $event)" @esc="$emit('toggle', false)">
-		<v-card>
-			<v-card-title>{{ $t('invite_users') }}</v-card-title>
+	<d-dialog :active="active" @toggle="$emit('toggle', $event)" @esc="$emit('toggle', false)">
+		<d-card>
+			<d-card-title>{{ $t('invite_users') }}</d-card-title>
 
-			<v-card-text>
+			<d-card-text>
 				<div class="grid">
 					<div class="field">
 						<div class="type-label">{{ $t('emails') }}</div>
-						<v-textarea v-model="emails" :placeholder="$t('email_examples')" />
+						<d-textarea v-model="emails" :placeholder="$t('email_examples')" />
 					</div>
 					<div class="field" v-if="role === null">
 						<div class="type-label">{{ $t('role') }}</div>
-						<v-select v-model="roleSelected" :items="roles" />
+						<d-select v-model="roleSelected" :items="roles" />
 					</div>
 				</div>
-			</v-card-text>
+			</d-card-text>
 
-			<v-card-actions>
-				<v-button secondary @click="$emit('toggle', false)">{{ $t('cancel') }}</v-button>
-				<v-button @click="inviteUsers" :disabled="emails === null || emails.length === 0" :loading="loading">
+			<d-card-actions>
+				<d-button secondary @click="$emit('toggle', false)">{{ $t('cancel') }}</d-button>
+				<d-button @click="inviteUsers" :disabled="emails === null || emails.length === 0" :loading="loading">
 					{{ $t('invite') }}
-				</v-button>
-			</v-card-actions>
-		</v-card>
-	</v-dialog>
+				</d-button>
+			</d-card-actions>
+		</d-card>
+	</d-dialog>
 </template>
 
 <script lang="ts">

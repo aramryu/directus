@@ -1,4 +1,4 @@
-import VTable from './v-table.vue';
+import DTable from './v-table.vue';
 
-export { VTable };
-export default VTable;
+export { DTable };
+export default DTable;

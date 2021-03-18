@@ -1,5 +1,5 @@
 <template>
-	<v-checkbox
+	<d-checkbox
 		block
 		:icon-on="iconOn"
 		:icon-off="iconOff"

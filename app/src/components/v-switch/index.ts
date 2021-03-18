@@ -1,4 +1,4 @@
-import VSwitch from './v-switch.vue';
+import DSwitch from './v-switch.vue';
 
-export { VSwitch };
-export default VSwitch;
+export { DSwitch };
+export default DSwitch;

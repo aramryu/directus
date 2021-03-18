@@ -1,7 +1,7 @@
 <template>
-	<v-list large :multiple="false" v-model="selection" :mandatory="false">
+	<d-list large :multiple="false" v-model="selection" :mandatory="false">
 		<navigation-item v-for="item in navSections" :key="item.name" :section="item" />
-	</v-list>
+	</d-list>
 </template>
 
 <script lang="ts">

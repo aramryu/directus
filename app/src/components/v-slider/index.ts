@@ -1,4 +1,4 @@
-import VSlider from './v-slider.vue';
+import DSlider from './v-slider.vue';
 
-export { VSlider };
-export default VSlider;
+export { DSlider };
+export default DSlider;

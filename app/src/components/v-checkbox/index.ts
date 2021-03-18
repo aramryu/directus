@@ -1,4 +1,4 @@
-import VCheckbox from './v-checkbox.vue';
+import DCheckbox from './v-checkbox.vue';
 
-export { VCheckbox };
-export default VCheckbox;
+export { DCheckbox };
+export default DCheckbox;

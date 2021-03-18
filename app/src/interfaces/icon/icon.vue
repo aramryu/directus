@@ -1,7 +1,7 @@
 <template>
-	<v-menu attached :disabled="disabled">
+	<d-menu attached :disabled="disabled">
 		<template #activator="{ active, activate }">
-			<v-input
+			<d-input
 				:disabled="disabled"
 				:placeholder="value ? formatTitle(value) : $t('interfaces.icon.search_for_icon')"
 				v-model="searchQuery"
@@ -10,20 +10,20 @@
 				:nullable="false"
 			>
 				<template #prepend>
-					<v-icon v-if="value" @click="activate" :name="value" :class="{ active: value }" />
+					<d-icon v-if="value" @click="activate" :name="value" :class="{ active: value }" />
 				</template>
 
 				<template #append>
-					<v-icon v-if="value !== null" @click="setIcon(null)" name="close" />
-					<v-icon v-else @click="activate" name="expand_more" class="open-indicator" :class="{ open: active }" />
+					<d-icon v-if="value !== null" @click="setIcon(null)" name="close" />
+					<d-icon v-else @click="activate" name="expand_more" class="open-indicator" :class="{ open: active }" />
 				</template>
-			</v-input>
+			</d-input>
 		</template>
 
 		<div class="content" :class="width">
 			<template v-for="(group, index) in filteredIcons">
 				<div :key="'icon-group-' + group.name" class="icons" v-if="group.icons.length > 0">
-					<v-icon
+					<d-icon
 						v-for="icon in group.icons"
 						:key="icon"
 						:name="icon"
@@ -31,10 +31,10 @@
 						@click="setIcon(icon)"
 					/>
 				</div>
-				<v-divider :key="'divider-' + group.name" v-if="group.icons.length > 0 && index !== filteredIcons.length - 1" />
+				<d-divider :key="'divider-' + group.name" v-if="group.icons.length > 0 && index !== filteredIcons.length - 1" />
 			</template>
 		</div>
-	</v-menu>
+	</d-menu>
 </template>
 
 <script lang="ts">

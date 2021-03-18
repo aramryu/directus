@@ -4,7 +4,7 @@
 
 		<portal to="dialog-outlet">
 			<div v-if="_active" class="container" :class="[className, placement]" :key="id">
-				<v-overlay active absolute @click="emitToggle" />
+				<d-overlay active absolute @click="emitToggle" />
 				<slot />
 			</div>
 		</portal>

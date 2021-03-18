@@ -1,9 +1,9 @@
 <template>
 	<div class="user">
-		<v-menu v-model="menuActive" attached :disabled="disabled">
+		<d-menu v-model="menuActive" attached :disabled="disabled">
 			<template #activator="{ active }">
-				<v-skeleton-loader type="input" v-if="loadingCurrent" />
-				<v-input
+				<d-skeleton-loader type="input" v-if="loadingCurrent" />
+				<d-input
 					:active="active"
 					v-else
 					:placeholder="$t('select_an_item')"
@@ -18,55 +18,35 @@
 
 					<template #append v-if="!disabled">
 						<template v-if="currentUser">
-							<v-icon
-								name="open_in_new"
-								class="edit"
-								v-tooltip="$t('edit')"
-								@click.stop="editModalActive = true"
-							/>
-							<v-icon
-								name="close"
-								class="deselect"
-								@click.stop="$emit('input', null)"
-								v-tooltip="$t('deselect')"
-							/>
+							<d-icon name="open_in_new" class="edit" v-tooltip="$t('edit')" @click.stop="editModalActive = true" />
+							<d-icon name="close" class="deselect" @click.stop="$emit('input', null)" v-tooltip="$t('deselect')" />
 						</template>
 						<template v-else>
-							<v-icon
-								class="add"
-								name="add"
-								v-tooltip="$t('create_item')"
-								@click.stop="editModalActive = true"
-							/>
-							<v-icon class="expand" :class="{ active }" name="expand_more" />
+							<d-icon class="add" name="add" v-tooltip="$t('create_item')" @click.stop="editModalActive = true" />
+							<d-icon class="expand" :class="{ active }" name="expand_more" />
 						</template>
 					</template>
-				</v-input>
+				</d-input>
 			</template>
 
-			<v-list>
+			<d-list>
 				<template v-if="usersLoading">
-					<v-list-item v-for="n in 10" :key="`loader-${n}`">
-						<v-list-item-content>
-							<v-skeleton-loader type="text" />
-						</v-list-item-content>
-					</v-list-item>
+					<d-list-item v-for="n in 10" :key="`loader-${n}`">
+						<d-list-item-content>
+							<d-skeleton-loader type="text" />
+						</d-list-item-content>
+					</d-list-item>
 				</template>
 
 				<template v-else>
-					<v-list-item
-						v-for="item in users"
-						:key="item.id"
-						:active="value === item.id"
-						@click="setCurrent(item)"
-					>
-						<v-list-item-content>
+					<d-list-item v-for="item in users" :key="item.id" :active="value === item.id" @click="setCurrent(item)">
+						<d-list-item-content>
 							{{ userName(item) }}
-						</v-list-item-content>
-					</v-list-item>
+						</d-list-item-content>
+					</d-list-item>
 				</template>
-			</v-list>
-		</v-menu>
+			</d-list>
+		</d-menu>
 
 		<drawer-item
 			:active.sync="editModalActive"

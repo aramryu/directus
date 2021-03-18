@@ -1,5 +1,5 @@
 <template>
-	<v-input
+	<d-input
 		:value="value"
 		:nullable="nullable"
 		:placeholder="placeholder"
@@ -10,7 +10,7 @@
 		:db-safe="dbSafe"
 		@input="$listeners.input"
 	>
-		<template v-if="iconLeft" #prepend><v-icon :name="iconLeft" /></template>
+		<template v-if="iconLeft" #prepend><d-icon :name="iconLeft" /></template>
 		<template #append>
 			<span
 				v-if="percentageRemaining <= 20"
@@ -22,13 +22,13 @@
 			>
 				{{ charsRemaining }}
 			</span>
-			<v-icon
+			<d-icon
 				:class="{ hide: percentageRemaining !== false && percentageRemaining <= 20 }"
 				v-if="iconRight"
 				:name="iconRight"
 			/>
 		</template>
-	</v-input>
+	</d-input>
 </template>
 
 <script lang="ts">

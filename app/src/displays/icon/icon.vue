@@ -1,5 +1,5 @@
 <template>
-	<v-icon small :name="value" :style="style" :filled="filled" />
+	<d-icon small :name="value" :style="style" :filled="filled" />
 </template>
 
 <script lang="ts">

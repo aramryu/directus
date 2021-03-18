@@ -102,7 +102,7 @@ export default function usePreview(
 				: getDefaultFields().map((field) => `${junctionField}.${field}`)
 			)
 				.map((fieldKey) => {
-					let field = fieldsStore.getField(junctionCollection, fieldKey);
+					const field = fieldsStore.getField(junctionCollection, fieldKey);
 
 					if (!field) return null;
 

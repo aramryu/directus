@@ -4,11 +4,11 @@
 		icon="change_history"
 		:badge="!loading && revisions ? abbreviateNumber(revisionsCount) : null"
 	>
-		<v-progress-linear indeterminate v-if="loading" />
+		<d-progress-linear indeterminate v-if="loading" />
 
 		<template v-else>
 			<template v-for="group in revisionsByDate">
-				<v-divider :key="group.date.toString()">{{ group.dateFormatted }}</v-divider>
+				<d-divider :key="group.date.toString()">{{ group.dateFormatted }}</d-divider>
 
 				<template v-for="(item, index) in group.revisions">
 					<revision-item
@@ -20,16 +20,16 @@
 				</template>
 			</template>
 
-			<v-divider class="other" v-if="revisionsCount > 100">
+			<d-divider class="other" v-if="revisionsCount > 100">
 				{{ $tc('count_other_revisions', revisionsCount - 101) }}
-			</v-divider>
+			</d-divider>
 
 			<template v-if="created">
 				<revision-item :revision="created" last @click="openModal(created.id)" />
 			</template>
 
 			<template v-else>
-				<v-divider v-if="revisionsByDate.length > 0" />
+				<d-divider v-if="revisionsByDate.length > 0" />
 
 				<div class="external">
 					{{ $t('revision_delta_created_externally') }}

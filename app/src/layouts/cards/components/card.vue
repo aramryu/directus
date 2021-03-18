@@ -2,19 +2,19 @@
 	<div class="card" :class="{ loading, readonly }" @click="handleClick">
 		<div class="header" :class="{ selected: item && value.includes(item[itemKey]) }">
 			<div class="selection-indicator" :class="{ 'select-mode': selectMode }">
-				<v-icon class="selector" :name="selectionIcon" @click.stop="toggleSelection" />
+				<d-icon class="selector" :name="selectionIcon" @click.stop="toggleSelection" />
 			</div>
-			<v-skeleton-loader v-if="loading" />
+			<d-skeleton-loader v-if="loading" />
 			<template v-else>
 				<p v-if="type" class="type type-title">{{ type }}</p>
 				<template v-else>
 					<img class="image" loading="lazy" v-if="imageSource" :src="imageSource" alt="" role="presentation" />
 					<img class="svg" v-else-if="svgSource" :src="svgSource" alt="" role="presentation" />
-					<v-icon v-else large :name="icon" />
+					<d-icon v-else large :name="icon" />
 				</template>
 			</template>
 		</div>
-		<v-skeleton-loader v-if="loading" type="text" />
+		<d-skeleton-loader v-if="loading" type="text" />
 		<template v-else>
 			<div class="title" v-if="$slots.title"><slot name="title" /></div>
 			<div class="subtitle" v-if="$slots.subtitle"><slot name="subtitle" /></div>

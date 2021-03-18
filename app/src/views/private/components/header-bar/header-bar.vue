@@ -1,39 +1,53 @@
 <template>
-	<header class="header-bar" ref="headerEl" :class="{ collapsed: collapsed }">
-		<v-button secondary class="nav-toggle" icon rounded @click="$emit('primary')" v-if="$listeners.primary">
-			<v-icon :name="primaryActionIcon" />
-		</v-button>
+	<v-app-bar app dense fixed clipped-right>
+		<header class="header-bar" ref="headerEl" :class="{ collapsed: collapsed }">
+			<d-button primary class="nav-toggle" icon rounded @click="$emit('primary')" v-if="$listeners.primary">
+				<d-icon :name="primaryActionIcon" />
+			</d-button>
 
-		<div class="title-outer-prepend" v-if="$scopedSlots['title-outer:prepend']">
-			<slot name="title-outer:prepend" />
-		</div>
-
-		<div class="title-container" :class="{ full: !$scopedSlots['title-outer:append'] }">
-			<div class="headline">
-				<slot name="headline" />
+			<div v-if="$scopedSlots['title-outer:prepend']">
+				<slot name="title-outer:prepend" />
 			</div>
 
-			<div class="title">
+		<!-- <div class="title-container" :class="{ full: !$scopedSlots['title-outer:append'] }"> -->
+		<v-col class="flex-grow-5" :class="{ full: !$scopedSlots['title-outer:append'] }">
+	
+			<!-- <div class="headline"> -->
+				<slot name="headline" />
+			<!-- </div> -->
+
+			<!-- <div class="title"> -->
 				<slot name="title">
 					<slot name="title:prepend" />
 					<h1 class="type-title">{{ title }}</h1>
 					<slot name="title:append" />
 				</slot>
-			</div>
+			<!-- </div> -->
+		</v-col>
 
+		<v-col class="flex-shrink-4">
 			<slot name="title-outer:append" />
-		</div>
+		</v-col>
+		<!-- </div> -->
 
-		<div class="spacer" />
+		<!-- <div class="spacer" /> -->
+
+		<v-spacer></v-spacer>
 
 		<slot name="actions:prepend" />
 
-		<header-bar-actions :show-sidebar-toggle="showSidebarToggle" @toggle:sidebar="$emit('toggle:sidebar')">
-			<slot name="actions" />
-		</header-bar-actions>
+		<v-col class="flex-grow-3">
+
+			<header-bar-actions :show-sidebar-toggle="showSidebarToggle" @toggle:sidebar="$emit('toggle:sidebar')">
+				<slot name="actions" />
+			</header-bar-actions>
+		
+		</v-col>
 
 		<slot name="actions:append" />
+
 	</header>
+	</v-app-bar>
 </template>
 
 <script lang="ts">
@@ -93,12 +107,12 @@ export default defineComponent({
 	align-items: center;
 	justify-content: flex-start;
 	width: 100%;
-	height: 65px;
+	height: 50px;
 	margin: 0;
-	padding: 0 12px;
-	background-color: var(--background-page);
-	box-shadow: 0;
-	transition: box-shadow var(--medium) var(--transition);
+	// padding: 0 12px;
+	// background-color: var(--background-page);
+	// box-shadow: 0;
+	// transition: box-shadow var(--medium) var(--transition);
 
 	.nav-toggle {
 		@include breakpoint(medium) {
@@ -119,28 +133,28 @@ export default defineComponent({
 		display: flex;
 		align-items: center;
 		width: 100%;
-		max-width: calc(100% - 12px - 44px - 120px - 12px - 8px);
+		// max-width: calc(100% - 12px - 44px - 120px - 12px - 8px);
 		height: 100%;
-		margin-left: 16px;
+		// margin-left: 16px;
 		overflow: hidden;
 
-		@include breakpoint(small) {
-			max-width: 70%;
-		}
+		// @include breakpoint(small) {
+		// 	max-width: 70%;
+		// }
 
 		&.full {
-			margin-right: 12px;
+			// margin-right: 12px;
 			padding-right: 0;
 
-			@include breakpoint(small) {
-				margin-right: 20px;
-				padding-right: 20px;
-			}
+			// @include breakpoint(small) {
+			// 	margin-right: 20px;
+			// 	padding-right: 20px;
+			// }
 		}
 
 		.headline {
-			position: absolute;
-			top: 2px;
+			// position: absolute;
+			// top: 2px;
 			left: 0;
 			color: var(--foreground-subdued);
 			white-space: nowrap;
@@ -169,7 +183,7 @@ export default defineComponent({
 	}
 
 	&.collapsed {
-		box-shadow: 0 4px 7px -4px rgba(0, 0, 0, 0.2);
+		// box-shadow: 0 4px 7px -4px rgba(0, 0, 0, 0.2);
 
 		.title-container {
 			.headline {
@@ -185,7 +199,7 @@ export default defineComponent({
 
 	.sidebar-toggle {
 		flex-shrink: 0;
-		margin-left: 8px;
+		// margin-left: 8px;
 
 		@include breakpoint(medium) {
 			display: none;

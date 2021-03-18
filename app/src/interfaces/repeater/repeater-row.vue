@@ -1,5 +1,5 @@
 <template>
-	<v-item class="row" v-slot:default="{ active, toggle }" :active="initialActive" :watch="false">
+	<d-item class="row" v-slot:default="{ active, toggle }" :active="initialActive" :watch="false">
 		<repeater-row-header
 			:template="template"
 			:value="value"
@@ -14,7 +14,7 @@
 				<repeater-row-form :disabled="disabled" :fields="fields" :value="value" @input="$emit('input', $event)" />
 			</div>
 		</transition-expand>
-	</v-item>
+	</d-item>
 </template>
 
 <script lang="ts">

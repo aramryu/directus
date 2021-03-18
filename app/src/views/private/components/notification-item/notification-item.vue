@@ -1,9 +1,9 @@
 <template>
 	<div class="notification-item" :class="[type, { tail, dense }]" @click="close">
 		<div class="icon" v-if="loading || progress || icon">
-			<v-progress-circular indeterminate small v-if="loading" />
-			<v-progress-circular small v-else-if="progress" :value="progress" />
-			<v-icon v-else :name="icon" />
+			<d-progress-circular indeterminate small v-if="loading" />
+			<d-progress-circular small v-else-if="progress" :value="progress" />
+			<d-icon v-else :name="icon" />
 		</div>
 
 		<div class="content">
@@ -11,7 +11,7 @@
 			<p v-if="text" class="text selectable">{{ text }}</p>
 		</div>
 
-		<v-icon v-if="showClose" name="close" @click="close" class="close" />
+		<d-icon v-if="showClose" name="close" @click="close" class="close" />
 	</div>
 </template>
 

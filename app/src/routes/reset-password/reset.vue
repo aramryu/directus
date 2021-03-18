@@ -1,7 +1,7 @@
 <template>
 	<form @submit.prevent="onSubmit">
-		<v-input :value="email" disabled />
-		<v-input
+		<d-input :value="email" disabled />
+		<d-input
 			:placeholder="$t('password')"
 			autofocus
 			autocomplete="username"
@@ -9,12 +9,12 @@
 			v-model="password"
 			:disabled="done"
 		/>
-		<v-notice type="success" v-if="done">{{ $t('password_reset_successful') }}</v-notice>
-		<v-notice type="danger" v-if="error">
+		<d-notice type="success" v-if="done">{{ $t('password_reset_successful') }}</d-notice>
+		<d-notice type="danger" v-if="error">
 			{{ errorFormatted }}
-		</v-notice>
-		<v-button v-if="!done" type="submit" :loading="resetting" large>{{ $t('reset') }}</v-button>
-		<v-button v-else large :to="signInLink">{{ $t('sign_in') }}</v-button>
+		</d-notice>
+		<d-button v-if="!done" type="submit" :loading="resetting" large>{{ $t('reset') }}</d-button>
+		<d-button v-else large :to="signInLink">{{ $t('sign_in') }}</d-button>
 	</form>
 </template>
 

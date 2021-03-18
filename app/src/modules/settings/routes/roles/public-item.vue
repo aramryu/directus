@@ -2,9 +2,9 @@
 	<private-view :title="$t('public')">
 		<template #headline>{{ $t('settings_permissions') }}</template>
 		<template #title-outer:prepend>
-			<v-button class="header-icon" rounded icon exact :to="`/settings/roles/`">
-				<v-icon name="arrow_back" />
-			</v-button>
+			<d-button class="header-icon" rounded icon exact :to="`/settings/roles/`">
+				<d-icon name="arrow_back" />
+			</d-button>
 		</template>
 
 		<template #navigation>

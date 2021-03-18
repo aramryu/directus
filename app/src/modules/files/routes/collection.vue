@@ -1,13 +1,13 @@
 <template>
 	<private-view :title="title" :class="{ dragging }">
 		<template #headline v-if="breadcrumb">
-			<v-breadcrumb :items="breadcrumb" />
+			<d-breadcrumb :items="breadcrumb" />
 		</template>
 
 		<template #title-outer:prepend>
-			<v-button class="header-icon" rounded disabled icon secondary>
-				<v-icon name="folder" outline />
-			</v-button>
+			<d-button class="header-icon" rounded disabled icon secondary>
+				<d-icon name="folder" outline />
+			</d-button>
 		</template>
 
 		<template #actions:prepend>
@@ -19,34 +19,34 @@
 
 			<add-folder :parent="queryFilters && queryFilters.folder" :disabled="createFolderAllowed !== true" />
 
-			<v-dialog v-model="moveToDialogActive" v-if="selection.length > 0" @esc="moveToDialogActive = false">
+			<d-dialog v-model="moveToDialogActive" v-if="selection.length > 0" @esc="moveToDialogActive = false">
 				<template #activator="{ on }">
-					<v-button rounded icon @click="on" class="folder" v-tooltip.bottom="$t('move_to_folder')">
-						<v-icon name="folder_move" />
-					</v-button>
+					<d-button rounded icon @click="on" class="folder" v-tooltip.bottom="$t('move_to_folder')">
+						<d-icon name="folder_move" />
+					</d-button>
 				</template>
 
-				<v-card>
-					<v-card-title>{{ $t('move_to_folder') }}</v-card-title>
+				<d-card>
+					<d-card-title>{{ $t('move_to_folder') }}</d-card-title>
 
-					<v-card-text>
+					<d-card-text>
 						<folder-picker v-model="selectedFolder" />
-					</v-card-text>
+					</d-card-text>
 
-					<v-card-actions>
-						<v-button @click="moveToDialogActive = false" secondary>
+					<d-card-actions>
+						<d-button @click="moveToDialogActive = false" secondary>
 							{{ $t('cancel') }}
-						</v-button>
-						<v-button @click="moveToFolder" :loading="moving">
+						</d-button>
+						<d-button @click="moveToFolder" :loading="moving">
 							{{ $t('move') }}
-						</v-button>
-					</v-card-actions>
-				</v-card>
-			</v-dialog>
+						</d-button>
+					</d-card-actions>
+				</d-card>
+			</d-dialog>
 
-			<v-dialog v-model="confirmDelete" v-if="selection.length > 0" @esc="confirmDelete = false">
+			<d-dialog v-model="confirmDelete" v-if="selection.length > 0" @esc="confirmDelete = false">
 				<template #activator="{ on }">
-					<v-button
+					<d-button
 						:disabled="batchDeleteAllowed !== true"
 						rounded
 						icon
@@ -54,25 +54,25 @@
 						@click="on"
 						v-tooltip.bottom="batchDeleteAllowed ? $t('delete') : $t('not_allowed')"
 					>
-						<v-icon name="delete" outline />
-					</v-button>
+						<d-icon name="delete" outline />
+					</d-button>
 				</template>
 
-				<v-card>
-					<v-card-title>{{ $tc('batch_delete_confirm', selection.length) }}</v-card-title>
+				<d-card>
+					<d-card-title>{{ $tc('batch_delete_confirm', selection.length) }}</d-card-title>
 
-					<v-card-actions>
-						<v-button @click="confirmDelete = false" secondary>
+					<d-card-actions>
+						<d-button @click="confirmDelete = false" secondary>
 							{{ $t('cancel') }}
-						</v-button>
-						<v-button @click="batchDelete" class="action-delete" :loading="deleting">
+						</d-button>
+						<d-button @click="batchDelete" class="action-delete" :loading="deleting">
 							{{ $t('delete') }}
-						</v-button>
-					</v-card-actions>
-				</v-card>
-			</v-dialog>
+						</d-button>
+					</d-card-actions>
+				</d-card>
+			</d-dialog>
 
-			<v-button
+			<d-button
 				rounded
 				icon
 				class="action-batch"
@@ -81,10 +81,10 @@
 				v-if="selection.length > 1"
 				v-tooltip.bottom="batchEditAllowed ? $t('edit') : $t('not_allowed')"
 			>
-				<v-icon name="edit" outline />
-			</v-button>
+				<d-icon name="edit" outline />
+			</d-button>
 
-			<v-button
+			<d-button
 				rounded
 				icon
 				class="add-new"
@@ -92,8 +92,8 @@
 				v-tooltip.bottom="createAllowed ? $t('create_item') : $t('not_allowed')"
 				:disabled="createAllowed === false"
 			>
-				<v-icon name="add" />
-			</v-button>
+				<d-icon name="add" />
+			</d-button>
 		</template>
 
 		<template #navigation>
@@ -114,23 +114,23 @@
 			@update:filters="filters = $event"
 		>
 			<template #no-results>
-				<v-info :title="$t('no_results')" icon="search" center>
+				<d-info :title="$t('no_results')" icon="search" center>
 					{{ $t('no_results_copy') }}
 
 					<template #append>
-						<v-button @click="clearFilters">{{ $t('clear_filters') }}</v-button>
+						<d-button @click="clearFilters">{{ $t('clear_filters') }}</d-button>
 					</template>
-				</v-info>
+				</d-info>
 			</template>
 
 			<template #no-items>
-				<v-info :title="$tc('file_count', 0)" icon="folder" center>
+				<d-info :title="$tc('file_count', 0)" icon="folder" center>
 					{{ $t('no_files_copy') }}
 
 					<template #append>
-						<v-button :to="{ path: '/files/+', query: queryFilters }">{{ $t('add_file') }}</v-button>
+						<d-button :to="{ path: '/files/+', query: queryFilters }">{{ $t('add_file') }}</d-button>
 					</template>
-				</v-info>
+				</d-info>
 			</template>
 		</component>
 

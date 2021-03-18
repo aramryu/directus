@@ -1,4 +1,4 @@
-import VPagination from './v-pagination.vue';
+import DPagination from './v-pagination.vue';
 
-export { VPagination };
-export default VPagination;
+export { DPagination };
+export default DPagination;

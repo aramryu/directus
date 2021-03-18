@@ -1,7 +1,7 @@
 <template>
 	<div class="display-labels">
 		<template v-if="!showAsDot">
-			<v-chip
+			<d-chip
 				v-for="item in items"
 				:key="item.value"
 				:style="{
@@ -13,7 +13,7 @@
 				label
 			>
 				{{ item.text }}
-			</v-chip>
+			</d-chip>
 		</template>
 		<template v-else>
 			<display-color

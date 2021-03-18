@@ -26,7 +26,7 @@
 			</table-header>
 			<thead v-if="loading" class="loading-indicator" :class="{ sticky: fixedHeader }">
 				<th scope="colgroup" :style="{ gridColumn: fullColSpan }">
-					<v-progress-linear indeterminate v-if="loading" />
+					<d-progress-linear indeterminate v-if="loading" />
 				</th>
 			</thead>
 			<tbody v-if="loading && items.length === 0">

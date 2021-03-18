@@ -1,6 +1,6 @@
 <template>
 	<div class="v-button-group" :class="{ rounded, tile }">
-		<v-item-group
+		<d-item-group
 			:value="value"
 			:mandatory="mandatory"
 			:max="max"
@@ -9,7 +9,7 @@
 			@input="update"
 		>
 			<slot />
-		</v-item-group>
+		</d-item-group>
 	</div>
 </template>
 

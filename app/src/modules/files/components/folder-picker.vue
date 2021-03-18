@@ -1,9 +1,9 @@
 <template>
-	<v-skeleton-loader v-if="loading" />
+	<d-skeleton-loader v-if="loading" />
 	<div class="folder-picker" v-else>
-		<v-list>
-			<v-item-group scope="folder-picker" multiple v-model="openFolders">
-				<v-list-group
+		<d-list>
+			<d-item-group scope="folder-picker" multiple v-model="openFolders">
+				<d-list-group
 					disable-groupable-parent
 					@click="$emit('input', null)"
 					:active="value === null"
@@ -11,10 +11,10 @@
 					value="root"
 				>
 					<template #activator>
-						<v-list-item-icon>
-							<v-icon name="folder_special" outline />
-						</v-list-item-icon>
-						<v-list-item-content>{{ $t('file_library') }}</v-list-item-content>
+						<d-list-item-icon>
+							<d-icon name="folder_special" outline />
+						</d-list-item-icon>
+						<d-list-item-content>{{ $t('file_library') }}</d-list-item-content>
 					</template>
 
 					<folder-picker-list-item
@@ -26,9 +26,9 @@
 						:disabled="disabledFolders.includes(folder.id)"
 						:disabled-folders="disabledFolders"
 					/>
-				</v-list-group>
-			</v-item-group>
-		</v-list>
+				</d-list-group>
+			</d-item-group>
+		</d-list>
 	</div>
 </template>
 

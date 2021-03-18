@@ -3,7 +3,7 @@
 		<portal to="layout-options">
 			<div class="field">
 				<div class="type-label">{{ $t('layouts.tabular.spacing') }}</div>
-				<v-select
+				<d-select
 					v-model="tableSpacing"
 					:items="[
 						{
@@ -25,7 +25,7 @@
 			<div class="field">
 				<div class="type-label">{{ $t('layouts.tabular.fields') }}</div>
 				<draggable v-model="activeFields" handle=".drag-handle" :set-data="hideDragImage" :force-fallback="true">
-					<v-checkbox
+					<d-checkbox
 						v-for="field in activeFields"
 						v-model="fields"
 						:key="field.field"
@@ -34,12 +34,12 @@
 					>
 						<template #append>
 							<div class="spacer" />
-							<v-icon @click.stop name="drag_handle" class="drag-handle" />
+							<d-icon @click.stop name="drag_handle" class="drag-handle" />
 						</template>
-					</v-checkbox>
+					</d-checkbox>
 				</draggable>
 
-				<v-checkbox
+				<d-checkbox
 					v-for="field in availableFields.filter((field) => fields.includes(field.field) === false)"
 					v-model="fields"
 					:key="field.field"
@@ -61,7 +61,7 @@
 			</transition>
 		</portal>
 
-		<v-table
+		<d-table
 			v-model="_selection"
 			v-if="loading || itemCount > 0"
 			class="table"
@@ -101,7 +101,7 @@
 			<template #footer>
 				<div class="footer">
 					<div class="pagination">
-						<v-pagination
+						<d-pagination
 							v-if="totalPages > 1"
 							:length="totalPages"
 							:total-visible="7"
@@ -113,23 +113,23 @@
 
 					<div v-if="loading === false && items.length >= 25" class="per-page">
 						<span>{{ $t('per_page') }}</span>
-						<v-select @input="limit = +$event" :value="`${limit}`" :items="['25', '50', '100', '250']" inline />
+						<d-select @input="limit = +$event" :value="`${limit}`" :items="['25', '50', '100', '250']" inline />
 					</div>
 				</div>
 			</template>
-		</v-table>
+		</d-table>
 
-		<v-info v-else-if="error" type="danger" :title="$t('unexpected_error')" icon="error" center>
+		<d-info v-else-if="error" type="danger" :title="$t('unexpected_error')" icon="error" center>
 			{{ $t('unexpected_error_copy') }}
 
 			<template #append>
-				<v-error :error="error" />
+				<d-error :error="error" />
 
-				<v-button small @click="resetPresetAndRefresh" class="reset-preset">
+				<d-button small @click="resetPresetAndRefresh" class="reset-preset">
 					{{ $t('reset_page_preferences') }}
-				</v-button>
+				</d-button>
 			</template>
-		</v-info>
+		</d-info>
 
 		<slot v-else-if="itemCount === 0 && activeFilterCount > 0" name="no-results" />
 		<slot v-else-if="itemCount === 0" name="no-items" />

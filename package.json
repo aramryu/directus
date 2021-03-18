@@ -16,9 +16,6 @@
 	},
 	"author": "Rijk van Zanten <rijkvanzanten@me.com>",
 	"license": "GPL-3.0-only",
-	"bugs": {
-		"url": "https://github.com/directus/directus/issues"
-	},
 	"devDependencies": {
 		"@apidevtools/swagger-cli": "^4.0.4",
 		"@babel/core": "^7.10.5",
@@ -205,11 +202,6 @@
 		"@directus/specs": "file:packages/specs",
 		"create-directus-project": "file:packages/create-directus-project",
 		"directus": "file:api"
-	},
-	"husky": {
-		"hooks": {
-			"pre-commit": "npx lint-staged"
-		}
 	},
 	"lint-staged": {
 		"**/*.{js,ts,md}": [

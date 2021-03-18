@@ -1,10 +1,10 @@
 <template>
-	<v-dialog v-model="_active" @esc="_active = false">
+	<d-dialog v-model="_active" @esc="_active = false">
 		<template #activator="activatorBinding">
 			<slot name="activator" v-bind="activatorBinding" />
 		</template>
 
-		<v-progress-circular indeterminate v-if="loading" />
+		<d-progress-circular indeterminate v-if="loading" />
 
 		<file-preview
 			v-else-if="file"
@@ -17,10 +17,10 @@
 			@click="_active = false"
 		/>
 
-		<v-button class="close" @click="_active = false" icon rounded>
-			<v-icon name="close" />
-		</v-button>
-	</v-dialog>
+		<d-button class="close" @click="_active = false" icon rounded>
+			<d-icon name="close" />
+		</d-button>
+	</d-dialog>
 </template>
 
 <script lang="ts">

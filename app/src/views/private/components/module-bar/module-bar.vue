@@ -2,7 +2,7 @@
 	<div class="module-bar">
 		<module-bar-logo />
 		<div class="modules">
-			<v-button
+			<d-button
 				v-for="module in _modules"
 				v-tooltip.right="$t(module.name)"
 				:key="module.id"
@@ -19,8 +19,8 @@
 						: null
 				"
 			>
-				<v-icon :name="module.icon" outline />
-			</v-button>
+				<d-icon :name="module.icon" outline />
+			</d-button>
 		</div>
 		<module-bar-avatar />
 	</div>

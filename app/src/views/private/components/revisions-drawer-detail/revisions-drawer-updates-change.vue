@@ -1,12 +1,8 @@
 <template>
 	<div class="change-line" :class="{ added, deleted, 'no-highlight': wholeThing }">
-		<v-icon :name="added ? 'add' : 'remove'" />
+		<d-icon :name="added ? 'add' : 'remove'" />
 		<div class="delta">
-			<span
-				v-for="(part, index) in changesFiltered"
-				:key="index"
-				:class="{ changed: part.added || part.removed }"
-			>
+			<span v-for="(part, index) in changesFiltered" :key="index" :class="{ changed: part.added || part.removed }">
 				{{ part.value }}
 			</span>
 		</div>

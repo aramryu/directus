@@ -1,7 +1,7 @@
 <template>
-	<v-notice :icon="icon" :type="color">
+	<d-notice :icon="icon" :type="color">
 		<div v-html="marked(text)" />
-	</v-notice>
+	</d-notice>
 </template>
 
 <script lang="ts">

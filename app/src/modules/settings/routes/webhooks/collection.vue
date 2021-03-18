@@ -3,9 +3,9 @@
 		<template #headline>{{ $t('settings') }}</template>
 
 		<template #title-outer:prepend>
-			<v-button class="header-icon" rounded disabled icon secondary>
-				<v-icon name="anchor" />
-			</v-button>
+			<d-button class="header-icon" rounded disabled icon secondary>
+				<d-icon name="anchor" />
+			</d-button>
 		</template>
 
 		<template #navigation>
@@ -15,28 +15,28 @@
 		<template #actions>
 			<search-input v-model="searchQuery" />
 
-			<v-dialog v-model="confirmDelete" v-if="selection.length > 0" @esc="confirmDelete = false">
+			<d-dialog v-model="confirmDelete" v-if="selection.length > 0" @esc="confirmDelete = false">
 				<template #activator="{ on }">
-					<v-button rounded icon class="action-delete" @click="on">
-						<v-icon name="delete" outline />
-					</v-button>
+					<d-button rounded icon class="action-delete" @click="on">
+						<d-icon name="delete" outline />
+					</d-button>
 				</template>
 
-				<v-card>
-					<v-card-title>{{ $tc('batch_delete_confirm', selection.length) }}</v-card-title>
+				<d-card>
+					<d-card-title>{{ $tc('batch_delete_confirm', selection.length) }}</d-card-title>
 
-					<v-card-actions>
-						<v-button @click="confirmDelete = false" secondary>
+					<d-card-actions>
+						<d-button @click="confirmDelete = false" secondary>
 							{{ $t('cancel') }}
-						</v-button>
-						<v-button @click="batchDelete" class="action-delete" :loading="deleting">
+						</d-button>
+						<d-button @click="batchDelete" class="action-delete" :loading="deleting">
 							{{ $t('delete') }}
-						</v-button>
-					</v-card-actions>
-				</v-card>
-			</v-dialog>
+						</d-button>
+					</d-card-actions>
+				</d-card>
+			</d-dialog>
 
-			<v-button
+			<d-button
 				rounded
 				icon
 				class="action-batch"
@@ -44,12 +44,12 @@
 				:to="batchLink"
 				v-tooltip.bottom="$t('edit')"
 			>
-				<v-icon name="edit" outline />
-			</v-button>
+				<d-icon name="edit" outline />
+			</d-button>
 
-			<v-button rounded icon :to="addNewLink" v-tooltip.bottom="$t('create_webhook')">
-				<v-icon name="add" />
-			</v-button>
+			<d-button rounded icon :to="addNewLink" v-tooltip.bottom="$t('create_webhook')">
+				<d-icon name="add" />
+			</d-button>
 		</template>
 
 		<component
@@ -65,23 +65,23 @@
 			@update:filters="filters = $event"
 		>
 			<template #no-results>
-				<v-info :title="$t('no_results')" icon="search" center>
+				<d-info :title="$t('no_results')" icon="search" center>
 					{{ $t('no_results_copy') }}
 
 					<template #append>
-						<v-button @click="clearFilters">{{ $t('clear_filters') }}</v-button>
+						<d-button @click="clearFilters">{{ $t('clear_filters') }}</d-button>
 					</template>
-				</v-info>
+				</d-info>
 			</template>
 
 			<template #no-items>
-				<v-info :title="$tc('webhooks_count', 0)" icon="anchor" center type="info">
+				<d-info :title="$tc('webhooks_count', 0)" icon="anchor" center type="info">
 					{{ $t('no_webhooks_copy') }}
 
 					<template #append>
-						<v-button :to="{ path: '/settings/webhooks/+' }">{{ $t('create_webhook') }}</v-button>
+						<d-button :to="{ path: '/settings/webhooks/+' }">{{ $t('create_webhook') }}</d-button>
 					</template>
-				</v-info>
+				</d-info>
 			</template>
 		</component>
 

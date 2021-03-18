@@ -1,7 +1,7 @@
 <template>
 	<div class="m2a-builder">
 		<div v-if="previewLoading && !previewValues" class="loader">
-			<v-skeleton-loader v-for="n in (value || []).length" :key="n" />
+			<d-skeleton-loader v-for="n in (value || []).length" :key="n" />
 		</div>
 
 		<draggable
@@ -20,7 +20,7 @@
 					class="m2a-row"
 					@click="editExisting((value || [])[item.$index])"
 				>
-					<v-icon class="drag-handle" name="drag_handle" @click.stop v-if="o2mRelation.sort_field" />
+					<d-icon class="drag-handle" name="drag_handle" @click.stop v-if="o2mRelation.sort_field" />
 					<span class="collection">{{ collections[item[anyRelation.one_collection_field]].name }}:</span>
 					<span
 						v-if="typeof item[anyRelation.many_field] === 'number' || typeof item[anyRelation.many_field] === 'string'"
@@ -34,57 +34,57 @@
 						:item="item[anyRelation.many_field]"
 					/>
 					<div class="spacer" />
-					<v-icon class="clear-icon" name="clear" @click.stop="deselect((value || [])[item.$index])" />
-					<v-icon class="launch-icon" name="launch" />
+					<d-icon class="clear-icon" name="clear" @click.stop="deselect((value || [])[item.$index])" />
+					<d-icon class="launch-icon" name="launch" />
 				</div>
 
 				<div v-else class="m2a-row invalid" :key="item.$index">
-					<v-icon class="invalid-icon" name="warning" left />
+					<d-icon class="invalid-icon" name="warning" left />
 					<span>{{ $t('invalid_item') }}</span>
 					<div class="spacer" />
-					<v-icon class="clear-icon" name="clear" @click.stop="deselect((value || [])[item.$index])" />
+					<d-icon class="clear-icon" name="clear" @click.stop="deselect((value || [])[item.$index])" />
 				</div>
 			</template>
 		</draggable>
 
 		<div class="buttons">
-			<v-menu attached>
+			<d-menu attached>
 				<template #activator="{ toggle }">
-					<v-button dashed outlined full-width @click="toggle">
+					<d-button dashed outlined full-width @click="toggle">
 						{{ $t('create_new') }}
-					</v-button>
+					</d-button>
 				</template>
 
-				<v-list>
-					<v-list-item
+				<d-list>
+					<d-list-item
 						@click="createNew(collection.collection)"
 						v-for="collection of collections"
 						:key="collection.collection"
 					>
-						<v-list-item-icon><v-icon :name="collection.icon" /></v-list-item-icon>
-						<v-text-overflow :text="collection.name" />
-					</v-list-item>
-				</v-list>
-			</v-menu>
+						<d-list-item-icon><d-icon :name="collection.icon" /></d-list-item-icon>
+						<d-text-overflow :text="collection.name" />
+					</d-list-item>
+				</d-list>
+			</d-menu>
 
-			<v-menu attached>
+			<d-menu attached>
 				<template #activator="{ toggle }">
-					<v-button dashed outlined full-width @click="toggle">
+					<d-button dashed outlined full-width @click="toggle">
 						{{ $t('add_existing') }}
-					</v-button>
+					</d-button>
 				</template>
 
-				<v-list>
-					<v-list-item
+				<d-list>
+					<d-list-item
 						@click="selectingFrom = collection.collection"
 						v-for="collection of collections"
 						:key="collection.collection"
 					>
-						<v-list-item-icon><v-icon :name="collection.icon" /></v-list-item-icon>
-						<v-text-overflow :text="collection.name" />
-					</v-list-item>
-				</v-list>
-			</v-menu>
+						<d-list-item-icon><d-icon :name="collection.icon" /></d-list-item-icon>
+						<d-text-overflow :text="collection.name" />
+					</d-list-item>
+				</d-list>
+			</d-menu>
 		</div>
 
 		<drawer-collection

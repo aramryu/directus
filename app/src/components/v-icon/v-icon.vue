@@ -1,5 +1,14 @@
 <template>
+	<fa
+		v-if="fa != null"
+		:icon="fa"
+		@click="emitClick"
+		:pull="pull">
+		<component v-if="customIconName" :is="customIconName" />
+	</fa>
+
 	<span
+		v-else
 		class="v-icon"
 		:class="[sizeClass, { 'has-click': !disabled && hasClick, left, right }]"
 		:role="hasClick ? 'button' : null"
@@ -76,7 +85,15 @@ export default defineComponent({
 	props: {
 		name: {
 			type: String,
-			required: true,
+			required: false,
+		},
+		fa: {
+			type: String,
+			required: false,
+		},
+		pull: {
+			type: String,
+			required: false,
 		},
 		filled: {
 			type: Boolean,
@@ -108,7 +125,9 @@ export default defineComponent({
 		});
 
 		const customIconName = computed<string | null>(() => {
-			if (customIcons.includes(props.name)) return `custom-icon-${props.name}`.replace(/_/g, '-');
+			if (props.name) {
+				if (customIcons.includes(props.name)) return `custom-icon-${props.name}`.replace(/_/g, '-');
+			}
 			return null;
 		});
 

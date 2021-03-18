@@ -1,11 +1,11 @@
 <template>
-	<v-notice type="warning" v-if="junctionCollection === null">
+	<d-notice type="warning" v-if="junctionCollection === null">
 		{{ $t('interfaces.one-to-many.no_collection') }}
-	</v-notice>
+	</d-notice>
 	<div v-else class="form-grid">
 		<div class="field full">
 			<p class="type-label">{{ $t('select_fields') }}</p>
-			<v-field-select
+			<d-field-select
 				:collection="junctionCollection"
 				v-model="fields"
 				:inject="junctionCollectionExists ? null : { fields: newFields, collections: newCollections, relations }"

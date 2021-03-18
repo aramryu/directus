@@ -1,20 +1,20 @@
 <template>
 	<div>
-		<v-notice type="info">
+		<d-notice type="info">
 			{{
 				$t('fields_for_role', {
 					role: role ? role.name : $t('public'),
 					action: $t(permission.action).toLowerCase(),
 				})
 			}}
-		</v-notice>
+		</d-notice>
 
 		<p class="type-label">{{ $tc('field', 0) }}</p>
 		<interface-checkboxes v-model="fields" type="json" :choices="fieldsInCollection" />
 
 		<div v-if="appMinimal" class="app-minimal">
-			<v-divider />
-			<v-notice type="warning">{{ $t('the_following_are_minimum_permissions') }}</v-notice>
+			<d-divider />
+			<d-notice type="warning">{{ $t('the_following_are_minimum_permissions') }}</d-notice>
 			<pre class="app-minimal-preview">{{ appMinimal }}</pre>
 		</div>
 	</div>

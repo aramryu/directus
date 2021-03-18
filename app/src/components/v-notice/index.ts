@@ -1,4 +1,4 @@
-import VNotice from './v-notice.vue';
+import DNotice from './v-notice.vue';
 
-export { VNotice };
-export default VNotice;
+export { DNotice };
+export default DNotice;

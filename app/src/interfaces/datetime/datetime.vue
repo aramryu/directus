@@ -1,7 +1,7 @@
 <template>
-	<v-menu :close-on-content-click="false" attached :disabled="disabled">
+	<d-menu :close-on-content-click="false" attached :disabled="disabled">
 		<template #activator="{ toggle, active }">
-			<v-input
+			<d-input
 				:active="active"
 				@click="toggle"
 				readonly
@@ -10,24 +10,24 @@
 				:placeholder="$t('enter_a_value')"
 			>
 				<template #append>
-					<v-icon v-if="!disabled" :name="value ? 'close' : 'today'" :class="{ active }" @click.stop="unsetValue" />
+					<d-icon v-if="!disabled" :name="value ? 'close' : 'today'" :class="{ active }" @click.stop="unsetValue" />
 				</template>
-			</v-input>
+			</d-input>
 		</template>
 
 		<div class="date-selects" v-if="type === 'timestamp' || type === 'dateTime' || type === 'date'">
 			<div class="month">
-				<v-select :placeholder="$t('month')" :items="monthItems" v-model="month" />
+				<d-select :placeholder="$t('month')" :items="monthItems" v-model="month" />
 			</div>
 			<div class="date">
-				<v-select :placeholder="$t('date')" :items="dateItems" v-model="date" />
+				<d-select :placeholder="$t('date')" :items="dateItems" v-model="date" />
 			</div>
 			<div class="year">
-				<v-select :placeholder="$t('year')" :items="yearItems" v-model="year" allow-other />
+				<d-select :placeholder="$t('year')" :items="yearItems" v-model="year" allow-other />
 			</div>
 		</div>
 
-		<v-divider v-if="type === 'timestamp' || type === 'dateTime'" />
+		<d-divider v-if="type === 'timestamp' || type === 'dateTime'" />
 
 		<div
 			class="time-selects"
@@ -35,23 +35,23 @@
 			:class="{ seconds: includeSeconds, 'use-24': use24 }"
 		>
 			<div class="hour">
-				<v-select :items="hourItems" v-model="hours" />
+				<d-select :items="hourItems" v-model="hours" />
 			</div>
 			<div class="minutes">
-				<v-select :items="minutesSecondItems" v-model="minutes" />
+				<d-select :items="minutesSecondItems" v-model="minutes" />
 			</div>
 			<div v-if="includeSeconds" class="seconds">
-				<v-select :items="minutesSecondItems" v-model="seconds" />
+				<d-select :items="minutesSecondItems" v-model="seconds" />
 			</div>
 			<div class="period" v-if="use24 === false">
-				<v-select :items="['am', 'pm']" v-model="period" />
+				<d-select :items="['am', 'pm']" v-model="period" />
 			</div>
 		</div>
 
-		<v-divider />
+		<d-divider />
 
 		<button class="to-now" @click="setToNow">{{ $t('interfaces.datetime.set_to_now') }}</button>
-	</v-menu>
+	</d-menu>
 </template>
 
 <script lang="ts">

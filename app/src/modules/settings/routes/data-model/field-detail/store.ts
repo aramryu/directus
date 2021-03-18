@@ -713,7 +713,7 @@ function initLocalStore(collection: string, field: string, type: typeof localTyp
 		}
 
 		function getAutomaticJunctionCollectionName() {
-			let index: number = 0;
+			let index = 0;
 			let name = getName(index);
 
 			while (collectionExists(name)) {

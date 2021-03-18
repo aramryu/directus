@@ -29,14 +29,14 @@
 			</slot>
 			<span v-if="suffix" class="suffix">{{ suffix }}</span>
 			<span v-if="type === 'number' && !hideArrows">
-				<v-icon
+				<d-icon
 					:class="{ disabled: !isStepUpAllowed }"
 					name="keyboard_arrow_up"
 					class="step-up"
 					@click="stepUp"
 					:disabled="!isStepUpAllowed"
 				/>
-				<v-icon
+				<d-icon
 					:class="{ disabled: !isStepDownAllowed }"
 					name="keyboard_arrow_down"
 					class="step-down"

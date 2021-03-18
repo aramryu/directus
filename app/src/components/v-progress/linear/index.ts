@@ -1,4 +1,4 @@
-import VProgressLinear from './v-progress-linear.vue';
+import DProgressLinear from './v-progress-linear.vue';
 
-export { VProgressLinear };
-export default VProgressLinear;
+export { DProgressLinear };
+export default DProgressLinear;

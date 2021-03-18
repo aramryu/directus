@@ -1,11 +1,11 @@
 <template>
-	<v-notice v-if="!collectionField && !collection" type="warning">
+	<d-notice v-if="!collectionField && !collection" type="warning">
 		{{ $t('collection_field_not_setup') }}
-	</v-notice>
-	<v-notice v-else-if="selectItems.length === 0" type="warning">
+	</d-notice>
+	<d-notice v-else-if="selectItems.length === 0" type="warning">
 		{{ $t('select_a_collection') }}
-	</v-notice>
-	<v-select
+	</d-notice>
+	<d-select
 		v-else
 		:show-deselect="allowNone"
 		@input="$listeners.input"
@@ -67,8 +67,7 @@ export default defineComponent({
 				let disabled = false;
 
 				if (field?.schema?.is_primary_key === true) disabled = true;
-				if (props.typeAllowList.length > 0 && props.typeAllowList.includes(field.type) === false)
-					disabled = true;
+				if (props.typeAllowList.length > 0 && props.typeAllowList.includes(field.type) === false) disabled = true;
 
 				return {
 					text: field.name,

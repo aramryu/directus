@@ -1,4 +1,4 @@
-import VOverlay from './v-overlay.vue';
+import DOverlay from './v-overlay.vue';
 
-export { VOverlay };
-export default VOverlay;
+export { DOverlay };
+export default DOverlay;

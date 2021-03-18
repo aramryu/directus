@@ -1,16 +1,16 @@
 <template>
 	<private-view class="collections-overview" :title="$tc('collections')">
 		<template #title-outer:prepend>
-			<v-button class="header-icon" rounded disabled icon secondary>
-				<v-icon name="box" />
-			</v-button>
+			<d-button class="header-icon" rounded disabled icon secondary>
+				<d-icon name="box" />
+			</d-button>
 		</template>
 
 		<template #navigation>
 			<collections-navigation />
 		</template>
 
-		<v-table
+		<d-table
 			v-if="navItems.length > 0"
 			:headers.sync="tableHeaders"
 			:items="navItems"
@@ -19,21 +19,21 @@
 			@click:row="navigateToCollection"
 		>
 			<template #item.icon="{ item }">
-				<v-icon class="icon" :name="item.icon" />
+				<d-icon class="icon" :name="item.icon" />
 			</template>
-		</v-table>
+		</d-table>
 
-		<v-info icon="box" :title="$t('no_collections')" v-else center>
+		<d-info icon="box" :title="$t('no_collections')" v-else center>
 			<template v-if="isAdmin">
 				{{ $t('no_collections_copy_admin') }}
 			</template>
 			<template #append v-if="isAdmin">
-				<v-button to="/settings/data-model/+">{{ $t('create_collection') }}</v-button>
+				<d-button to="/settings/data-model/+">{{ $t('create_collection') }}</d-button>
 			</template>
 			<template v-else>
 				{{ $t('no_collections_copy') }}
 			</template>
-		</v-info>
+		</d-info>
 
 		<template #sidebar>
 			<sidebar-detail icon="info_outline" :title="$t('information')" close>

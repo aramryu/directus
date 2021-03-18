@@ -3,15 +3,15 @@
 		<template #headline>{{ $t('settings') }}</template>
 
 		<template #title-outer:prepend>
-			<v-button class="header-icon" rounded disabled icon secondary>
-				<v-icon name="list_alt" />
-			</v-button>
+			<d-button class="header-icon" rounded disabled icon secondary>
+				<d-icon name="list_alt" />
+			</d-button>
 		</template>
 
 		<template #actions>
-			<v-button rounded icon to="/settings/data-model/+" v-tooltip.bottom="$t('create_collection')">
-				<v-icon name="add" />
-			</v-button>
+			<d-button rounded icon to="/settings/data-model/+" v-tooltip.bottom="$t('create_collection')">
+				<d-icon name="add" />
+			</d-button>
 		</template>
 
 		<template #navigation>
@@ -19,15 +19,15 @@
 		</template>
 
 		<div class="padding-box">
-			<v-info type="warning" icon="box" :title="$t('no_collections')" v-if="items.length === 0" center>
+			<d-info type="warning" icon="box" :title="$t('no_collections')" v-if="items.length === 0" center>
 				{{ $t('no_collections_copy_admin') }}
 
 				<template #append>
-					<v-button to="/settings/data-model/+">{{ $t('create_collection') }}</v-button>
+					<d-button to="/settings/data-model/+">{{ $t('create_collection') }}</d-button>
 				</template>
-			</v-info>
+			</d-info>
 
-			<v-table
+			<d-table
 				v-else
 				:headers.sync="tableHeaders"
 				:items="items"
@@ -37,7 +37,7 @@
 				item-key="collection"
 			>
 				<template #item.icon="{ item }">
-					<v-icon
+					<d-icon
 						class="icon"
 						:class="{
 							hidden: (item.meta && item.meta.hidden) || false,
@@ -49,7 +49,7 @@
 				</template>
 
 				<template #item.name="{ item }">
-					<v-text-overflow
+					<d-text-overflow
 						class="collection"
 						:class="{
 							hidden: (item.meta && item.meta.hidden) || false,
@@ -70,7 +70,7 @@
 				</template>
 
 				<template #item-append="{ item }">
-					<v-icon
+					<d-icon
 						small
 						class="no-meta"
 						name="report_problem"
@@ -79,7 +79,7 @@
 					/>
 					<collection-options v-if="item.collection.startsWith('directus_') === false" :collection="item" />
 				</template>
-			</v-table>
+			</d-table>
 		</div>
 
 		<router-view name="add" />

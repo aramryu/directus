@@ -1,4 +1,4 @@
-import VRadio from './v-radio.vue';
+import DRadio from './v-radio.vue';
 
-export { VRadio };
-export default VRadio;
+export { DRadio };
+export default DRadio;

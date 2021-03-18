@@ -7,7 +7,7 @@
 		:class="{ checked: isChecked, block }"
 		@click="emitValue"
 	>
-		<v-icon :name="icon" />
+		<d-icon :name="icon" />
 		<span class="label type-text">
 			<slot name="label">{{ label }}</slot>
 		</span>

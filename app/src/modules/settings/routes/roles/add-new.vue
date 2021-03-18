@@ -1,32 +1,32 @@
 <template>
-	<v-dialog active persistent @esc="$router.push('/settings/roles')">
-		<v-card>
-			<v-card-title>
+	<d-dialog active persistent @esc="$router.push('/settings/roles')">
+		<d-card>
+			<d-card-title>
 				{{ $t('create_role') }}
-			</v-card-title>
-			<v-card-text>
+			</d-card-title>
+			<d-card-text>
 				<div class="form-grid">
 					<div class="field full">
-						<v-input v-model="roleName" autofocus @keyup.enter="save" :placeholder="$t('role_name') + '...'" />
+						<d-input v-model="roleName" autofocus @keyup.enter="save" :placeholder="$t('role_name') + '...'" />
 					</div>
 
 					<div class="field half">
 						<p class="type-label">{{ $t('fields.directus_roles.app_access') }}</p>
-						<v-checkbox block v-model="appAccess" :label="$t('enabled')" />
+						<d-checkbox block v-model="appAccess" :label="$t('enabled')" />
 					</div>
 
 					<div class="field half">
 						<p class="type-label">{{ $t('fields.directus_roles.admin_access') }}</p>
-						<v-checkbox block v-model="adminAccess" :label="$t('enabled')" />
+						<d-checkbox block v-model="adminAccess" :label="$t('enabled')" />
 					</div>
 				</div>
-			</v-card-text>
-			<v-card-actions>
-				<v-button to="/settings/roles" secondary>{{ $t('cancel') }}</v-button>
-				<v-button @click="save" :disabled="roleName === null" :loading="saving">{{ $t('save') }}</v-button>
-			</v-card-actions>
-		</v-card>
-	</v-dialog>
+			</d-card-text>
+			<d-card-actions>
+				<d-button to="/settings/roles" secondary>{{ $t('cancel') }}</d-button>
+				<d-button @click="save" :disabled="roleName === null" :loading="saving">{{ $t('save') }}</d-button>
+			</d-card-actions>
+		</d-card>
+	</d-dialog>
 </template>
 
 <script lang="ts">

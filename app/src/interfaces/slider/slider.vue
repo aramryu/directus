@@ -1,5 +1,5 @@
 <template>
-	<v-slider
+	<d-slider
 		:value="value"
 		:disabled="disabled"
 		:min="minValue"

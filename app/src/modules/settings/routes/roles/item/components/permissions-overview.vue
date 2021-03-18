@@ -19,7 +19,7 @@
 
 			<button class="system-toggle" @click="systemVisible = !systemVisible">
 				{{ $t('system_collections') }}
-				<v-icon :name="systemVisible ? 'expand_less' : 'expand_more'" />
+				<d-icon :name="systemVisible ? 'expand_less' : 'expand_more'" />
 			</button>
 
 			<transition-expand>
@@ -46,19 +46,19 @@
 
 		<router-view name="permissionsDetail" :role-key="role" :permission-key="permission" @refresh="refreshPermission" />
 
-		<v-dialog @toggle="resetActive = false" :active="!!resetActive" @esc="resetActive = false">
-			<v-card>
-				<v-card-title>
+		<d-dialog @toggle="resetActive = false" :active="!!resetActive" @esc="resetActive = false">
+			<d-card>
+				<d-card-title>
 					{{ $t('reset_system_permissions_copy') }}
-				</v-card-title>
-				<v-card-actions>
-					<v-button @click="resetActive = false" secondary>{{ $t('cancel') }}</v-button>
-					<v-button @click="resetSystemPermissions(resetActive === 'recommended')" :loading="resetting">
+				</d-card-title>
+				<d-card-actions>
+					<d-button @click="resetActive = false" secondary>{{ $t('cancel') }}</d-button>
+					<d-button @click="resetSystemPermissions(resetActive === 'recommended')" :loading="resetting">
 						{{ $t('reset') }}
-					</v-button>
-				</v-card-actions>
-			</v-card>
-		</v-dialog>
+					</d-button>
+				</d-card-actions>
+			</d-card>
+		</d-dialog>
 	</div>
 </template>
 

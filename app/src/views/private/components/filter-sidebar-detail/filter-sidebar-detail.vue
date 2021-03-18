@@ -10,25 +10,25 @@
 			@remove="removeFilter(filter.key)"
 		/>
 
-		<v-divider v-if="filters.length" />
+		<d-divider v-if="filters.length" />
 
-		<v-menu attached :disabled="loading">
+		<d-menu attached :disabled="loading">
 			<template #activator="{ toggle, active }">
-				<v-input @click="toggle" :class="{ active }" readonly :value="$t('add_filter')" :disabled="loading">
-					<template #prepend><v-icon name="add" /></template>
-					<template #append><v-icon name="expand_more" /></template>
-				</v-input>
+				<d-input @click="toggle" :class="{ active }" readonly :value="$t('add_filter')" :disabled="loading">
+					<template #prepend><d-icon name="add" /></template>
+					<template #append><d-icon name="expand_more" /></template>
+				</d-input>
 			</template>
 
-			<v-list :multiple="false">
+			<d-list :multiple="false">
 				<field-list-item @add="addFilterForField" v-for="field in fieldTree" :key="field.field" :field="field" />
-			</v-list>
-		</v-menu>
+			</d-list>
+		</d-menu>
 
 		<template v-if="showArchiveToggle">
-			<v-divider />
+			<d-divider />
 
-			<v-checkbox v-model="archived" :label="$t('show_archived_items')" />
+			<d-checkbox v-model="archived" :label="$t('show_archived_items')" />
 		</template>
 	</sidebar-detail>
 </template>

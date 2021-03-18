@@ -1,5 +1,5 @@
 <template>
-	<v-drawer
+	<d-drawer
 		:title="modalTitle"
 		:active="true"
 		class="new-collection"
@@ -40,7 +40,7 @@
 		<template #actions v-if="!loading">
 			<actions :role-key="roleKey" :permission="permission" @refresh="$emit('refresh', +permissionKey)" />
 		</template>
-	</v-drawer>
+	</d-drawer>
 </template>
 
 <script lang="ts">

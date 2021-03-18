@@ -2,7 +2,7 @@
 	<div class="boolean" :style="styles">
 		<value-null v-if="value === null" />
 		<template v-else>
-			<v-icon v-if="iconOn !== null && iconOff !== null" :name="value ? iconOn : iconOff"></v-icon>
+			<d-icon v-if="iconOn !== null && iconOff !== null" :name="value ? iconOn : iconOff"></d-icon>
 			<span v-if="labelOn !== null && labelOff !== null">{{ value ? labelOn : labelOff }}</span>
 		</template>
 	</div>

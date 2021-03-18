@@ -1,4 +1,4 @@
-import VUpload from './v-upload.vue';
+import DUpload from './v-upload.vue';
 
-export { VUpload };
-export default VUpload;
+export { DUpload };
+export default DUpload;

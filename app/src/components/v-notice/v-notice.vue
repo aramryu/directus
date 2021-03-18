@@ -1,6 +1,6 @@
 <template>
 	<div class="v-notice" :class="[type, { center }]">
-		<v-icon v-if="icon !== false" :name="iconName" left />
+		<d-icon v-if="icon !== false" :name="iconName" left />
 		<slot />
 	</div>
 </template>

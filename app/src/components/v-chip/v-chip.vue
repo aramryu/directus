@@ -3,7 +3,7 @@
 		<span class="chip-content">
 			<slot />
 			<span v-if="close" class="close-outline" :class="{ disabled }" @click.stop="onCloseClick">
-				<v-icon class="close" :name="closeIcon" x-small />
+				<d-icon class="close" :name="closeIcon" x-small />
 			</span>
 		</span>
 	</span>

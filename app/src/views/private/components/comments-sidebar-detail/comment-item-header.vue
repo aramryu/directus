@@ -1,9 +1,9 @@
 <template>
 	<div class="comment-header">
-		<v-avatar x-small>
+		<d-avatar x-small>
 			<img v-if="avatarSource" :src="avatarSource" :alt="userName(activity.user)" />
-			<v-icon v-else name="person_outline" />
-		</v-avatar>
+			<d-icon v-else name="person_outline" />
+		</d-avatar>
 
 		<div class="name">
 			<user-popover v-if="activity.user && activity.user.id" :user="activity.user.id">
@@ -20,42 +20,42 @@
 		</div>
 
 		<div class="header-right">
-			<v-menu show-arrow placement="bottom-end">
+			<d-menu show-arrow placement="bottom-end">
 				<template #activator="{ toggle, active }">
-					<v-icon class="more" :class="{ active }" name="more_horiz" @click="toggle" />
+					<d-icon class="more" :class="{ active }" name="more_horiz" @click="toggle" />
 					<div class="time">
 						{{ formattedTime }}
 					</div>
 				</template>
 
-				<v-list>
-					<v-list-item @click="$emit('edit')">
-						<v-list-item-icon><v-icon name="edit" outline /></v-list-item-icon>
-						<v-list-item-content>{{ $t('edit') }}</v-list-item-content>
-					</v-list-item>
-					<v-list-item @click="confirmDelete = true">
-						<v-list-item-icon><v-icon name="delete" outline /></v-list-item-icon>
-						<v-list-item-content>{{ $t('delete') }}</v-list-item-content>
-					</v-list-item>
-				</v-list>
-			</v-menu>
+				<d-list>
+					<d-list-item @click="$emit('edit')">
+						<d-list-item-icon><d-icon name="edit" outline /></d-list-item-icon>
+						<d-list-item-content>{{ $t('edit') }}</d-list-item-content>
+					</d-list-item>
+					<d-list-item @click="confirmDelete = true">
+						<d-list-item-icon><d-icon name="delete" outline /></d-list-item-icon>
+						<d-list-item-content>{{ $t('delete') }}</d-list-item-content>
+					</d-list-item>
+				</d-list>
+			</d-menu>
 		</div>
 
-		<v-dialog v-model="confirmDelete" @esc="confirmDelete = false">
-			<v-card>
-				<v-card-title>{{ $t('delete_comment') }}</v-card-title>
-				<v-card-text>{{ $t('delete_are_you_sure') }}</v-card-text>
+		<d-dialog v-model="confirmDelete" @esc="confirmDelete = false">
+			<d-card>
+				<d-card-title>{{ $t('delete_comment') }}</d-card-title>
+				<d-card-text>{{ $t('delete_are_you_sure') }}</d-card-text>
 
-				<v-card-actions>
-					<v-button @click="confirmDelete = false" secondary>
+				<d-card-actions>
+					<d-button @click="confirmDelete = false" secondary>
 						{{ $t('cancel') }}
-					</v-button>
-					<v-button @click="remove" class="action-delete" :loading="deleting">
+					</d-button>
+					<d-button @click="remove" class="action-delete" :loading="deleting">
 						{{ $t('delete') }}
-					</v-button>
-				</v-card-actions>
-			</v-card>
-		</v-dialog>
+					</d-button>
+				</d-card-actions>
+			</d-card>
+		</d-dialog>
 	</div>
 </template>
 

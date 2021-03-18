@@ -1,53 +1,64 @@
 {
-	"name": "@directus/app",
-	"version": "9.0.0-rc.51",
-	"private": false,
-	"description": "Directus is an Open-Source Headless CMS & API for Managing Custom Databases",
-	"author": "Rijk van Zanten <rijk@rngr.org>",
-	"main": "dist/index.html",
-	"files": [
-		"dist",
-		"LICENSE",
-		"README.md"
-	],
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/directus/directus.git"
-	},
-	"publishConfig": {
-		"access": "public"
-	},
-	"scripts": {
-		"copy-docs-images": "rimraf public/img/docs && copyfiles -u 3 \"../docs/assets/**/*\" \"public/img/docs\" --verbose",
-		"predev": "npm run copy-docs-images",
-		"prebuild": "npm run copy-docs-images",
-		"dev": "vue-cli-service serve",
-		"build": "vue-cli-service build",
-		"lint": "vue-cli-service lint",
-		"lint:styles": "stylelint \"**/*.{vue,scss}\"",
-		"fix": "prettier --write \"src/**/*.{js,vue,ts}\"",
-		"fix:styles": "stylelint --fix \"**/*.{vue,scss}\"",
-		"storybook": "start-storybook -p 6006",
-		"build-storybook": "build-storybook",
-		"prepublishOnly": "npm run build",
-		"prettier": "prettier --write \"src/**/*.ts\""
-	},
-	"gitHead": "71bf628955b5da15ce3070dc09478bc558f243a4",
-	"dependencies": {
-		"@directus/docs": "^9.0.0-rc.51",
-		"@directus/format-title": "^9.0.0-rc.51"
-	},
-	"devDependencies": {
-		"@vue/cli-plugin-babel": "^4.5.8",
-		"@vue/cli-plugin-eslint": "^4.5.8",
-		"@vue/cli-plugin-router": "^4.5.8",
-		"@vue/cli-plugin-typescript": "^4.5.8",
-		"@vue/cli-plugin-vuex": "^4.5.8",
-		"@vue/cli-service": "^4.5.8",
-		"@vue/eslint-config-prettier": "^6.0.0",
-		"@vue/eslint-config-typescript": "^7.0.0",
-		"@vue/test-utils": "^1.1.1",
-		"prettier": "^2.2.1",
-		"vue-cli-plugin-yaml": "^1.0.2"
-	}
+  "name": "@directus/app",
+  "version": "9.0.0-rc.51",
+  "private": false,
+  "description": "Directus is an Open-Source Headless CMS & API for Managing Custom Databases",
+  "author": "Rijk van Zanten <rijk@rngr.org>",
+  "scripts": {
+    "build": "vue-cli-service build",
+    "lint": "vue-cli-service lint",
+    "build-storybook": "build-storybook",
+    "copy-docs-images": "rimraf public/img/docs && copyfiles -u 3 \"../docs/assets/**/*\" \"public/img/docs\" --verbose",
+    "dev": "vue-cli-service serve",
+    "fix": "prettier --write \"src/**/*.{js,vue,ts}\"",
+    "fix:styles": "stylelint --fix \"**/*.{vue,scss}\"",
+    "lint:styles": "stylelint \"**/*.{vue,scss}\"",
+    "prebuild": "npm run copy-docs-images",
+    "predev": "npm run copy-docs-images",
+    "prepublishOnly": "npm run build",
+    "prettier": "prettier --write \"src/**/*.ts\"",
+    "storybook": "start-storybook -p 6006"
+  },
+  "main": "dist/index.html",
+  "files": [
+    "dist",
+    "LICENSE",
+    "README.md"
+  ],
+  "dependencies": {
+    "@babel/polyfill": "^7.4.4",
+    "@directus/docs": "^9.0.0-rc.51",
+    "@directus/format-title": "^9.0.0-rc.51",
+    "@fortawesome/fontawesome-pro": "^5.15.3",
+    "@fortawesome/fontawesome-svg-core": "^1.2.35",
+    "@fortawesome/free-brands-svg-icons": "^5.15.3",
+    "@fortawesome/pro-solid-svg-icons": "^5.15.3",
+    "@fortawesome/vue-fontawesome": "^2.0.2",
+    "vuetify": "^2.4.0"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "^4.5.8",
+    "@vue/cli-plugin-eslint": "^4.5.8",
+    "@vue/cli-plugin-router": "^4.5.8",
+    "@vue/cli-plugin-typescript": "^4.5.8",
+    "@vue/cli-plugin-vuex": "^4.5.8",
+    "@vue/cli-service": "^4.5.8",
+    "@vue/eslint-config-prettier": "^6.0.0",
+    "@vue/eslint-config-typescript": "^7.0.0",
+    "@vue/test-utils": "^1.1.1",
+    "prettier": "^2.2.1",
+    "sass": "^1.32.0",
+    "sass-loader": "^10.0.0",
+    "vue-cli-plugin-vuetify": "~2.2.2",
+    "vue-cli-plugin-yaml": "^1.0.2",
+    "vuetify-loader": "^1.7.0"
+  },
+  "gitHead": "71bf628955b5da15ce3070dc09478bc558f243a4",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/directus/directus.git"
+  }
 }

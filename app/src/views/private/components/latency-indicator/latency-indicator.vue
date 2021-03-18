@@ -1,7 +1,7 @@
 <template>
 	<div class="latency-indicator" v-tooltip.bottom.end="latencyTooltip">
-		<v-progress-circular indeterminate v-if="!lastLatency" />
-		<v-icon v-else :name="icon" />
+		<d-progress-circular indeterminate v-if="!lastLatency" />
+		<d-icon v-else :name="icon" />
 	</div>
 </template>
 

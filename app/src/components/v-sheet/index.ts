@@ -1,4 +1,4 @@
-import VSheet from './v-sheet.vue';
+import DSheet from './v-sheet.vue';
 
-export { VSheet };
-export default VSheet;
+export { DSheet };
+export default DSheet;

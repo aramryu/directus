@@ -1,17 +1,17 @@
 <template>
 	<form @submit.prevent="onSubmit">
-		<v-input autofocus autocomplete="username" type="email" v-model="email" :placeholder="$t('email')" />
-		<v-input type="password" autocomplete="current-password" v-model="password" :placeholder="$t('password')" />
+		<d-input autofocus autocomplete="username" type="email" v-model="email" :placeholder="$t('email')" />
+		<d-input type="password" autocomplete="current-password" v-model="password" :placeholder="$t('password')" />
 
 		<transition-expand>
-			<v-input type="text" :placeholder="$t('otp')" v-if="requiresTFA" v-model="otp" />
+			<d-input type="text" :placeholder="$t('otp')" v-if="requiresTFA" v-model="otp" />
 		</transition-expand>
 
-		<v-notice type="warning" v-if="error">
+		<d-notice type="warning" v-if="error">
 			{{ errorFormatted }}
-		</v-notice>
+		</d-notice>
 		<div class="buttons">
-			<v-button type="submit" :loading="loggingIn" large>{{ $t('sign_in') }}</v-button>
+			<d-button type="submit" :loading="loggingIn" large>{{ $t('sign_in') }}</d-button>
 			<router-link to="/reset-password" class="forgot-password">
 				{{ $t('forgot_password') }}
 			</router-link>
@@ -91,10 +91,7 @@ export default defineComponent({
 				const lastPage = userStore.state.currentUser?.last_page;
 				router.push(lastPage || '/collections');
 			} catch (err) {
-				if (
-					err.response?.data?.errors?.[0]?.extensions?.code === 'INVALID_OTP' &&
-					requiresTFA.value === false
-				) {
+				if (err.response?.data?.errors?.[0]?.extensions?.code === 'INVALID_OTP' && requiresTFA.value === false) {
 					requiresTFA.value = true;
 				} else {
 					error.value = err;

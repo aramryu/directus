@@ -4,60 +4,60 @@
 		:class="[{ 'has-app-minimal': !!appMinimal }, permissionLevel, appMinimalLevel]"
 		v-tooltip="appMinimal && $t('required_for_app_access')"
 	>
-		<v-icon v-if="appMinimalLevel === 'full'" name="check" class="all app-minimal" />
+		<d-icon v-if="appMinimalLevel === 'full'" name="check" class="all app-minimal" />
 
-		<v-menu show-arrow v-else>
+		<d-menu show-arrow v-else>
 			<template #activator="{ toggle }">
 				<div>
-					<v-progress-circular indeterminate v-if="loading || saving" small />
-					<v-icon v-else-if="permissionLevel === 'all'" @click="toggle" name="check" />
-					<v-icon
+					<d-progress-circular indeterminate v-if="loading || saving" small />
+					<d-icon v-else-if="permissionLevel === 'all'" @click="toggle" name="check" />
+					<d-icon
 						v-else-if="appMinimalLevel === 'partial' || permissionLevel === 'custom'"
 						@click="toggle"
 						name="rule"
 					/>
-					<v-icon v-else-if="permissionLevel === 'none'" @click="toggle" name="block" />
+					<d-icon v-else-if="permissionLevel === 'none'" @click="toggle" name="block" />
 				</div>
 			</template>
 
-			<v-list>
-				<v-list-item :disabled="permissionLevel === 'all'" @click="setFullAccess(action)">
-					<v-list-item-icon>
-						<v-icon name="check" />
-					</v-list-item-icon>
-					<v-list-item-content>
+			<d-list>
+				<d-list-item :disabled="permissionLevel === 'all'" @click="setFullAccess(action)">
+					<d-list-item-icon>
+						<d-icon name="check" />
+					</d-list-item-icon>
+					<d-list-item-content>
 						{{ $t('all_access') }}
-					</v-list-item-content>
-				</v-list-item>
+					</d-list-item-content>
+				</d-list-item>
 
-				<v-list-item
+				<d-list-item
 					v-if="!!appMinimalLevel === false"
 					:disabled="permissionLevel === 'none'"
 					@click="setNoAccess(action)"
 				>
-					<v-list-item-icon>
-						<v-icon name="block" />
-					</v-list-item-icon>
-					<v-list-item-content>
+					<d-list-item-icon>
+						<d-icon name="block" />
+					</d-list-item-icon>
+					<d-list-item-content>
 						{{ $t('no_access') }}
-					</v-list-item-content>
-				</v-list-item>
+					</d-list-item-content>
+				</d-list-item>
 
-				<v-divider />
+				<d-divider />
 
-				<v-list-item @click="openPermissions">
-					<v-list-item-icon>
-						<v-icon name="rule" />
-					</v-list-item-icon>
-					<v-list-item-content>
+				<d-list-item @click="openPermissions">
+					<d-list-item-icon>
+						<d-icon name="rule" />
+					</d-list-item-icon>
+					<d-list-item-content>
 						{{ $t('use_custom') }}
-					</v-list-item-content>
-					<v-list-item-icon>
-						<v-icon name="launch" />
-					</v-list-item-icon>
-				</v-list-item>
-			</v-list>
-		</v-menu>
+					</d-list-item-content>
+					<d-list-item-icon>
+						<d-icon name="launch" />
+					</d-list-item-icon>
+				</d-list-item>
+			</d-list>
+		</d-menu>
 	</div>
 </template>
 

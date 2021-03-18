@@ -1,24 +1,24 @@
 <template>
-	<v-menu show-arrow>
+	<d-menu show-arrow>
 		<template #activator="{ toggle }">
 			<span @click="toggle" class="picker">
 				{{ selectedOption && selectedOption.text }}
-				<v-icon name="expand_more" small />
+				<d-icon name="expand_more" small />
 			</span>
 		</template>
 
-		<v-list class="menu">
-			<v-list-item
+		<d-list class="menu">
+			<d-list-item
 				v-for="option in options"
 				:key="option.value"
 				@click="_current = option.value"
 				:active="_current === option.value"
 			>
-				<v-icon name="commit_node" />
-				<v-list-item-content>{{ option.text }}</v-list-item-content>
-			</v-list-item>
-		</v-list>
-	</v-menu>
+				<d-icon name="commit_node" />
+				<d-list-item-content>{{ option.text }}</d-list-item-content>
+			</d-list-item>
+		</d-list>
+	</d-menu>
 </template>
 
 <script lang="ts">

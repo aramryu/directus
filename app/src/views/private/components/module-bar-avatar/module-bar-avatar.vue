@@ -1,8 +1,8 @@
 <template>
-	<v-hover class="module-bar-avatar" v-slot="{ hover }">
-		<v-dialog v-model="signOutActive" @esc="signOutActive = false">
+	<d-hover class="module-bar-avatar" v-slot="{ hover }">
+		<d-dialog v-model="signOutActive" @esc="signOutActive = false">
 			<template #activator="{ on }">
-				<v-button
+				<d-button
 					@click="on"
 					tile
 					icon
@@ -11,28 +11,28 @@
 					class="sign-out"
 					v-tooltip.right="$t('sign_out')"
 				>
-					<v-icon name="logout" />
-				</v-button>
+					<d-icon name="logout" />
+				</d-button>
 			</template>
 
-			<v-card>
-				<v-card-title>{{ $t('sign_out_confirm') }}</v-card-title>
-				<v-card-actions>
-					<v-button secondary @click="signOutActive = !signOutActive">
+			<d-card>
+				<d-card-title>{{ $t('sign_out_confirm') }}</d-card-title>
+				<d-card-actions>
+					<d-button secondary @click="signOutActive = !signOutActive">
 						{{ $t('cancel') }}
-					</v-button>
-					<v-button :to="signOutLink">{{ $t('sign_out') }}</v-button>
-				</v-card-actions>
-			</v-card>
-		</v-dialog>
+					</d-button>
+					<d-button :to="signOutLink">{{ $t('sign_out') }}</d-button>
+				</d-card-actions>
+			</d-card>
+		</d-dialog>
 
 		<router-link :to="userProfileLink">
-			<v-avatar tile large v-tooltip.right="userFullName" :class="{ 'no-avatar': !avatarURL }">
+			<d-avatar tile large v-tooltip.right="userFullName" :class="{ 'no-avatar': !avatarURL }">
 				<img v-if="avatarURL" :src="avatarURL" :alt="userFullName" class="avatar-image" />
-				<v-icon v-else name="account_circle" outline />
-			</v-avatar>
+				<d-icon v-else name="account_circle" outline />
+			</d-avatar>
 		</router-link>
-	</v-hover>
+	</d-hover>
 </template>
 
 <script lang="ts">

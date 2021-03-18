@@ -1,21 +1,21 @@
 <template>
-	<v-list large>
+	<d-list large>
 		<template v-if="loading && (nestedFolders === null || nestedFolders.length === 0)">
-			<v-list-item v-for="n in 4" :key="n">
-				<v-skeleton-loader type="list-item-icon" />
-			</v-list-item>
+			<d-list-item v-for="n in 4" :key="n">
+				<d-skeleton-loader type="list-item-icon" />
+			</d-list-item>
 		</template>
 
 		<div class="folders">
-			<v-item-group scope="files-navigation" multiple v-model="openFolders">
-				<v-list-group to="/files" value="root" scope="files-navigation" exact disable-groupable-parent>
+			<d-item-group scope="files-navigation" multiple v-model="openFolders">
+				<d-list-group to="/files" value="root" scope="files-navigation" exact disable-groupable-parent>
 					<template #activator>
-						<v-list-item-icon>
-							<v-icon name="folder_special" outline />
-						</v-list-item-icon>
-						<v-list-item-content>
-							<v-text-overflow :text="$t('file_library')" />
-						</v-list-item-content>
+						<d-list-item-icon>
+							<d-icon name="folder_special" outline />
+						</d-list-item-icon>
+						<d-list-item-content>
+							<d-text-overflow :text="$t('file_library')" />
+						</d-list-item-content>
 					</template>
 
 					<navigation-folder
@@ -24,33 +24,33 @@
 						:folder="folder"
 						:current-folder="currentFolder"
 					/>
-				</v-list-group>
-			</v-item-group>
+				</d-list-group>
+			</d-item-group>
 		</div>
 
-		<v-divider />
+		<d-divider />
 
-		<v-list-item to="/files/all" exact>
-			<v-list-item-icon><v-icon name="file_copy" outline /></v-list-item-icon>
-			<v-list-item-content>
-				<v-text-overflow :text="$t('all_files')" />
-			</v-list-item-content>
-		</v-list-item>
+		<d-list-item to="/files/all" exact>
+			<d-list-item-icon><d-icon name="file_copy" outline /></d-list-item-icon>
+			<d-list-item-content>
+				<d-text-overflow :text="$t('all_files')" />
+			</d-list-item-content>
+		</d-list-item>
 
-		<v-list-item to="/files/mine" exact>
-			<v-list-item-icon><v-icon name="folder_shared" /></v-list-item-icon>
-			<v-list-item-content>
-				<v-text-overflow :text="$t('my_files')" />
-			</v-list-item-content>
-		</v-list-item>
+		<d-list-item to="/files/mine" exact>
+			<d-list-item-icon><d-icon name="folder_shared" /></d-list-item-icon>
+			<d-list-item-content>
+				<d-text-overflow :text="$t('my_files')" />
+			</d-list-item-content>
+		</d-list-item>
 
-		<v-list-item to="/files/recent" exact>
-			<v-list-item-icon><v-icon name="history" /></v-list-item-icon>
-			<v-list-item-content>
-				<v-text-overflow :text="$t('recent_files')" />
-			</v-list-item-content>
-		</v-list-item>
-	</v-list>
+		<d-list-item to="/files/recent" exact>
+			<d-list-item-icon><d-icon name="history" /></d-list-item-icon>
+			<d-list-item-content>
+				<d-text-overflow :text="$t('recent_files')" />
+			</d-list-item-content>
+		</d-list-item>
+	</d-list>
 </template>
 
 <script lang="ts">

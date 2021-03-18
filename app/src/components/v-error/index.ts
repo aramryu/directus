@@ -1,4 +1,4 @@
-import VError from './v-error.vue';
+import DError from './v-error.vue';
 
-export default VError;
-export { VError };
+export default DError;
+export { DError };

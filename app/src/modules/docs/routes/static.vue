@@ -1,9 +1,9 @@
 <template>
 	<private-view :title="title">
 		<template #title-outer:prepend>
-			<v-button rounded disabled icon>
-				<v-icon name="info" />
-			</v-button>
+			<d-button rounded disabled icon>
+				<d-icon name="info" />
+			</d-button>
 		</template>
 
 		<template #title>

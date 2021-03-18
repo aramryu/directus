@@ -1,40 +1,57 @@
 <template>
-	<v-info v-if="appAccess === false" center :title="$t('no_app_access')" type="danger" icon="block">
+	<d-info v-if="appAccess === false" center :title="$t('no_app_access')" type="danger" icon="block">
 		{{ $t('no_app_access_copy') }}
 
 		<template #append>
-			<v-button to="/logout">Switch User</v-button>
+			<d-button to="/logout">Switch User</d-button>
 		</template>
-	</v-info>
+	</d-info>
 
 	<div v-else class="private-view" :class="{ theme }">
-		<aside role="navigation" aria-label="Module Navigation" class="navigation" :class="{ 'is-open': navOpen }">
-			<module-bar />
-			<div class="module-nav alt-colors">
-				<project-info />
+		<v-navigation-drawer app :permanent="navOpen">
+			<aside role="navigation" aria-label="Module Navigation" class="navigation" :class="{ 'is-open': navOpen }">
+				<module-bar />
+				<div class="module-nav alt-colors">
+					<project-info />
 
-				<div class="module-nav-content">
-					<slot name="navigation" />
+					<div class="module-nav-content">
+						<slot name="navigation" />
+					</div>
 				</div>
-			</div>
-		</aside>
-		<div class="content" ref="contentEl">
-			<header-bar
-				show-sidebar-toggle
-				:title="title"
-				@toggle:sidebar="sidebarOpen = !sidebarOpen"
-				@primary="navOpen = !navOpen"
-			>
-				<template v-for="(_, scopedSlotName) in $scopedSlots" v-slot:[scopedSlotName]="slotData">
-					<slot :name="scopedSlotName" v-bind="slotData" />
-				</template>
-			</header-bar>
+			</aside>
+		</v-navigation-drawer>
 
-			<main>
-				<slot />
-			</main>
-		</div>
-		<aside
+		<v-main>
+			<v-container class="content" ref="contentEl" fluid>
+				<header-bar
+					show-sidebar-toggle
+					:title="title"
+					@toggle:sidebar="sidebarOpen = !sidebarOpen"
+					@primary="navOpen = !navOpen"
+				>
+					<template v-for="(_, scopedSlotName) in $scopedSlots" v-slot:[scopedSlotName]="slotData">
+						<slot :name="scopedSlotName" v-bind="slotData" />
+					</template>
+				</header-bar>
+					<v-navigation-drawer clipped app right v-model="sidebarOpen">
+						<template v-slot:append>
+							<notifications-preview v-model="notificationsPreviewActive" :sidebar-open="sidebarOpen" />
+						</template>
+
+						<div class="flex-container">
+							<sidebar-detail-group :sidebar-open="sidebarOpen">
+								<slot name="sidebar" />
+							</sidebar-detail-group>
+						</div>
+					</v-navigation-drawer>
+
+				<main>
+					<slot />
+				</main>
+			</v-container>
+		</v-main>
+
+		<!-- <aside
 			role="contentinfo"
 			class="sidebar alt-colors"
 			aria-label="Module Sidebar"
@@ -52,8 +69,8 @@
 			</div>
 		</aside>
 
-		<v-overlay class="nav-overlay" :active="navOpen" @click="navOpen = false" />
-		<v-overlay class="sidebar-overlay" :active="sidebarOpen" @click="sidebarOpen = false" />
+		<d-overlay class="nav-overlay" :active="navOpen" @click="navOpen = false" />
+		<d-overlay class="sidebar-overlay" :active="sidebarOpen" @click="sidebarOpen = false" /> -->
 
 		<notifications-group v-if="notificationsPreviewActive === false" :dense="sidebarOpen === false" />
 		<notification-dialogs />

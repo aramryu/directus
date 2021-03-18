@@ -3,7 +3,7 @@
 		<div class="fields">
 			<div class="field full">
 				<p class="type-label">{{ $t('format') }}</p>
-				<v-select
+				<d-select
 					:items="[
 						{
 							text: $t('csv'),
@@ -16,13 +16,13 @@
 					]"
 					v-model="format"
 				/>
-				<v-checkbox v-model="useFilters" :label="$t('use_current_filters_settings')" />
+				<d-checkbox v-model="useFilters" :label="$t('use_current_filters_settings')" />
 			</div>
 
 			<div class="field full">
-				<v-button full-width @click="exportData">
+				<d-button full-width @click="exportData">
 					{{ $t('export_collection', { collection: collection.name }) }}
-				</v-button>
+				</d-button>
 			</div>
 		</div>
 	</sidebar-detail>

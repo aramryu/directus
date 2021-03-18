@@ -2,9 +2,9 @@
 	<div class="interface-code codemirror-custom-styles" :class="{ disabled }">
 		<textarea ref="codemirrorEl" :value="stringValue" />
 
-		<v-button small icon secondary v-if="template" v-tooltip.left="$t('fill_template')" @click="fillTemplate">
-			<v-icon name="playlist_add" />
-		</v-button>
+		<d-button small icon secondary v-if="template" v-tooltip.left="$t('fill_template')" @click="fillTemplate">
+			<d-icon name="playlist_add" />
+		</d-button>
 	</div>
 </template>
 

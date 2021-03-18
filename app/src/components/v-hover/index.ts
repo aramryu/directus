@@ -1,4 +1,4 @@
-import VHover from './v-hover.vue';
+import DHover from './v-hover.vue';
 
-export { VHover };
-export default VHover;
+export { DHover };
+export default DHover;

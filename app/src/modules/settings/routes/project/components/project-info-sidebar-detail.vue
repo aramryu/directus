@@ -31,7 +31,7 @@
 			</div>
 		</dl>
 
-		<v-divider />
+		<d-divider />
 
 		<div class="page-description" v-html="marked($t('page_help_settings_project'))" />
 	</sidebar-detail>

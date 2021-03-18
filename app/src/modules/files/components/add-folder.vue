@@ -1,7 +1,7 @@
 <template>
-	<v-dialog v-model="dialogActive" @esc="dialogActive = false">
+	<d-dialog v-model="dialogActive" @esc="dialogActive = false">
 		<template #activator="{ on }">
-			<v-button
+			<d-button
 				rounded
 				icon
 				class="add-new"
@@ -9,23 +9,23 @@
 				v-tooltip.bottom="disabled ? $t('not_allowed') : $t('create_folder')"
 				:disabled="disabled"
 			>
-				<v-icon name="create_new_folder" outline />
-			</v-button>
+				<d-icon name="create_new_folder" outline />
+			</d-button>
 		</template>
 
-		<v-card>
-			<v-card-title>{{ $t('create_folder') }}</v-card-title>
-			<v-card-text>
-				<v-input autofocus @keyup.enter="addFolder" :placeholder="$t('folder_name')" v-model="newFolderName" />
-			</v-card-text>
-			<v-card-actions>
-				<v-button secondary @click="dialogActive = false">{{ $t('cancel') }}</v-button>
-				<v-button :disabled="newFolderName === null" @click="addFolder" :loading="saving">
+		<d-card>
+			<d-card-title>{{ $t('create_folder') }}</d-card-title>
+			<d-card-text>
+				<d-input autofocus @keyup.enter="addFolder" :placeholder="$t('folder_name')" v-model="newFolderName" />
+			</d-card-text>
+			<d-card-actions>
+				<d-button secondary @click="dialogActive = false">{{ $t('cancel') }}</d-button>
+				<d-button :disabled="newFolderName === null" @click="addFolder" :loading="saving">
 					{{ $t('save') }}
-				</v-button>
-			</v-card-actions>
-		</v-card>
-	</v-dialog>
+				</d-button>
+			</d-card-actions>
+		</d-card>
+	</d-dialog>
 </template>
 
 <script lang="ts">

@@ -1,6 +1,6 @@
 <template>
 	<div class="logout">
-		<v-progress-circular indeterminate />
+		<d-progress-circular indeterminate />
 	</div>
 </template>
 
@@ -13,7 +13,7 @@ export default defineComponent({
 		onMounted(() => {
 			logout();
 		});
-	}
+	},
 });
 </script>
 

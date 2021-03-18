@@ -1,28 +1,28 @@
 <template>
-	<v-list large>
-		<v-list-item v-for="item in navItems" :to="item.to" :key="item.to">
-			<v-list-item-icon><v-icon :name="item.icon" /></v-list-item-icon>
-			<v-list-item-content>
-				<v-text-overflow :text="item.name" />
-			</v-list-item-content>
-		</v-list-item>
+	<d-list large>
+		<d-list-item v-for="item in navItems" :to="item.to" :key="item.to">
+			<d-list-item-icon><d-icon :name="item.icon" /></d-list-item-icon>
+			<d-list-item-content>
+				<d-text-overflow :text="item.name" />
+			</d-list-item-content>
+		</d-list-item>
 
-		<v-divider />
+		<d-divider />
 
-		<v-list-item v-for="item in externalItems" :href="item.href" :key="item.href">
-			<v-list-item-icon><v-icon :name="item.icon" /></v-list-item-icon>
-			<v-list-item-content>
-				<v-text-overflow :text="item.name" />
-			</v-list-item-content>
-		</v-list-item>
+		<d-list-item v-for="item in externalItems" :href="item.href" :key="item.href">
+			<d-list-item-icon><d-icon :name="item.icon" /></d-list-item-icon>
+			<d-list-item-content>
+				<d-text-overflow :text="item.name" />
+			</d-list-item-content>
+		</d-list-item>
 
-		<v-list-item href="https://github.com/directus/directus/releases" class="version">
-			<v-list-item-icon><v-icon name="directus" /></v-list-item-icon>
-			<v-list-item-content>
-				<v-text-overflow class="version" :text="`Directus ${version}`" />
-			</v-list-item-content>
-		</v-list-item>
-	</v-list>
+		<d-list-item href="https://github.com/directus/directus/releases" class="version">
+			<d-list-item-icon><d-icon name="directus" /></d-list-item-icon>
+			<d-list-item-content>
+				<d-text-overflow class="version" :text="`Directus ${version}`" />
+			</d-list-item-content>
+		</d-list-item>
+	</d-list>
 </template>
 
 <script lang="ts">

@@ -1,8 +1,8 @@
 <template>
-	<v-notice v-if="!choices" type="warning">
+	<d-notice v-if="!choices" type="warning">
 		{{ $t('choices_option_configured_incorrectly') }}
-	</v-notice>
-	<v-select
+	</d-notice>
+	<d-select
 		v-else
 		:value="value"
 		@input="$listeners.input"
@@ -13,9 +13,9 @@
 		:allow-other="allowOther"
 	>
 		<template #prepend v-if="icon">
-			<v-icon :name="icon" />
+			<d-icon :name="icon" />
 		</template>
-	</v-select>
+	</d-select>
 </template>
 
 <script lang="ts">

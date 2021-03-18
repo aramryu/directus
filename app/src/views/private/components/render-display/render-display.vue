@@ -1,7 +1,7 @@
 <template>
 	<value-null v-if="value === null || value === undefined" />
-	<v-text-overflow v-else-if="displayInfo === null" class="display" :text="value" />
-	<v-text-overflow
+	<d-text-overflow v-else-if="displayInfo === null" class="display" :text="value" />
+	<d-text-overflow
 		v-else-if="typeof displayInfo.handler === 'function'"
 		class="display"
 		:text="displayInfo.handler(value, options, { type })"

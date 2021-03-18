@@ -6,7 +6,7 @@
 		@click="$emit('click', $event)"
 	>
 		<div class="icon">
-			<v-icon :name="icon" outline />
+			<d-icon :name="icon" outline />
 		</div>
 		<div class="title" v-if="sidebarOpen">
 			<slot />

@@ -2,19 +2,19 @@
 	<files-not-found v-if="!loading && !item" />
 	<private-view v-else :title="loading || !item ? $t('loading') : item.title">
 		<template #title-outer:prepend>
-			<v-button class="header-icon" rounded icon secondary exact :to="to">
-				<v-icon name="arrow_back" />
-			</v-button>
+			<d-button class="header-icon" rounded icon secondary exact :to="to">
+				<d-icon name="arrow_back" />
+			</d-button>
 		</template>
 
 		<template #headline>
-			<v-breadcrumb :items="breadcrumb" />
+			<d-breadcrumb :items="breadcrumb" />
 		</template>
 
 		<template #actions>
-			<v-dialog v-model="confirmDelete" @esc="confirmDelete = false">
+			<d-dialog v-model="confirmDelete" @esc="confirmDelete = false">
 				<template #activator="{ on }">
-					<v-button
+					<d-button
 						rounded
 						icon
 						class="action-delete"
@@ -22,27 +22,27 @@
 						@click="on"
 						v-tooltip.bottom="deleteAllowed ? $t('delete') : $t('not_allowed')"
 					>
-						<v-icon name="delete" outline />
-					</v-button>
+						<d-icon name="delete" outline />
+					</d-button>
 				</template>
 
-				<v-card>
-					<v-card-title>{{ $t('delete_are_you_sure') }}</v-card-title>
+				<d-card>
+					<d-card-title>{{ $t('delete_are_you_sure') }}</d-card-title>
 
-					<v-card-actions>
-						<v-button @click="confirmDelete = false" secondary>
+					<d-card-actions>
+						<d-button @click="confirmDelete = false" secondary>
 							{{ $t('cancel') }}
-						</v-button>
-						<v-button @click="deleteAndQuit" class="action-delete" :loading="deleting">
+						</d-button>
+						<d-button @click="deleteAndQuit" class="action-delete" :loading="deleting">
 							{{ $t('delete') }}
-						</v-button>
-					</v-card-actions>
-				</v-card>
-			</v-dialog>
+						</d-button>
+					</d-card-actions>
+				</d-card>
+			</d-dialog>
 
-			<v-dialog v-model="moveToDialogActive" v-if="isNew === false" @esc="moveToDialogActive = false">
+			<d-dialog v-model="moveToDialogActive" v-if="isNew === false" @esc="moveToDialogActive = false">
 				<template #activator="{ on }">
-					<v-button
+					<d-button
 						rounded
 						icon
 						:disabled="item === null"
@@ -50,33 +50,33 @@
 						class="folder"
 						v-tooltip.bottom="$t('move_to_folder')"
 					>
-						<v-icon name="folder_move" />
-					</v-button>
+						<d-icon name="folder_move" />
+					</d-button>
 				</template>
 
-				<v-card>
-					<v-card-title>{{ $t('move_to_folder') }}</v-card-title>
+				<d-card>
+					<d-card-title>{{ $t('move_to_folder') }}</d-card-title>
 
-					<v-card-text>
+					<d-card-text>
 						<folder-picker v-model="selectedFolder" />
-					</v-card-text>
+					</d-card-text>
 
-					<v-card-actions>
-						<v-button @click="moveToDialogActive = false" secondary>
+					<d-card-actions>
+						<d-button @click="moveToDialogActive = false" secondary>
 							{{ $t('cancel') }}
-						</v-button>
-						<v-button @click="moveToFolder" :loading="moving">
+						</d-button>
+						<d-button @click="moveToFolder" :loading="moving">
 							{{ $t('move') }}
-						</v-button>
-					</v-card-actions>
-				</v-card>
-			</v-dialog>
+						</d-button>
+					</d-card-actions>
+				</d-card>
+			</d-dialog>
 
-			<v-button rounded icon @click="downloadFile" class="download" v-tooltip.bottom="$t('download')">
-				<v-icon name="save_alt" />
-			</v-button>
+			<d-button rounded icon @click="downloadFile" class="download" v-tooltip.bottom="$t('download')">
+				<d-icon name="save_alt" />
+			</d-button>
 
-			<v-button
+			<d-button
 				v-if="item && item.type.includes('image')"
 				rounded
 				icon
@@ -84,10 +84,10 @@
 				class="edit"
 				v-tooltip.bottom="$t('edit')"
 			>
-				<v-icon name="tune" />
-			</v-button>
+				<d-icon name="tune" />
+			</d-button>
 
-			<v-button
+			<d-button
 				rounded
 				icon
 				:loading="saving"
@@ -95,7 +95,7 @@
 				@click="saveAndQuit"
 				v-tooltip.bottom="saveAllowed ? $t('save') : $t('not_allowed')"
 			>
-				<v-icon name="check" />
+				<d-icon name="check" />
 
 				<template #append-outer>
 					<save-options
@@ -104,7 +104,7 @@
 						@save-as-copy="saveAsCopyAndNavigate"
 					/>
 				</template>
-			</v-button>
+			</d-button>
 		</template>
 
 		<template #navigation>
@@ -129,7 +129,7 @@
 				v-model="editActive"
 			/>
 
-			<v-form
+			<d-form
 				ref="form"
 				:fields="fieldsFiltered"
 				:loading="loading"
@@ -142,18 +142,18 @@
 			/>
 		</div>
 
-		<v-dialog v-model="confirmLeave" @esc="discardAndLeave">
-			<v-card>
-				<v-card-title>{{ $t('unsaved_changes') }}</v-card-title>
-				<v-card-text>{{ $t('unsaved_changes_copy') }}</v-card-text>
-				<v-card-actions>
-					<v-button secondary @click="discardAndLeave">
+		<d-dialog v-model="confirmLeave" @esc="discardAndLeave">
+			<d-card>
+				<d-card-title>{{ $t('unsaved_changes') }}</d-card-title>
+				<d-card-text>{{ $t('unsaved_changes_copy') }}</d-card-text>
+				<d-card-actions>
+					<d-button secondary @click="discardAndLeave">
 						{{ $t('discard_changes') }}
-					</v-button>
-					<v-button @click="confirmLeave = false">{{ $t('keep_editing') }}</v-button>
-				</v-card-actions>
-			</v-card>
-		</v-dialog>
+					</d-button>
+					<d-button @click="confirmLeave = false">{{ $t('keep_editing') }}</d-button>
+				</d-card-actions>
+			</d-card>
+		</d-dialog>
 
 		<template #sidebar>
 			<file-info-sidebar-detail :file="item" />

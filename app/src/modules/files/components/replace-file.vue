@@ -1,15 +1,15 @@
 <template>
-	<v-dialog :active="active" @toggle="$emit('toggle', false)" @esc="$emit('toggle', false)">
-		<v-card v-if="file">
-			<v-card-title>{{ $t('replace_file') }}</v-card-title>
-			<v-card-text>
-				<v-upload :preset="preset" :file-id="file.id" @input="uploaded" from-url />
-			</v-card-text>
-			<v-card-actions>
-				<v-button secondary @click="$emit('toggle', false)">{{ $t('done') }}</v-button>
-			</v-card-actions>
-		</v-card>
-	</v-dialog>
+	<d-dialog :active="active" @toggle="$emit('toggle', false)" @esc="$emit('toggle', false)">
+		<d-card v-if="file">
+			<d-card-title>{{ $t('replace_file') }}</d-card-title>
+			<d-card-text>
+				<d-upload :preset="preset" :file-id="file.id" @input="uploaded" from-url />
+			</d-card-text>
+			<d-card-actions>
+				<d-button secondary @click="$emit('toggle', false)">{{ $t('done') }}</d-button>
+			</d-card-actions>
+		</d-card>
+	</d-dialog>
 </template>
 
 <script lang="ts">

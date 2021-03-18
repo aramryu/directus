@@ -1,7 +1,7 @@
 <template>
-	<v-notice v-if="!choices" type="warning">
+	<d-notice v-if="!choices" type="warning">
 		{{ $t('choices_option_configured_incorrectly') }}
-	</v-notice>
+	</d-notice>
 	<div
 		v-else
 		class="radio-buttons"
@@ -10,7 +10,7 @@
 			'--v-radio-color': color,
 		}"
 	>
-		<v-radio
+		<d-radio
 			block
 			v-for="item in choices"
 			:key="item.value"
@@ -31,7 +31,7 @@
 				disabled,
 			}"
 		>
-			<v-icon :disabled="disabled" :name="customIcon" @click="$emit('input', otherValue)" />
+			<d-icon :disabled="disabled" :name="customIcon" @click="$emit('input', otherValue)" />
 			<input v-model="otherValue" :placeholder="$t('other')" :disabled="disabled" @focus="$emit('input', otherValue)" />
 		</div>
 	</div>

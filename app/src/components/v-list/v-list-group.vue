@@ -1,6 +1,6 @@
 <template>
 	<div class="v-list-group">
-		<v-list-item
+		<d-list-item
 			:active="active"
 			class="activator"
 			:to="to"
@@ -11,10 +11,10 @@
 		>
 			<slot name="activator" :active="groupActive" />
 
-			<v-list-item-icon class="activator-icon" :class="{ active: groupActive }" v-if="$slots.default">
-				<v-icon name="chevron_right" @click.stop.prevent="toggle" :disabled="disabled" />
-			</v-list-item-icon>
-		</v-list-item>
+			<d-list-item-icon class="activator-icon" :class="{ active: groupActive }" v-if="$slots.default">
+				<d-icon name="chevron_right" @click.stop.prevent="toggle" :disabled="disabled" />
+			</d-list-item-icon>
+		</d-list-item>
 
 		<div class="items" v-if="groupActive">
 			<slot />

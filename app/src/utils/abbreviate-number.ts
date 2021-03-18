@@ -10,7 +10,7 @@ export function abbreviateNumber(value: number) {
 			if (dotLessShortValue.length <= 2) break;
 		}
 
-		let valueAsString: string = String(shortValue);
+		let valueAsString = String(shortValue);
 
 		if (shortValue % 1 != 0) {
 			valueAsString = shortValue.toFixed(1);

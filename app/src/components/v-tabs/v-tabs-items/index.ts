@@ -1,4 +1,4 @@
-import VTabsItems from './v-tabs-items.vue';
+import DTabsItems from './v-tabs-items.vue';
 
-export { VTabsItems };
-export default VTabsItems;
+export { DTabsItems };
+export default DTabsItems;

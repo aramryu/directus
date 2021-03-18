@@ -1,14 +1,14 @@
 <template>
 	<span v-if="simple" class="rating simple">
-		<v-icon small name="star" />
+		<d-icon small name="star" />
 		{{ value }}
 	</span>
 	<div v-else class="rating detailed" v-tooltip.bottom.start="value">
 		<div class="active" :style="ratingPercentage">
-			<v-icon v-for="index in starCount" :key="index" small name="star" />
+			<d-icon v-for="index in starCount" :key="index" small name="star" />
 		</div>
 		<div class="inactive">
-			<v-icon v-for="index in starCount" :key="index" small name="star" />
+			<d-icon v-for="index in starCount" :key="index" small name="star" />
 		</div>
 	</div>
 </template>

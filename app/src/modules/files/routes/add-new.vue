@@ -1,15 +1,15 @@
 <template>
-	<v-dialog :active="true" @toggle="close" @esc="close">
-		<v-card>
-			<v-card-title>{{ $t('add_file') }}</v-card-title>
-			<v-card-text>
-				<v-upload :preset="preset" multiple @input="close" from-url />
-			</v-card-text>
-			<v-card-actions>
-				<v-button secondary @click="close">{{ $t('done') }}</v-button>
-			</v-card-actions>
-		</v-card>
-	</v-dialog>
+	<d-dialog :active="true" @toggle="close" @esc="close">
+		<d-card>
+			<d-card-title>{{ $t('add_file') }}</d-card-title>
+			<d-card-text>
+				<d-upload :preset="preset" multiple @input="close" from-url />
+			</d-card-text>
+			<d-card-actions>
+				<d-button secondary @click="close">{{ $t('done') }}</d-button>
+			</d-card-actions>
+		</d-card>
+	</d-dialog>
 </template>
 
 <script lang="ts">

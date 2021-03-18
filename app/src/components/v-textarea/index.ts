@@ -1,4 +1,4 @@
-import VTextarea from './v-textarea.vue';
+import DTextarea from './v-textarea.vue';
 
-export { VTextarea };
-export default VTextarea;
+export { DTextarea };
+export default DTextarea;

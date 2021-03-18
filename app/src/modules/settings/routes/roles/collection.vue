@@ -3,15 +3,15 @@
 		<template #headline>{{ $t('settings') }}</template>
 
 		<template #title-outer:prepend>
-			<v-button class="header-icon" rounded disabled icon secondary>
-				<v-icon name="admin_panel_settings" outline />
-			</v-button>
+			<d-button class="header-icon" rounded disabled icon secondary>
+				<d-icon name="admin_panel_settings" outline />
+			</d-button>
 		</template>
 
 		<template #actions>
-			<v-button rounded icon :to="addNewLink" v-tooltip.bottom="$t('create_role')">
-				<v-icon name="add" />
-			</v-button>
+			<d-button rounded icon :to="addNewLink" v-tooltip.bottom="$t('create_role')">
+				<d-icon name="add" />
+			</d-button>
 		</template>
 
 		<template #navigation>
@@ -25,7 +25,7 @@
 		</template>
 
 		<div class="roles">
-			<v-table
+			<d-table
 				:items="roles"
 				:headers="tableHeaders"
 				fixed-header
@@ -34,7 +34,7 @@
 				@click:row="navigateToRole"
 			>
 				<template #item.icon="{ item }">
-					<v-icon class="icon" :name="item.icon" :class="{ public: item.public }" />
+					<d-icon class="icon" :name="item.icon" :class="{ public: item.public }" />
 				</template>
 
 				<template #item.name="{ item }">
@@ -50,7 +50,7 @@
 				<template #item.description="{ item }">
 					<span class="description">{{ item.description }}</span>
 				</template>
-			</v-table>
+			</d-table>
 		</div>
 		<router-view name="add" />
 	</private-view>

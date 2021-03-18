@@ -1,9 +1,9 @@
 <template>
-	<v-notice type="warning" v-if="!relation">
+	<d-notice type="warning" v-if="!relation">
 		{{ $t('relationship_not_setup') }}
-	</v-notice>
+	</d-notice>
 	<div class="one-to-many" v-else>
-		<v-table
+		<d-table
 			:loading="loading"
 			:items="sortedItems || items"
 			:headers.sync="tableHeaders"
@@ -31,15 +31,15 @@
 			</template>
 
 			<template #item-append="{ item }" v-if="!disabled">
-				<v-icon name="close" v-tooltip="$t('deselect')" class="deselect" @click.stop="deleteItem(item)" />
+				<d-icon name="close" v-tooltip="$t('deselect')" class="deselect" @click.stop="deleteItem(item)" />
 			</template>
-		</v-table>
+		</d-table>
 
 		<div class="actions" v-if="!disabled">
-			<v-button class="new" @click="currentlyEditing = '+'">{{ $t('create_new') }}</v-button>
-			<v-button class="existing" @click="selectModalActive = true">
+			<d-button class="new" @click="currentlyEditing = '+'">{{ $t('create_new') }}</d-button>
+			<d-button class="existing" @click="selectModalActive = true">
 				{{ $t('add_existing') }}
-			</v-button>
+			</d-button>
 		</div>
 
 		<drawer-item

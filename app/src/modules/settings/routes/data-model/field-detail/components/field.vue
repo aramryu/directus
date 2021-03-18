@@ -1,20 +1,19 @@
 <template>
 	<div>
-
 		<div class="form">
 			<div class="field half-left" v-if="fieldData.meta">
 				<div class="label type-label">{{ $t('readonly') }}</div>
-				<v-checkbox v-model="fieldData.meta.readonly" :label="$t('disabled_editing_value')" block />
+				<d-checkbox v-model="fieldData.meta.readonly" :label="$t('disabled_editing_value')" block />
 			</div>
 
 			<div class="field half-right" v-if="fieldData.meta">
 				<div class="label type-label">{{ $t('hidden') }}</div>
-				<v-checkbox v-model="fieldData.meta.hidden" :label="$t('hidden_on_detail')" block />
+				<d-checkbox v-model="fieldData.meta.hidden" :label="$t('hidden_on_detail')" block />
 			</div>
 
 			<div class="field full">
 				<div class="label type-label">{{ $t('note') }}</div>
-				<v-input v-model="fieldData.meta.note" :placeholder="$t('add_note')" />
+				<d-input v-model="fieldData.meta.note" :placeholder="$t('add_note')" />
 			</div>
 
 			<div class="field full">

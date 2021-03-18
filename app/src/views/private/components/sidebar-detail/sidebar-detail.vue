@@ -2,19 +2,19 @@
 	<div class="sidebar-detail" :class="{ open: sidebarOpen }">
 		<button class="toggle" @click="toggle" :class="{ open: active }">
 			<div class="icon">
-				<v-badge bordered :value="badge" :disabled="!badge">
-					<v-icon :name="icon" outline />
-				</v-badge>
+				<d-badge bordered :value="badge" :disabled="!badge">
+					<d-icon :name="icon" outline />
+				</d-badge>
 			</div>
 			<div class="title" v-show="sidebarOpen">
 				{{ title }}
 			</div>
 			<div class="icon" v-if="!close">
-				<v-icon class="expand-icon" :name="active ? 'expand_less' : 'expand_more'" outline />
+				<d-icon class="expand-icon" :name="active ? 'expand_less' : 'expand_more'" outline />
 			</div>
 		</button>
 		<div v-if="close" v-show="sidebarOpen" class="close" @click="sidebarOpen = false">
-			<v-icon name="close" />
+			<d-icon name="close" />
 		</div>
 		<transition-expand class="scroll-container">
 			<div v-show="active">

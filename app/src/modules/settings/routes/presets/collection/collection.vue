@@ -3,36 +3,36 @@
 		<template #headline>{{ $t('settings') }}</template>
 
 		<template #title-outer:prepend>
-			<v-button class="header-icon" rounded disabled icon secondary>
-				<v-icon name="bookmark_border" />
-			</v-button>
+			<d-button class="header-icon" rounded disabled icon secondary>
+				<d-icon name="bookmark_border" />
+			</d-button>
 		</template>
 
 		<template #actions>
-			<v-dialog v-model="confirmDelete" v-if="selection.length > 0" @esc="confirmDelete = false">
+			<d-dialog v-model="confirmDelete" v-if="selection.length > 0" @esc="confirmDelete = false">
 				<template #activator="{ on }">
-					<v-button rounded icon class="action-delete" @click="on" v-tooltip.bottom="$t('delete')">
-						<v-icon name="delete" outline />
-					</v-button>
+					<d-button rounded icon class="action-delete" @click="on" v-tooltip.bottom="$t('delete')">
+						<d-icon name="delete" outline />
+					</d-button>
 				</template>
 
-				<v-card>
-					<v-card-title>{{ $tc('batch_delete_confirm', selection.length) }}</v-card-title>
+				<d-card>
+					<d-card-title>{{ $tc('batch_delete_confirm', selection.length) }}</d-card-title>
 
-					<v-card-actions>
-						<v-button @click="confirmDelete = false" secondary>
+					<d-card-actions>
+						<d-button @click="confirmDelete = false" secondary>
 							{{ $t('cancel') }}
-						</v-button>
-						<v-button @click="deleteSelection" class="action-delete" :loading="deleting">
+						</d-button>
+						<d-button @click="deleteSelection" class="action-delete" :loading="deleting">
 							{{ $t('delete') }}
-						</v-button>
-					</v-card-actions>
-				</v-card>
-			</v-dialog>
+						</d-button>
+					</d-card-actions>
+				</d-card>
+			</d-dialog>
 
-			<v-button rounded icon :to="addNewLink" v-tooltip.bottom="$t('create_preset')">
-				<v-icon name="add" />
-			</v-button>
+			<d-button rounded icon :to="addNewLink" v-tooltip.bottom="$t('create_preset')">
+				<d-icon name="add" />
+			</d-button>
 		</template>
 
 		<template #navigation>
@@ -40,16 +40,16 @@
 		</template>
 
 		<div class="presets-collection">
-			<v-info center type="warning" v-if="!loading && presets.length === 0" :title="$t('no_presets')" icon="bookmark">
+			<d-info center type="warning" v-if="!loading && presets.length === 0" :title="$t('no_presets')" icon="bookmark">
 				{{ $t('no_presets_copy') }}
 
 				<template #append>
-					<v-button :to="addNewLink">
+					<d-button :to="addNewLink">
 						{{ $t('no_presets_cta') }}
-					</v-button>
+					</d-button>
 				</template>
-			</v-info>
-			<v-table
+			</d-info>
+			<d-table
 				:headers="headers"
 				fixed-header
 				:items="presets"
@@ -75,7 +75,7 @@
 						{{ item.name === null ? $t('default') : item.name }}
 					</span>
 				</template>
-			</v-table>
+			</d-table>
 		</div>
 
 		<template #sidebar>

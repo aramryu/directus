@@ -1,5 +1,5 @@
 <template>
-	<v-textarea
+	<d-textarea
 		class="new-comment"
 		:placeholder="$t('leave_comment')"
 		v-model="newCommentContent"
@@ -7,9 +7,9 @@
 		ref="textarea"
 	>
 		<template #append>
-			<!-- <v-icon name="alternate_email" class="add-mention" />
-			<v-icon name="insert_emoticon" class="add-emoji" /> -->
-			<v-button
+			<!-- <d-icon name="alternate_email" class="add-mention" />
+			<d-icon name="insert_emoticon" class="add-emoji" /> -->
+			<d-button
 				:disabled="!newCommentContent || newCommentContent.length === 0"
 				:loading="saving"
 				class="post-comment"
@@ -17,9 +17,9 @@
 				x-small
 			>
 				{{ $t('submit') }}
-			</v-button>
+			</d-button>
 		</template>
-	</v-textarea>
+	</d-textarea>
 </template>
 
 <script lang="ts">

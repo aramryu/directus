@@ -2,14 +2,14 @@
 	<div class="comment-item">
 		<comment-item-header :refresh="refresh" :activity="activity" @edit="editing = true" />
 
-		<v-textarea ref="textarea" v-if="editing" v-model="edits">
+		<d-textarea ref="textarea" v-if="editing" v-model="edits">
 			<template #append>
 				<div class="buttons">
-					<v-button class="cancel" @click="cancelEditing" secondary x-small>
+					<d-button class="cancel" @click="cancelEditing" secondary x-small>
 						{{ $t('cancel') }}
-					</v-button>
+					</d-button>
 
-					<v-button
+					<d-button
 						:loading="savingEdits"
 						class="post-comment"
 						@click="saveEdits"
@@ -17,10 +17,10 @@
 						:disabled="edits === activity.comment"
 					>
 						{{ $t('save') }}
-					</v-button>
+					</d-button>
 				</div>
 			</template>
-		</v-textarea>
+		</d-textarea>
 
 		<div v-else class="content">
 			<span v-html="htmlContent" class="selectable" />

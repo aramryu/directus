@@ -1,4 +1,4 @@
-import VProgressCircular from './v-progress-circular.vue';
+import DProgressCircular from './v-progress-circular.vue';
 
-export { VProgressCircular };
-export default VProgressCircular;
+export { DProgressCircular };
+export default DProgressCircular;

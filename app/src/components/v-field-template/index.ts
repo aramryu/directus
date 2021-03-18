@@ -1,4 +1,4 @@
-import VFieldTemplate from './v-field-template.vue';
+import DFieldTemplate from './v-field-template.vue';
 
-export default VFieldTemplate;
-export { VFieldTemplate };
+export default DFieldTemplate;
+export { DFieldTemplate };

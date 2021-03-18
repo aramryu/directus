@@ -1,7 +1,7 @@
 <template>
-	<v-notice v-if="!choices" type="warning">
+	<d-notice v-if="!choices" type="warning">
 		{{ $t('choices_option_configured_incorrectly') }}
-	</v-notice>
+	</d-notice>
 	<div
 		v-else
 		class="checkboxes"
@@ -10,7 +10,7 @@
 			'--v-checkbox-color': color,
 		}"
 	>
-		<v-checkbox
+		<d-checkbox
 			block
 			v-for="item in choicesDisplayed"
 			:key="item.value"
@@ -22,15 +22,15 @@
 			:input-value="value || []"
 			@change="$emit('input', $event)"
 		/>
-		<v-detail
+		<d-detail
 			v-if="hideChoices && showAll === false"
 			:class="gridClass"
 			:label="$t(`interfaces.checkboxes.show_more`, { count: hiddenCount })"
 			@toggle="showAll = true"
-		></v-detail>
+		></d-detail>
 
 		<template v-if="allowOther">
-			<v-checkbox
+			<d-checkbox
 				block
 				custom-value
 				v-for="otherValue in otherValues"
@@ -54,7 +54,7 @@
 				secondary
 				@click="addOtherValue()"
 			>
-				<v-icon name="add" />
+				<d-icon name="add" />
 				{{ $t('other') }}
 			</button>
 		</template>

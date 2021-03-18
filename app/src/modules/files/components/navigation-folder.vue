@@ -1,19 +1,19 @@
 <template>
 	<div>
-		<v-list-item
+		<d-list-item
 			v-if="folder.children === undefined"
 			:to="`/files?folder=${folder.id}`"
 			:active="currentFolder === folder.id"
 			exact
 			@contextmenu.native.prevent.stop="$refs.contextMenu.activate"
 		>
-			<v-list-item-icon><v-icon name="folder" /></v-list-item-icon>
-			<v-list-item-content>
-				<v-text-overflow :text="folder.name" />
-			</v-list-item-content>
-		</v-list-item>
+			<d-list-item-icon><d-icon name="folder" /></d-list-item-icon>
+			<d-list-item-content>
+				<d-text-overflow :text="folder.name" />
+			</d-list-item-content>
+		</d-list-item>
 
-		<v-list-group
+		<d-list-group
 			v-else
 			:to="`/files?folder=${folder.id}`"
 			:active="currentFolder === folder.id"
@@ -24,12 +24,12 @@
 			@contextmenu.native.prevent.stop="$refs.contextMenu.activate"
 		>
 			<template #activator>
-				<v-list-item-icon>
-					<v-icon name="folder" />
-				</v-list-item-icon>
-				<v-list-item-content>
-					<v-text-overflow :text="folder.name" />
-				</v-list-item-content>
+				<d-list-item-icon>
+					<d-icon name="folder" />
+				</d-list-item-icon>
+				<d-list-item-content>
+					<d-text-overflow :text="folder.name" />
+				</d-list-item-content>
 			</template>
 
 			<navigation-folder
@@ -39,79 +39,79 @@
 				:current-folder="currentFolder"
 				:click-handler="clickHandler"
 			/>
-		</v-list-group>
+		</d-list-group>
 
-		<v-menu ref="contextMenu" show-arrow placement="bottom-start">
-			<v-list>
-				<v-list-item @click="renameActive = true">
-					<v-list-item-icon>
-						<v-icon name="edit" outline />
-					</v-list-item-icon>
-					<v-list-item-content>
-						<v-text-overflow :text="$t('rename_folder')" />
-					</v-list-item-content>
-				</v-list-item>
-				<v-list-item @click="moveActive = true">
-					<v-list-item-icon>
-						<v-icon name="folder_move" />
-					</v-list-item-icon>
-					<v-list-item-content>
-						<v-text-overflow :text="$t('move_to_folder')" />
-					</v-list-item-content>
-				</v-list-item>
-				<v-list-item @click="deleteActive = true">
-					<v-list-item-icon>
-						<v-icon name="delete" outline />
-					</v-list-item-icon>
-					<v-list-item-content>
-						<v-text-overflow :text="$t('delete_folder')" />
-					</v-list-item-content>
-				</v-list-item>
-			</v-list>
-		</v-menu>
+		<d-menu ref="contextMenu" show-arrow placement="bottom-start">
+			<d-list>
+				<d-list-item @click="renameActive = true">
+					<d-list-item-icon>
+						<d-icon name="edit" outline />
+					</d-list-item-icon>
+					<d-list-item-content>
+						<d-text-overflow :text="$t('rename_folder')" />
+					</d-list-item-content>
+				</d-list-item>
+				<d-list-item @click="moveActive = true">
+					<d-list-item-icon>
+						<d-icon name="folder_move" />
+					</d-list-item-icon>
+					<d-list-item-content>
+						<d-text-overflow :text="$t('move_to_folder')" />
+					</d-list-item-content>
+				</d-list-item>
+				<d-list-item @click="deleteActive = true">
+					<d-list-item-icon>
+						<d-icon name="delete" outline />
+					</d-list-item-icon>
+					<d-list-item-content>
+						<d-text-overflow :text="$t('delete_folder')" />
+					</d-list-item-content>
+				</d-list-item>
+			</d-list>
+		</d-menu>
 
-		<v-dialog v-model="renameActive" persistent @esc="renameActive = false">
-			<v-card>
-				<v-card-title>{{ $t('rename_folder') }}</v-card-title>
-				<v-card-text>
-					<v-input v-model="renameValue" autofocus @keyup.enter="renameSave" />
-				</v-card-text>
-				<v-card-actions>
-					<v-button secondary @click="renameActive = false">{{ $t('cancel') }}</v-button>
-					<v-button @click="renameSave" :disabled="renameValue === null" :loading="renameSaving">
+		<d-dialog v-model="renameActive" persistent @esc="renameActive = false">
+			<d-card>
+				<d-card-title>{{ $t('rename_folder') }}</d-card-title>
+				<d-card-text>
+					<d-input v-model="renameValue" autofocus @keyup.enter="renameSave" />
+				</d-card-text>
+				<d-card-actions>
+					<d-button secondary @click="renameActive = false">{{ $t('cancel') }}</d-button>
+					<d-button @click="renameSave" :disabled="renameValue === null" :loading="renameSaving">
 						{{ $t('save') }}
-					</v-button>
-				</v-card-actions>
-			</v-card>
-		</v-dialog>
+					</d-button>
+				</d-card-actions>
+			</d-card>
+		</d-dialog>
 
-		<v-dialog v-model="moveActive" persistent @esc="moveActive = false">
-			<v-card>
-				<v-card-title>{{ $t('move_to_folder') }}</v-card-title>
-				<v-card-text>
+		<d-dialog v-model="moveActive" persistent @esc="moveActive = false">
+			<d-card>
+				<d-card-title>{{ $t('move_to_folder') }}</d-card-title>
+				<d-card-text>
 					<folder-picker v-model="moveValue" :disabled-folders="[folder.id]" />
-				</v-card-text>
-				<v-card-actions>
-					<v-button secondary @click="moveActive = false">{{ $t('cancel') }}</v-button>
-					<v-button @click="moveSave" :loading="moveSaving">{{ $t('save') }}</v-button>
-				</v-card-actions>
-			</v-card>
-		</v-dialog>
+				</d-card-text>
+				<d-card-actions>
+					<d-button secondary @click="moveActive = false">{{ $t('cancel') }}</d-button>
+					<d-button @click="moveSave" :loading="moveSaving">{{ $t('save') }}</d-button>
+				</d-card-actions>
+			</d-card>
+		</d-dialog>
 
-		<v-dialog v-model="deleteActive" persistent @esc="deleteActive = false">
-			<v-card>
-				<v-card-title>{{ $t('delete_folder') }}</v-card-title>
-				<v-card-text>
-					<v-notice>
+		<d-dialog v-model="deleteActive" persistent @esc="deleteActive = false">
+			<d-card>
+				<d-card-title>{{ $t('delete_folder') }}</d-card-title>
+				<d-card-text>
+					<d-notice>
 						{{ $t('nested_files_folders_will_be_moved') }}
-					</v-notice>
-				</v-card-text>
-				<v-card-actions>
-					<v-button secondary @click="deleteActive = false">{{ $t('cancel') }}</v-button>
-					<v-button @click="deleteSave" :loading="deleteSaving">{{ $t('delete') }}</v-button>
-				</v-card-actions>
-			</v-card>
-		</v-dialog>
+					</d-notice>
+				</d-card-text>
+				<d-card-actions>
+					<d-button secondary @click="deleteActive = false">{{ $t('cancel') }}</d-button>
+					<d-button @click="deleteSave" :loading="deleteSaving">{{ $t('delete') }}</d-button>
+				</d-card-actions>
+			</d-card>
+		</d-dialog>
 	</div>
 </template>
 

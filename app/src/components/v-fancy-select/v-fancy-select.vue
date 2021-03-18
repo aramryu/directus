@@ -2,7 +2,7 @@
 	<div class="v-fancy-select">
 		<transition-group tag="div" name="option">
 			<template v-for="(item, index) in visibleItems">
-				<v-divider :key="index" v-if="item.divider === true" />
+				<d-divider :key="index" v-if="item.divider === true" />
 				<div
 					v-else
 					:key="item.value"
@@ -14,7 +14,7 @@
 					@click="toggle(item)"
 				>
 					<div class="icon">
-						<v-icon :name="item.icon" />
+						<d-icon :name="item.icon" />
 					</div>
 
 					<div class="content">
@@ -22,12 +22,8 @@
 						<div class="description">{{ item.description }}</div>
 					</div>
 
-					<v-icon
-						v-if="value === item.value && disabled === false"
-						name="cancel"
-						@click.stop="toggle(item)"
-					/>
-					<v-icon class="icon-right" v-else-if="item.iconRight" :name="item.iconRight" />
+					<d-icon v-if="value === item.value && disabled === false" name="cancel" @click.stop="toggle(item)" />
+					<d-icon class="icon-right" v-else-if="item.iconRight" :name="item.iconRight" />
 				</div>
 			</template>
 		</transition-group>

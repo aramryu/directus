@@ -1,10 +1,10 @@
 <template>
-	<v-tabs vertical v-model="_currentTab">
-		<v-tab v-for="tab in tabs" :key="tab.value" :value="tab.value">
+	<d-tabs vertical v-model="_currentTab">
+		<d-tab v-for="tab in tabs" :key="tab.value" :value="tab.value">
 			<span class="text">{{ tab.text }}</span>
 			<span class="dot" :class="{ on: tab.hasValue }" />
-		</v-tab>
-	</v-tabs>
+		</d-tab>
+	</d-tabs>
 </template>
 
 <script lang="ts">

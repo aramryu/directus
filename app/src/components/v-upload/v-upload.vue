@@ -22,7 +22,7 @@
 						: $t('upload_file_indeterminate')
 				}}
 			</p>
-			<v-progress-linear :value="progress" rounded />
+			<d-progress-linear :value="progress" rounded />
 		</template>
 
 		<template v-else>
@@ -31,26 +31,26 @@
 			<input class="browse" type="file" @input="onBrowseSelect" :multiple="multiple" />
 
 			<template v-if="fromUrl !== false || fromLibrary !== false">
-				<v-menu showArrow placement="bottom-end">
+				<d-menu showArrow placement="bottom-end">
 					<template #activator="{ toggle }">
-						<v-icon @click="toggle" class="options" name="more_vert" />
+						<d-icon @click="toggle" class="options" name="more_vert" />
 					</template>
-					<v-list>
-						<v-list-item @click="activeDialog = 'choose'" v-if="fromLibrary">
-							<v-list-item-icon><v-icon name="folder_open" /></v-list-item-icon>
-							<v-list-item-content>
+					<d-list>
+						<d-list-item @click="activeDialog = 'choose'" v-if="fromLibrary">
+							<d-list-item-icon><d-icon name="folder_open" /></d-list-item-icon>
+							<d-list-item-content>
 								{{ $t('choose_from_library') }}
-							</v-list-item-content>
-						</v-list-item>
+							</d-list-item-content>
+						</d-list-item>
 
-						<v-list-item @click="activeDialog = 'url'" v-if="fromUrl">
-							<v-list-item-icon><v-icon name="link" /></v-list-item-icon>
-							<v-list-item-content>
+						<d-list-item @click="activeDialog = 'url'" v-if="fromUrl">
+							<d-list-item-icon><d-icon name="link" /></d-list-item-icon>
+							<d-list-item-content>
 								{{ $t('import_from_url') }}
-							</v-list-item-content>
-						</v-list-item>
-					</v-list>
-				</v-menu>
+							</d-list-item-content>
+						</d-list-item>
+					</d-list>
+				</d-menu>
 
 				<drawer-collection
 					collection="directus_files"
@@ -59,27 +59,27 @@
 					@input="setSelection"
 				/>
 
-				<v-dialog
+				<d-dialog
 					:active="activeDialog === 'url'"
 					@esc="activeDialog = null"
 					@toggle="activeDialog = null"
 					:persistent="urlLoading"
 				>
-					<v-card>
-						<v-card-title>{{ $t('import_from_url') }}</v-card-title>
-						<v-card-text>
-							<v-input :placeholder="$t('url')" v-model="url" :nullable="false" :disabled="urlLoading" />
-						</v-card-text>
-						<v-card-actions>
-							<v-button :disabled="urlLoading" @click="activeDialog = null" secondary>
+					<d-card>
+						<d-card-title>{{ $t('import_from_url') }}</d-card-title>
+						<d-card-text>
+							<d-input :placeholder="$t('url')" v-model="url" :nullable="false" :disabled="urlLoading" />
+						</d-card-text>
+						<d-card-actions>
+							<d-button :disabled="urlLoading" @click="activeDialog = null" secondary>
 								{{ $t('cancel') }}
-							</v-button>
-							<v-button :loading="urlLoading" @click="importFromURL" :disabled="isValidURL === false">
+							</d-button>
+							<d-button :loading="urlLoading" @click="importFromURL" :disabled="isValidURL === false">
 								{{ $t('import') }}
-							</v-button>
-						</v-card-actions>
-					</v-card>
-				</v-dialog>
+							</d-button>
+						</d-card-actions>
+					</d-card>
+				</d-dialog>
 			</template>
 		</template>
 	</div>

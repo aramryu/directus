@@ -1,10 +1,10 @@
 <template>
 	<div class="image">
-		<v-skeleton-loader v-if="loading" type="input-tall" />
+		<d-skeleton-loader v-if="loading" type="input-tall" />
 
-		<v-notice class="disabled-placeholder" v-else-if="disabled && !image" center icon="block">
+		<d-notice class="disabled-placeholder" v-else-if="disabled && !image" center icon="block">
 			{{ $t('disabled') }}
-		</v-notice>
+		</d-notice>
 
 		<div class="image-preview" v-else-if="image" :class="{ 'is-svg': image.type.includes('svg') }">
 			<img :src="src" alt="" role="presentation" />
@@ -12,18 +12,18 @@
 			<div class="shadow" />
 
 			<div class="actions" v-if="!disabled">
-				<v-button icon rounded @click="lightboxActive = true" v-tooltip="$t('zoom')">
-					<v-icon name="zoom_in" />
-				</v-button>
-				<v-button icon rounded :href="downloadSrc" :download="image.filename_download" v-tooltip="$t('download')">
-					<v-icon name="get_app" />
-				</v-button>
-				<v-button icon rounded @click="editDrawerActive = true" v-tooltip="$t('edit')">
-					<v-icon name="open_in_new" />
-				</v-button>
-				<v-button icon rounded @click="deselect" v-tooltip="$t('deselect')">
-					<v-icon name="close" />
-				</v-button>
+				<d-button icon rounded @click="lightboxActive = true" v-tooltip="$t('zoom')">
+					<d-icon name="zoom_in" />
+				</d-button>
+				<d-button icon rounded :href="downloadSrc" :download="image.filename_download" v-tooltip="$t('download')">
+					<d-icon name="get_app" />
+				</d-button>
+				<d-button icon rounded @click="editDrawerActive = true" v-tooltip="$t('edit')">
+					<d-icon name="open_in_new" />
+				</d-button>
+				<d-button icon rounded @click="deselect" v-tooltip="$t('deselect')">
+					<d-icon name="close" />
+				</d-button>
 			</div>
 
 			<div class="info">
@@ -42,7 +42,7 @@
 
 			<file-lightbox v-model="lightboxActive" :id="image.id" />
 		</div>
-		<v-upload v-else @input="setImage" from-library from-url />
+		<d-upload v-else @input="setImage" from-library from-url />
 	</div>
 </template>
 

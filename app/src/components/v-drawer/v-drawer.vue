@@ -1,11 +1,11 @@
 <template>
-	<v-dialog v-model="_active" @esc="$emit('cancel')" :persistent="persistent" placement="right">
+	<d-dialog v-model="_active" @esc="$emit('cancel')" :persistent="persistent" placement="right">
 		<template #activator="{ on }">
 			<slot name="activator" v-bind="{ on }" />
 		</template>
 
 		<article class="v-drawer">
-			<v-button
+			<d-button
 				v-if="showCancel"
 				class="cancel"
 				@click="$emit('cancel')"
@@ -14,11 +14,11 @@
 				secondary
 				v-tooltip.bottom="$t('cancel')"
 			>
-				<v-icon name="close" />
-			</v-button>
+				<d-icon name="close" />
+			</d-button>
 
 			<div class="content">
-				<v-overlay v-if="$slots.sidebar" absolute @click="sidebarActive = false" />
+				<d-overlay v-if="$slots.sidebar" absolute @click="sidebarActive = false" />
 				<nav v-if="$slots.sidebar" class="sidebar">
 					<slot name="sidebar" />
 				</nav>
@@ -31,9 +31,9 @@
 						</template>
 
 						<template #title-outer:prepend>
-							<v-button class="header-icon" rounded icon secondary disabled>
-								<v-icon :name="icon" />
-							</v-button>
+							<d-button class="header-icon" rounded icon secondary disabled>
+								<d-icon :name="icon" />
+							</d-button>
 						</template>
 
 						<template #actions:prepend><slot name="actions:prepend" /></template>
@@ -42,17 +42,17 @@
 						<template #title:append><slot name="header:append" /></template>
 					</header-bar>
 
-					<v-detail v-if="$slots.sidebar" class="mobile-sidebar" :label="sidebarLabel">
+					<d-detail v-if="$slots.sidebar" class="mobile-sidebar" :label="sidebarLabel">
 						<nav>
 							<slot name="sidebar" />
 						</nav>
-					</v-detail>
+					</d-detail>
 
 					<slot />
 				</main>
 			</div>
 		</article>
-	</v-dialog>
+	</d-dialog>
 </template>
 
 <script lang="ts">

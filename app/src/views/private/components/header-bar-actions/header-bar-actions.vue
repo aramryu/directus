@@ -1,23 +1,23 @@
 <template>
 	<div class="actions" :class="{ active }">
-		<v-button class="expand" icon rounded secondary outlined @click="active = !active">
-			<v-icon name="arrow_left" />
-		</v-button>
+		<d-button class="expand" icon rounded secondary outlined @click="active = !active">
+			<d-icon name="arrow_left" />
+		</d-button>
 
 		<div class="action-buttons">
-			<v-button
-				class="sidebar-toggle"
+			<v-col class="flex-shrink-4">
+				<slot />
+				<d-button
 				icon
 				rounded
-				secondary
+				primary
 				outlined
 				@click="$emit('toggle:sidebar')"
 				v-if="showSidebarToggle"
 			>
-				<v-icon name="info" outline />
-			</v-button>
-
-			<slot />
+				<d-icon name="info" outline />
+			</d-button>
+			</v-col>
 		</div>
 	</div>
 </template>
@@ -55,7 +55,7 @@ export default defineComponent({
 		--v-icon-color: var(--foreground-normal);
 
 		flex-shrink: 0;
-		margin-right: 8px;
+		margin-right: 0px;
 
 		@include breakpoint(medium) {
 			display: none;
@@ -76,7 +76,7 @@ export default defineComponent({
 		}
 
 		.sidebar-toggle {
-			flex-shrink: 0;
+			// flex-shrink: 0;
 
 			@include breakpoint(medium) {
 				display: none;

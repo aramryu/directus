@@ -1,20 +1,20 @@
 <template>
-	<v-drawer
+	<d-drawer
 		v-model="_active"
 		:title="$t('editing_in_batch', { count: primaryKeys.length })"
 		persistent
 		@cancel="cancel"
 	>
 		<template #actions>
-			<v-button @click="save" icon rounded :loading="saving" v-tooltip.bottom="$t('save')">
-				<v-icon name="check" />
-			</v-button>
+			<d-button @click="save" icon rounded :loading="saving" v-tooltip.bottom="$t('save')">
+				<d-icon name="check" />
+			</d-button>
 		</template>
 
 		<div class="drawer-batch-content">
-			<v-form :collection="collection" v-model="_edits" batch-mode primary-key="+" />
+			<d-form :collection="collection" v-model="_edits" batch-mode primary-key="+" />
 		</div>
-	</v-drawer>
+	</d-drawer>
 </template>
 
 <script lang="ts">

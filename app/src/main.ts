@@ -56,6 +56,7 @@ import { registerLayouts } from './layouts/register';
 import { registerDisplays } from './displays/register';
 
 import App from './app.vue';
+import vuetify from './plugins/vuetify';
 
 async function init() {
 	await Promise.all([registerInterfaces(), registerDisplays(), registerLayouts(), loadModules()]);
@@ -65,6 +66,7 @@ async function init() {
 	new Vue({
 		render: (h) => h(App),
 		router,
+		vuetify,
 		i18n,
 	}).$mount('#app');
 

@@ -1,19 +1,19 @@
 <template>
-	<v-list-item
+	<d-list-item
 		v-if="folder.children.length === 0"
 		@click="clickHandler(folder.id)"
 		:active="currentFolder === folder.id"
 		:disabled="disabled"
 	>
-		<v-list-item-icon><v-icon :name="currentFolder === folder.id ? 'folder_open' : 'folder'" /></v-list-item-icon>
-		<v-list-item-content>{{ folder.name }}</v-list-item-content>
-	</v-list-item>
-	<v-list-group v-else @click="clickHandler(folder.id)" :active="currentFolder === folder.id" :disabled="disabled">
+		<d-list-item-icon><d-icon :name="currentFolder === folder.id ? 'folder_open' : 'folder'" /></d-list-item-icon>
+		<d-list-item-content>{{ folder.name }}</d-list-item-content>
+	</d-list-item>
+	<d-list-group v-else @click="clickHandler(folder.id)" :active="currentFolder === folder.id" :disabled="disabled">
 		<template #activator>
-			<v-list-item-icon>
-				<v-icon :name="currentFolder === folder.id ? 'folder_open' : 'folder'" />
-			</v-list-item-icon>
-			<v-list-item-content>{{ folder.name }}</v-list-item-content>
+			<d-list-item-icon>
+				<d-icon :name="currentFolder === folder.id ? 'folder_open' : 'folder'" />
+			</d-list-item-icon>
+			<d-list-item-content>{{ folder.name }}</d-list-item-content>
 		</template>
 		<folder-picker-list-item
 			v-for="childFolder in folder.children"
@@ -24,7 +24,7 @@
 			:disabled="disabledFolders.includes(childFolder.id)"
 			:disabled-folders="disabledFolders"
 		/>
-	</v-list-group>
+	</d-list-group>
 </template>
 
 <script lang="ts">

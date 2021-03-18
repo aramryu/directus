@@ -1,4 +1,4 @@
-import VInfo from './v-info.vue';
+import DInfo from './v-info.vue';
 
-export { VInfo };
-export default VInfo;
+export { DInfo };
+export default DInfo;

@@ -1,18 +1,19 @@
 <template>
-	<div id="app" :style="brandStyle">
+	<v-app id="app" :style="brandStyle">
+	<!-- <div id="app" :style="brandStyle"> -->
 		<transition name="fade">
 			<div class="hydrating" v-if="hydrating">
-				<v-progress-circular indeterminate />
+				<d-progress-circular indeterminate />
 			</div>
 		</transition>
 
-		<v-info v-if="error" type="danger" :title="$t('unexpected_error')" icon="error" center>
+		<d-info v-if="error" type="danger" :title="$t('unexpected_error')" icon="error" center>
 			{{ $t('unexpected_error_copy') }}
 
 			<template #append>
-				<v-error :error="error" />
+				<d-error :error="error" />
 			</template>
-		</v-info>
+		</d-info>
 
 		<router-view v-else-if="!hydrating" />
 
@@ -20,7 +21,8 @@
 		<portal-target name="menu-outlet" transition="transition-bounce" multiple />
 
 		<mounting-portal mount-to="#custom-css" target-tag="style">{{ customCSS }}</mounting-portal>
-	</div>
+	<!-- </div> -->
+	</v-app>
 </template>
 
 <script lang="ts">

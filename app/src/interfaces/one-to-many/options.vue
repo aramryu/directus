@@ -1,11 +1,11 @@
 <template>
-	<v-notice type="warning" v-if="relatedCollection === null">
+	<d-notice type="warning" v-if="relatedCollection === null">
 		{{ $t('interfaces.one-to-many.no_collection') }}
-	</v-notice>
+	</d-notice>
 	<div v-else class="form-grid">
 		<div class="field full">
 			<p class="type-label">{{ $t('select_fields') }}</p>
-			<v-field-select
+			<d-field-select
 				:collection="relatedCollection"
 				v-model="fields"
 				:inject="relatedCollectionExists ? null : { fields: newFields, collections: newCollections, relations }"

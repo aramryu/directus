@@ -1,4 +1,4 @@
-import VDetail from './v-detail.vue';
+import DDetail from './v-detail.vue';
 
-export { VDetail };
-export default VDetail;
+export { DDetail };
+export default DDetail;

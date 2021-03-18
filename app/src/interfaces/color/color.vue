@@ -1,7 +1,7 @@
 <template>
-	<v-menu attached :disabled="disabled" v-model="menuActive" :close-on-content-click="false">
+	<d-menu attached :disabled="disabled" v-model="menuActive" :close-on-content-click="false">
 		<template #activator>
-			<v-input
+			<d-input
 				:disabled="disabled"
 				:placeholder="$t('interfaces.color.placeholder')"
 				v-model="hex"
@@ -11,8 +11,8 @@
 				@focus="menuActive = true"
 			>
 				<template #prepend>
-					<v-input type="color" class="html-color-select" v-model="hex" ref="htmlColorInput" />
-					<v-button
+					<d-input type="color" class="html-color-select" v-model="hex" ref="htmlColorInput" />
+					<d-button
 						@click="activateColorPicker"
 						class="swatch"
 						:icon="true"
@@ -21,21 +21,21 @@
 							border: lowContrast === false ? 'none' : 'var(--border-width) solid var(--border-normal)',
 						}"
 					>
-						<v-icon v-if="!isValidColor" name="colorize" />
-					</v-button>
+						<d-icon v-if="!isValidColor" name="colorize" />
+					</d-button>
 				</template>
 				<template #append>
-					<v-icon :name="isValidColor ? 'close' : 'palette'" @click="unsetColor" />
+					<d-icon :name="isValidColor ? 'close' : 'palette'" @click="unsetColor" />
 				</template>
-			</v-input>
+			</d-input>
 		</template>
 
 		<div class="color-data-inputs" :class="{ stacked: width === 'half' }">
 			<div class="color-data-input color-type">
-				<v-select :items="colorTypes" v-model="colorType" />
+				<d-select :items="colorTypes" v-model="colorType" />
 			</div>
 			<template v-if="colorType === 'RGB'">
-				<v-input
+				<d-input
 					type="number"
 					v-for="(val, i) in rgb"
 					:key="i"
@@ -50,7 +50,7 @@
 				/>
 			</template>
 			<template v-if="colorType === 'HSL'">
-				<v-input
+				<d-input
 					type="number"
 					v-for="(val, i) in hsl"
 					:key="i"
@@ -66,7 +66,7 @@
 			</template>
 		</div>
 		<div class="presets" v-if="presets">
-			<v-button
+			<d-button
 				v-for="preset in presets"
 				:key="preset.color"
 				class="preset"
@@ -77,7 +77,7 @@
 				@click="() => (hex = preset.color)"
 			/>
 		</div>
-	</v-menu>
+	</d-menu>
 </template>
 <script lang="ts">
 import { defineComponent, ref, computed, PropType, watch } from '@vue/composition-api';

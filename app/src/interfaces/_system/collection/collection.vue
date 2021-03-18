@@ -1,5 +1,5 @@
 <template>
-	<v-select :value="value" :disabled="disabled" :items="items" @input="$emit('input', $event)" />
+	<d-select :value="value" :disabled="disabled" :items="items" @input="$emit('input', $event)" />
 </template>
 
 <script lang="ts">

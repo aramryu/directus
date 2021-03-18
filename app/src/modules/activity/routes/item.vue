@@ -1,11 +1,11 @@
 <template>
-	<v-drawer active title="Activity Item" @toggle="close" @cancel="close">
-		<v-progress-circular indeterminate v-if="loading" />
+	<d-drawer active title="Activity Item" @toggle="close" @cancel="close">
+		<d-progress-circular indeterminate v-if="loading" />
 
 		<div class="content" v-else-if="error">
-			<v-notice type="danger">
+			<d-notice type="danger">
 				{{ error }}
-			</v-notice>
+			</d-notice>
 		</div>
 
 		<div class="content" v-else>
@@ -35,15 +35,15 @@
 		</div>
 
 		<template #actions>
-			<v-button v-if="openItemLink" :to="openItemLink" icon rounded v-tooltip.bottom="$t('open')">
-				<v-icon name="launch" />
-			</v-button>
+			<d-button v-if="openItemLink" :to="openItemLink" icon rounded v-tooltip.bottom="$t('open')">
+				<d-icon name="launch" />
+			</d-button>
 
-			<v-button to="/activity" icon rounded v-tooltip.bottom="$t('done')">
-				<v-icon name="check" />
-			</v-button>
+			<d-button to="/activity" icon rounded v-tooltip.bottom="$t('done')">
+				<d-icon name="check" />
+			</d-button>
 		</template>
-	</v-drawer>
+	</d-drawer>
 </template>
 
 <script lang="ts">

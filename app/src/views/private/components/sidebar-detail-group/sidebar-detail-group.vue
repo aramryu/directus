@@ -1,7 +1,7 @@
 <template>
-	<v-item-group class="sidebar-detail-group" v-model="openDetail" scope="sidebar-detail" :mandatory="mandatory">
+	<d-item-group class="sidebar-detail-group" v-model="openDetail" scope="sidebar-detail" :mandatory="mandatory">
 		<slot />
-	</v-item-group>
+	</d-item-group>
 </template>
 
 <script lang="ts">

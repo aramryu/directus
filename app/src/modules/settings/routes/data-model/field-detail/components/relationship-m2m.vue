@@ -1,14 +1,13 @@
 <template>
 	<div>
-
 		<div class="grid">
 			<div class="field">
 				<div class="type-label">{{ $t('this_collection') }}</div>
-				<v-input disabled :value="relations[0].one_collection" />
+				<d-input disabled :value="relations[0].one_collection" />
 			</div>
 			<div class="field">
 				<div class="type-label">{{ $t('junction_collection') }}</div>
-				<v-input
+				<d-input
 					:class="{ matches: junctionCollectionExists }"
 					v-model="junctionCollection"
 					:nullable="false"
@@ -17,9 +16,9 @@
 					db-safe
 				>
 					<template #append>
-						<v-menu show-arrow placement="bottom-end">
+						<d-menu show-arrow placement="bottom-end">
 							<template #activator="{ toggle }">
-								<v-icon
+								<d-icon
 									name="list_alt"
 									@click="toggle"
 									v-tooltip="$t('select_existing')"
@@ -27,41 +26,41 @@
 								/>
 							</template>
 
-							<v-list class="monospace">
-								<v-list-item
+							<d-list class="monospace">
+								<d-list-item
 									v-for="collection in availableCollections"
 									:key="collection.collection"
 									:active="relations[0].many_collection === collection.collection"
 									@click="relations[0].many_collection = collection.collection"
 								>
-									<v-list-item-content>
+									<d-list-item-content>
 										{{ collection.collection }}
-									</v-list-item-content>
-								</v-list-item>
+									</d-list-item-content>
+								</d-list-item>
 
-								<v-divider />
+								<d-divider />
 
-								<v-list-group>
+								<d-list-group>
 									<template #activator>{{ $t('system') }}</template>
-									<v-list-item
+									<d-list-item
 										v-for="collection in systemCollections"
 										:key="collection.collection"
 										:active="relations[0].many_collection === collection.collection"
 										@click="relations[0].many_collection = collection.collection"
 									>
-										<v-list-item-content>
+										<d-list-item-content>
 											{{ collection.collection }}
-										</v-list-item-content>
-									</v-list-item>
-								</v-list-group>
-							</v-list>
-						</v-menu>
+										</d-list-item-content>
+									</d-list-item>
+								</d-list-group>
+							</d-list>
+						</d-menu>
 					</template>
-				</v-input>
+				</d-input>
 			</div>
 			<div class="field">
 				<div class="type-label">{{ $t('related_collection') }}</div>
-				<v-input
+				<d-input
 					:autofocus="autoFill"
 					:class="{ matches: relatedCollectionExists }"
 					v-model="relations[1].one_collection"
@@ -71,9 +70,9 @@
 					db-safe
 				>
 					<template #append>
-						<v-menu show-arrow placement="bottom-end">
+						<d-menu show-arrow placement="bottom-end">
 							<template #activator="{ toggle }">
-								<v-icon
+								<d-icon
 									name="list_alt"
 									@click="toggle"
 									v-tooltip="$t('select_existing')"
@@ -81,40 +80,40 @@
 								/>
 							</template>
 
-							<v-list class="monospace">
-								<v-list-item
+							<d-list class="monospace">
+								<d-list-item
 									v-for="collection in availableCollections"
 									:key="collection.collection"
 									:active="relations[1].one_collection === collection.collection"
 									@click="relations[1].one_collection = collection.collection"
 								>
-									<v-list-item-content>
+									<d-list-item-content>
 										{{ collection.collection }}
-									</v-list-item-content>
-								</v-list-item>
+									</d-list-item-content>
+								</d-list-item>
 
-								<v-divider />
+								<d-divider />
 
-								<v-list-group>
+								<d-list-group>
 									<template #activator>{{ $t('system') }}</template>
-									<v-list-item
+									<d-list-item
 										v-for="collection in systemCollections"
 										:key="collection.collection"
 										:active="relations[1].one_collection === collection.collection"
 										@click="relations[1].one_collection = collection.collection"
 									>
-										<v-list-item-content>
+										<d-list-item-content>
 											{{ collection.collection }}
-										</v-list-item-content>
-									</v-list-item>
-								</v-list-group>
-							</v-list>
-						</v-menu>
+										</d-list-item-content>
+									</d-list-item>
+								</d-list-group>
+							</d-list>
+						</d-menu>
 					</template>
-				</v-input>
+				</d-input>
 			</div>
-			<v-input disabled :value="relations[0].one_primary" />
-			<v-input
+			<d-input disabled :value="relations[0].one_primary" />
+			<d-input
 				:class="{ matches: junctionFieldExists(relations[0].many_field) }"
 				v-model="relations[0].many_field"
 				:nullable="false"
@@ -123,9 +122,9 @@
 				db-safe
 			>
 				<template #append v-if="junctionCollectionExists">
-					<v-menu show-arrow placement="bottom-end">
+					<d-menu show-arrow placement="bottom-end">
 						<template #activator="{ toggle }">
-							<v-icon
+							<d-icon
 								name="list_alt"
 								@click="toggle"
 								v-tooltip="$t('select_existing')"
@@ -133,25 +132,25 @@
 							/>
 						</template>
 
-						<v-list class="monospace">
-							<v-list-item
+						<d-list class="monospace">
+							<d-list-item
 								v-for="item in junctionFields"
 								:key="item.value"
 								:active="relations[0].many_field === item.value"
 								:disabled="item.disabled"
 								@click="relations[0].many_field = item.value"
 							>
-								<v-list-item-content>
+								<d-list-item-content>
 									{{ item.text }}
-								</v-list-item-content>
-							</v-list-item>
-						</v-list>
-					</v-menu>
+								</d-list-item-content>
+							</d-list-item>
+						</d-list>
+					</d-menu>
 				</template>
-			</v-input>
+			</d-input>
 			<div class="spacer" />
 			<div class="spacer" />
-			<v-input
+			<d-input
 				:class="{ matches: junctionFieldExists(relations[1].many_field) }"
 				v-model="relations[1].many_field"
 				:nullable="false"
@@ -160,9 +159,9 @@
 				db-safe
 			>
 				<template #append v-if="junctionCollectionExists">
-					<v-menu show-arrow placement="bottom-end">
+					<d-menu show-arrow placement="bottom-end">
 						<template #activator="{ toggle }">
-							<v-icon
+							<d-icon
 								name="list_alt"
 								@click="toggle"
 								v-tooltip="$t('select_existing')"
@@ -170,23 +169,23 @@
 							/>
 						</template>
 
-						<v-list class="monospace">
-							<v-list-item
+						<d-list class="monospace">
+							<d-list-item
 								v-for="item in junctionFields"
 								:key="item.value"
 								:active="relations[1].many_field === item.value"
 								:disabled="item.disabled"
 								@click="relations[1].many_field = item.value"
 							>
-								<v-list-item-content>
+								<d-list-item-content>
 									{{ item.text }}
-								</v-list-item-content>
-							</v-list-item>
-						</v-list>
-					</v-menu>
+								</d-list-item-content>
+							</d-list-item>
+						</d-list>
+					</d-menu>
 				</template>
-			</v-input>
-			<v-input
+			</d-input>
+			<d-input
 				db-safe
 				:disabled="relatedCollectionExists"
 				v-model="relations[1].one_primary"
@@ -194,34 +193,34 @@
 				:placeholder="$t('primary_key') + '...'"
 			/>
 			<div class="spacer" />
-			<v-checkbox :disabled="isExisting" block v-model="autoFill" :label="$t('auto_fill')" />
-			<v-icon class="arrow" name="arrow_forward" />
-			<v-icon class="arrow" name="arrow_backward" />
+			<d-checkbox :disabled="isExisting" block v-model="autoFill" :label="$t('auto_fill')" />
+			<d-icon class="arrow" name="arrow_forward" />
+			<d-icon class="arrow" name="arrow_backward" />
 		</div>
 
-		<v-divider large :inline-title="false" v-if="!isExisting">{{ $t('corresponding_field') }}</v-divider>
+		<d-divider large :inline-title="false" v-if="!isExisting">{{ $t('corresponding_field') }}</d-divider>
 
 		<div class="corresponding" v-if="!isExisting">
 			<div class="field">
 				<div class="type-label">{{ $t('create_field') }}</div>
-				<v-checkbox block :label="correspondingLabel" v-model="hasCorresponding" />
+				<d-checkbox block :label="correspondingLabel" v-model="hasCorresponding" />
 			</div>
 			<div class="field">
 				<div class="type-label">{{ $t('field_name') }}</div>
-				<v-input
+				<d-input
 					:disabled="hasCorresponding === false"
 					v-model="correspondingField"
 					:placeholder="$t('field_name') + '...'"
 					db-safe
 				/>
 			</div>
-			<v-icon name="arrow_forward" class="arrow" />
+			<d-icon name="arrow_forward" class="arrow" />
 		</div>
 
 		<div class="sort-field">
-			<v-divider large :inline-title="false">{{ $t('sort_field') }}</v-divider>
+			<d-divider large :inline-title="false">{{ $t('sort_field') }}</d-divider>
 
-			<v-input
+			<d-input
 				:class="{ matches: junctionFieldExists(relations[0].sort_field) }"
 				v-model="relations[0].sort_field"
 				:nullable="false"
@@ -229,30 +228,30 @@
 				db-safe
 			>
 				<template #append v-if="junctionCollectionExists">
-					<v-menu show-arrow placement="bottom-end">
+					<d-menu show-arrow placement="bottom-end">
 						<template #activator="{ toggle }">
-							<v-icon name="list_alt" @click="toggle" v-tooltip="$t('select_existing')" />
+							<d-icon name="list_alt" @click="toggle" v-tooltip="$t('select_existing')" />
 						</template>
 
-						<v-list class="monospace">
-							<v-list-item
+						<d-list class="monospace">
+							<d-list-item
 								v-for="item in junctionFields"
 								:key="item.value"
 								:active="relations[0].sort_field === item.value"
 								:disabled="item.disabled"
 								@click="relations[0].sort_field = item.value"
 							>
-								<v-list-item-content>
+								<d-list-item-content>
 									{{ item.text }}
-								</v-list-item-content>
-							</v-list-item>
-						</v-list>
-					</v-menu>
+								</d-list-item-content>
+							</d-list-item>
+						</d-list>
+					</d-menu>
 				</template>
-			</v-input>
+			</d-input>
 		</div>
 
-		<v-notice class="generated-data" v-if="generationInfo.length > 0" type="warning">
+		<d-notice class="generated-data" v-if="generationInfo.length > 0" type="warning">
 			<span>
 				{{ $t('new_data_alert') }}
 
@@ -263,7 +262,7 @@
 					</li>
 				</ul>
 			</span>
-		</v-notice>
+		</d-notice>
 	</div>
 </template>
 
